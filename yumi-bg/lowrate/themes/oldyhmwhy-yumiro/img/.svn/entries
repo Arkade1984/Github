@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="744"
+   name=""
+   committed-date="2008-11-06T02:47:00.482601Z"
+   url="http://fluxcp.googlecode.com/svn/branches/fluxcp-1.0/themes/default/img"
+   last-author="shugotenshi"
+   kind="dir"
+   uuid="234f71bc-ae53-0410-a53c-012b120979b2"
+   repos="http://fluxcp.googlecode.com/svn"
+   revision="933"/>
+<entry
+   committed-rev="704"
+   name="spinner.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-10-31T18:06:29.108904Z"
+   checksum="14a0936bd54fd18c22b5e7fb86ba26a3"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_tr.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="232982ffa73f8c01bb7e8582fcce66df"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="568"
+   name="content_tr.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-10-02T08:39:06.119692Z"
+   checksum="eafb10b079a8433b3a89b820a735c850"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="loginbox_tl.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="d07b2e95347fb1d0f41f8d398116b47f"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_complete_top.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="1fce5a46471cc2c8ca75bf92acc7b155"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_complete_bottom.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="a5dc78a54df3ed66cd84948f43177ca4"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="744"
+   name="TipPoint.png"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-11-06T02:47:00.482601Z"
+   checksum="cba462a140145075887329e319ed61a1"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="744"
+   name="clear.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-11-06T02:47:00.482601Z"
+   checksum="325472601571f31e1bf00674c368d335"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="loginbox_tr.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="efcdb9ad6da0623427f5f38cc3a292e1"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_bl.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="ae746d2d6021f48a3fbf8c0681e57bdd"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="568"
+   name="content_bl.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-10-02T08:39:06.119692Z"
+   checksum="839288f73edde90d7893b7ca64b601a0"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_admin_complete_top.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="aa0d41390f29cc847588932a803c002f"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_top.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="5404d607e775231594d0cc784babdf4b"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_br.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="d31e6238332a41f5089c2e704d15555f"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_bottom.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="5bd545947772790b09a798e044e96020"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="568"
+   name="content_br.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-10-02T08:39:06.119692Z"
+   checksum="06bdfacfccfe689cf8d76a643046ce33"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_admin_complete_bottom.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="f0371398bd2461eb818de72a928c17d7"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="loginbox_bl.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="b3834321d888fa2cbb4f26b83187352d"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="744"
+   name="TipCap.png"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-11-06T02:47:00.482601Z"
+   checksum="8e14a0a8eebbc16235a86d48e1ab513d"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:58.000000Z"/>
+<entry
+   committed-rev="420"
+   name="logo.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="1b5752728f63ea3842cb3d587f0a35ea"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:59.000000Z"/>
+<entry
+   committed-rev="420"
+   name="loginbox_br.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="457cfa39e10dd3dcb846ba5356e080fa"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:59.000000Z"/>
+<entry
+   committed-rev="744"
+   name="TipMid.png"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-11-06T02:47:00.482601Z"
+   checksum="11d0525a3cb8125b9886c61ba2558450"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:59.000000Z"/>
+<entry
+   committed-rev="420"
+   name="logo_admin.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="f6f138e99a740ed5c6237cf3c3b04e0e"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:59.000000Z"/>
+<entry
+   committed-rev="420"
+   name="sidebar_tl.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-09-25T02:23:22.020356Z"
+   checksum="f1bfef74346eb024c6eb9c7c67cb24bf"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:59.000000Z"/>
+<entry
+   committed-rev="568"
+   name="content_tl.gif"
+   text-time="2009-02-24T08:27:59.000000Z"
+   committed-date="2008-10-02T08:39:06.119692Z"
+   checksum="f58c78be4de6f6817217a7a76e811d80"
+   last-author="shugotenshi"
+   kind="file"
+   prop-time="2009-02-24T08:27:59.000000Z"/>
+</wc-entries>

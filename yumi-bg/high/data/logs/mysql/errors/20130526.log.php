@@ -1,0 +1,27 @@
+<?php exit('Forbidden'); ?>
+[2013-05-26 00:50:52] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 00:50:52] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 00:51:16] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 00:51:16] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 17:16:58] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:16:58] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 17:17:20] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:17:20] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 17:17:28] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:17:28] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.mob_db2' doesn't exist
+[2013-05-26 17:28:20] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:28:20] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 17:28:30] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:28:30] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 17:28:42] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:28:42] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 17:28:51] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:28:52] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.mob_db2' doesn't exist
+[2013-05-26 17:29:13] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 17:29:13] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 22:30:11] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 22:30:11] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 22:31:57] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 22:31:57] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.items' doesn't exist
+[2013-05-26 22:32:02] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.item_db_re' doesn't exist
+[2013-05-26 22:32:02] [SQLSTATE=42S02] Err 1146: Table 'yumi_highr.mob_db2' doesn't exist

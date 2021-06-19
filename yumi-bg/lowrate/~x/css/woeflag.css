@@ -1,0 +1,20 @@
+#woeflag {
+	position: relative;
+	top: 290px;
+}
+#woeflag table td {
+	padding-top: 5px;
+}
+#woeflag .title {
+	padding-top: 20px;
+}
+.woeflag {
+	width: 54px;
+	height: 61px;
+	float: left;
+	margin: 0 3px 10px 3px;
+	background-image: url(../img/woeflag/flag_bg.png);
+}
+.woeflag img {
+	padding-top: 15px;
+}

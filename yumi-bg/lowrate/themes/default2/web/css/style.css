@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+body{
+	background-color:#000000;
+	}
+.mainWrapper{
+	width:1141px;
+
+	margin:0 auto;
+	}
+.statusbar{
+	background-image:url(images/statusbar.png);
+	border:#FF0033 solid 1px;
+	width:1141px;
+	height:55px;
+}
+.banner{
+	border:#00FF00 solid 1px;
+	width:1141px;
+	height:332px;;
+}
+.nav{
+	border:#00FF00 solid 1px;
+	width:1141px;
+	height:51px;;
+}
+
+/* CSS Document */
+

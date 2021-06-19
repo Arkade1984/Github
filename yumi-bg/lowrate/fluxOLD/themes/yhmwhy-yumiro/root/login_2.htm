@@ -1,0 +1,21 @@
+<!--LOGIN -->
+<form action="<?php echo $this->url('account', 'login', array('return_url' => '?module=main')) ?>" method="post"  name="frmlogged">
+	<input type="hidden" name="server" value="<?php echo htmlspecialchars($session->loginAthenaGroup->serverName) ?>">
+	<div class="LogIn" id="LogIn">
+        <div class="textbox" style="margin-top:27px;"><input type="text" name="username" id="login_username" value="[username]" onfocus="focal();" onblur="focal2();"></div>
+        <div class="textbox" style="margin-top:1px;"><input type="password" name="password" id="login_password" value="[password]" onfocus="focalpass();" onblur="focalpass2();"/></div>
+        
+        <a href="?module=account&action=resetpass">Forgot Password</a><br /><br />
+        <img src="<?php echo $this->themePath('img/trans.png') ?>" align="right" class="LoginButton" onMouseOver="this.style.backgroundPosition='bottom center'" onMouseOut="this.style.backgroundPosition='top center'" onclick="document.frmlogged.submit();" />
+        <br />
+	</div>
+    <div class="ToLogin" id="ToLogin" onClick="gologin();"></div>
+	<img src="img/ToLogin.jpg" width="203" height="96" border="0" alt="" usemap="#tologin">
+	<map name="tologin" id="tologin"><area alt="" coords="2,24,108,67" href="gfffgh">
+		<area alt="" coords="108,2,203,81" href="dfgdgfgdgdfg" shape="RECT">
+	</map>
+	<!--<input type="submit" name="Submit" value="Submit" style="display:none;" />     -->                  
+</form>                          
+                          
+                          
+<!--END LOGIN -->

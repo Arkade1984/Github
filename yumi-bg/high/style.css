@@ -1,0 +1,6 @@
+html * { cursor: url(themes/yhmwhy-yumiro/img/hand.cur), default !important; }
+.world_class { width: 1280px; height: 1024px; position: relative; }
+body { margin: 0; padding: 0; background: url(themes/yhmwhy-yumiro/img/MainBack.jpg) center top no-repeat; }
+#main { width: 1280px; height: 1024px; margin: 0 auto 0; background: url(worldmap.jpg) center no-repeat; }
+#tip { width: 1040px; height: 400px; margin: 0 auto; background: url(themes/yhmwhy-yumiro/img/BodyHeader.png) center bottom no-repeat; }
+.credits { color: #000; }

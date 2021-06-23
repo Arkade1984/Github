@@ -1,6 +1,0 @@
-https://www.youtube.com/watch?v=KB7JEnfc7Dc&list=PL-J2q3Ga50oMQa1JdSJxYoZELwOJAXExP&index=3
-
-@ 1hr 25Min
-
-
-https://www.youtube.com/watch?v=KB7JEnfc7Dc&list=PL-J2q3Ga50oMQa1JdSJxYoZELwOJAXExP&index=3

@@ -4,13 +4,13 @@ import './App.css';
 import Message from './Message';
 import db from './firebase';
 import firebase from './firebase';
+import FlipMove from 'react-flip-move';
 
 
 function App() {
  
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([
-  ]);
+  const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState('');
 
 useEffect(() => {
@@ -50,12 +50,13 @@ setInput('');
   </FormControl>
   </form>
 
-
+<FlipMove>
 { 
 messages.map(message => (
   <Message username={username} message={message}/>
 ))
 }
+</FlipMove>
     </div>
   );
 }

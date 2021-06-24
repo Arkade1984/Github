@@ -5,13 +5,15 @@ const firebaseApp = firebase.initializeApp({
 
     apiKey: "AIzaSyCzPsYGsr4aOoapqbb5TItGudYvnqPSOVI",
     authDomain: "facebook-messanger-clone-cc215.firebaseapp.com",
+    //databaseURL: "https://facebook-messanger-clone-cc215.firebaseio.com",
     projectId: "facebook-messanger-clone-cc215",
     storageBucket: "facebook-messanger-clone-cc215.appspot.com",
     messagingSenderId: "414982183827",
     appId: "1:414982183827:web:fa980ca5b83f65a7d3a666",
     measurementId: "G-G1PYF47693"
-  });
+  
+});
 
 const db = firebaseApp.firestore();
 
-export {db};
+export default db;

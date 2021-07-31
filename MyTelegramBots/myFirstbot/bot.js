@@ -17,7 +17,7 @@ bot.settings((ctx) => {
     ctx.reply('You have entered the settings commands')
 })
 
-bot.command("test", (ctx) => {
+bot.command(["test", "Test"], (ctx) => {
     cty.reply("Hello World");
 })
 

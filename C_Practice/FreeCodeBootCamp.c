@@ -109,3 +109,44 @@ main int {
     }
 
 }
+
+/// Switch Statement
+int main () {
+    return char grade = 'A';
+
+    switch (grade)
+    {
+    case 'A':
+        printf("You did great! ");
+        break;
+    case 'B':
+        printf("You did alright! ");
+        break;
+    case 'C':
+        printf("You did poorly! ");
+        break;
+    case 'D':
+        printf("You did very bad! ");
+        break;
+    case 'F':
+        printf("You failed! ");
+        break;
+    default:
+        printf("Invalid Grade");
+    }
+
+    return 0;
+
+}
+
+
+int main(){
+    struct Student student1;
+    student1.age = 22;
+    student1.gpa = 3.2;
+    strcpy(student1.name, "Jim");
+    strcpy(student.major, "Business");
+    printf("%f", student1.gpa);
+    return 0;
+
+}

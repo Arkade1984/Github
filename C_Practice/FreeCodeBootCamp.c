@@ -150,3 +150,65 @@ int main(){
     return 0;
 
 }
+
+
+int main () {
+    int secretNumber = 5;
+    int guess;
+    int guessCount = 0;
+    int guessLimit = 3;
+    int outOfGuesses = 0;
+
+    while (guess != secretNumber && outOfGuesses == 0)
+    {
+        if (guessCount < guessLimit)
+        {
+            printf("Enter a number: ");
+            scanf("%d", &guess);
+            guessCount++;
+        }
+        else
+        {
+            outOfGuesses = 1;
+        }
+    }
+    if (outOfGuesses == 1)
+    {
+        printf("Out of guesses");
+    }
+    else
+    {
+        printf("You Win!");
+    }
+}
+
+
+
+//////////
+
+int main () {
+    FILE *fpointer = fopen("employees.txt", "a");
+
+    fprintf(fpointer, "\nKelly, Customer Service");
+
+    fclose(fpointer);
+    return 0;
+
+}
+
+
+
+
+
+////////////////////////////////////////////////////////////////
+int main () {
+    char line[255];
+    FILE *fpointer = fopen("employees.txt", "r");
+
+    fgets(line, 255, fpointer);
+    fgets(line, 255, fpointer);
+    printf("%s", line);
+
+    fclose(fpointer);
+    return 0;
+}

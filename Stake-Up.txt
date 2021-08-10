@@ -28,6 +28,9 @@ Day-3 Stack-Em
 .8K
 -10.
 @10(10) +7.k
+@3(10)
+7+
+
 
 
 Mystery Motel

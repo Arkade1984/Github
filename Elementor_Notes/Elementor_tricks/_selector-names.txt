@@ -1,8 +1,0 @@
-//creat a function that will show slider image from link
-
-
-
-///SVG Circle
-<svg height="1000" width="1000">
-  <circle cx="450" cy="400" r="375" stroke="white" stroke-width="1" fill="transparent" />
-</svg>

@@ -104,10 +104,10 @@ html.fp-enabled,
     -webkit-transform: translate3d(0,0,0);
 }
 #fp-nav.fp-right {
-    right: 21px;
+    right: 17px;
 }
 #fp-nav.fp-left {
-    left: 21px;
+    left: 17px;
 }
 .fp-slidesNav{
     position: absolute;

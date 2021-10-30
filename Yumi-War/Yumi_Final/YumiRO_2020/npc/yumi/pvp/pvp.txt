@@ -1,0 +1,53 @@
+junon,119,145,4	script	PvP	467,{
+mes "[^FF0000CavaleRO^000000 PvP Warper]";
+mes "Lets get it ON?";
+menu	"Arena 1 - ^FF0000Pre Buffs^000000 [" + getmapusers("arenapvp02") + " / 32]",L1,"Arena 2 - ^FF0000Normal^000000 [" + getmapusers("arenapvp01") + " / 32]",L2;
+
+L1:
+if (getmapusers("arenapvp02") > 32) goto Lsorry;
+warp "arenapvp02",0,0;
+close;
+
+L2:
+if (getmapusers("arenapvp01") > 32) goto Lsorry;
+	//remove several unallowed buffs
+	sc_end SC_ASSUMPTIO;
+	sc_end SC_IMPOSITIO;
+	sc_end SC_SUFFRAGIUM;
+	sc_end SC_MAGNIFICAT;
+	sc_end SC_WEAPONPERFECTION;
+	sc_end SC_GOSPEL;
+	sc_end SC_BASILICA;
+	sc_end SC_MAGICPOWER;
+	sc_end SC_MARIONETTE;
+	sc_end SC_MARIONETTE2;
+	sc_end SC_DEVOTION;
+	sc_end SC_SACRIFICE;
+	sc_end SC_MAXOVERTHRUST;
+	sc_end SC_SPIRIT;
+	warp "arenapvp01",0,0;
+	close;
+
+Lsorry:
+mes "[iFeelRO PvP Warper]";
+mes "Sorry but this PvP Arena is full, maybe you could try another one.";
+close;
+}
+
+ayothaya,143,111,3	duplicate(PvP)	PvP#7	447
+moscovia,229,185,3	duplicate(PvP)	PvP#2	447
+izlude,122,118,3	duplicate(PvP)	PvP#3	447
+hugel,101,154,3	duplicate(PvP)	PvP#4	447
+lighthalzen,162,104,3	duplicate(PvP)	PvP#5	447
+rachel,122,105,3	duplicate(PvP)	PvP#6	447
+splendide,209,138,2	duplicate(PvP)	PvP#8	447
+brasilis,199,211,3	duplicate(PvP)	PvP#9	447
+morocc,168,86,3	duplicate(PvP)	PvP#10	447
+
+arenapvp01	mapflag	pvp
+arenapvp02	mapflag	pvp
+arenapvp02	mapflag	nocommand	2
+arenapvp01	mapflag	nocommand	2
+arenapvp01	mapflag	nomemo
+arenapvp02	mapflag	nomemo
+bat_c01	mapflag	loadevent

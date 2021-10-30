@@ -1,0 +1,627 @@
+//===== eAthena Script ============================================
+//= Power Plant
+//===== By: =======================================================
+//= Kenedos
+//===== Current Version: ==========================================
+//= 1.2
+//===== Description: ==============================================
+//=
+//= Set of scripts and mapflags for the Power Plant arena.
+//=
+//====== Changelog: ================================================
+//= Fixed a bug where using @reloadscript while barricades were active
+//= would bug the map walkable titles.
+//==================================================================
+
+//-------------------- Mapflags -----------------------------------
+
+power_plant	mapflag	pvp
+power_plant	mapflag	nomemo
+power_plant	mapflag	nobranch
+power_plant	mapflag	noteleport
+
+// -----------------------------------------------------------------
+
+
+
+// ------------------- Scripts -------------------------------------
+
+power_plant,70,45,0	script	#PP_Fence01	-1,28,0,{
+
+    OnTouch:
+    while (1)
+    {
+        if (Hp <= 0)
+        {
+            break;
+        }
+        dispbottom "The electric fence is hurting you!";
+        specialeffect2 622;
+        set .@rand, rand(33,66);
+        percentheal -(.@rand),0;
+        if (Hp == 1)
+        {
+            //donpcevent Audience...
+            dispbottom "You have been hit by an electric discharge!";
+            heal -1,0;
+            end;
+        }
+        sleep2 1560;
+        getmapxy .@map$, .@npcx, .@npcy, 1;
+        getmapxy .@map$, .@x, .@y, 0;
+        if ((strnpcinfo(2) == "PP_Fence01") ||
+            (strnpcinfo(2) == "PP_Fence02"))
+        {
+            if (.@y != .@npcy)
+            {
+                break;
+            }
+        }
+        if ((strnpcinfo(2) == "PP_Fence03") ||
+            (strnpcinfo(2) == "PP_Fence04"))
+        {
+            if (.@x != .@npcx)
+            {
+                break;
+            }
+        }
+    }
+    end;
+    
+}
+
+power_plant,70,101,0	duplicate(#PP_Fence01)	#PP_Fence02	-1,28,0
+power_plant,98,73,0	duplicate(#PP_Fence01)	#PP_Fence03	-1,0,28
+power_plant,42,73,0	duplicate(#PP_Fence01)	#PP_Fence04	-1,0,28
+
+
+power_plant,55,66,0	script	#PP_Mine01	-1,0,0,{
+    
+    OnTouch:
+    switch(rand(1,3))
+    {
+        // Lightning Mine
+        case 1:
+            dispbottom "You stumbled upon a lightning mine! Some HP have been drained...";
+            specialeffect2 257;
+            specialeffect2 52;
+            set .@rand, rand(25,45);
+            percentheal -(.@rand),0;
+            heal -1, 0;
+        break;
+        
+        // Shockwave
+        case 2:
+            dispbottom "You stumbled upon a shocking mine! Some SP have been drained...";
+            specialeffect2 94;
+            set .@rand, rand(70,90);
+            percentheal 0,-(.@rand);
+        break;
+        
+        // Flasher
+        case 3:
+        dispbottom "You stumbled upon a flashing mine! You are now experiencing some negative status...";
+        specialeffect2 99;
+        set .@quantity, rand(1,3);
+        for (set .@i, 0; .@i < .@quantity; set .@i, .@i + 1)
+        {
+            set .@effectnumber, rand(1,8);
+            set .@duration, rand(4000,8000);
+            sc_start .@effectnumber, .@duration, 0;
+        }
+        break;
+            
+    }
+    end;
+    
+}
+
+// First Mine
+power_plant,55,67,0	duplicate(#PP_Mine01)	#PP_Mine02	-1,0,0
+power_plant,54,67,0	duplicate(#PP_Mine01)	#PP_Mine03	-1,0,0
+power_plant,54,66,0	duplicate(#PP_Mine01)	#PP_Mine04	-1,0,0
+			
+// Second Mine			
+power_plant,59,86,0	duplicate(#PP_Mine01)	#PP_Mine05	-1,0,0
+power_plant,59,85,0	duplicate(#PP_Mine01)	#PP_Mine06	-1,0,0
+power_plant,58,85,0	duplicate(#PP_Mine01)	#PP_Mine07	-1,0,0
+power_plant,58,86,0	duplicate(#PP_Mine01)	#PP_Mine08	-1,0,0
+			
+// Third Mine			
+power_plant,76,87,0	duplicate(#PP_Mine01)	#PP_Mine09	-1,0,0
+power_plant,75,87,0	duplicate(#PP_Mine01)	#PP_Mine10	-1,0,0
+power_plant,75,86,0	duplicate(#PP_Mine01)	#PP_Mine11	-1,0,0
+power_plant,76,86,0	duplicate(#PP_Mine01)	#PP_Mine12	-1,0,0
+			
+// Fourth Mine			
+power_plant,85,87,0	duplicate(#PP_Mine01)	#PP_Mine13	-1,0,0
+power_plant,84,87,0	duplicate(#PP_Mine01)	#PP_Mine14	-1,0,0
+power_plant,84,86,0	duplicate(#PP_Mine01)	#PP_Mine15	-1,0,0
+power_plant,85,86,0	duplicate(#PP_Mine01)	#PP_Mine16	-1,0,0
+			
+// Fifth Mine			
+power_plant,83,60,0	duplicate(#PP_Mine01)	#PP_Mine17	-1,0,0
+power_plant,82,60,0	duplicate(#PP_Mine01)	#PP_Mine18	-1,0,0
+power_plant,82,59,0	duplicate(#PP_Mine01)	#PP_Mine19	-1,0,0
+power_plant,83,59,0	duplicate(#PP_Mine01)	#PP_Mine20	-1,0,0
+
+
+power_plant,67,73,0	script	#PP_Guardian	-1,1,0,{
+
+    OnTouch:
+    if (.pp_guardian_delay < gettimetick(2) ) {
+        dispbottom "The power plant keepers will help you.";
+        for (set .@i, 0; .@i < 6; set .@i, .@i + 1)
+        {
+            // Raydric
+            summon "Power Plant Guardian",1677;
+            if ((.@i % 2) == 0)
+            {
+                // Raydric Archer
+                summon "Power Plant Guardian",1670;
+            }
+        }
+        set .pp_guardian_delay, gettimetick(2) + 149;
+    }
+    else
+    {
+        dispbottom "The guardian power is currently recharging. Please, wait for "+((.pp_guardian_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    end;
+    
+}
+
+power_plant,75,77,0	script	#PP_Cannon01	-1,1,1,{
+
+    OnTouch:
+    if (.pp_can_delay < gettimetick(2) ) {
+        dispbottom "You have just fired the cannon!";
+        specialeffect2 97;
+        sleep2 900;
+        setarray .@x[0], 85, 90, 90, 94, 96, 89;
+        setarray .@y[0], 92, 95, 89, 93, 97, 85;
+        for (set .@i, 0; .@i < getarraysize(.@x); set .@i, .@i + 1)
+        {
+            set .@idbomb, bg_monster(0,"power_plant",.@x[.@i],.@y[.@i]," ",1937,"");
+            unitskilluseid .@idbomb,173,1;
+        }
+        set .pp_can_delay, gettimetick(2) + 29;
+        
+    }
+    else
+    {
+        dispbottom "The cannon is currently being reloaded. Please, wait for "+((.pp_can_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    end;
+
+}
+
+power_plant,64,77,0	script	#PP_Cannon02	-1,1,1,{
+
+    OnTouch:
+    if (.pp_can_delay < gettimetick(2) ) {
+        dispbottom "You have just fired the cannon!";
+        specialeffect2 97;
+        sleep2 900;
+        setarray .@x[0], 55, 52, 49, 44, 47, 50, 46, 49, 43;
+        setarray .@y[0], 91, 96, 99, 97, 94, 91, 91, 88, 95;
+        for (set .@i, 0; .@i < getarraysize(.@x); set .@i, .@i + 1)
+        {
+            set .@idbomb, bg_monster(0,"power_plant",.@x[.@i],.@y[.@i]," ",1937,"");
+            unitskilluseid .@idbomb,173,1;
+        }
+        set .pp_can_delay, gettimetick(2) + 29;
+        
+    }
+    else
+    {
+        dispbottom "The cannon is currently being reloaded. Please, wait for "+((.pp_can_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    end;
+
+}
+
+power_plant,75,66,0	script	#PP_Cannon03	-1,1,1,{
+
+    OnTouch:
+    if (.pp_can_delay < gettimetick(2) ) {
+        dispbottom "You have just fired the cannon!";
+        specialeffect2 97;
+        sleep2 900;
+        setarray .@x[0], 89, 94, 95, 91, 87, 90, 87, 84;
+        setarray .@y[0], 56, 52, 48, 50, 52, 46, 48, 50;
+        for (set .@i, 0; .@i < getarraysize(.@x); set .@i, .@i + 1)
+        {
+            set .@idbomb, bg_monster(0,"power_plant",.@x[.@i],.@y[.@i]," ",1937,"");
+            unitskilluseid .@idbomb,173,1;
+        }
+        set .pp_can_delay, gettimetick(2) + 29;
+        
+    }
+    else
+    {
+        dispbottom "The cannon is currently being reloaded. Please, wait for "+((.pp_can_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    end;
+
+}
+
+power_plant,64,66,0	script	#PP_Cannon04	-1,1,1,{
+
+    OnTouch:
+    if (.pp_can_delay < gettimetick(2) ) {
+        dispbottom "You have just fired the cannon!";
+        specialeffect2 97;
+        sleep2 900;
+        setarray .@x[0], 50, 49, 46, 49, 43;
+        setarray .@y[0], 52, 48, 52, 56, 54;
+        for (set .@i, 0; .@i < getarraysize(.@x); set .@i, .@i + 1)
+        {
+            set .@idbomb, bg_monster(0,"power_plant",.@x[.@i],.@y[.@i]," ",1937,"");
+            unitskilluseid .@idbomb,173,1;
+        }
+        set .pp_can_delay, gettimetick(2) + 29;
+        
+    }
+    else
+    {
+        dispbottom "The cannon is currently being reloaded. Please, wait for "+((.pp_can_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    end;
+
+}
+
+power_plant,45,99,0	script	#PP_Healpod01	-1,0,0,{
+    
+    OnTouch:
+    while (1)
+    {
+        if (@pp_healpod)
+        {
+            break;
+        }
+        specialeffect2 325;
+        dispbottom "The healing beam has regenerated some of your HP!";
+        set .@rand, rand(25,40);
+        percentheal .@rand, 0;
+        set @pp_healpod, 1;
+        sleep2 1300;
+        set @pp_healpod, 0;
+        getmapxy .@map$, .@x, .@y, 0;
+        if ( ( (.@x != 45) || (.@y != 99) ) &&
+            ( (.@x != 44) || (.@y != 99) ) &&
+            ( (.@x != 45) || (.@y != 98) ) &&
+            ( (.@x != 44) || (.@y != 98) ) )
+        {
+            break;
+        }
+
+    }
+    end;
+    
+}
+
+power_plant,44,99,0	duplicate(#PP_Healpod01)	#PP_Healpod02	-1,0,0
+power_plant,44,98,0	duplicate(#PP_Healpod01)	#PP_Healpod03	-1,0,0
+power_plant,45,98,0	duplicate(#PP_Healpod01)	#PP_Healpod04	-1,0,0
+
+
+power_plant,94,48,0	script	#PP_Healpod05	-1,0,0,{
+    
+    OnTouch:
+    while (1)
+    {
+        if (@pp_healpod)
+        {
+            break;
+        }
+        specialeffect2 325;
+        dispbottom "The healing beam has regenerated some of your HP!";
+        set .@rand, rand(25,40);
+        percentheal .@rand, 0;
+        set @pp_healpod, 1;
+        sleep2 1300;
+        set @pp_healpod, 0;
+        getmapxy .@map$, .@x, .@y, 0;
+        if ( ( (.@x != 94) || (.@y != 48) ) &&
+            ( (.@x != 93) || (.@y != 48) ) &&
+            ( (.@x != 94) || (.@y != 47) ) &&
+            ( (.@x != 93) || (.@y != 47) ) )
+        {
+            break;
+        }
+
+    }
+    end;
+    
+}
+
+power_plant,94,47,0	duplicate(#PP_Healpod05)	#PP_Healpod06	-1,0,0
+power_plant,93,48,0	duplicate(#PP_Healpod05)	#PP_Healpod07	-1,0,0
+power_plant,93,47,0	duplicate(#PP_Healpod05)	#PP_Healpod08	-1,0,0
+
+
+
+power_plant,63,73,0	script	#PP_Panel01	-1,0,0,{
+
+    OnTouch:
+    if (.pp_panel_delay < gettimetick(2) ) {
+        if (.monstercount == 0)
+        {
+            monster "power_plant",61,67,"Power Plant Guardian",1675,1,strnpcinfo(0)+"::OnMyMobDead";
+            monster "power_plant",61,76,"Power Plant Guardian",1675,1,strnpcinfo(0)+"::OnMyMobDead";
+            set .monstercount, 2;
+        }
+        if (.idbarrier0 == 0)
+        {
+            for (set .@i, 0; .@i < 6; set .@i, .@i + 1)
+            {
+                setd ".idbarrier"+.@i, bg_monster(0,"power_plant",62,(73 - .@i)," ",1905,strnpcinfo(0)+"::OnBarricadeBreak"+.@i);
+            }
+            setcell "power_plant",62,73,62,68,cell_walkable,0;
+            setcell "power_plant",62,73,62,68,cell_shootable,1;
+            dispbottom "You have activated the security system!";
+            set .pp_panel_delay, gettimetick(2) + 299;
+        }
+        else
+        {
+            dispbottom "The security system is still active.";
+        }
+    }
+    else
+    {
+        dispbottom "The power plant power is currently being recharged. Please, wait for "+((.pp_panel_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    end;
+    
+    OnInit:
+    setcell "power_plant",62,73,62,68,cell_walkable,1;
+    setcell "power_plant",62,73,62,68,cell_shootable,0;
+    end;
+    
+    OnBarricadeBreak0:
+    set .idbarrier0, 0;
+    set .barriernumber, 0;
+    goto OnBarricadeBreak;
+    
+    OnBarricadeBreak1:
+    set .idbarrier1, 0;
+    set .barriernumber, 1;
+    goto OnBarricadeBreak;
+    
+    OnBarricadeBreak2:
+    set .idbarrier2, 0;
+    set .barriernumber, 2;
+    goto OnBarricadeBreak;
+    
+    OnBarricadeBreak3:
+    set .idbarrier3, 0;
+    set .barriernumber, 3;
+    goto OnBarricadeBreak;
+    
+    OnBarricadeBreak4:
+    set .idbarrier4, 0;
+    set .barriernumber, 4;
+    goto OnBarricadeBreak;
+    
+    OnBarricadeBreak5:
+    set .idbarrier5, 0;
+    set .barriernumber, 5;
+    goto OnBarricadeBreak;
+    
+    OnBarricadeBreak:
+    for (set .@i, 0; .@i < 6; set .@i, .@i + 1)
+    {
+        if (.@i != .barriernumber)
+        {
+            unitkill getd(".idbarrier"+.@i);
+            setd ".idbarrier"+.@i, 0;
+        }
+    }
+    set .barriernumber, 0;
+    setcell "power_plant",62,73,62,68,cell_walkable,1;
+    setcell "power_plant",62,73,62,68,cell_shootable,0;
+    end;
+    
+    OnMyMobDead:
+    if (.monstercount > 0)
+    {
+        set .monstercount, .monstercount - 1;
+    }
+    end;
+    
+}
+
+
+power_plant,69,71,0	script	#PP_Panel02	-1,0,0,{
+
+    OnTouch:
+    if (.pp_panel_delay < gettimetick(2) ) {
+        dispbottom "The power generator has been discharged in the water!";
+        specialeffect2 666;
+        specialeffect2 461;
+        sleep2 500;
+        donpcevent "#PP_Thundergen::OnThunder";
+        set .pp_panel_delay, gettimetick(2) + 89;
+    }
+    else
+    {
+        dispbottom "The power generator is currently being recharged. Please, wait for "+((.pp_panel_delay - gettimetick(2)) + 1)+" second(s) before using it again.";
+    }
+    
+}
+
+power_plant,81,81,0	script	#PP_Water01	-1,0,2,{
+    
+    OnTouch:
+    doevent "#PP_Thundergen::OnActivate";
+    end;
+
+}
+
+power_plant,81,62,0	duplicate(#PP_Water01)	#PP_Water02	-1,0,2
+power_plant,61,71,0	duplicate(#PP_Water01)	#PP_Water03	-1,0,4
+
+
+
+power_plant,0,0,0	script	#PP_Thundergen	-1,{
+
+    end;
+
+    OnActivate:
+    for (set .@i, 0; .@i < 30; set .@i, .@i + 1)
+    {
+        if (getd(".playerid"+.@i) == getcharid(3))
+        {
+            end;
+        }
+    }
+    for (set .@i, 0; .@i < 30; set .@i, .@i + 1)
+    {
+        if (getd(".playerid"+.@i) == 0)
+        {
+            setd ".playerid"+.@i, getcharid(3);
+            doevent "#PP_Thundergen::OnWet";
+            break;
+        }
+    }
+    end;
+    
+    OnWet:
+    while (1)
+    {
+        sleep2 2000;
+        getmapxy .@map$, .@x, .@y, 0;
+        if ( (.@map$ != "power_plant") ||
+            (.@x > 81) || (.@x < 58) ||
+            (.@y > 83) || (.@y < 60) ||
+            ( (.@x > 61) && (.@x < 78) &&
+            ((.@y < 80) && (.@y > 63)) ) ||
+            (Hp <= 0) )
+        {
+            for (set .@i, 0; .@i < 30; set .@i, .@i + 1)
+            {
+                if (getd(".playerid"+.@i) == getcharid(3))
+                {
+                    setd ".playerid"+.@i, 0;
+                    break;
+                }
+            }
+            end;
+        }
+    }
+    
+    OnThunder:
+    for (set .@i, 0; .@i < 30; set .@i, .@i + 1)
+    {
+        if (getd(".playerid"+.@i) != 0)
+        {
+            if (isloggedin(getd(".playerid"+.@i)))
+            {
+                if (attachrid(getd(".playerid"+.@i)))
+                {
+                    dispbottom "The power generator has been activated!";
+                    specialeffect2 622;
+                    if (rand(1,4) == 1)
+                    {    
+                        set .@rand, rand(90, 95);
+                        percentheal -(.@rand), 0;
+                        heal -1, 0;
+                    }
+                    else
+                    {
+                        percentheal -100, 0;
+                        heal -1, 0;
+                    }
+                    detachrid;
+                }
+            }
+        }
+    }
+    end;
+    
+}
+
+// ----------------------------------------------------------------
+
+
+// -------------------- Power Plant Warper ------------------------
+
+// Adjust Warper Location Here
+prontera,156,180,3	script	Power Plant#PP_warp	872,{
+
+    set .@name$, "["+ strnpcinfo(1) + "]";
+    mes .@name$;
+    mes "Hey you there, have you seen the ^0000FFPower Plant^000000?";
+    next;
+    if (select("Show me:No thanks") == 2)
+    {
+        mes .@name$;
+        mes "Alright, have a good day.";
+        close;
+    }
+    
+    switch(rand(1,14))
+    {
+        case 1:
+        warp "power_plant",91,60;
+        break;
+        
+        case 2:
+        warp "power_plant",95,79;
+        break;
+        
+        case 3:
+        warp "power_plant",90,94;
+        break;
+        
+        case 4:
+        warp "power_plant",77,98;
+        break;
+        
+        case 5:
+        warp "power_plant",65,92;
+        break;
+        
+        case 6:
+        warp "power_plant",56,98;
+        break;
+        
+        case 7:
+        warp "power_plant",46,92;
+        break;
+        
+        case 8:
+        warp "power_plant",44,78;
+        break;
+        
+        case 9:
+        warp "power_plant",50,65;
+        break;
+        
+        case 10:
+        warp "power_plant",45,53;
+        break;
+        
+        case 11:
+        warp "power_plant",62,47;
+        break;
+        
+        case 12:
+        warp "power_plant",74,53;
+        break;
+        
+        case 13:
+        warp "power_plant",83,48;
+        break;
+        
+        case 14:
+        warp "power_plant",96,50;
+        break;
+
+    }
+    end;
+    
+}
+
+// --------------------------------------------------------

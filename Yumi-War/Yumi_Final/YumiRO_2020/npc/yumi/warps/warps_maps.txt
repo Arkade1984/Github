@@ -1,0 +1,240 @@
+//===== eAthena Script ======================================= 
+//= Payon Field Warps
+//===== By: ================================================== 
+//= Nana (1.0)
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= Any eAthena Mod
+//===== Description: ========================================= 
+//= Payon Field Warps
+//===== Additional Comments: ================================= 
+//= 1.1 Refixed payon field08 -> payon warp
+//= 1.2 Changed trigger area of pay_fild08 -> payon warp. [L0ne_W0lf]
+//============================================================ 
+
+
+
+//= Yumi RO Custom Warps ====================================
+
+
+
+//= Mellina City Warps==============================
+
+// Prt_Monk To Mellina City warps
+mellina,85,17,0	warp	to_Mellina	1,1,prt_fild03,195,257
+prt_fild03,195,262,0	warp	exit_Mellina	1,1,mellina,85,23
+
+mellina,36,118,0	warp	to_in_sml_room	1,1,luca_in,102,55
+luca_in,102,51,0	warp	exit_mellina1	1,1,mellina,36,111
+
+mellina,56,94,0	warp	to_wpn_shop	1,1,luca_in,128,152
+luca_in,128,148,0	warp	exit_mellina3	1,1,mellina,56,89
+
+mellina,86,146,0	warp	to_red_room	1,1,luca_in,148,21
+luca_in,148,17,0	warp	exit_mellina4	1,1,mellina,86,141
+
+luca_in,175,57,0	warp	to_red_upstairs	1,1,royal_room3,102,98
+royal_room3,102,94,0	warp	exit_mellina5	1,1,luca_in,171,54
+
+mellina,118,94,0	warp	to_bear_room	1,1,luca_in,39,27
+luca_in,39,23,0	warp	exit_mellina6	1,1,mellina,118,89
+
+mellina,60,116,0	warp	to_map_inn1	1,1,map_inn,158,144
+map_inn,158,140,0	warp	exit_mellina7	1,1,mellina,60,111
+
+mellina,43,152,0	warp	to_cournerhouse	1,1,map_inn,18,106
+map_inn,18,103,0	warp	exit_mellina8	1,1,mellina,45,149
+
+//royal_room3,101,95	warp	to_red_room2	1,1,
+//royal_room3,101,99
+
+// Melina Mob (Zombie War)
+prt_monk,0,0,0,0	monster	Zombie Invader	1015,40,0,0,0
+
+
+// Alexandria City/Dung Warps
+
+// Alexa in to Luca _in
+alexa_in,94,286,0	warp	to_lrg_room	1,1,luca_in,14,159
+luca_in,10,159,0	warp	exit_mellina2	1,1,alexa_in,95,289
+
+// Alexandria Field 
+alexandria,158,108,0	warp	To_AlexaField	1,1,alexa_field,136,220
+alexa_field,136,229,0	warp	To_Alexandria	1,1,alexandria,158,113
+
+rwc02,33,91,0	warp	Exit_AlexaDun	1,1,alexa_field,237,231
+alexa_field,238,236,0	warp	To_AlexaDung	1,1,rwc02,33,84
+
+//rwc02,72,12,0	warp	To_AlexaDun2	1,1,br_map2,141,124
+//br_map2,141,128,0	warp	Exit_AlexaDun1	1,1,rwc02,72,16
+
+
+//br_map2,87,112,0	script	lvl_check#3	45,1,1,{
+//	if( BaseLevel < 17 ) goto L_GLTL;
+//	Save "moc_fild07",36,362;
+//	warp "moc_fild07",36,354;
+//	close;
+
+//L_GLTL:
+//	mes "Hey Kid, magic doesn't work,";
+//	mes "Please try killing more monsters, Reach lvl 17 first! GoodLuck!";
+//	close;
+//}
+
+
+// Alexandra Field to Pront Legend (Through Vending)
+alexa_field,233,56,0	warp	to_prt2_field	1,1,prt2_field,168,248
+prt2_field,168,254,0	warp	exit_prt2_field	1,1,alexa_field,227,60
+
+//prt2_field,201,35,0	warp	to_vendmap1	1,1,vend_zone,199,260 (Taken out because of checker)
+vend_zone,199,264,0	warp	exit_vendmap2	1,1,prt2_field,201,38
+
+
+prt2_field,201,29,0	script	lvl_check#2_	45,1,1,{
+	if( BaseLevel < 15 ) goto L_GLTL;
+	save "prontlegend",190,216;
+	warp "vend_zone",199,262;
+	close;
+	
+	L_GLTL:
+	
+	
+	
+	mes "Hey Kid, magic doesn't work,";
+	mes "Please try killing more monsters, Reach lvl 16 first! GoodLuck!";
+	close;
+}
+prontlegend,206,327,0	warp	To_Vendzone	1,1,vend_zone,200,138
+
+// To Prontlegend From Vending
+vend_zone,200,131,0	script	lvl_check#2	45,1,1,{
+	if( BaseLevel < 15 ) goto L_GLTL;
+	save "prontlegend",190,216;
+	warp "prontlegend",206,324;
+	close;
+
+L_GLTL:
+	mes "Hey Kid, magic doesn't work,";
+	mes "Please try killing more monsters, Reach lvl 16 first! GoodLuck!";
+	close;
+}
+
+//= Hunters Village ===================================
+pay_fild07,113,374,0	warp	to_hunvillage	1,1,hun_vil,241,54
+hun_vil,241,44,0	warp	exit_hunvillage	1,1,pay_fild07,113,369
+
+
+//= Junon Entrance ====================================
+junon,261,246,0	warp	jun01	1,1,pay_fild02,135,23,	
+pay_fild02,135,19,0	warp	jun02	1,2,junon,261,242
+junon,265,246,0	warp	jun03	2,1,pay_fild06,43,290
+pay_fild06,38,290,0	warp	jun04	2,2,junon,265,242
+
+//= Prontera Legend warps==============================
+
+prontlegend,168,4,0	warp	To_AEVField	1,1,aev_fild,141,234
+aev_fild,141,238,0	warp	Exit_AEVField	1,1,prontlegend,168,8
+
+//Prontlegend In_
+//prontlegend,210,229,0	warp	to_market	1,1,que_moc_16,88,53
+//que_moc_16,88,48,0	warp	exit_market	1,1,prontlegend,206,225
+
+
+// Junon warps
+junon,137,130,0	warp	To_PvParea	1,1,junon,245,152
+junon,248,149,0	warp	Exit_PvP	1,1,junon,137,124
+
+
+// Geffen Field
+prontlegend,340,208,0	warp	To_Geffild	1,1,gef_fild08,22,216
+gef_fild08,18,216,0	warp	To_ProntGifild	1,1,prontlegend,331,208
+
+
+// Prontlegend To Alexandria City warps (Closed Because new maps)
+//prontlegend,189,194,0	warp	To_Alexandria	1,1,alexandria,158,110
+//alexandria,158,107,0	warp	Exit_Alexandria	1,1,prontlegend,189,197
+
+// Prontlegend To Mellina City warps
+//prontlegend,175,207,0	warp	To_Mellina	1,1,mellina,85,21
+//mellina,85,17,0	warp	Exit_Mellina2	1,1,prontlegend,179,207
+
+// New Luca to Junon City Warps
+//junon,207,69,0	warp	To_Junon	1,1,newluca,229,52
+//newluca,229,47	warp	Exit_Junon	1,1,junon,207,74
+
+// New Luca to Pront Legend City Warps
+//newluca,145,53,0	warp	To_Prontlegend	1,1,prontlegend,76,42
+//prontlegend,75,37,0	warp	Exit_Prontlegend	1,1,newluca,151,53
+
+
+
+
+
+//= Junon Castle Warps==============================
+
+//castle
+junon,134,102,0	warp	Entranced	3,3,junon_in01,110,126
+junon_in01,110,122,0	warp	Exit	3,3,junon,134,107
+
+junon,95,100,0	warp	Entrance02	3,3,junon_in01,117,126
+junon_in01,117,122,0	warp	Exit2	3,3,junon,95,105
+
+//castle_In
+junon_in01,76,252,0	warp	flr2_Left	3,3,junon_in01,107,19
+junon_in01,107,15,0	warp	flr3_Left	3,3,junon_in01,76,247
+
+junon_in01,188,252,0	warp	flr2_Right	3,3,junon_in01,159,19
+junon_in01,159,15,0	warp	flr3_Right	3,3,junon_in01,188,247
+
+//Castle Left Entrence Drop
+junon_in01,35,225,0	warp	Drop_enter	3,3,junon_in01,22,129
+junon_in01,16,129,0	warp	Drop_exit	3,3,junon_in01,30,225
+
+//castle_Dun
+junon_in01,43,143,0	warp	Drop_Room1	3,3,junon_in01,277,161
+junon_in01,277,157,0	warp	Dun_Room1	3,3,junon_in01,43,138
+
+junon_in01,58,130,0	warp	Drop_Room2	3,3,junon_in01,195,127
+junon_in01,191,127,0	warp	Dun_Room3_0	3,3,junon_in01,54,130
+
+junon_in01,43,115,0	warp	Drop_Room3	3,3,junon_in01,277,128
+junon_in01,277,132,0	warp	Dun_Room3_1	3,3,junon_in01,43,120
+
+//castle_ThroneRoom
+junon_in01,230,227,0	warp	TO_Throneroom	3,3,junon_in01,255,227
+junon_in01,251,227,0	warp	Exit_Throneroom	3,3,junon_in01,226,227
+
+//castle_Lounge
+junon_in01,11,24,0	warp	Lounge	3,3,junon_in01,144,179
+junon_in01,148,179,0	warp	Entrance_0	3,3,junon_in01,16,24
+
+
+// Pront Legend Vending area near middle
+
+prontlegend,210,229,4	script	Market Place	45,1,2,{
+	mes"[Market Place]";
+	mes"^D15FEEYumi RO Vending Area :^000000 ^7D26CDAs Per the CavaleRO Rules, Vending is Only Allowed in our Vending Area..^000000.";
+	mes"^DA70D6Do you Really Want to me to Warp you to our Vending Area?^000000.";
+	next;
+		if (select("Yes Please:^8B8386No..I'll Go There Later^000000") == 2) {
+		close;
+	}
+	// I didn't see the need to check and show venders.... Since it didnt even work
+	warp "market",100,103;
+	end;
+
+OnInit:
+	waitingroom "Vending Arena",0;
+	end;
+}
+ 
+market,100,111,0	script	MarketExit	45,1,2,{
+	warp "prontlegend",190,192;
+	end;
+}
+
+// Izlude Dungeon 5 to City of Atlantis
+//iz_dun05,192,27,0 (start)
+//iz_dun05,198,27,0 (End)
+//atlantis,257,40,0 (Start)

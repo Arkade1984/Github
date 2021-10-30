@@ -1,0 +1,57 @@
+
+-	shop	v4pshop	-1,501:50
+
+itemmall,184,67,5	script	Vote4Points	853,{
+//Config
+//	NPC Name
+	set .npcname$,"[^ff0000 Vote4Points ^000000]";
+//	Minimum VP needed to see list (0=Disable)
+	set .min_vote,0;
+//	V4P Shop: Item ID
+	setarray .v4p_item[1],	8904;
+//	V4P Shop: Item Cost
+	setarray .v4p_cost[1],	100;
+//	V4P Shop: Redundant.. but basically its itemid1,cost1,itemid2,cost2 .. etc
+	npcshopitem "v4pshop",	8904,100;
+//DONT EDIT BELOW THIS LINE-------
+	mes .npcname$;
+	mes "You have ^ff0000"+#CASHPOINTS+"^000000 Vote Points!";
+	if(#CASHPOINTS < .min_vote) {
+		next;
+		mes .npcname$;
+		mes "^ff0000You will need "+.min_vote+" or more Vote Points to trade them with me!^000000";
+		close;
+	}
+	mes " ";
+	mes "Please note:";
+	mes "- It takes Vote Points, not Zeny.";
+	mes "- You Have to Vote us after every 12hrs to get Points";
+	next;
+	callshop "v4pshop",1;
+	npcshopattach "v4pshop";
+	end;
+	
+OnBuyItem:
+	mes .npcname$;
+	for(set .@i, 0; .@i < getarraysize(@bought_nameid); set .@i, .@i + 1){
+		if(@bought_quantity[.@i] <= 0){
+			mes "omgh4x!";
+			end;
+		}
+		for(set .@a, 0; .@a < getarraysize(.v4p_item); set .@a, .@a + 1){
+			if(@bought_nameid[.@i] == .v4p_item[.@a]){
+				if(#CASHPOINTS >= (.v4p_cost[.@a] * @bought_quantity[.@i])){
+					set #CASHPOINTS, #CASHPOINTS - (.v4p_cost[.@a] * @bought_quantity[.@i]);
+					getitem .v4p_item[.@a], @bought_quantity[.@i];
+				} else {
+					mes "You have insufficient Vote Points.";
+					close;
+				}
+			}
+		}
+	}
+	deletearray @bought_quantity, getarraysize(@bought_quantity);
+	deletearray @bought_nameid, getarraysize(@bought_nameid);
+	mes "Exchange completed. Thank you for voting!";
+	close;
+}

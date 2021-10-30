@@ -1,0 +1,78 @@
+//= ---
+//= MvP Rank Improved v1.0
+//= ---
+//= This Rank will count every MvP you kill,
+//= to be more clear, will count every mob
+//= defined inside the array ".mobid[0]",
+//= so, if you add the poring ID will count in the rank
+//= you can modify and ad miniBoss because this array
+//= only have all MvPs, that's the idea, only MvPs...
+//= ---
+-	script	Rank MvP	-1,{
+OnInit: // Script Configuration
+setarray .mobid[0],1511,3564,2087,1647,1649,1651,3642,1658,1779,3608,3609,3612,2156,3614,3615,1785,1630,1399,1039,1874,2068,1272,1719,1046,1832,1389,1885,1112,1115,1957,1418,1871,1252,1768,1086,1688,1646,1373,1147,1059,1150,1956,2022,1087,1190,1038,1734,1157,1159,1251,1502,1623,1492,1650,1583,1708,1312,1751,1685,1648,1917; // MvP Ids
+set .a, 1; // Broadcast who killed the MvP and wich MvP and wick Map [0 Off - 1 On]
+set $@top, 10; // Max. Top Rank (Hihgly recommended between 5~10, more maybe bug the server (limited variables)
+end;
+
+OnNPCKillEvent: // Script execution
+for (set .@c, 0; .@c < getarraysize(.mobid); set .@c, .@c + 1)
+	if (killedrid == .mobid[.@c])
+		set .@s, 1; // If a MvP
+if (!.@s) end;
+if (.a) // If announce On
+	announce "[" +strcharinfo(0) +"] has killed an MVP",bc_blue|bc_all;
+set MvP, MvP + 1;
+callfunc ("MvPRank",MvP,strcharinfo(0));
+end;
+} // End Script
+
+junon,242,168,3	script	MvP Ranker#1::MvP Ranker	440,{ 
+mes "[^FF0000MvP ^0000FFRank ^00FF00Top ^FF0000" +$@top +"^000000]";
+for (set .@c, 0; .@c < $@top; set .@c, .@c + 1)
+	mes "Top ^FF0000" +(.@c + 1) +"^000000 ^0000FF" +getd("$topmvp" +.@c +"$") +"^000000 with ^FF0000" +getd("$topmvp" +.@c) +"^000000 MvP killed.";
+if ( getgmlevel ( ) >= 60 )
+	if ( ! ( select ( "Exit", "^ff0000Reset^000000" ) % 2 ) ) {
+		for ( ; .@i < $@top ; set .@i, .@i + 1 ) {
+			setd "$topmvp"+ .@i +"$", "";
+			setd "$topmvp"+ .@i, 0;
+		}
+		mes "Succesfully reset.";
+	}
+close;
+
+OnInit:
+	delwaitingroom "MvP Top 10";           
+	waitingroom "MvP Top 10",0;
+	end;
+} // End if
+
+function	script	MvPRank	{
+set @mvptotal, getarg(0);
+set @nomb$, getarg(1);
+for (set .@c, 0; .@c < $@top; set .@c, .@c + 1) {
+	if (@mvptotal >= getd("$topmvp" +.@c)) {
+		if (strcharinfo(0) == getd("$topmvp" +.@c +"$")) {
+			setd "$topmvp" +.@c, @mvptotal;
+			setd "$topmvp" +.@c +"$", @nomb$;
+			return;
+		} else {
+			if (getd("$topmvp" +(.@c + 1) +"$") == "") {
+				setd "$topmvp" +.@c, @mvptotal;
+				setd "$topmvp" +.@c +"$", @nomb$;
+				return;
+			} else {
+				setd "$topmvp" +(.@c + 1), getd("$topmvp" +.@c);
+				setd "$topmvp" +(.@c + 1) +"$", getd("$topmvp$" +.@c);
+				setd "$topmvp" +.@c, @mvptotal;
+				setd "$topmvp" +.@c +"$", @nomb$;
+				return;
+			} // End if
+		} // End if
+	} // End if
+} // End loop
+return;
+}
+
+prontlegend,204,213,4	duplicate(MvP Ranker)	MvP Ranker#2	440,{
+hun_vil,226,76,6	duplicate(MvP Ranker)	MvP Ranker#3	444,{

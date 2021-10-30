@@ -1,0 +1,149 @@
+// Made by MoonlightRO \\
+// Source: http://www.eathena.ws/board/index.php?showtopic=251759 \\
+// Don't take my creation as your own >.> \\
+
+prontera,156,183,2	script	Coin Trader	860,{
+	
+	cutin "kafra_08",2;
+	mes "[ ^336699Coin Master^000000 ]";
+	mes "What do you want to do today?";
+	menu "Coins -> Zeny",L_Coins,"Zeny -> Coins",L_Zeny,"Nevermind",L_No;
+
+	L_Coins:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "Very well. Here is the list on how much each coin is worth:";
+		mes "^996633Bronze Coin^000000: 1,000,000m Zeny";
+		mes "^666666Silver Coin^000000: 10,000,000m Zeny";
+		mes "^FFFF66Gold Coin^000000: 25,000,000m Zeny";
+		mes "^99CCCCMithril Coin^000000: 200,000,000m Zeny";
+		mes "Tell me, what coin would you like to exchange?";
+		next;
+		menu "^996633Bronze Coin^000000",M_Bronze,"^666666Silver Coin^000000",M_Silver,"^FFFF66Gold Coin^000000",M_Gold,"^99CCCCMithril Coin^000000",M_Mithril;
+
+
+
+	M_Bronze:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like to give up?";
+		set @mamount,0;
+		input @mamount;
+		if (@mamount < 0) goto L_No;
+		if (countitem(673) < @mamount) goto L_No;
+		set Zeny,(zeny + (1000000* @mamount));
+		delitem 673,@mamount;
+		goto L_Thanks;
+
+	M_Silver:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like to give up?";
+		set @mamount,0;
+		input @mamount;
+		if (@mamount < 0) goto L_No;
+		if (countitem(675) < @mamount) goto L_No;
+		set Zeny,(zeny + (10000000* @mamount));
+		delitem 675,@mamount;
+		goto L_Thanks;
+
+	M_Gold:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like to give up?";
+		set @mamount,0;
+		input @mamount;
+		if (@mamount < 0) goto L_No;
+		if (countitem(671) < @mamount) goto L_No;
+		set Zeny,(zeny + (25000000* @mamount));
+		delitem 671,@mamount;
+		goto L_Thanks;
+
+	M_Mithril:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like to give up?";
+		set @mamount,0;
+		input @mamount;
+		if (@mamount < 0) goto L_No;
+		if (countitem(674) < @mamount) goto L_No;
+		set Zeny,(zeny + (200000000* @mamount));
+		delitem 674,@mamount;
+		goto L_Thanks;
+		
+	L_Zeny:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "Very well. Here is the list on how much each coin is worth:";
+		mes "^996633Bronze Coin^000000: 1,000,000m Zeny";
+		mes "^666666Silver Coin^000000: 10,000,000m Zeny";
+		mes "^FFFF66Gold Coin^000000: 25,000,000m Zeny";
+		mes "^99CCCCMithril Coin^000000: 200,000,000m Zeny";
+		mes "Tell me, what coin would you like to get?";
+		next;
+		menu "^996633Bronze Coin^000000",M_Bronze1,"^666666Silver Coin^000000",M_Silver1,"^FFFF66Gold Coin^000000",M_Gold1,"^99CCCCMithril Coin^000000",M_Mithril1;
+
+
+
+	M_Bronze1:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like?";
+		set @mamount,0;
+		input @mamount;
+		if (zeny < 0) goto L_No;
+		if (zeny < (1000000* @mamount)) goto L_No;
+		set Zeny,(zeny - (1000000* @mamount));
+		getitem 673,@mamount;
+		goto L_Thanks;
+
+	M_Silver1:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like?";
+		set @mamount,0;
+		input @mamount;
+		if (zeny < 0) goto L_No;
+		if (zeny < (10000000* @mamount)) goto L_No;
+		set Zeny,(zeny - (10000000* @mamount));
+		getitem 675,@mamount;
+		goto L_Thanks;
+
+	M_Gold1:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like?";
+		set @mamount,0;
+		input @mamount;
+		if (zeny < 0) goto L_No;
+		if (zeny < (25000000* @mamount)) goto L_No;
+		set Zeny,(zeny - (25000000* @mamount));
+		getitem 671,@mamount;
+		goto L_Thanks;
+
+	M_Mithril1:
+		next;
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "How many coins would you like?";
+		set @mamount,0;
+		input @mamount;
+		if (zeny < 0) goto L_No;
+		if (zeny < (200000000* @mamount)) goto L_No;
+		set Zeny,(zeny - (200000000* @mamount));
+		getitem 674,@mamount;
+		goto L_Thanks;
+
+	L_Thanks:
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "Pleasure doing business with you.";
+		close2;
+		cutin "", 255;
+		close;
+
+	L_No:
+		mes "[ ^336699Coin Master^000000 ]";
+		mes "Okay~ Bye!";
+		close2;
+		cutin "", 255;
+		close;
+}

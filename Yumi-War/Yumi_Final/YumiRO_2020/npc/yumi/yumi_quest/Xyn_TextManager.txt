@@ -1,0 +1,164 @@
+/*
+Xynvaroth_TextManager.txt
+The copyright (c) of Xynvaroth_TextManager is owned by Xynvaroth, its author.
+It is released under the terms of the CC BY-NC-ND 3.0 license (see http://creativecommons.org/licenses/by-nc-nd/3.0/).
+Version: 2.3
+
+
+
+I. Overview
+	TextManager is a script package used to separate texts from scripts with an optional multilangual support.
+	You will never have to touch a script to change the texts. If you have staff members which should only translate or correct texts, they will only have to receive and change the data area of the Xynvaroth_TextManager. There is no need to spread all your scripts anymore.
+
+
+
+II. Installation
+	1.	Download the and load Xynvaroth_TextManager.
+
+
+
+III. Configuration
+	1.	You can change the GM lvl needed to update and reinsert the texts above the data area by changing the value of the .GMLevelRequirement value.
+
+
+
+IV. Usage
+	1.	Define the amount of languages in the data area you would like to use by changing the value of the $TextManager_Languages value.
+	2.	Create arrays which contain the texts.
+		The array will start with the prefix Xynvaroth_TextManager_ and is then followed by the group name. The arrays have to be permanent server arrays which can hold string values.
+		I suggest you to comment each line to later easier know under which ID the text is saved.
+		Do not forget to delete the array before you fill it with new content.
+		Put the entire code with all the arrays below the second mark in the data area.
+		If you had three languages, you can just extend each line with another string containing the text in the third language.
+		Please also note that the default language (when a player has not chosen a language yet) will be the first one.
+	3.	In the script, use the global functions of TextManager to return or display the text.
+		- string Text( string Group, int TextID ) - returns a text as a string.
+		- void TextMessage( string Group, int TextID ) - directly executes the mes command with the text.
+	4.	Go ingame and whisper npc:TextManager with a random message or use @ReloadText to read in the current data area.
+	5.	You will have to offer a NPC where players can change their language.
+		Set the #TextManager_Language varibale to the language ID.
+		The nth language will have the ID n - 1.
+
+			
+			
+V. Example
+	////////////////////////////////////////////////
+	//    The data area starts with this mark!    //
+	////////////////////////////////////////////////
+
+	// 1.
+	set $TextManager_Languages, 2;
+
+	// 2.
+	deletearray $TextManager_Howard$[ 0 ], getarraysize( $TextManager_Howard$[ 0 ] );
+	setarray $TextManager_Howard$[ 0 ],	"Hello!", "Hallo!", // 0
+										"How are you?", "Wie geht es Dir?", // 1
+										"I am quite depressed, because my reason to be is only to give an example how to use the TextManager." , "Ich bin ziemlich deprimiert, weil ich nur existiere, um ein Beispiel zu geben, wie man den TextManager benutzt.", // 2
+										"I often cry when I am alone due to this fact.", "Ich weine oft deswegen oft, wenn ich alleine bin.", // 3
+										"I hate this world!", "Ich hasse diese Welt!"; // 4
+										
+	////////////////////////////////////////////////
+	//     The data area ends with this mark!     //
+	////////////////////////////////////////////////
+	yggdrasil01,63,256,4	script	Howard	89,{
+		function TextMessage;
+		mes "~ Howard ~";
+		TextMessage( 0 );
+		TextMessage( 1 );
+		next;
+		mes "~ Howard ~";
+		TextMessage( 2 );
+		next;
+		emotion e_sob;
+		mes "~ Howard ~";
+		TextMessage( 3 );
+		announce callfunc( "Text", "Howard", 4 ), bc_all;
+		close;
+		// This function is a just a suggestion to save time.
+		function TextMessage {
+			callfunc "TextMessage", "Howard", getarg( 0 );
+			return;
+		}
+	}
+	yggdrasil01,58,256,4	script	Choose your language	55,{
+		mes "Plese choose your language.";
+		next;
+		set #TextManager_Language, select( "- English.:- German.:- French." ) - 1;
+		mes "Thank you.";
+		close;
+	}
+
+
+
+VI. Bugs and improvements
+	If you think you have found a bug or if you have a suggestion how to improve the script or just want to give me a feedback, feel free to either post into the release topic or to personally speak to me. My contact details can be found in my rAthena profile. Thank you!
+*/
+
+
+
+-	script	TextManager	-,{
+	OnWhisperGlobal:
+		// 3.
+		set .GMLevelRequirement, 99;
+		if( getgmlevel( ) >= .GMLevelRequirement ) {
+			message strcharinfo( 0 ), "Xynvaroth_TextManager: Reading in the current data area...";
+			
+////////////////////////////////////////////////
+//    The data area starts with this mark!    //
+////////////////////////////////////////////////
+
+// 1.
+set $TextManager_Languages, 1;
+
+// 2.
+deletearray $TextManager_QuestSystem$[ 0 ], getarraysize( $TextManager_QuestSystem$ );
+setarray $TextManager_QuestSystem$[ 0 ],
+	"[Quest Log]: You have accepted the [", // 0
+	"] quest.",
+	"[Quest Log]: The [",
+	"] quest was updated.",
+	"[Quest Log]: The [",
+	"] quest has been finished";
+
+deletearray $TextManager_QuestLog$[ 0 ], getarraysize( $TextManager_QuestLog$ );
+setarray $TextManager_QuestLog$[ 0 ],
+	"Please chose the quest.", // 0
+	"You have to do:"; // 1
+	
+deletearray $TextManager_Quest0$[ 0 ], getarraysize( $TextManager_Quest0$ );
+setarray $TextManager_Quest0$[ 0 ],
+	"I would like you to bring 50 Apples to NPC NextNPC.",
+	"Go back to StartingNPC.";
+
+
+////////////////////////////////////////////////
+//     The data area ends with this mark!     //
+////////////////////////////////////////////////
+
+			message strcharinfo( 0 ), "Xynvaroth_TextManager: Done!";
+		}
+		end;
+	OnInit:
+		bindatcmd "ReloadText", "TextManager::OnWhisperGlobal";
+		end;
+}
+
+
+
+// string Text( string Group, int TextID )
+function	script	Text	{
+	set .@Text$, getd( "$TextManager_" + getarg( 0 ) + "$[" + ( ( getarg( 1 ) * $TextManager_Languages ) + #TextManager_Language ) + "]" );
+	if( .@Text$ == "" ) {
+		debugmes "Xynvaroth_TextManager: Tried to demand unknown text id. Group: " + getarg( 0 ) + " ; TextID: " + getarg( 1 ) + ". Please also check that $TextManager_Languages is set to the correct amount of languages and that all text arrays have enough texts for all languages.";
+		return "";
+	} else
+	return .@Text$;
+}
+
+
+
+// void TextMessage( string Group, int TextID )
+function	script	TextMessage	{
+	mes callfunc( "Text", getarg( 0 ), getarg( 1 ) );
+	return;
+}

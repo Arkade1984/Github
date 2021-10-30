@@ -1,0 +1,448 @@
+
+//*********************************************************************************************************************************************************************************
+//***--Topic Link :		***\( ^ ~ ^ )/***
+//***http://www.eathena.ws/board/index.php?showtopic=265228&st=0
+//***
+//*********************************************************************************************************************************************************************************
+//***-- Script by :		***\( ^ ~ ^ )/***
+//***-- Emistry
+//***
+//*********************************************************************************************************************************************************************************
+//***-- Contact Info :	***\( ^ ~ ^ )/***
+//***-- My Email : Equinox1991@Gmail.com
+//***
+//*********************************************************************************************************************************************************************************
+//***-- Messages :		***\( ^ ~ ^ )/***
+//***-- Drop me a private message or email if you are looking for my helps ^^.
+//***-- Beside that, I am looking for a Server to work with ^^ .  
+//***-- I will do my best to help you ^^.
+//***-- More Details ? PM Me ^^.
+//***
+//*********************************************************************************************************************************************************************************
+//***Although these scripts might not suit or follow with what you have requested completely. But i still wish you can give it a try before reject the works.
+//***
+//*********************************************************************************************************************************************************************************
+//***-- Versions Update:	***\( ^ ~ ^ )/***
+//*** [ Version 2.0 ] - Added easy configuring GAME SETTINGS / Random Reward Amounts. [ By Emistry ]
+//*** [ Version 1.9 ] - Added 0 Weight Check and changed WARP Party to Single Player Warp. [ By Emistry ]
+//*** [ Version 1.8 ] - Re-Arrange the Scripts . ( ~650 lines Shorter ) [ By Emistry ]
+//*** [ Version 1.7 ] - Added Win Points Checker NPC . [ By Emistry ]
+//*** [ Version 1.6 ] - Added Map Flags Control on GM Game Control Section . [ By Emistry ]
+//*** [ Version 1.5 ] - Added GM Game Control / Several Map Flags / Random Rewards for Winners . [ By Emistry ]
+//*** [ Version 1.4 ] - Added Healers / StrongHold Warper ( With Condition ) . [ By Emistry ]
+//*** [ Version 1.3 ] - Added Rental Equipments NPC and Place all Items / Equipments in Inventory into Storage when entering the map . [ By Emistry ]
+//*** [ Version 1.2 ] - Added Conditions Check on NPC . [ By Emistry ]
+//*** [ Version 1.1 ] - Changed to smaller MAP which is bat_b02 [ By Emistry ]
+//*** [ Version 1.0 ] - Simple Team PK Script . [ By Emistry ]
+//***
+//*********************************************************************************************************************************************************************************
+
+prontera,155,170,4	script	Team Wars::teamwar	898,{
+
+//**************************************|  GAME SETTINGS  |******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+//Must have total of " X " number of Party Members ( Default = 5 )
+set .@partymemberscount, 5;
+
+//Minimum GM Level to access GAME MASTER CONTROL ( Default = 80 / 100 for Disable )
+set .@GMLevel, 80;
+
+//Rate of Battle Test Certificate drop after a player get Killed. ( Default = 50% )
+set .@certificaterate, 50;
+
+//Amount of Battle Test Certificate needed for warping to Own Team StrongHold ( Default = 3 )
+set .@OwnStrongHold, 3;
+
+//Amount of Battle Test Certificate needed for warping to Enemy Team StrongHold ( Default = 15 )
+set .@EnemyStrongHold, 15;
+
+//Points for Each Team need to gather in order to WIN. ( Default = 10 )
+set .@WinPoints, 10;
+
+//**************************************|  GAME MASTER CONTROL  |*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+mes "[  Team War  ]";
+if(getgmlevel() > .@GMLevel){	mes "Hi, GM...what can i do for you ?";
+next;
+switch(select("Continue:GM Control")) {
+	Case 1:	goto Game;
+	Case 2:	mes "[  Team War  ]";
+		mes "At here you can modifiy alot settings for this game. Which include ,";
+		mes "--^DB2645 Map Flag Controls^000000 --";
+		mes "--^DB2645 Reset Game^000000 --";
+		next;
+		switch(select("Map Flag Control:Reset Game")) {
+			Case 1:	goto MapFlags;
+				MapFlags:	mes "[^EE6AA7 MAP FLAG SETTINGS^000000 ]";
+					if (getmapflag("bat_b02",mf_nocommand) > 0 ){	mes "+ No COMMAND : ";	mes "Status :^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_nocommand) == 0 ){	mes "+ No COMMAND : ";	mes "Status :  ^FF0000 De-Actived^000000";	}	if (getmapflag("bat_b02",mf_nopvp) == 1 ){	mes "+ No PVP : ";	mes "Status : ^76EE00 Actived^000000";	}
+					if (getmapflag("bat_b02",mf_nopvp) == 0 ){	mes "+ No PVP : ";	mes "Status :  ^FF0000 De-Actived^000000";	}	if (getmapflag("bat_b02",mf_nowarp) == 1 ){	mes "+ No WARP : ";	mes "Status : ^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_nowarp) == 0 ){	mes "+ No WARP : ";	mes "Status :  ^FF0000 De-Actived^000000";	}
+					if (getmapflag("bat_b02",mf_nowarpto) == 1 ){	mes "+ No WARPTO : ";	mes "Status : ^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_nowarpto) == 0 ){	mes "+ No WARPTO : ";	mes "Status :  ^FF0000 De-Actived^000000";		}	if (getmapflag("bat_b02",mf_nomemo) == 1 ){	mes "+ No MEMO : ";	mes "Status : ^76EE00 Actived^000000";	}
+					if (getmapflag("bat_b02",mf_nomemo) == 0 ){	mes "+ No MEMO : ";	mes "Status :  ^FF0000 De-Actived^000000";	}	if (getmapflag("bat_b02",mf_noteleport) == 1 ){	mes "+ No TELEPORT : ";	mes "Status : ^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_teleport) == 0 ){	mes "+ No TELEPORT : ";	mes "Status :  ^FF0000 De-Actived^000000";	}
+					if (getmapflag("bat_b02",mf_noreturn) == 1 ){	mes "+ No RETURN : ";	mes "Status : ^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_noreturn) == 0 ){	mes "+ No RETURN : ";	mes "Status :  ^FF0000 De-Actived^000000";	}	if (getmapflag("bat_b02",mf_noexp) == 1 ){	mes "+ No EXP : ";	mes "Status : ^76EE00 Actived^000000";	}
+					if (getmapflag("bat_b02",mf_noexp) == 0 ){	mes "+ No EXP : ";	mes "Status :  ^FF0000 De-Actived^000000";	}	if (getmapflag("bat_b02",mf_nobranch) == 1 ){	mes "+ No BRANCH : ";	mes "Status : ^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_nobranch) == 0 ){	mes "+ No BRANCH : ";	mes "Status :  ^FF0000 De-Actived^000000";	}
+					if (getmapflag("bat_b02",mf_partylock) == 1 ){	mes "+ No PARTYLOCK : ";	mes "Status : ^76EE00 Actived^000000";	}	if (getmapflag("bat_b02",mf_partylock) == 0 ){		mes "+ No PARTYLOCK : ";	mes "Status :  ^FF0000 De-Actived^000000";	}
+					next;
+					switch(select("^9F79EE-- All Mapflags --^000000:No Command:No PVP:No Warp:No Warpto:No Memo:No Teleport:No Return:No EXP:No Branch:No PartyLock")) {
+						Case 1: 	switch(select("Active All:De-Actived All")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  All Implanted";
+								setmapflag "bat_b02",mf_nocommand,80;	setmapflag "bat_b02",mf_nopvp;	setmapflag "bat_b02",mf_nowarp;	setmapflag "bat_b02",mf_nowarpto;	setmapflag "bat_b02",mf_nomemo;	setmapflag "bat_b02",mf_noteleport;	setmapflag "bat_b02",mf_noreturn;	setmapflag "bat_b02",mf_noexp;	setmapflag "bat_b02",mf_nobranch;	setmapflag "bat_b02",mf_partylock;
+								goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  All Cancelled";
+								removemapflag "bat_b02",mf_nocommand;	removemapflag "bat_b02",mf_nopvp;	removemapflag "bat_b02",mf_nowarp;	removemapflag "bat_b02",mf_nowarpto;	removemapflag "bat_b02",mf_nomemo;	removemapflag "bat_b02",mf_noteleport;	removemapflag "bat_b02",mf_noreturn;	removemapflag "bat_b02",mf_noexp;	removemapflag "bat_b02",mf_nobranch;	removemapflag "bat_b02",mf_partylock;
+								goto MapFlags;
+								}
+						Case 2: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No Command Implanted [ Only trigger for GM Level Below 80 ] ";	setmapflag "bat_b02",mf_nocommand,80;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No Command Cancelled";	removemapflag "bat_b02",mf_nocommand;	goto MapFlags;
+								}
+						Case 3: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No PVP Implanted";	setmapflag "bat_b02",mf_nopvp;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No PVP Cancelled";	removemapflag "bat_b02",mf_nopvp;	goto MapFlags;
+								}
+						Case 4: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No PVP Implanted";	setmapflag "bat_b02",mf_nowarp;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No PVP Cancelled";	removemapflag "bat_b02",mf_nowarp;	goto MapFlags;
+								}
+						Case 5: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No WarpTo Implanted";	setmapflag "bat_b02",mf_nowarpto;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No WarpTo Cancelled";	removemapflag "bat_b02",mf_nowarpto;	goto MapFlags;
+								}
+						Case 6: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No Memo Implanted";	setmapflag "bat_b02",mf_nomemo;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No Memo Cancelled";	removemapflag "bat_b02",mf_nomemo;	goto MapFlags;
+								}
+						Case 7: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No Teleport Implanted";	setmapflag "bat_b02",mf_noteleport;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No Teleport Cancelled";	removemapflag "bat_b02",mf_noteleport;	goto MapFlags;
+								}
+						Case 8:	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No Return Implanted";	setmapflag "bat_b02",mf_noreturn;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No Return Cancelled";	removemapflag "bat_b02",mf_noreturn;	goto MapFlags;
+								}
+						Case 9: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No EXP Implanted";	setmapflag "bat_b02",mf_noexp;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No EXP Cancelled";	removemapflag "bat_b02",mf_noexp;	goto MapFlags;
+								}
+						Case 10: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No Branches Implanted";	setmapflag "bat_b02",mf_nobranch;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No Branches Cancelled";	removemapflag "bat_b02",mf_nobranch;	goto MapFlags;
+								}
+
+						Case 11: 	switch(select("Active:De-Actived")) {	
+							Case 1:	dispbottom "Map Flag Configuration  :  No Party Lock Implanted";	setmapflag "bat_b02",mf_partylock;	goto MapFlags;
+							Case 2:	dispbottom "Map Flag Configuration  :  No Party Lock Cancelled";	removemapflag "bat_b02",mf_partylock;	goto MapFlags;
+								}	}
+			Case 2:	mes "[  Team War  ]";
+				mes "The Game has will be stopped/Reseted ? If there is player playing inside the game..the game will also stopped.";
+				next;
+				mes "[  Team War  ]";	
+				if($Team_match == 1){	mes "There is player playing the game right now !!";	mes "Do you really want to ^FF0000RESET^000000 the game by now ? ^0000FFSure^000000 ?";	}
+				switch(select("^FF000000Reset/Stop Game^000000:Back to Game")) {
+					Case 1:	mapannounce "bat_b02","A Game Master has STOP this Game from continue..!! Please out of the Arena now !! Before you guys trapped inside forever !!!",0,0x76EE00;
+						stopnpctimer;
+						set $Team_match, 0;
+						set .points1, 0;
+						set .points2, 0;
+						set $@TeamID2, 0;
+						set $@TeamID1, 0;
+						killmonsterall "bat_b02";
+						close;
+					Case 2:	goto Game;	}	}	}
+}
+
+//************************************************|  CONDITION  |*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+Game:
+getpartymember(getcharid(1));
+set @partymembercount,$@partymembercount;
+if (getcharid(1)==0) {	mes "Only players with party members with him can talk with me.";	close;	}
+if ($@partymembercount < .@partymemberscount ){	mes "You must bring few more Members to go in !!.";	mes "Party Member must be equal to "+.@partymemberscount+".";	close;	}
+if ($@partymembercount > .@partymemberscount ){	mes "You cant bring more than "+.@partymemberscount+" Members to go in !!  Party Member must be equal to "+.@partymemberscount+".";	close;	}
+
+//*******************************************************|  GAME REGISTER / ENTER  |**************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+mes "Hello "+strcharinfo(0)+" what do you want?";
+next;
+switch(select("Sign In / Sign Out:^0000FFEnter Arena^000000:Information:     ")) {
+	Case 1:	mes "[  Team War  ]";
+		if ( getpartyleader(getcharid(1),2) != getcharid(0) ){	mes "Only party leader have the right to sign up / out from the game with me..";	close;	}
+		mes "Choose your team to register.";
+		switch(select("Red Team - [" + GetPartyName($@TeamID1) + "] :Blue Team - [" + GetPartyName($@TeamID2) + "]")) {
+			Case 1:	mes "[  Team War  ]";
+				if ($@TeamID1==getcharid(1)) {	mes "Do you wish to sign out your team?";	next;	if (select("I Give up ~.","Never Say Quit !!")==2) close;	announce "Team 1 : [ " + getpartyname($@TeamID1) + " ] has sign out. We need another Party to sign up now!",bc_yellow|bc_map;	set $@TeamID1, 0;	close;	}
+				if ($@TeamID1==0 || getpartyname($@TeamID1)=="null") {	set $@TeamID1, getcharid(1);	initnpctimer;	mes "Your Party is now subscribed, good luck!";	announce "Team 1 : [ " +getpartyname($@TeamID1)+ " ] has sign up For the Team War!",bc_blue|bc_map;	
+				doevent "teamwar::OnSubscriptionTeam";	close;	}else {	mes "I'm sorry! Another Team has sign up before you...";	close;	}
+			Case 2:	mes "[  Team War  ]";
+				if ($@TeamID2==getcharid(1)) {	mes "Do you wish to sign out your team?";	next;	if (select("I Give up ~.","Never Say Quit !!")==2) close;	announce "Team 2 : [ " + getpartyname($@TeamID2) + " ] has sign out. We need another Party to sign up now!",bc_yellow|bc_map;	set $@TeamID2, 0;	close;	}
+				if ($@TeamID2==0 || getpartyname($@TeamID2)=="null") {	set $@TeamID2, getcharid(1);	initnpctimer;	mes "Your Party is now subscribed, good luck!";	announce "Team 2 : [ " +getpartyname($@TeamID2)+ " ] has sign up For the Team War!",bc_blue|bc_map;
+				doevent "teamwar::OnSubscriptionTeam";	close;	}else {	mes "I'm sorry! Another Team has sign up before you...";	close;	}
+				}
+	Case 2:	if ( Weight > 0 ){
+		mes "[  Team War  ]";	
+		mes "Please clear all the items that in your inventory. You are not allowed to bring anything into the Game Arena.";	next;	mes "[  Team War  ]";	mes "Make sure your weight is^FF0000 0^00000 before you try to get into the Game Arena.";	close;	}
+		if(getcharid(1)==$@TeamID1 ){	warp "bat_b02",62,150;	set @teamwinreward,0;	end;	}
+		if(getcharid(1)==$@TeamID2 ){	warp "bat_b02",328,150;	set @teamwinreward,0;	end;	}
+		mes "[  Team War  ]";
+		mes "Your not in one of the Signed up teams and /or the Game is over.";
+		close;
+	Case 3:	mes "[  Team War  ]";
+		mes "^FF0000Time Limit : 30 Minutes .^000000";
+		mes "This Game is a ^0000FFParty VS Party :^000000 game.Once you have Break the StrongHold you will win 1 Points. First Team who gained "+.@WinPoints+" Points win the whole game. They can get some random stuffs as rewards.";
+		next;
+		mes "[  Team War  ]";
+		mes "^0000FFHints :^000000"; 
+		mes "A Party must kill the other party members to collect items. Those items used for getting permission to get into StrongHold. Those items will be used to warp you to a StrongHold Room for Break/Defend purpose.";
+		next;
+		mes "[  Team War  ]";
+		mes "Reward will be distributed by the Exit NPC in the game. Remember that..only "+.@partymemberscount+" players in a party that have sign up with me can go in.";
+		next;
+		mes "[  Team War  ]";
+		mes "Good Luck.";
+		close;
+	Case 4:	mes "[  Team War  ]";
+		mes "Credits for ";
+		mes "^0000FFE M I S T R Y^000000.";
+		mes "Contact : ";
+		mes "^0000FFEquinox1991@GMail.Com^000000.";
+		mes "Facebook : ";
+		mes "^0000FFElite-Jr@HotMail.Com^000000.";
+		next;
+		mes "[  Team War  ]";
+		mes "Contact me if there is any problems with this NPC.";
+		mes "^0000FFBye Bye !!^000000.";
+		close;			
+}	
+
+//*******************************************************|  GAME START  |***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+OnSubscriptionTeam:
+	if($@TeamID1!=0 && $@TeamID2!=0){
+	announce "Team War : We have 2 Teams signed up now : "+getpartyname($@TeamID1)+" and "+getpartyname($@TeamID2)+".",bc_blue|bc_map;
+	set $Team_match, 1;
+	donpcevent "teamwar::OnStart";
+	}
+end;
+
+OnTimer600000:
+	if($@TeamID1!=0 && $@TeamID2!=0){	stopnpctimer;	end;	}
+	stopnpctimer;
+	set $@TeamID2, 0;
+	set $@TeamID1, 0;
+	end;
+
+OnStart:
+	if (.points2 >= .@WinPoints) {	Announce "The Team War is over ! The Winner of Team War is the [" + GetpartyName($@TeamID2) + "] Team.",0;	set $@TeamWarPID,getcharid(2);	donpcevent "teamwar::OnEnded";	end;	}
+	if (.points1 >= .@WinPoints) {	Announce "The Team War is over ! The Winner of Team War is the [" + GetpartyName($@TeamID1) + "] Team.",0;	set $@TeamWarPID,getcharid(2);	donpcevent "teamwar::OnEnded";	end;	}
+	initnpctimer;
+	monster "bat_b02",390,9,"Blue StrongHold",2035,1,"teamwar::OnBreakedBlue";
+	monster "bat_b02",2,290,"Red StrongHold",2035,1,"teamwar::OnBreakedRed";
+	end;
+
+OnBreakedBlue:
+	stopnpctimer;
+	set .points1, .points1 +1 ;
+	warpparty "bat_b02",62,150,$@TeamID1;
+	warpparty "bat_b02",328,150,$@TeamID2;
+	Announce "Team [" + GetPartyName($@TeamID1) + "] breaked StrongHold and Gained  [" + .points1 + "] Points .",0,0x76EE00;
+	goto OnStart;
+	end;
+
+OnBreakedRed:
+	stopnpctimer;
+	set .points2, .points2 +1 ;
+	warpparty "bat_b02",62,150,$@TeamID1;
+	warpparty "bat_b02",328,150,$@TeamID2;
+	Announce "Team [" + GetPartyName($@TeamID2) + "] breaked StrongHold and Gained  [" + .points2 + "] Points .",0,0x76EE00;
+	goto OnStart;
+	end;
+
+OnEnded:
+	stopnpctimer;
+	set $Team_match, 0;
+	set .points1, 0;
+	set .points2, 0;
+	set $@TeamID2, 0;
+	set $@TeamID1, 0;
+	killmonsterall "bat_b02";
+	end;
+
+OnTime1800000:
+	announce "30 Minutes has passed. Nobody win this game !. All please leave this map  !! ",bc_blue|bc_map;
+	set $@TeamWarPID, 0;
+	donpcevent "teamwar::OnEnded";
+	end;
+}
+
+
+//********************************************************|  EXIT NPC / INCLUDE REWARDS  |**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+bat_b02,335,142,1	script	Exit#1	927,{
+	clearitem;	dispbottom "All your items in your inventory has been removed. Because all the items belong to Team Wars Players only.";
+	save "prontera",155,180;
+	if(getcharid(2) == $@TeamWarPID && @teamwinreward == 0){
+	setarray .@TeamWarRewardLists[0], "607", "608", "7539", "569", "678", "969"; 
+	set .@Reward, rand(0,getarraysize(.@TeamWarRewardLists) - 1);
+	getitem .@TeamWarRewardLists[.@Reward], rand(1,20);
+	}
+	warp "prontera.gat",155,180;
+	set @teamwinreward,1;
+	end;
+	}
+
+bat_b02,60,146,7	script	Exit#2	927,{
+	clearitem;	dispbottom "All your items in your inventory has been removed. Because all the items belong to Team Wars Players only.";
+	save "prontera",155,180;
+	if(getcharid(2) == $@TeamWarPID && @teamwinreward == 0){
+	setarray .@TeamWarRewardLists[0], "607", "608", "7539", "569", "678", "969"; 
+	set .@Reward, rand(0,getarraysize(.@TeamWarRewardLists) - 1);
+	getitem .@TeamWarRewardLists[.@Reward], rand(1,20);
+	}
+	warp "prontera.gat",155,180;
+	set @teamwinreward,1;
+	end;
+	}
+
+//*******************************************************************|  HEALER WITH DELAY  |***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+bat_b02,58,153,5	script	Healer#teamwar1	932,{
+if(getcharid(1)==$@TeamID2){	mes "Get Out from here noob !! I wont betray my team !!.";	close;	}
+if(healdelay < gettimetick(2)) {	emotion e_hp;	percentheal 25,25;	specialeffect2 312,1;	set healdelay, gettimetick(2) + 3;	end;	}
+dispbottom "[Healer] Please wait 3 seconds before get healed again.";	end;	}
+
+bat_b02,334,157,3	script	Healer#teamwar2	932,{
+if(getcharid(1)==$@TeamID1){	mes "Get Out from here noob !! I wont betray my team !!.";	close;	}
+if(healdelay < gettimetick(2)) {	emotion e_hp;	percentheal 25,25;	specialeffect2 312,1;	set healdelay, gettimetick(2) + 3;	end;	}
+dispbottom "[Healer] Please wait 3 seconds before get healed again.";	end;	}
+
+//*********************************************************************|  STRONGHOLD WARPER  |*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+bat_b02,311,225,3	script	Door#1	45,1,1,{
+mes "[  Door  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !! I wont warp you if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID1 && countitem(7913) < .@EnemyStrongHold){	mes "This door will lead you to the Blue Team StrongHold. If you wish to go...you must have 15  Battle Test Certificate. Which only can be obtain during the Team War.";	close;	}
+if(getcharid(1)==$@TeamID2 && countitem(7913) < .@OwnStrongHold){	mes "You wish to go to StrongHold there ?";	next;	mes "Wise Option..!! ^^ but you have to bring me "+.@OwnStrongHold+" Battle Test Certificate. To prove your strength to me in order to protect the StrongHold. Which only can be obtain during the Team War.";	close;	}
+if(getcharid(1)==$@TeamID1 && countitem(7913) >= .@EnemyStrongHold){	mes "Which spend "+.@EnemyStrongHold+" Battle Test Certificate.";	delitem 7913,.@EnemyStrongHold;	warp "bat_b02",389,17;	end;	}
+if(getcharid(1)==$@TeamID2 && countitem(7913) >= .@OwnStrongHold){	mes "Warping you to Blue StrongHold in a second xD. Which spend "+.@OwnStrongHold+" Battle Test Certificate.";	delitem 7913, .@OwnStrongHold;	warp "bat_b02",390,3;	end;	}	}
+
+bat_b02,88,74,3	script	Door#2	45,1,1,{
+mes "[  Door  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !! I wont warp you if the game is not running..";	close;	}
+if(getcharid(1)==$@TeamID2 && countitem(7913) < .@EnemyStrongHold){	mes "This door will lead you to the Red Team StrongHold. If you wish to go...you must have 15  Battle Test Certificate. Which only can be obtain during the Team War.";		close;	}
+if(getcharid(1)==$@TeamID1 && countitem(7913) < .@OwnStrongHold){	mes "You wish to go to StrongHold there ?";	next;	mes "Wise Option..!! ^^ but you have to bring me "+.@OwnStrongHold+" Battle Test Certificate. To prove your strength to me in order to protect the StrongHold. Which only can be obtain during the Team War.";	close;	}
+if(getcharid(1)==$@TeamID2 && countitem(7913) >= .@EnemyStrongHold){	mes "Warping you to Red StrongHold in a second xD. Which spend "+.@EnemyStrongHold+" Battle Test Certificate.";	delitem 7913, .@EnemyStrongHold;	warp "bat_b02",389,17;	end;	}
+if(getcharid(1)==$@TeamID1 && countitem(7913) >= .@OwnStrongHold){	mes "Warping you to Red StrongHold in a second xD. Which spend "+.@OwnStrongHold+" Battle Test Certificate.";	delitem 7913, .@OwnStrongHold;	warp "bat_b02",390,3;	end;	}	}
+
+//************************************************|  SAVEPOINT / ITEMS DROP / REMOVE ITEMS & CART / ******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+-	script	TeamWar#1	-1,{
+OnPCLoadMapEvent:
+	getmapxy .@m$,.@x,.@y,0;
+if (.@m$ == "bat_b02" ){	setcart 0;	end;	}
+if (getcharid(1)==$@TeamID1 ){	savepoint "bat_b02",69,150;	end;	}
+if (getcharid(1)==$@TeamID2 ){	savepoint "bat_b02",322,150;	end;	}
+}
+bat_b02	mapflag	loadevent
+	
+-	script	TeamWar#2	-1,{
+OnPCKillEvent:
+	getmapxy .@m$,.@x,.@y,0;
+if (.@m$ == "bat_b02" && $Team_match == 1 ){	set certificate,rand(0,100);
+if (certificate < .@certificaterate ){	getitem 7913,1;	dispbottom "You have gained total of [ "+countitem(7913)+" ] of Battle Test Certificate.";	}
+	end;	}
+}
+
+//*****************************************************|  WEAPONS / EQUIPMENTS RENTAL  |******************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+bat_b02,91,159,3	script	Weaponary Rental#Red	100,{	
+mes "[  Weapon Rental  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !! I wont provide any services if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID2){	mes "Get Out from here noob !! I wont betray my team !!.";	close;	}
+if(getcharid(1)==$@TeamID1){
+mes "Choose those equipments wisely. It would help you alot during this battle.";
+next;
+switch(select("Claymore:Bloody Roar:Jamadhar:Two Handed Axe:Spear:LanceMorning Star:Tablet:Apocalypse:Arc Wand:Cure Wand:Hunter Bow:Claw:Fist:Guitar:Lariat:Destruction Staff:Pistol:Gladius:Rifle:Gatling Gun:Shot Gun:Grenade Launcher:Shuriken:Flamberge:Rapier:Holy Avenger:Close")) {
+	Case 1:	rentitem 1187,300;	close;	Case 2:	rentitem 1281,300;	close;	Case 3:	rentitem 1282,300;	close;	Case 4:	rentitem 1310,300;	close;	Case 5:	rentitem 1382,300;	close;
+	Case 6:	rentitem 1426,300;	close;	Case 7:	rentitem 1486,300;	close;	Case 8:	rentitem 1546,300;	close;	Case 9:	rentitem 1576,300;	close;	Case 10:	rentitem 1577,300;	close;
+	Case 11:	rentitem 1640,300;	close;	Case 12:	rentitem 1641,300;	close;	Case 13:	rentitem 1743,300;	close;	Case 14:	rentitem 1826,300;	close;	Case 15:	rentitem 1827,300;	close;
+	Case 16:	rentitem 1927,300;	close;	Case 17:	rentitem 1981,300;	close;	Case 18:	rentitem 2002,300;	close;	Case 19:	rentitem 2002,300;	close;	Case 20:	rentitem 13110,300;	close;
+	Case 21:	rentitem 13042,300;	close;	Case 22:	rentitem 13176,300;	close;	Case 23:	rentitem 13177,300;	close;	Case 24:	rentitem 13178,300;	close;	Case 25:	rentitem 13179,300;	close;
+	Case 26:	rentitem 13307,300;	close;	Case 27:	rentitem 13416,300;	close;	Case 28:	rentitem 13417,300;	close;	Case 29:	rentitem 13418,300;	close;	Case 30:	close;	}
+close2;	emotion e_heh;	end;	}	}
+
+bat_b02,91,140,1	script	Equipmentary Rental#Red	100,{
+mes "[  Weapon Rental  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !!.";	mes "I wont provide any services if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID2){	mes "Get Out from here noob !!";	mes "I wont betray my team !!.";	close;	}
+if(getcharid(1)==$@TeamID1){
+mes "Use those equipments wisely. It would help you alot during this battle.";
+rentitem 2772,600;	autoequip 2772,1;
+rentitem 2773,600;	autoequip 2773,1;
+rentitem 2394,600;	autoequip 2394,1;
+rentitem 2444,600;	autoequip 2444,1;
+rentitem 2549,600;	autoequip 2549,1;
+rentitem 5168,600;	autoequip 5168,1;
+close2;	emotion e_lv;	specialeffect2 622;	specialeffect2 668;	end;	}	}
+
+bat_b02,306,160,5	script	Weaponary Rental#Blue	100,{	
+mes "[  Weapon Rental  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !!.";	mes "I wont provide any services if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID1){	mes "Get Out from here noob !!";	mes "I wont betray my team !!.";	close;	}
+if(getcharid(1)==$@TeamID2){
+mes "Choose those equipments wisely. It would help you alot during this battle.";
+next;
+switch(select("Claymore:Bloody Roar:Jamadhar:Two Handed Axe:Spear:LanceMorning Star:Tablet:Apocalypse:Arc Wand:Cure Wand:Hunter Bow:Claw:Fist:Guitar:Lariat:Destruction Staff:Pistol:Gladius:Rifle:Gatling Gun:Shot Gun:Grenade Launcher:Shuriken:Flamberge:Rapier:Holy Avenger:Close")) {
+	Case 1:	rentitem 1187,300;	close;	Case 2:	rentitem 1281,300;	close;	Case 3:	rentitem 1282,300;	close;	Case 4:	rentitem 1310,300;	close;	Case 5:	rentitem 1382,300;	close;
+	Case 6:	rentitem 1426,300;	close;	Case 7:	rentitem 1486,300;	close;	Case 8:	rentitem 1546,300;	close;	Case 9:	rentitem 1576,300;	close;	Case 10:	rentitem 1577,300;	close;
+	Case 11:	rentitem 1640,300;	close;	Case 12:	rentitem 1641,300;	close;	Case 13:	rentitem 1743,300;	close;	Case 14:	rentitem 1826,300;	close;	Case 15:	rentitem 1827,300;	close;
+	Case 16:	rentitem 1927,300;	close;	Case 17:	rentitem 1981,300;	close;	Case 18:	rentitem 2002,300;	close;	Case 19:	rentitem 2002,300;	close;	Case 20:	rentitem 13110,300;	close;
+	Case 21:	rentitem 13042,300;	close;	Case 22:	rentitem 13176,300;	close;	Case 23:	rentitem 13177,300;	close;	Case 24:	rentitem 13178,300;	close;	Case 25:	rentitem 13179,300;	close;
+	Case 26:	rentitem 13307,300;	close;	Case 27:	rentitem 13416,300;	close;	Case 28:	rentitem 13417,300;	close;	Case 29:	rentitem 13418,300;	close;	Case 30:	close;	}
+close2;	emotion e_heh;	end;	}	}
+
+bat_b02,306,138,7	script	Equipmentary Rental#Blue	100,{
+mes "[  Weapon Rental  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !!.";	mes "I wont provide any services if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID1){	mes "Get Out from here noob !! I wont betray my team !!.";	close;	}
+if(getcharid(1)==$@TeamID2){
+mes "Use those equipments wisely. It would help you alot during this battle.";
+rentitem 2772,600;	autoequip 2772,1;
+rentitem 2773,600;	autoequip 2773,1;
+rentitem 2394,600;	autoequip 2394,1;
+rentitem 2444,600;	autoequip 2444,1;
+rentitem 2549,600;	autoequip 2549,1;
+rentitem 5168,600;	autoequip 5168,1;
+close2;	emotion e_lv;	specialeffect2 622;	specialeffect2 668;	end;	}	}
+
+//**************************************************|  WIN POINTS CHECKER  |***********************************************************************************************************************************************************************************************************************************************************************************************************************
+
+bat_b02,66,153,5	script	Result Checker#1	424,{
+mes "[  Result Checker  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !!.";	mes "I wont show you the results if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID2 ){	mes "Get lost !!!";	close;	}
+if(getcharid(1)==$@TeamID1 ){	mes "^FF0000Red Team Info : "+.@WinPoints+" Points = Win^000000";	mes "Party :^76EE00 [" + GetPartyName($@TeamID1) + "]^000000";	mes "Gained total of [ " + .points1 + " ] Points!.";	mes "^9F79EE-----------------------------------^000000";	mes "^0000FFBlue Team Info : "+.@WinPoints+" points = Win^000000";	mes "Party :^76EE00 [" + GetPartyName($@TeamID2) + "]^000000";	mes "Gained total of [ " + .points2 + " ] Points!.";
+close;	}	close;	}
+
+bat_b02,328,157,3	script	Result Checker#2	425,{
+mes "[  Result Checker  ]";
+if ($Team_match == 0 ){	mes "Currently , the game is not running !!.";	mes "I wont show you the results if the game is not running.";	close;	}
+if(getcharid(1)==$@TeamID1 ){	mes "Get lost !!!";	close;	}
+if(getcharid(1)==$@TeamID2 ){	mes "^0000FFBlue Team Info : "+.@WinPoints+" points = Win^000000";	mes "Party :^76EE00 [" + GetPartyName($@TeamID2) + "]^000000";	mes "Gained total of [ " + .points2 + " ] Points!.";	mes "^9F79EE-----------------------------------^000000";	mes "^FF0000Red Team Info : "+.@WinPoints+" Points = Win^000000";	mes "Party :^76EE00 [" + GetPartyName($@TeamID1) + "]^000000";	mes "Gained total of [ " + .points1 + " ] Points!.";
+close;	}	close;	}
+
+//**************************************************|  SIMPLE SHOP DEALER  |*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+bat_b02,336,149,6	shop	Supplier#1	867,547:3000,504:2000,505:4500,506:100,525:1000,12016:5000,645:1600,656:3000,657:5000,12119:500,12120:500,12118:500,12121:500,717:1000,716:1000,715:1000,7136:5500,7135:5500,678:15000,7139:4500
+bat_b02,56,149,6	shop	Supplier#2	867,547:3000,504:2000,505:4500,506:100,525:1000,12016:5000,645:1600,656:3000,657:5000,12119:500,12120:500,12118:500,12121:500,717:1000,716:1000,715:1000,7136:5500,7135:5500,678:15000,7139:4500
+
+//*********************************************|  Map Flags  |*************************************************************************************************************************************************************************************************************
+
+bat_b02	mapflag	pvp	on
+bat_b02	mapflag	nowarp
+bat_b02	mapflag	nowarpto
+bat_b02	mapflag	nomemo
+bat_b02	mapflag	noteleport
+bat_b02	mapflag	noreturn
+bat_b02	mapflag	noexp
+bat_b02	mapflag	nobranch
+bat_b02	mapflag	partylock
+bat_b02	mapflag	nocommand	80
+bat_b02	mapflag	pvp_nightmaredrop	random,equip,500

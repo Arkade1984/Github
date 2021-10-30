@@ -1,0 +1,1394 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 		  CLASS MASTER 1.8.1 - JOBCHANGE,BREEDER,BABYCHANGER,PLATINUM SKILLS,RESET,SELL POINTS,CLASS RESET																			//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+																																	//
+junon,221,164,5	script	Job Services#1-1::Job Services	808,{									
+																																	//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//					   +-----------------------+																									//
+//=========================================¦CART,MOUNT,FALCON CHECK¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+	if (getgmlevel() >= .GMPANLVL) goto GMPANEL;																											//
+START:																																	//
+	if (!.BREEDERON) goto CONTINUE;				//Jump to class change if BREEDER = OFF																					//
+	if (.BREEDERON) && (.POINTBUYON) && (.SPCREBORN) && (!.RESETERON) {mes .JCNAME$;													   									//
+	mes "So ... what brings you to me?";																	   											//
+	next;														 						  												//
+	menu "Job Change.",BREEDERJUMP,"Breeder.",-,"Sell Points.",SELLPOINTS,"Reset level",MULTI,"Nothing...",LCANCEL;}					  				  									//						
+																					  												//
+	if (.BREEDERON) && (!.POINTBUYON) && (.SPCREBORN) && (.RESETERON) {mes .JCNAME$;												  										//
+	mes "So ... what brings you to me?";																  												//
+	next;																				  												//
+	menu "Job Change.",BREEDERJUMP,"Breeder.",-,"Reset.",RESETOPTIONS,"Reset level",MULTI,"Nothing...",LCANCEL;}									  										//
+																					  												//
+	if (.BREEDERON) && (.POINTBUYON) && (.SPCREBORN) && (.RESETERON) {mes .JCNAME$;												  											//
+	mes "So ... what brings you to me?";									  							  												//	
+	next;													  							  												//
+	menu "Job Change.",BREEDERJUMP,"Breeder.",-,"Sell Points.",SELLPOINTS,"Reset.",RESETOPTIONS,"Reset level",MULTI,"Nothing...",LCANCEL;}						  										//
+																					  												//
+	if (.BREEDERON) && (.POINTBUYON) && (!.SPCREBORN) && (!.RESETERON) {mes .JCNAME$;												  										//
+	mes "So ... what brings you to me?";									  							  												//	
+	next;													  							  												//
+	menu "Job Change.",BREEDERJUMP,"Breeder.",-,"Sell Points.",SELLPOINTS,"Nothing...",LCANCEL;}						  															//
+																																	//
+	if (.BREEDERON) && (!.POINTBUYON) && (!.SPCREBORN) && (.RESETERON) {mes .JCNAME$;												  										//
+	mes "So ... what brings you to me?";									  							  												//	
+	next;													  							  												//
+	menu "Job Change.",BREEDERJUMP,"Breeder.",-,"Reset.",RESETOPTIONS,"Nothing...",LCANCEL;}						  															//
+																																	//
+	if (.BREEDERON) && (!.POINTBUYON) && (!.SPCREBORN) && (!.RESETERON) {mes .JCNAME$;												  										//
+	mes "So ... what brings you to me?";																  												//
+	next;																				  												//
+	menu "Job Change.",BREEDERJUMP,"Breeder.",-;}															  												//
+																																	//
+	if (getskilllv(2255) >= 1) && (checkriding() == 0) goto MOUNT_MADO;												  												//
+	if (getskilllv(39) >= 1) && (checkcart() == 0) goto CART_EQUIP;													  												//
+	if (getskilllv(2007) >= 1) && (checkriding() == 0) goto MOUNT_DRAGON;												  												//
+	if (getskilllv(63) >= 1) && (checkriding() == 0) && ((class == 4066) || (class == 4073) || (class == 4082) || (class == 4083)) goto MOUNT_GRYPHON;		  												//
+	if (getskilllv(63) >= 1) && (checkriding() == 0) goto MOUNT_PECO;																								//	
+	if (getskilllv(2241) >= 1) goto WARGFALCON;																											//
+	if (getskilllv(127) >= 1) && (checkfalcon() == 0) && (checkriding() == 0) goto FALCON_RENT;																					//
+	if ((getskilllv(2255) == 0) || (getskilllv(39) == 0) || (getskilllv(2007) == 0) || (getskilllv(63) == 0) || (getskilllv(2241) == 0) || (getskilllv(127) == 0)) {mes .JCNAME$;mes "You have none of the necessary skills...";close;}				//
+CART_EQUIP:																																//
+	mes .JCNAME$;																															//
+	mes "I see that you can use a Cart, but has no one.Whether one of my?";																								//
+	next;																																//
+	menu "Yes, of course",-,"No,Thanks...",CONTINUE;																										//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of it very well!";																									//
+	setcart;																															//
+	close;																																//
+FALCON_RENT:																																//
+	mes .JCNAME$;																															//
+	mes "I see that you can use a Falcon, but has no one.Whether one of my?";																							//
+	next;																																//
+	menu "Yes, of course",-,"No,Thanks...",CONTINUE;																										//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setfalcon;																															//
+	close;																																//
+MOUNT_PECO:																																//
+	mes .JCNAME$;																															//
+	mes "I see that you can mount a Peco, but has no one.Whether one of my?";																							//
+	next;																																//
+	menu "Yes, of course",-,"No,Thanks...",CONTINUE;																										//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setriding;																															//
+	close;																																//
+MOUNT_GRYPHON:																																//
+	mes .JCNAME$;																															//
+	mes "I see that you can mount a Gryphon, but has no one.Whether one of my?";																							//
+	next;																																//
+	menu "Yes, of course",-,"No,Thanks...",CONTINUE;																										//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setriding;																															//
+	close;																																//
+MOUNT_DRAGON:																																//
+	mes .JCNAME$;																															//
+	mes "I see that you can mount a Dragon, but has no one.Whether one of my?";																							//
+	next;																																//
+	menu "Yes, of course",-,"No,Thanks...",CONTINUE;																										//
+	mes .JCNAME$;																															//
+	mes "What color do you prefer?";																												//
+	next;																																//
+	menu "Green",-,"Black",BLACKDRAGON,"White",WHITEDRAGON,"Blue",BLUEDRAGON,"Red",REDDRAGON;																					//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setriding;																															//
+	close;																																//
+BLACKDRAGON:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	atcommand strcharinfo(0)+":@mount 2";																												//	
+	close;																																//
+WHITEDRAGON:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	atcommand strcharinfo(0)+":@mount 3";																												//	
+	close;																																//
+BLUEDRAGON:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	atcommand strcharinfo(0)+":@mount 4";																												//	
+	close;																																//
+REDDRAGON:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	atcommand strcharinfo(0)+":@mount 5";																												//	
+	close;																																//
+WARGFALCON:																																//
+	mes .JCNAME$;																															//
+	mes "First, let me check something";																												//
+	next;																																//
+	atcommand strcharinfo(0)+":@mount";																												//
+	if (checkriding() == 1) atcommand strcharinfo(0)+":@mount";																									//
+	mes .JCNAME$;																															//
+	mes "I think we can continue ...";																												//
+	next;																																//
+	mes .JCNAME$;																															//
+	if (.WARGANDFALCON == 1) mes "Oh! You seem able to control both a Falcon as a Warg! Whether the two?";																				//
+	if (.WARGANDFALCON == 0) mes "I see that you can mount a Warg, but has no one.Whether one of my?";																				//
+	next;																																//
+	if (.WARGANDFALCON == 1) menu "Give me two!", WANNATWO,"Only the Warg!", WANNAWARG,"Only the Falcon!", WANNAFALCON,"No thanks ...", CONTINUE;															//
+	if (.WARGANDFALCON == 0) menu "Yes, of course !",-," No thanks ...", CONTINUE;																							//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setriding;																															//
+	close;																																//
+WANNATWO:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of them very well!";																									//
+	setfalcon;																															//
+	setriding;																															//
+	close;																																//
+WANNAWARG:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setriding;																															//
+	close;																																//
+WANNAFALCON:																																//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of him very well!";																									//
+	setfalcon;																															//
+	close;																																//
+MOUNT_MADO:																																//
+	mes .JCNAME$;																															//
+	mes "I see that you can Pilot a Mado, but has no one.Whether one of my?";																							//
+	next;																																//
+	menu "Yes, of course",-,"No,Thanks...",CONTINUE;																										//
+	mes .JCNAME$;																															//
+	mes "Ok! Then you can take, but take care of it very well!";																									//
+	setriding;																															//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦   CLASS CHANGE IF'S   ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+CONTINUE:				 	 																											//
+	mes .JCNAME$;																															//
+	mes "So ... what brings you to me?";																												//
+	if (.POINTBUYON) && (.SPCREBORN) && (.RESETERON) menu "Job Change.",BREEDERJUMP,"Sell Points",SELLPOINTS,"Reset level",MULTI,"Reset Points.",RESETOPTIONS,"Nothing...",LCANCEL;											//
+	if (.POINTBUYON) && (.SPCREBORN)  && (!.RESETERON) menu "Job Change.",BREEDERJUMP,"Sell Points",SELLPOINTS,"Reset level",MULTI,"Nothing...",LCANCEL;	 													//
+	if (.POINTBUYON) && (!.SPCREBORN) && (!.RESETERON) menu "Job Change.",BREEDERJUMP,"Sell Points",SELLPOINTS,"Nothing...",LCANCEL;																//
+	if (!.POINTBUYON) && (!.SPCREBORN) && (!.RESETERON) menu "Job Change.",BREEDERJUMP,"Nothing...",LCANCEL;																			//
+	if (!.POINTBUYON) && (.SPCREBORN) && (.RESETERON) menu "Job Change.",BREEDERJUMP,"Reset level",MULTI,"Reset Points.",RESETOPTIONS,"Nothing...",LCANCEL;														//
+	if (!.POINTBUYON) && (!.SPCREBORN) && (.RESETERON) menu "Job Change.",BREEDERJUMP,"Reset Points.",RESETOPTIONS,"Nothing...",LCANCEL;																//
+	goto BREEDERJUMP;																														//
+MULTI:																																	//
+	if (.SPCREBORN) && (BaseLevel >= .REBORNSLVL) && (REBORNED < .MAXREBORNS) goto MULTIREBORN;  																					//
+	if (.SPCREBORN) && (BaseLevel < .REBORNSLVL) && (REBORNED >= 1) goto NEEDMTRBLVL;																						//
+	if (.SPCREBORN) && (BaseLevel >= .REBORNSLVL) && (REBORNED >= .MAXREBORNS) goto NODIALOG;																					//
+BREEDERJUMP:														         																	//
+	if (Weight > 20000) goto OVERWEIGHT;											 																	//
+	if (SkillPoint != 0) goto SPENDPOINTS;																												//
+																																	//
+	if (class == 0) && (BaseLevel == 1) && (JobLevel == 1) && (.BABYCHANGERON) goto TURN_BABY;				 																	//
+	if (class == 0) && (JobLevel == 10) || (class == 4023) && (JobLevel == 10) goto CHANGEFIRST;				 																	//
+																																	//
+	if ((Class == 4014) || (Class == 4022)) && (BaseLevel >= .LVLTOTHIRD) && (JobLevel >= .JOBTOTHIRD) goto UNMOUNT_PECO;	 																	//
+	if ((class == 0) || (class == 4001) || (class == 4023)) && (JobLevel < 10) goto NEED10;					 																	//
+																 																	//
+	if ((class == 13) || (class == 21) || (class == 7) || (class == 14)) && (JobLevel >= .JOBTOREBORN) && (BaseLevel >= .LVLTOREBORN) && (checkriding() == 1) goto UNMOUNT_PECO;	     										//
+	if ((class == 4008) || (class == 4014) || (class == 4015) || (class == 4022)) && (JobLevel >= .JOBTOTHIRD) && (BaseLevel >= .LVLTOTHIRD) && (checkriding() == 1) goto UNMOUNT_PECO;										//
+																 		    															//
+	if (class == 11) && (JobLevel >= .JOBTO2ND) && (checkfalcon() != 0) goto REMOVE_FALCON;					 	    																//
+	if (class == 4012) && (JobLevel >= .JOBTOTHIRD) && (BaseLevel >= .LVLTOTHIRD) && (checkfalcon() != 0) goto REMOVE_FALCON;		    															//
+																		    															//
+	if (class == 5) && (JobLevel >= 40) && (checkcart() != 0) goto REMOVE_CART;								    															//
+	if ((class == 10) || (class == 18) || (class == 4011) || (class == 4019)) && (JobLevel >= 50) && (checkcart() != 0) goto REMOVE_CART;	    															//
+																																	//
+	if (class >= 4054) && (class <= 4087) goto NODIALOG;																										//
+	if ((class >= 1) && (class <= 6) || (class == 4046) || (class >= 4024) && (class <= 4029)) && (JobLevel < .JOBTO2ND) goto NEEDX;	    															//
+	if ((class >= 1) && (class <= 6) || (class == 4046) || (class >= 4024) && (class <= 4029)) && (JobLevel >= .JOBTO2ND) goto CHANGESECOND;   															//
+	if ((class >= 7) && (class <= 21) && (BaseLevel < .LVLTOREBORN)) && (JobLevel <= .JOBTOREBORN) goto NEEDXX;				    															//	
+	if (class >= 4008) && (class <= 4022) && (BaseLevel < .LVLTOTHIRD) && (JobLevel <= .JOBTOTHIRD) goto NEEDXXTHIRD; 	      		    															//	
+	if ((class >= 4002) && (class <= 4007)) && (JobLevel < .JOBTOTRANS) goto NEEDXTRANS;							    															//
+	if ((class >= 7) && (class <= 21)) && (BaseLevel >= .LVLTOREBORN) && (JobLevel >= .JOBTOREBORN) goto SEL_REBORNORNOT;			    															//
+ 	if (class == 4001) && (JobLevel == 10) goto CLASSHIGH;											    															//
+	if (class >= 4002) && (class <= 4007) && (JobLevel >= .JOBTOTRANS) goto TRANSCLASSE;							    															//
+	if (class >= 4008) && (class <= 4022) && (!.THIRDON) goto NODIALOG;									    															//
+	if ((class >= 4008) && (class <= 4022) || (class >= 4030) && (class <= 4044)) && (BaseLevel >= .LVLTOTHIRD) && (JobLevel >= .JOBTOTHIRD) goto THIRDCLASS;			    										//
+	    																	    															//
+//					   +-----------------------+																									//
+//=========================================¦    NOTHING MATCHES    ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+NODIALOG:																																//
+	mes .JCNAME$;																															//
+	mes "I think we have nothing to talk at the moment...";																										//
+	next;																																//
+	mes .JCNAME$;																															//
+	mes "Want a quick explanation of why?";																												//
+	next;																																//
+	menu "Yes",-,"Not need.",LCANCEL;																												//
+	mes .JCNAME$;																															//
+	emotion e_hmm,0;																														//
+	if (REBORNED >= .MAXREBORNS) {mes "You cannot reset again...";close;}																								//
+	if (class >= 4008) && (class <= 4022) && (!.THIRDON) mes "I regret to inform that at the time you can not go beyond this...";													 				//
+	if (class >= 4054) && (class <= 4087) mes "You can not go beyond this limit! Is already strong enough! Be proud!!!";	      													 				//
+	if (class == 22) || (class == 23) || (class == 24) || (class == 4045) || (class == 4047) || (class == 4048) || (class == 4049) mes "Your class does not allow any more change! But that does not mean you can not get stronger!";				//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦     RESET OPTIONS     ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+RESETOPTIONS:																																//
+	mes .JCNAME$;																															//
+	mes "And what you want to reset?";																												//
+	next;																																//
+	menu "Stats",STATPOINT,"Skills",SKLPOINT,"Both!",BOTHPOINT,"I'll decide later!",LCANCEL;																					//
+STATPOINT:																																//
+	if (.RSTSTATPRICE > 0) goto STATPOINTPAY;																											//
+	if (.RSTSTATPRICE == 0) mes "Ok, but be careful next time!!!";																									//
+	ResetStatus;																															//
+	if (STATDECREASE > 0)	set StatusPoint,STATDECREASE;																										//
+	dispbottom "Your stats points are reset!";																											//
+	close;																																//
+STATPOINTPAY:																																//
+	mes "This service will cost you: "+ .RSTSTATPRICE +" zenys, okay?";																								//
+	next;																																//
+	menu "Ok!",-,"No!",LCANCEL;																													//
+	if (Zeny < .RSTSTATPRICE) goto NOZENY;																												//
+	mes .JCNAME$;																															//
+	mes "Ok, but be careful next time!!!";																												//
+	ResetStatus;																															//
+	if (STATDECREASE > 0)	set StatusPoint,STATDECREASE;																										//
+	dispbottom "Your stats points are reset, for "+ .RSTSTATPRICE +" z!";																								//
+	set Zeny,zeny-.RSTSTATPRICE;																													//
+	close;																																//
+SKLPOINT:																																//
+	if (.RSTSKLPRICE > 0) goto SKILLPOINTPAY;																											//
+	if (.RSTSKLPRICE == 0) mes "Ok, but be careful next time!!!";																									//
+	ResetSkill;																															//
+	dispbottom "Your skill points are reset!";																											//
+	close;																																//
+SKILLPOINTPAY:																																//
+	mes "This service will cost you: "+ .RSTSKLPRICE +" zenys, okay?";																								//
+	next;																																//
+	menu "Ok!",-,"No!",LCANCEL;																													//
+	if (Zeny < .RSTSKLPRICE) goto NOZENY;																												//
+	mes .JCNAME$;																															//
+	mes "Ok, but be careful next time!!!";																												//
+	ResetSkill;																															//
+	dispbottom "Your skill points are reset, for "+ .RSTSKLPRICE +" z!";																								//
+	set Zeny,zeny-.RSTSKLPRICE;																													//
+	close;																																//
+BOTHPOINT:																																//
+	if (.RSTBOTHPRICE > 0) goto BOTHPOINTPAY;																											//
+	if (.RSTBOTHPRICE == 0) mes "Ok, but be careful next time!!!";																									//
+	ResetStatus;																															//
+	if (STATDECREASE > 0)	set StatusPoint,STATDECREASE;																										//
+	ResetSkill;																															//
+	dispbottom "Your stats and skill points are reset!";																										//
+	close;																																//
+BOTHPOINTPAY:																																//
+	mes "This service will cost you: "+ .RSTBOTHPRICE +" zenys, okay?";																								//
+	next;																																//
+	menu "Ok!",-,"No!",LCANCEL;																													//
+	if (Zeny < .RSTBOTHPRICE) goto NOZENY;																												//
+	mes .JCNAME$;																															//
+	mes "Ok, but be careful next time!!!";																												//
+	ResetStatus;																															//
+	if (STATDECREASE > 0)	set StatusPoint,STATDECREASE;																										//
+	ResetSkill;																															//
+	dispbottom "Your stats and skill points are reset, for "+ .RSTBOTHPRICE +" z!";																							//
+	set Zeny,zeny-.RSTBOTHPRICE;																													//
+	close;																																//
+NOZENY:																																	//
+	mes .JCNAME$;																															//
+	mes "You don't have enought Zeny...";																												//
+	close;																																//	
+//					   +-----------------------+																									//
+//=========================================¦     SELLING POINTS    ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+SELLPOINTS:																																//
+	if (SkillPoint == 0) && (StatusPoint == 0) goto NOPOINTS;																									//
+	mes .JCNAME$;																															//
+	mes "^ff0000ATTENTION!!!^000000 If you agree to sell, your points will not be refunded!";																					//
+	next;																																//
+	mes .JCNAME$;																															//
+	if (!.BUYONLYSTAT) && (!.BUYONLYSKL)	mes "What will you sell? You have "+ SkillPoint +" Skill points and "+StatusPoint+" Stats points left!";														//
+	if (.BUYONLYSKL) mes "How much will you sell? You have "+ SkillPoint +" skill points left!";																					//
+	if (.BUYONLYSTAT) mes "How much will you sell? You have "+StatusPoint+" stats points left!";																					//
+	next;																																//
+	mes .JCNAME$;																															//
+	if (!.BUYONLYSTAT) && (!.BUYONLYSKL)	menu "Skill Points",-,"Stats Points",STATSELL;																						//
+	if (.BUYONLYSTAT) goto STATSELL;																												//
+	input @SKPOINTCNT;																														//
+	if (@SKPOINTCNT < 1) goto LCANCEL;																												//
+	if (SkillPoint < @SKPOINTCNT) goto NOTENOUGHT;																											//
+	set @FULLSKPOINTPRICE,.SKPOINTPRICE * @SKPOINTCNT;																										//
+	mes "This will give a total of: "+ @FULLSKPOINTPRICE +" Zenys.OK?";																								//
+	next;																																//
+	menu "Yes...",-,"No...",LCANCEL;																												//
+	set @SKILLDECREASE,SkillPoint - @SKPOINTCNT;																											//
+	set Zeny,Zeny+@FULLSKPOINTPRICE;																												//
+	set SkillPoint, @SKILLDECREASE;																													//
+	dispbottom "You just received "+ @FULLSKPOINTPRICE +" z in exchange for "+@SKPOINTCNT+" skill points.";																				//
+	close;																																//
+STATSELL:																																//
+	input @STPOINTCNT;																														//
+	if (@STPOINTCNT < 1) goto LCANCEL;																												//
+	if (StatusPoint < @STPOINTCNT) goto NOTENOUGHT;																											//
+	set @FULLSTPOINTPRICE,.STPOINTPRICE * @STPOINTCNT;																										//
+	mes "This will give a total of: "+ @FULLSTPOINTPRICE +" Zenys.OK?";																								//
+	next;																																//
+	menu "Yes...",-,"No...",LCANCEL;																												//
+	set STATDECREASE,StatusPoint - @STPOINTCNT;																											//
+	set Zeny,Zeny+@FULLSTPOINTPRICE;																												//
+	set StatusPoint,STATDECREASE;																													//
+	dispbottom "You just received "+ @FULLSTPOINTPRICE +" z in exchange of "+@STPOINTCNT+" stats points.";																				//
+	close;																																//
+NOPOINTS:																																//
+	mes .JCNAME$;																															//
+	mes "Without any points I can not help you...";																											//
+	close;																																//
+NOTENOUGHT:																																//
+	mes "You can't try to sell what you don't have...";																										//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦ JOB CHANGE CONDITIONS ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+SPENDPOINTS:																																//
+	mes .JCNAME$;																															//
+	mes "Spend your skill points before trying to change...";																									//
+	close;																																//
+OVERWEIGHT:																																// 
+	mes .JCNAME$;																															//
+	mes "You seem to be carrying a lot of stuff there...";																										//
+	next;																																//
+	mes "What if you get rid of them and come back with more calm?";																								//
+	close;																																//
+UNMOUNT_PECO: 																																//
+	mes .JCNAME$;																															//
+	mes "Please unmount your peco before changing.";																										//
+	close;																																//	
+REMOVE_CART:																																// 
+	mes .JCNAME$;																															//
+	mes "Please remove your cart before changing.";																											//
+	close;																																//
+REMOVE_FALCON:																																// 
+	mes .JCNAME$;																															//
+	mes "Please release your falcon before moving.";																										//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦JOB/BASE LEVEL REQUIRED¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+NEED10:																																	//
+	mes .JCNAME$;																															//
+	mes "Oops...I'm sorry "+ callfunc ("F_SexMes","little girl","little boy") +" but it seems you do not have 9 level of basic skills ... Get Job 10, distribute, and then return to talk to me!";									//
+	if (.BABYCHANGERON) && (class == 0) {next;																		      									//
+	mes .JCNAME$;																						      									//
+ 	mes "If your intention was to turn a baby class, you should have passed through here with 1 basic and 1 job ...";}				  	      				      									//
+	next;																							      									//
+	if (class == 4023) || (class == 0) mes "Good Luck!!!";																										//
+	close;																																//
+NEEDX:																																	//
+	mes .JCNAME$;																															//
+	mes "I know you must be anxious to become stronger,but you must be at least job level "+ .JOBTO2ND +" to change class!";																	//
+	close;																																//
+NEEDBASE:																																//
+	mes .JCNAME$;																															//
+	mes "To become a Super Novice, you must return here with base level "+ .SNLVL +" or more!";																					//
+	mes .JCNAME$;																															//
+	mes "This can be difficult, take it to help!";																											//
+	skill 143,1,0;																															//
+	emotion e_thx,1;																														//
+	dispbottom "You just receive the skill Trick Dead";																										//
+	close;																																//
+NEEDXTRANS:																																//
+	mes .JCNAME$;																															//
+	mes "Before you can advance to the next stage, need to train up to job level "+ .JOBTOTRANS+" !";																				//
+	close;																																//
+NEEDXX:																																	//
+	mes .JCNAME$;																															//
+	mes "To transcend your limits, you will need base level "+ .LVLTOREBORN +" and job level "+ .JOBTOREBORN +", be patient!";																	//
+	close;																																//
+NEEDXXTHIRD:																																//
+	mes .JCNAME$;																															//
+	mes "You must train up to base level "+ .LVLTOTHIRD +" and job level "+ .JOBTOTHIRD +", to achieve your ultimate goal!";																	//
+	close;																																//
+NEEDMTRBLVL:																																//
+	mes .JCNAME$;																															//
+	mes "To allow you to reset again, you will need base level "+ .REBORNSLVL +" !";																						//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦  FIRST CLASS CHANGE   ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+CHANGEFIRST:																																//
+	mes .JCNAME$;																															//
+	if (class == 0) && (JobLevel == 10) mes "Hello " + strcharinfo(0) + ",do not know you so much, so I'll let you choose your class!";															    	//
+	if (class == 4023) && (JobLevel == 10) mes "Hello " + strcharinfo(0) + ",I see that you are a Baby! Although small want to be strong is not it?";													    	//
+	next;																															    	//
+	mes "Let's see what we can train you...";																										    	//
+	next;																															    	//
+	if (class == 0) && (JobLevel == 10) menu "Swordsman",SWORDSMAN,"Mage",MAGE,"Archer",ARCHER,"Acolyte",ACOLYTE,"Merchant",MERCHANT,"Thief",THIEF,"Taekwon",TAEKWON,"Gunslinger",GUNSLINGER,"Ninja",NINJA,"Super Novice",S_NOVICE,"I'll think more...",LCANCEL;	//
+	if (class == 4023) && (JobLevel == 10) menu "Baby Swordsman",SWORDSMAN,"Baby Mage",MAGE,"Baby Archer",ARCHER,"Baby Acolyte",ACOLYTE,"Baby Merchant",MERCHANT,"Baby Thief",THIEF,"Baby Super Novice",S_NOVICE,"I'll think more...",LCANCEL;			//
+																																	//
+SWORDSMAN:																																//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 1;																													//
+	if (class == 4023) jobchange 4024;																												//
+MAGE:																																	//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 2;																													//
+	if (class == 4023) jobchange 4025;																												//
+ARCHER:																																	//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 3;																													//
+	if (class == 4023) jobchange 4026;																												//
+ACOLYTE:																																//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 4;																													//
+	if (class == 4023) jobchange 4027;																												//
+MERCHANT:																																//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 5;																													//
+	if (class == 4023) jobchange 4028;																												//
+THIEF:																																	//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 6;																													//
+	if (class == 4023) jobchange 4029;																												//
+TAEKWON:																																//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 4046;																													//
+GUNSLINGER:																																//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 24;																													//
+NINJA:																																	//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 25;																													//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	if ((class >= 1) && (class <= 21) || (class >= 4024) && (class <= 4044)) skill 142,1,0;																						//
+	if ((class == 1) || (class == 4024)) && (.GIVEPLATSKILL == 1){ skill 144,1,0;																							//
+	skill 145,1,0;																															//
+	skill 146,1,0;}																															//
+	if ((class == 2) || (class == 4025)) && (.GIVEPLATSKILL == 1) skill 157,1,0;																							//
+	if ((class == 3) || (class == 4026)) && (.GIVEPLATSKILL == 1) {skill 147,1,0;																							//
+	skill 148,1,0;}																															//
+	if ((class == 4) || (class == 4027)) && (.GIVEPLATSKILL == 1) skill 156,1,0;																							//
+	if ((class == 5) || (class == 4028)) && (.GIVEPLATSKILL == 1) {skill 153,1,0;																							//
+	skill 154,1,0;																															//
+	skill 155,1,0;}																															//
+	if ((class == 6) || (class == 4029)) && (.GIVEPLATSKILL == 1) {skill 149,1,0;																							//
+	skill 150,1,0;																															//
+	skill 151,1,0;																															//
+	skill 152,1,0;}																															//
+	set SkillPoint, 0;																														//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class >= 1) && (class <= 21) || (class >= 4024) && (class <= 4044)) dispbottom "You just receive the skill First Aid.";																	//
+	if ((class == 1) || (class == 4024)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill Fatal Blow.";																		//
+	dispbottom "You just receive the skill Moving HP Recovery.";																									//
+	dispbottom "You just receive the skill Auto Berserk.";}																										//
+	if ((class == 2) || (class == 4025)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Energy Coat.";																		//
+	if ((class == 3) || (class == 4026)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Arrow Crafting.";																		//
+	if ((class == 3) || (class == 4026)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Charge Arrow.";																		//
+	if ((class == 4) || (class == 4027)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Holy Light.";																		//
+	if ((class == 5) || (class == 4028)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill Cart Revolution.";																	//
+	dispbottom "You just receive the skill Change Cart.";																										//
+	dispbottom "You just receive the skill Crazy Uproar.";}																										//
+	if ((class == 6) || (class == 4029)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill Sand Attack.";																		//
+	dispbottom "You just receive the skill Back Sliding.";																										//
+	dispbottom "You just receive the skill Pick Stone.";																										//
+	dispbottom "You just receive the skill Throw Stone.";}																										//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦  SECOND CLASS CHANGE  ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+CHANGESECOND:																																//
+	mes .JCNAME$;																															//
+	mes "Hello " + strcharinfo(0) + ",I see you had returned from your adventures, you seem ready to become stronger!";																		//
+	next;																																//
+	mes .JCNAME$;																															//
+	mes "Choose one of these options:";																												//
+	next;																																//
+	if (class == 1)	menu "Knight",KNIGHT,"Crusader",CRUSADER,"Cancel",LCANCEL;																							//
+	if (class == 4024) menu "Baby Knight",KNIGHT,"Baby Crusader",CRUSADER,"Cancel",LCANCEL;																						//
+	if (class == 2)	menu "Wizard",WIZZ,"Sage",SAGE,"Cancel",LCANCEL;																								//
+	if (class == 4025) menu "Baby Wizard",WIZZ,"Baby Sage",SAGE,"Cancel",LCANCEL;																							//
+	if (class == 3)	menu "Hunter",HUNTER,""+ callfunc ("F_SexMes","Dancer","Bard") +"",MUSICIAN,"Cancel",LCANCEL;																			//
+	if (class == 4026) menu "Baby Hunter",HUNTER,""+ callfunc ("F_SexMes","Dancer","Bard") +"",MUSICIAN,"Cancel",LCANCEL;																		//
+	if (class == 4)	menu "Priest",SACER,"Monk",MONK,"Cancel",LCANCEL;																								//
+	if (class == 4027) menu "Baby Priest",SACER,"Baby Monk",MONK,"Cancel",LCANCEL;																							//
+	if (class == 5)	menu "Blacksmith",BLACKSMITH,"Alchemist",ALCHEMIST,"Cancel",LCANCEL;																						//
+	if (class == 4028) menu "Baby Blacksmith",BLACKSMITH,"Baby Alchemist",ALCHEMIST,"Cancel",LCANCEL;																				//
+	if (class == 6)	menu "Assassin",ASSASSIN,"Rogue",ROGUE,"Cancel",LCANCEL;																							//
+	if (class == 4029) menu "Baby Assassin",ASSASSIN,"Baby Rogue",ROGUE,"Cancel",LCANCEL;																						//
+	if (class == 4046) menu "Star Gladiator",GLADIATOR,"Soul Linker",LINKER,"Cancel",LCANCEL;																					//
+KNIGHT:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 1)	jobchange 7;																													//
+	if (class == 4024) jobchange 4030;																												//
+CRUSADER:																																//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 1)	jobchange 14;																													//
+	if (class == 4024) jobchange 4037;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if ((class == 7) || (class == 4030)) && (.GIVEPLATSKILL == 1) skill 1001,1,0;																							//
+	if ((class == 14) || (class == 4037)) && (.GIVEPLATSKILL == 1) skill 1002,1,0;																							//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class == 7) || (class == 4030)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Charge Atack.";																		//
+	if ((class == 14) || (class == 4037)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Shrink.";     																		//
+	close;																																//
+WIZZ:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 2)	jobchange 9;																													//
+	if (class == 4025) jobchange 4032;																												//
+SAGE:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 2)	jobchange 16;																													//
+	if (class == 4025) jobchange 4039;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if ((class == 9) || (class == 4032)) && (.GIVEPLATSKILL == 1) skill 1006,1,0;																							//
+	if ((class == 16) || (class == 4039)) && (.GIVEPLATSKILL == 1) {skill 1007,1,0;																							//
+	skill 1008,1,0;																															//
+	skill 1017,1,0;																															//
+	skill 1018,1,0;																															//
+	skill 1019,1,0;}																														//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class == 9) || (class == 4032)) && (.GIVEPLATSKILL == 1)dispbottom "You just receive the skill Sight Blaster.";		     																//
+	if ((class == 16) || (class == 4039)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill Create Elemental Converter.";																//
+	dispbottom "You just receive the skill Elemental Change (Water)."; 								     																//
+	dispbottom "You just receive the skill Elemental Change (Earth).";  								     																//
+	dispbottom "You just receive the skill Elemental Change (Fire).";   								     																//
+	dispbottom "You just receive the skill Elemental Change (Wind).";}  								     																//
+	close;																																//
+HUNTER:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 3)	jobchange 11;																													//
+	if (class == 4026) jobchange 4034;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if (.GIVEPLATSKILL == 1) skill 1009,1,0;																											//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Phantasmic Arrow.";																						//
+	close;																																//
+MUSICIAN:																																//	
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (sex) && (class == 3) jobchange 19;																												//
+	if (sex) && (class == 4026) jobchange 4042;																											//
+	if (!sex) && (class == 3) jobchange 20;																												//
+	if (!sex) && (class == 4026) jobchange 4043;																											//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if ((class == 19) || (class == 4042)) && (.GIVEPLATSKILL == 1) skill 1010,1,0;																							//
+	if ((class == 20) || (class == 4043)) && (.GIVEPLATSKILL == 1) skill 1011,1,0;																							//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class == 19) || (class == 4042)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Pang Voice.";   																		//
+	if ((class == 20) || (class == 4043)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Wink of Charm.";																		//
+	close;																																//
+SACER:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 4)	jobchange 8;																													//
+	if (class == 4027) jobchange 4031;																												//
+MONK:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 4)	jobchange 15;																													//
+	if (class == 4027) jobchange 4038;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if ((class == 8) || (class == 4031)) && (.GIVEPLATSKILL == 1) skill 1014,1,0;																							//
+	if ((class == 15) || (class == 4038)) && (.GIVEPLATSKILL == 1) {skill 1015,1,0;																							//
+	skill 1016,1,0;}																														//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class == 8) || (class == 4031)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Redemptio.";	 																	//
+	if ((class == 15) || (class == 4038)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill KI Translation.";																	//
+	dispbottom "You just receive the skill KI Explosion.";}									 																	//
+	close;																																//
+BLACKSMITH:																																//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 5)	jobchange 10;																													//
+	if (class == 4028) jobchange 4033;																												//
+ALCHEMIST:																																//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 5)	jobchange 18;																													//
+	if (class == 4028) jobchange 4041;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if ((class == 10) || (class == 4033)) && (.GIVEPLATSKILL == 1) {skill 1012,1,0;																							//
+	skill 1013,1,0;}																														//
+	if ((class == 18) || (class == 4041)) && (.GIVEPLATSKILL == 1) {skill 238,1,0;																							//
+	getitem 7434,1;}																														//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class == 10) || (class == 4033)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill Unfair Trick.";		       																//
+	dispbottom "You just receive the skill Greed.";}			  							       																//
+	if ((class == 18) || (class == 4041)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the item Elemental Potion Create Guide.";																//
+	dispbottom "You just receive the skill Bio Ethics.";}		  								       																//
+	close;																																//
+ASSASSIN:																																//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 6)	jobchange 12;																													//
+	if (class == 4029) jobchange 4035;																												//
+ROGUE:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 6)	jobchange 17;																													//
+	if (class == 4029) jobchange 4040;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	if ((class == 12) || (class == 4035)) && (.GIVEPLATSKILL == 1) {skill 1003,1,0;																							//
+	skill 1004,1,0;}																														//
+	if ((class == 17) || (class == 4040)) && (.GIVEPLATSKILL == 1) skill 1005,1,0;																							//
+	skill 1004,1,0;																															//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	if ((class == 12) || (class == 4035)) && (.GIVEPLATSKILL == 1) {dispbottom "You just receive the skill Sonic Acceleration.";																	//
+	dispbottom "You just receive the skill Throw Venom Knife.";} 								     																	//
+	if ((class == 17) || (class == 4040)) && (.GIVEPLATSKILL == 1) dispbottom "You just receive the skill Close Confine.";      																	//
+	close;																																//
+GLADIATOR:																																//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 4046) jobchange 4047;																												//
+LINKER:																																	//
+	if (.RESETPALETTE1 == 1) setlook 7,0;																												//
+	if (class == 4046) jobchange 4049;																												//
+	emotion e_grat,0;																														//
+	specialeffect2 140;																														//
+	set SkillPoint, 0;																														//
+	mes .JCNAME$;																															//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;																																//
+	emotion e_thx,1;																														//
+	close;																																//
+//					   +-----------------------+																									//
+//=========================================¦ SELECT REBORN OR NOT  ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+SEL_REBORNORNOT:																															//
+	if (.FORCEREBORN) goto REBORNING;						      																						//
+	mes .JCNAME$;						      																									//
+	mes "You have 2 options beyond this point.";						      																					//
+	next;						      																										//
+	mes .JCNAME$;						      																									//
+	mes "============================";						      																						//
+	mes "1 - ^ff0000Reborn^000000.";						      																						//
+	mes "============================";						      																						//	
+	mes "2 - ^ff0000Become third class^000000.";						      																					//
+	mes "============================";						      																						//
+	next;						      																										//
+	mes .JCNAME$;						      																									//
+	mes "^ff0000ATENTION:^000000If you choose to reborn, you will earn 100 status points!, if you turn third class you will not...";				     												//
+	next;						      														     												//
+	mes .JCNAME$;						      													     												//
+	mes "So what you gonna do?";						      											     												//
+	next;						      														     												//
+	menu "Reborn",JOB_REBORN,"Become third class",-,"I'll think better...",LCANCEL;											     												//
+	mes .JCNAME$;						      													     												//
+	mes "Are you absolutely sure?? Remember, haste is the enemy of perfection! You will not earn the 100 stats points, and therefore will be weaker than the others ...";												//
+	next;																																//
+	menu "I don't care!",-,"Prefer Rebirth!",JOB_REBORN,"Let me think...",LCANCEL;																							//
+	if (.RESETPALETTE3 == 1) setlook 7,0;							      																					//	
+	if (class == 7) jobchange 4054;						      																							//
+	if (class == 14) jobchange 4066;						      																						//
+	if (class == 11) jobchange 4056;						      																						//
+	if (class == 15) jobchange 4070;						      																						//
+	if (class == 9) jobchange 4055;						      																							//
+	if (class == 16) jobchange 4067;						      																						//
+	if (class == 12) jobchange 4059;						      																						//
+	if (class == 17) jobchange 4072;						      																						//
+	if (class == 10) jobchange 4058;						      																						//
+	if (class == 18) jobchange 4071;						      																						//
+	if (class == 8) jobchange 4057;						      																							//
+	if (class == 19) jobchange 4068;						      																						//
+	if (class == 20) jobchange 4069;						      																						//
+	emotion e_grat,0;						      																								//
+	specialeffect2 140;						      																								//
+	mes .JCNAME$;						      																									//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;						      																										//
+	emotion e_thx,1;						      																								//
+	close;						      																										//
+REBORNING:																																//
+	mes .JCNAME$;						      																									//
+	mes "I'll reborn you now!Ok?";						      																							//	
+	next;																																//
+	menu "OK",-,"No...",LCANCEL;																													//
+JOB_REBORN:						      																										//
+	set LastJob,class;						      																								//
+	set REBORNED,+1;																														//
+	jobchange 4001;						      																									//
+	resetlvl(1);						      																									//
+	mes .JCNAME$;						      																									//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	dispbottom "You just received 100 stats points";						      																				//
+	close;						      																										//
+//					   +-----------------------+																									//
+//=========================================¦      MULTI REBORN     ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+MULTIREBORN:						      																										//
+	mes .JCNAME$;						      																									//
+	mes "Do you wish to reset again?.";						      																						//
+	next;						      																										//
+	menu "Yes",-,"I quit...",LCANCEL;						      																						//
+	set LastJob,class;						      																								//
+	jobchange 0;						      																									//
+	resetlvl(1);																															//
+	set REBORNED,REBORNED +1;																													//
+	if (!.SPCREBBONUS) set StatusPoint, .SPCREBORNB;																										//
+	if (.SPCREBBONUS) set StatusPoint, .SPCREBORNB+(.SPCREBBONUS*REBORNED);						      																		//
+	mes .JCNAME$;						      																									//
+	mes "Done " +strcharinfo(0)+ ",you are now a "+jobname(Class)+" !";																								//
+	dispbottom "You just received "+.SPCREBORNB+" stats points + "+.SPCREBBONUS+"x"+REBORNED+" Multi Reset, total is: "+((.SPCREBORNB)+(.SPCREBBONUS*REBORNED))+"";						      							//
+	close;						      																										//
+//					   +-----------------------+																									//
+//=========================================¦       HIGH CLASS      ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+CLASSHIGH:						      																										//
+	mes .JCNAME$;						      																									//
+	mes "It seems that you fulfill the basic requirements, I'll change you now !!";																							//
+	next;						      																										//
+	menu "OK",-,"Wait!!!",LCANCEL;						      																							//
+	if (.RESETPALETTE0 == 1) setlook 7,0;						      																						//
+	if ((LastJob == 7) || (LastJob == 14)) && (JobLevel == 10) jobchange 4002;																							//
+	if ((LastJob == 8) || (LastJob == 15)) && (JobLevel == 10) jobchange 4005;																							//
+	if ((LastJob == 9) || (LastJob == 16)) && (JobLevel == 10) jobchange 4003;																							//
+	if ((LastJob == 12) || (LastJob == 17)) && (JobLevel == 10) jobchange 4007;																							//
+	if ((LastJob == 10) || (LastJob == 18)) && (JobLevel == 10) jobchange 4006;																							//
+	if ((LastJob == 11) || (LastJob == 19) || (LastJob == 20)) && (JobLevel == 10) 	jobchange 4004;																					//
+	emotion e_grat,0;						      																								//
+	specialeffect2 140;						      																								//
+	mes .JCNAME$;						      																									//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;						      																										//
+	emotion e_thx,1;						      																								//
+	close;						      																										//
+//					   +-----------------------+																									//
+//=========================================¦  TRANS CLASS CHANGE   ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+TRANSCLASSE:										      																						//
+	mes .JCNAME$;										      																					//
+	mes "Very good! You learned a lot! It's time to teach a more powerful class!";																							//
+	next;										      																						//
+	mes .JCNAME$;										      																					//
+	mes "Are you ready?";										      																				//
+	next;										      																						//
+	menu "Of course!",-,"Let me breathe...",LCANCEL;																										//	
+	if (.RESETPALETTE2 == 1) setlook 7,0;																												//
+	if (LastJob == 7) jobchange 4008;																												//
+ 	if (LastJob == 14) jobchange 4015;																												//
+	if (LastJob == 8) jobchange 4009;																												//
+ 	if (LastJob == 15) jobchange 4016;																												//
+	if (LastJob == 9) jobchange 4010;																												//
+ 	if (LastJob == 16) jobchange 4017;																												//
+	if (LastJob == 12) jobchange 4013;																												//
+ 	if (LastJob == 17) jobchange 4018;																												//
+	if (LastJob == 10) jobchange 4011;																												//
+ 	if (LastJob == 18) jobchange 4019;																												//
+	if (LastJob == 11) jobchange 4012;																												//
+ 	if (LastJob == 19) jobchange 4020;																												//
+ 	if (LastJob == 20) jobchange 4021;									      																			//
+	emotion e_grat,0;										      																				//
+	specialeffect2 140;										      																				//
+	set LastJob,class;										      																				//
+	mes .JCNAME$;										      																					//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);																							//
+	next;										      																						//
+	emotion e_thx,1;										      																				//
+	close;										      																						//
+//					   +-----------------------+																									//
+//=========================================¦  THIRD CLASS CHANGE   ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+THIRDCLASS:		      																														//
+	mes .JCNAME$;		      																													//
+	mes "Well, well ... Who knew that one day you come to this point! Until recently it was only an novice, and look how strong you become!";															//
+	next;		      															 															//
+	mes .JCNAME$;		      																													//
+	mes "But there's still a step! Now I have seen their capabilities, I can tell you, I can make you even stronger!";			 															//
+	next;		      																														//
+	mes .JCNAME$;		      																													//
+	mes "Want to get this knowledge? This power?";		      																									//
+	next;		      																														//
+	menu "Yes I want!",-,"I don't know...",LCANCEL;		      																									//
+	mes .JCNAME$;		      																													//
+	mes "So be it! Better be prepared!";		      																										//
+	next;		      																														//
+	if (.RESETPALETTE3 == 1) setlook 7,0;		      																										//
+	if (LastJob == 4008) jobchange 4060;		      																										//
+	if (LastJob == 4015) jobchange 4073;		      																										//
+	if (LastJob == 4009) jobchange 4063;		      																										//
+	if (LastJob == 4016) jobchange 4077;		      																										//
+	if (LastJob == 4010) jobchange 4061;		      																										//
+	if (LastJob == 4017) jobchange 4074;		      																										//
+	if (LastJob == 4013) jobchange 4065;		      																										//
+	if (LastJob == 4018) jobchange 4079;		      																										//
+	if (LastJob == 4011) jobchange 4064;		      																										//
+	if (LastJob == 4019) jobchange 4078;		      																										//
+	if (LastJob == 4012) jobchange 4062;		      																										//
+	if (LastJob == 4020) jobchange 4075;		      																										//
+	if (LastJob == 4021) jobchange 4076;		      																										//
+	// Baby Class		      																													//
+	if (class == 4030) jobchange 4096;		      																										//
+	if (class == 4031) jobchange 4099;		      																										//
+	if (class == 4032) jobchange 4097;		      																										//
+	if (class == 4033) jobchange 4100;		      																										//
+	if (class == 4034) jobchange 4098;		      																										//
+	if (class == 4035) jobchange 4101;		      																										//
+	if (class == 4037) jobchange 4102;		      																										//
+	if (class == 4038) jobchange 4106;		      																										//
+	if (class == 4039) jobchange 4103;		      																										//
+	if (class == 4040) jobchange 4108;		      																										//
+	if (class == 4041) jobchange 4107;		      																										//
+	if (class == 4042) jobchange 4105;		      																										//
+	if (class == 4043) jobchange 4104;		      																										//
+	emotion e_grat,0;		      																												//
+	specialeffect2 140;		      																												//
+	mes .JCNAME$;		      																													//
+	mes "Congratulations " +strcharinfo(0)+ ",you are now a "+jobname(Class);		      																					//
+	next;		      																														//
+	mes .JCNAME$;		      																													//
+	mes "AH! How wonderful! It reminds me of my youth when I had all this power!";		      																					//
+	next;		      																														//
+	mes .JCNAME$;		      																													//
+	mes "But what are you waiting for? Go out there show the result of your training! And take to kill a few MVP's for me!";																	//
+	emotion e_thx,1;		      																												//
+	if (class == 4062) getitem 6124,1;		      																										//
+	if (class == 4062) dispbottom "You just received the item Wolf's Flute.";		      																					//
+	close;		      																														//
+//					   +-----------------------+																									//
+//=========================================¦   BABY CLASS CHANGE   ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+TURN_BABY:						      																										//
+	mes .JCNAME$;						      																									//
+	mes "If you want, you can tranform you on baby, since you have not trained at all!";																						//
+	next;						      																										//
+	menu "Ok, may be!",-,"Oh, Baby do not...",LCANCEL;						      																				//
+	mes .JCNAME$;						      																									//
+	mes "Let's go!";						      																								//
+	next;						      																										//
+	jobchange 4023;						      																									//
+	emotion e_grat,0;						      																								//
+	specialeffect2 140;						      																								//
+	resetlvl(1);						      																									//
+	skill 142,1,0;										      																					//
+	skill 143,1,0;						      																									//
+	mes .JCNAME$;						      																									//
+	mes "Done! You are now a "+jobname(Class)+" !!";						      																				//
+	next;						      																										//
+	emotion e_thx,1;						      																								//
+	dispbottom "You just receive the skill First Aid";																										//
+	dispbottom "You just receive the skill Trick Dead";						      																				//
+	close;						      																										//
+//					   +-----------------------+																									//
+//=========================================¦  SUPER NOVICE CHANGE  ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+S_NOVICE: 											      																					//
+	if (BaseLevel < .SNLVL) goto NEEDBASE;																												//
+	mes .JCNAME$;											      																				//
+	mes "Wow! You are so small and yet so strong,don't you?!?So you wish to become a Super Novice!";																				//
+	next;											      																					//
+	menu "Yeah!",-,"I'll see later...",LCANCEL;																											//
+	mes .JCNAME$;											      																				//	
+	mes "Here we go!";											      																			//
+	next;											      																					//
+	if (.RESETPALETTE0 == 1) setlook 7,0;																												//
+	if (class == 0)	jobchange 23;																													//
+	if (class == 4023) jobchange 4045;																												//
+	emotion e_grat,0;											      																			//
+	specialeffect2 140;											      																			//
+	skill 142,1,0;																															//
+	skill 143,1,0;											      																				//
+	mes .JCNAME$;											      																				//
+	mes "Ha ha ha, that's it! Now you is not only an novice! But rather a "+jobname(Class)+" !!";																					//
+	next;											      																					//
+	emotion e_thx,1;											      																			//
+	dispbottom "You just receive the skill First Aid";																										//
+	dispbottom "You just receive the skill Trick Dead";																										//
+	close;											      																					//
+//					   +-----------------------+																									//
+//=========================================¦        GM PANEL       ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+GMPANEL:																																//
+	mes .JCNAME$;		      																													//
+	mes "Hello, ^A38D14" +strcharinfo(0)+ "^000000, what you wish to do?";		      																						//
+	next;																																//
+	menu "Use the NPC.",START,"Verify configs.",-,"Modify configs",CFMOD,"Exit",LEND;																						//
+	set @STATUSON$,"^009900ON^000000";																												//
+	set @STATUSOFF$,"^ff0000OFF^000000";																												//
+			      	mes " __________________________________";																								//
+			      	mes "• GM Access Level: ^ff0000"+ .GMPANLVL+"^000000";																							//
+			      	mes " __________________________________";																								//
+	if (.RESETERON)      	mes "• Reset Function: "+@STATUSON$+"";																									//
+	if (!.RESETERON)     	mes "• Reset Function: "+@STATUSOFF$+"";																								//
+			      	mes "» Stats Price: ^ff0000"+ .RSTSTATPRICE +"^000000 z";																						//
+			      	mes "» Skills Price: ^ff0000"+ .RSTSKLPRICE +"^000000 z";																						//
+			      	mes "» Both Price : ^ff0000"+ .RSTBOTHPRICE +"^000000 z";																						//
+			      	mes " __________________________________";																								//
+	if (.BREEDERON)      	mes "• Breeder Function: "+@STATUSON$+"";																								//
+	if (!.BREEDERON)     	mes "• Breeder Function: "+@STATUSOFF$+"";																								//
+	if (.WARGANDFALCON)  	mes "» Warg + Falcon: ^009900YES^000000";																								//
+	if (!.WARGANDFALCON) 	mes "» Warg + Falcon: ^ff0000NO^000000";																								//
+			      	mes " __________________________________";																								//
+	if (.BABYCHANGERON)  	mes "• Baby Changer Function: "+@STATUSON$+"";																								//
+	if (!.BABYCHANGERON) 	mes "• Baby Changer Function: "+@STATUSOFF$+"";																								//
+			      	mes " __________________________________";																								//
+	if (.GIVEPLATSKILL)  	mes "• Platinum Skill Function: "+@STATUSON$+"";																							//
+	if (!.GIVEPLATSKILL) 	mes "• Platinum Skill Function: "+@STATUSOFF$+"";																							//
+			      	mes " __________________________________";																								//
+			      	mes "• JobMaster Function.";																										//
+	if (.THIRDON)		mes "» Third Class: "+@STATUSON$+"";																									//
+	if (!.THIRDON)		mes "» Third Class: "+@STATUSOFF$+"";																									//
+				mes "» Super Novice Level: ^ff0000"+.SNLVL+"^000000";																							//
+				mes "» JOB First to Second: ^ff0000"+ .JOBTO2ND +"^000000";																						//
+				mes "» Reborn: BASE/JOB = ^ff0000"+ .LVLTOREBORN +"^000000/^ff0000"+ .JOBTOREBORN +"^000000";																		//
+			  	mes "» JOB High to Trans: ^ff0000"+ .JOBTOTRANS +"^000000";																						//
+	if (.THIRDON)  		mes "» Third Class: BASE/JOB = ^ff0000"+ .LVLTOTHIRD +"^000000/^ff0000"+ .JOBTOTHIRD +"^000000";																	//
+	if (.FORCEREBORN)	mes "» Force Reborn: "+@STATUSON$+"";																									//
+	if (!.FORCEREBORN)	mes "» Force Reborn: "+@STATUSOFF$+"";																									//
+			  	mes " __________________________________";																								//
+	if (.POINTBUYON)      	mes "• PointSell Function: "+@STATUSON$+"";																								//
+	if (!.POINTBUYON)     	mes "• PointSell Function: "+@STATUSOFF$+"";																								//
+			      	mes "» Stats Point Price: ^ff0000"+ .STPOINTPRICE+"^000000 z";																						//
+			      	mes "» Skill Point Price: ^ff0000"+ .SKPOINTPRICE +"^000000 z";																						//
+	if (.BUYONLYSTAT)       mes "» Buy Only Stats : "+@STATUSON$+"";																								//
+	if (!.BUYONLYSTAT)      mes "» Buy Only Stats : "+@STATUSOFF$+"";																								//
+	if (.BUYONLYSKL)      	mes "» Buy Only Skill : "+@STATUSON$+"";																								//
+	if (!.BUYONLYSKL)      	mes "» Buy Only Skill : "+@STATUSOFF$+"";																								//
+			  	mes " __________________________________";																								//
+	if (.SPCREBORN)      	mes "• Multi Reset Function: "+@STATUSON$+"";																								//
+	if (!.SPCREBORN)     	mes "• Multi Reset Function: "+@STATUSOFF$+"";																								//
+			      	mes "» Max Resets: ^ff0000"+ .MAXREBORNS+"^000000";																							//
+			      	mes "» Class Reset Level : ^ff0000"+ .REBORNSLVL +"^000000";																						//
+			      	mes "» Reset Bonus : ^ff0000"+ .SPCREBORNB +"^000000 POINTS";																						//
+			      	mes "» Reset MultiBonus : ^ff0000"+ .SPCREBBONUS +"^000000 POINTS";																					//
+			  	mes " __________________________________";																								//
+			      	mes "• Palette Reset.";																											//
+	if (.RESETPALETTE0)	mes "» Reset Palette 1st: "+@STATUSON$+"";																								//
+	if (!.RESETPALETTE0)	mes "» Reset Palette 1st: "+@STATUSOFF$+"";																								//
+	if (.RESETPALETTE1)	mes "» Reset Palette 2nd: "+@STATUSON$+"";																								//
+	if (!.RESETPALETTE1)	mes "» Reset Palette 2nd: "+@STATUSOFF$+"";																								//
+	if (.RESETPALETTE2)	mes "» Reset Palette Trans: "+@STATUSON$+"";																								//
+	if (!.RESETPALETTE2)	mes "» Reset Palette Trans: "+@STATUSOFF$+"";																								//
+	if (.RESETPALETTE3)	mes "» Reset Palette 3rd: "+@STATUSON$+"";																								//
+	if (!.RESETPALETTE3)	mes "» Reset Palette 3rd: "+@STATUSOFF$+"";																								//
+			  	mes " __________________________________";																								//
+				next;																													//
+				menu "Back",GMPANEL,"Close",LEND;																									//
+				close;																													//
+//					   +-----------------------+																									//
+//=========================================¦    IN GAME SETTINGS   ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+CFMOD:																																	//
+	mes .JCNAME$;																															//
+	mes "What do you want to change?";																												//
+	next;																																//////////////////////////////////////////////////////
+	menu "GM Access Level",-,"Reset Settings",RST,"Breeder Settings",BRE,"Baby Changer Settings",BABCH,"Platinum Settings",PLAT,"Super Novice Level",SLV,"Third Job Change",TRC,"JobChange Settings",JOBMA,"Point Trade Settings",POITR,"MultiReset Settings",MULTRES,"Palette Settings",PAL,"Back",GMPANEL,"Exit",LEND;//
+GMAC:																																	//////////////////////////////////////////////////////
+	mes .JCNAME$;																															//
+	mes "Input GM Access Level value.";																												//
+	next;																																//
+	input .GMPANLVL;																														//
+	mes .JCNAME$;																															//
+	mes "Continue GM Access Config?";																												//
+	next;																																//
+	menu "Yes",GMAC,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+RST:																																	//
+	mes .JCNAME$;																															//
+	mes "What about Reset you want to change?";																											//
+	next;																																//
+	menu "Turn ON/OFF",-,"Stats Price",STP,"Skills Price",SKP,"Both Price",BOP,"Exit",LEND;																						//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .RESETERON;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Reset Config?";																													//
+	next;																																//
+	menu "Yes",RST,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  STP:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Stats Reset Price.";																													//
+	next;																																//
+	input .RSTSTATPRICE;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Reset Config?";																													//
+	next;																																//
+	menu "Yes",RST,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  SKP:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Skill Reset Price.";																													//
+	next;																																//
+	input .RSTSKLPRICE;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Reset Config?";																													//
+	next;																																//
+	menu "Yes",RST,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  BOP:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Both Reset Price.";																													//
+	next;																																//
+	input .RSTBOTHPRICE;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Reset Config?";																													//
+	next;																																//
+	menu "Yes",RST,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+																																	//
+BRE:																																	//
+	mes .JCNAME$;																															//
+	mes "What about Breeder you want to change?";																											//
+	next;																																//
+	menu "Turn ON/OFF",-,"Warg + Falcon",WG,"Exit",LEND;																										//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .BREEDERON;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Breeder Config?";																													//
+	next;																																//
+	menu "Yes",BRE,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  WG:																																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .WARGANDFALCON;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Breeder Config?";																													//
+	next;																																//
+	menu "Yes",BRE,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+TRC:																																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .THIRDON;																															//
+	mes .JCNAME$;																															//
+	mes "Continue Third Job Change Config?";																											//
+	next;																																//
+	menu "Yes",TRC,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+SLV:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Base Level value";																													//
+	next;																																//
+	input .SNLVL;																															//
+	mes .JCNAME$;																															//
+	mes "Continue Super Novice Config?";																												//
+	next;																																//
+	menu "Yes",SLV,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+BABCH:																																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .BABYCHANGERON;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Baby Changer Config?";																												//
+	next;																																//
+	menu "Yes",BABCH,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+PLAT:																																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .GIVEPLATSKILL;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Platinum Skill Config?";																												//
+	next;																																//
+	menu "Yes",PLAT,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+JOBMA:																																	//
+	mes .JCNAME$;																															//
+	mes "What about Job Change you want to modify?";																										//
+	next;																																//
+	menu "Job to Second",-,"Job/level to reborn",REB,"Job to Trans",TRA,"Job/level to Third",THIR,"Force Reborn",FORCREB,"Exit",LEND;																//
+	mes .JCNAME$;																															//
+	mes "Input Job Value";																														//
+	next;																																//
+	input .JOBTO2ND;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Job Changer Config?";																												//
+	next;																																//
+	menu "Yes",JOBMA,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  REB:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Job value.";																														//
+	next;																																//
+	input .JOBTOREBORN;																														//
+	next;																																//
+	mes "Input Base Level value.";																													//
+	next;																																//
+	mes .JCNAME$;																															//
+	input .LVLTOREBORN;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Job Changer Config?";																												//
+	next;																																//
+	menu "Yes",JOBMA,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  TRA:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Job value.";																														//
+	next;																																//
+	input .JOBTOTRANS;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Job Changer Config?";																												//
+	next;																																//
+	menu "Yes",JOBMA,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  THIR:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Job value.";																														//
+	next;																																//
+	input .JOBTOTHIRD;																														//
+	next;																																//
+	mes .JCNAME$;																															//
+	mes "Input Base Level value.";																													//
+	next;																																//
+	input .LVLTOTHIRD;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Job Changer Config?";																												//
+	next;																																//
+	menu "Yes",JOBMA,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  FORCREB:																																//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .FORCEREBORN;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Job Changer Config?";																												//
+	next;																																//
+	menu "Yes",JOBMA,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+POITR:																																	//
+	mes .JCNAME$;																															//
+	mes "What about Points Selling you want to change?";																										//
+	next;																																//
+	menu "Turn ON/OFF",-,"Status Point Price",STPC,"Skills Point Price",SKPC,"Stats Only",STO,"Skills Only",SKO,"Exit",LEND;																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .POINTBUYON;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Points Selling Config?";																												//
+	next;																																//
+	menu "Yes",POITR,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  STPC:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Status Point value.";																												//
+	next;																																//
+	input .STPOINTPRICE;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Points Selling Config?";																												//
+	next;																																//
+	menu "Yes",POITR,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  SKPC:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Skill Point value.";																													//
+	next;																																//
+	input .SKPOINTPRICE;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Points Selling Config?";																												//
+	next;																																//
+	menu "Yes",POITR,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  STO:																																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .BUYONLYSTAT;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Points Selling Config?";																												//
+	next;																																//
+	menu "Yes",POITR,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  SKO:																																	//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .BUYONLYSKL;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Points Selling Config?";																												//
+	next;																																//
+	menu "Yes",POITR,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+MULTRES:																																//
+	mes .JCNAME$;																															//
+	mes "What about Multi Reset you want to change?";																										//
+	next;																																//
+	menu "Turn ON/OFF",-,"Max Resets",MAXR,"Reset Level",RSL,"Bonus",BN,"Multi Bonus",MBN,"Exit",LEND;																				//
+	mes .JCNAME$;																															//
+	mes "Input 1 = ON, 0 = OFF";																													//
+	next;																																//
+	input .SPCREBORN;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Multi Reset Config?";																												//
+	next;																																//
+	menu "Yes",MULTRES,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  MAXR:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Max Resets value.";																													//
+	next;																																//
+	input .MAXREBORNS;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Multi Reset Config?";																												//
+	next;																																//
+	menu "Yes",MULTRES,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  RSL:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Base Level value.";																													//
+	next;																																//
+	input .REBORNSLVL;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Multi Reset Config?";																												//
+	next;																																//
+	menu "Yes",MULTRES,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  BN:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Bonus value.";																													//
+	next;																																//
+	input .SPCREBORNB;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Multi Reset Config?";																												//
+	next;																																//
+	menu "Yes",MULTRES,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+  MBN:																																	//
+	mes .JCNAME$;																															//
+	mes "Input Multi Bonus value.";																													//
+	next;																																//
+	input .SPCREBBONUS;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Multi Reset Config?";																												//
+	next;																																//
+	menu "Yes",MULTRES,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+PAL:																																	//
+	mes .JCNAME$;																															//
+	mes "Reset palette in First Class.";																												//
+	mes "1 = ON, 0 = OFF.";																														//
+	next;																																//
+	input .RESETPALETTE0;																														//
+	next;																																//
+	mes .JCNAME$;																															//
+	mes "Reset palette in Second Class.";																												//
+	mes "1 = ON, 0 = OFF.";																														//
+	next;																																//
+	input .RESETPALETTE1;																														//
+	next;																																//
+	mes .JCNAME$;																															//
+	mes "Reset palette in Trans Class.";																												//
+	mes "1 = ON, 0 = OFF.";																														//
+	next;																																//
+	input .RESETPALETTE2;																														//
+	next;																																//
+	mes .JCNAME$;																															//
+	mes "Reset palette in Third Class";																												//
+	mes "1 = ON, 0 = OFF.";																														//
+	next;																																//
+	input .RESETPALETTE3;																														//
+	mes .JCNAME$;																															//
+	mes "Continue Palette Config?";																													//
+	next;																																//
+	menu "Yes",PAL,"No",GMPANEL,"Config Other Setting",CFMOD;																									//
+//					   +-----------------------+																									//
+//=========================================¦       END USAGE       ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+LEND:																																	//
+	mes .JCNAME$;																															//
+	mes "OK! Thanks for using my services!";																											//
+	emotion e_no1,0;																														//
+	close;																																//
+																																	//
+//					   +-----------------------+																									//
+//=========================================¦    CANCEL CHOICES     ¦====================================================================================================================================================================================================//
+//					   +-----------------------+																									//
+LCANCEL:																																//
+	mes .JCNAME$;																															//
+	mes "OK! then we'll talk later!";																												//
+	emotion e_dots,0;																														//
+	close;																																//
+																																	//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 						  MAIN CONFIGS																										//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+																																	//
+OnInit:																																	//
+																																	//
+//					     +--------------------+																									//
+//===========================================¦      NPC NAME      ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .JCNAME$,"Job Services";  	//NPC Name																							//
+//					     +--------------------+																									//
+//===========================================¦      GM ACCESS     ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .GMPANLVL,99;		//Min level to access GM Panel																					//
+//					     +--------------------+																									//
+//===========================================¦   RESET SETTINGS   ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .RESETERON,1;		//Turn on Reset																							//
+					set .RSTSTATPRICE,0;		//Reset Stats price																						//
+					set .RSTSKLPRICE,0;		//Reset Skills price																						//
+					set .RSTBOTHPRICE,0;		//Reset Skills + Stats price																					//
+//					     +--------------------+																									//
+//===========================================¦  BREEDER SETTINGS  ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .BREEDERON,1;		//Turn on Renting																						//
+					set .WARGANDFALCON,1;		//Should the player use Warg and Falcon?																			//
+//					     +--------------------+																									//
+//===========================================¦    BABY CHANGER    ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .BABYCHANGERON,1;		//Turn on Baby changing																						//
+//					     +--------------------+																									//
+//===========================================¦   PLATINUM SKILLS  ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .GIVEPLATSKILL,1;		//Give Platinum skills on Jobchange																				//
+//					     +--------------------+																									//
+//===========================================¦  SUPER NOVICE LVL  ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .SNLVL,45;			//Base Level to change into Super Novice																			//
+//					     +--------------------+																									//
+//===========================================¦ JOBCHANGE SETTINGS ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .JOBTO2ND,40;		//Min Job level to change FIRST > SECOND																			//
+					set .LVLTOREBORN,99;		//Min Base level to reborn																					//
+					set .JOBTOREBORN,50;		//Min Job level to reborn																					//
+					set .JOBTOTRANS,50;		//Min Job level to change HIGH > TRANS																				//
+					set .LVLTOTHIRD,99;		//Min Base level to change TRANS > THIRD																			//
+					set .JOBTOTHIRD,50;		//Min Job level to change TRANS > THIRD																				//
+					set .FORCEREBORN,0;		//Block second > Third direct change, force the char to reborn.																	//
+//					     +--------------------+																									//
+//===========================================¦ MULTI RESET SYSTEM ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//					
+					set .SPCREBORN,0;		//Turn on Multiple resets																					//
+					set .MAXREBORNS,3;		//Resets Limit																							//
+					set .REBORNSLVL,99;		//Level to Reset																						//
+					set .SPCREBORNB,200;		//Bonus for Each Reset																						//
+					set .SPCREBBONUS,100;		//Extra Bonus for X Resets (eg: you gain 200 in the second reset. 100x2)															//
+//					     +--------------------+																									//
+//===========================================¦    POINTS BUYER    ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .POINTBUYON,0;		//Turn on skill points sell  																					//
+					set .STPOINTPRICE,100000;	//Set stats point price																						//	 
+					set .SKPOINTPRICE,200000;	//Set skill point price																						//					
+					set .BUYONLYSTAT,0;		//Buy only status points?																					//
+					set .BUYONLYSKL,0;		//Buy only skill points?																					//
+//					     +--------------------+																									//
+//===========================================¦ THIRD CLASS CHANGE ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .THIRDON,1;			//Turn on 3rd class changing																					//
+//					     +--------------------+																									//
+//===========================================¦  PALETTE SETTINGS  ¦=====================================================================================================================================================================================================//
+//					     +--------------------+																									//
+					set .RESETPALETTE0,0;  		//Reset palette on change first class 																				//
+					set .RESETPALETTE1,0;  		//Reset palette on change second class																				//
+					set .RESETPALETTE2,0;  		//Reset palette on change trans class																				//
+					set .RESETPALETTE3,0;  		//Reset palette on change third class																				//	
+	end;																																//
+}																																	//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+junon,221,164,5	duplicate(Job Services)	Job Services#h1-2	80,{

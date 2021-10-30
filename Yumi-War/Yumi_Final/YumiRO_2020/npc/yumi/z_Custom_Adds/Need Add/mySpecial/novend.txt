@@ -1,0 +1,82 @@
+//Script whipped up by [GM]Xeon ;D
+//No street chatrooms + vends - Prontera edition
+
+junon	mapflag	novending
+
+Crystilia,1,1,1	script	NoChatVendPront	-1,{
+OnWhisperGlobal:
+if (!getgmlevel()) end;
+OnInit:
+	setcell "Crystilia",60,88,75,88,cell_novending,1;
+	setcell "Crystilia",60,87,75,87,cell_novending,1;
+	setcell "Crystilia",60,86,75,86,cell_novending,1;
+	setcell "Crystilia",60,85,75,85,cell_novending,1;
+	setcell "Crystilia",60,84,75,84,cell_novending,1;
+	setcell "Crystilia",60,83,75,83,cell_novending,1;
+	setcell "Crystilia",60,82,75,82,cell_novending,1;
+	setcell "Crystilia",60,81,75,81,cell_novending,1;
+	setcell "Crystilia",60,80,75,80,cell_novending,1;
+	setcell "Crystilia",60,79,75,79,cell_novending,1;
+	setcell "Crystilia",60,78,75,78,cell_novending,1;
+	setcell "Crystilia",60,77,75,77,cell_novending,1;
+	setcell "Crystilia",60,76,75,76,cell_novending,1;
+	setcell "Crystilia",60,75,75,75,cell_novending,1;
+	setcell "Crystilia",60,74,75,74,cell_novending,1;
+	setcell "Crystilia",60,73,75,73,cell_novending,1;
+	setcell "Crystilia",60,72,75,72,cell_novending,1;
+	setcell "Crystilia",60,71,75,71,cell_novending,1;
+	setcell "Crystilia",60,70,75,70,cell_novending,1;
+	setcell "Crystilia",60,69,75,69,cell_novending,1;
+	setcell "Crystilia",60,68,75,68,cell_novending,1;
+	setcell "Crystilia",94,94,101,70,cell_novending,1;
+
+	setcell "Crystilia",105,95,105,35,cell_novending,1;
+	setcell "Crystilia",106,95,106,35,cell_novending,1;
+	setcell "Crystilia",107,95,107,35,cell_novending,1;
+	setcell "Crystilia",34,96,34,72,cell_novending,1;
+	setcell "Crystilia",35,96,35,72,cell_novending,1;
+	setcell "Crystilia",36,96,36,72,cell_novending,1;
+	setcell "Crystilia",37,96,37,72,cell_novending,1;
+	setcell "Crystilia",41,96,41,72,cell_novending,1;
+	setcell "sockmarket",156,261,179,14,cell_novending,1;
+	setcell "Welgaia",150,234,163,187,cell_novending,1;
+
+	setcell "Crystilia",60,88,75,88,cell_nochat,1;
+	setcell "Crystilia",60,87,75,87,cell_nochat,1;
+	setcell "Crystilia",60,86,75,86,cell_nochat,1;
+	setcell "Crystilia",60,85,75,85,cell_nochat,1;
+	setcell "Crystilia",60,84,75,84,cell_nochat,1;
+	setcell "Crystilia",60,83,75,83,cell_nochat,1;
+	setcell "Crystilia",60,82,75,82,cell_nochat,1;
+	setcell "Crystilia",60,81,75,81,cell_nochat,1;
+	setcell "Crystilia",60,80,75,80,cell_nochat,1;
+	setcell "Crystilia",61,79,75,79,cell_nochat,1;
+	setcell "Crystilia",61,78,75,78,cell_nochat,1;
+	setcell "Crystilia",61,77,75,77,cell_nochat,1;
+	setcell "Crystilia",61,76,75,76,cell_nochat,1;
+	setcell "Crystilia",61,75,75,75,cell_nochat,1;
+	setcell "Crystilia",61,74,75,74,cell_nochat,1;
+	setcell "Crystilia",61,73,75,73,cell_nochat,1;
+	setcell "Crystilia",60,72,75,72,cell_nochat,1;
+	setcell "Crystilia",60,71,75,71,cell_nochat,1;
+	setcell "Crystilia",60,70,75,70,cell_nochat,1;
+	setcell "Crystilia",60,69,75,69,cell_nochat,1;
+	setcell "Crystilia",60,68,75,68,cell_nochat,1;
+	setcell "sockmarket",156,261,179,14,cell_nochat,1;
+	setcell "Welgaia",150,234,163,187,cell_nochat,1;
+	setcell "Welgaia",133,230,184,230,cell_nochat,1;	
+	setcell "Welgaia",133,229,184,229,cell_nochat,1;	
+	setcell "Welgaia",133,228,184,228,cell_nochat,1;	
+	setcell "Welgaia",133,227,184,227,cell_nochat,1;	
+	setcell "Welgaia",133,226,184,226,cell_nochat,1;	
+	setcell "Welgaia",133,225,184,225,cell_nochat,1;	
+	setcell "Welgaia",133,224,184,224,cell_nochat,1;	
+	setcell "Welgaia",133,223,184,223,cell_nochat,1;	
+	setcell "Welgaia",133,222,184,222,cell_nochat,1;	
+	setcell "Welgaia",133,221,184,221,cell_nochat,1;	
+	setcell "Welgaia",133,220,184,220,cell_nochat,1;	
+	
+
+
+end;
+}

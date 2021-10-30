@@ -1,0 +1,569 @@
+//Weaponry
+junon,181,227,0	warp	junon1	3,3,junon_in02,283,30
+junon_in02,288,30,0	warp	junon2	3,3,junon,181,222
+
+junon_in02,265,14,0	warp	junon3	3,3,junon_in02,268,82
+junon_in02,275,82,0	warp	junon4	3,3,junon_in02,272,14
+
+//jewelry
+junon,304,230,0	warp	junon1a	3,3,junon_in02,104,27
+junon_in02,108,27,0	warp	junon2a	3,3,junon,304,225
+
+
+//hotel
+junon,335,196,0	warp	junon1b	3,3,junon_in02,233,268
+junon_in02,233,262,0	warp	junon2b	3,3,junon,335,189
+
+junon_in02,250,278,0	warp	junon3b	3,3,junon_in02,266,279
+junon_in02,261,279,0	warp	junon4b	3,3,junon_in02,244,279
+
+junon_in02,209,284,0	warp	junon5b	3,3,junon_in02,241,219
+junon_in02,236,220,0	warp	junon6b	3,3,junon_in02,205,284
+
+//bed1
+junon_in02,254,212,0	warp	junon7b	3,3,junon_in02,273,212
+junon_in02,269,212,0	warp	junon8b	3,3,junon_in02,250,212
+
+//bed2
+junon_in02,231,200,0	warp	junon9b	3,3,junon_in02,212,200
+junon_in02,216,200,0	warp	junon10b	3,3,junon_in02,235,200
+
+//bed3
+junon_in02,231,182,0	warp	junon11b	3,3,junon_in02,211,182
+junon_in02,216,182,0	warp	junon12b	3,3,junon_in02,235,182
+
+//bed4
+junon_in02,239,169,0	warp	junon13b	3,3,junon_in02,239,149
+junon_in02,239,154,0	warp	junon14b	3,3,junon_in02,239,174
+
+
+
+
+//Police
+junon,235,238,0	warp	junon1c	3,3,junon_in02,134,199
+junon_in02,129,199,0	warp	junon2c	3,3,junon,239,238
+
+
+//Bank
+junon,332,144,0	warp	junon1d	3,3,junon_in02,39,27
+junon_in02,44,28,0	warp	junon2d	3,3,junon,332,139
+
+//Bank
+junon,337,226,0	warp	junon1e	3,3,junon_in02,28,269
+junon_in02,28,265,0	warp	junon2e	3,3,junon,333,224
+
+junon_in02,15,284,0	warp	junon3e	3,3,junon_in02,89,284
+junon_in02,93,284,0	warp	junon4e	3,3,junon_in02,20,284
+
+
+//house
+junon,124,149,0	warp	junon1f	3,3,junon_in03,98,21
+junon_in03,93,21,0	warp	junon2f	3,3,junon,124,144
+
+junon_in03,133,14,0	warp	junon3f	3,3,junon_in03,125,90
+junon_in03,120,90,0	warp	junon4f	3,3,junon_in03,128,14
+
+//castle
+//junon,134,102,0	warp	EntranceJun2	3,3,junon_in01,110,126
+//junon_in01,110,122,0	warp	ExitJun2	3,3,junon,134,107
+
+//junon,95,100,0	warp	EntranceJun02	3,3,junon_in01,117,126
+//junon_in01,117,122,0	warp	ExitJun	3,3,junon,95,105
+
+//castle_In
+//junon_in01,76,252,0	warp	flr2_Left	3,3,junon_in01,107,19
+//junon_in01,107,15,0	warp	flr3_Left	3,3,junon_in01,76,247
+
+//junon_in01,188,252,0	warp	flr2_Right	3,3,junon_in01,159,19
+//junon_in01,159,15,0	warp	flr3_Right	3,3,junon_in01,188,247
+
+//Castle Left Entrence Drop
+//junon_in01,35,225,0	warp	Drop_enter	3,3,junon_in01,22,129
+//junon_in01,16,129,0	warp	Drop_exit	3,3,junon_in01,30,225
+
+//castle_Dun
+//junon_in01,43,143,0	warp	Drop_Room1	3,3,junon_in01,277,161
+//junon_in01,277,157,0	warp	Dun_Room1	3,3,junon_in01,43,138
+
+//junon_in01,58,130,0	warp	Drop_Room2	3,3,junon_in01,195,127
+//junon_in01,191,127,0	warp	Dun_Room3	3,3,junon_in01,54,130
+
+//junon_in01,43,115,0	warp	Drop_Room3	3,3,junon_in01,277,128
+//junon_in01,277,132,0	warp	Dun_Room3	3,3,junon_in01,43,120
+
+//castle_ThroneRoom
+//junon_in01,230,227,0	warp	TO_Throneroom	3,3,junon_in01,255,227
+//junon_in01,251,227,0	warp	Exit_Throneroom	3,3,junon_in01,226,227
+
+//castle_Lounge
+//junon_in01,11,24,0	warp	Lounge	3,3,junon_in01,144,179
+//junon_in01,148,179,0	warp	EntranceJun	3,3,junon_in01,16,24
+
+
+junon,146,151,5	shop	Fruit Gardener#jun	102,512:-1,513:-1
+junon,305,181,0	shop	Flower Girl#jun	90,712:-1,744:-1,748:-1
+junon,162,191,0	shop	Vegetable Gardener#jun	91,515:-1,516:-1,535:-1
+junon,249,82,2	shop	Milk Rancher#l	90,519:-1
+junon,297,93,4	shop	Pet Groomer#jun	125,537:-1,643:-1,10013:-1,10014:-1,554:-1,6113:-1,6114:-1,6115:-1
+junon_in02,286,95,4	shop	Beginner's Merchant#jun	62,5112:-1,2416:-1,2113:-1,2512:-1
+junon_in02,271,99,5	shop	Armor Dealer#jun	851,2101:-1,2103:-1,2403:-1,2405:-1,2503:-1,2321:-1,2314:-1,2309:-1,2335:-1,2628:-1
+junon_in02,276,99,4	shop	Weapon Dealer#jun	851,1201:-1,1207:-1,1216:-1,1107:-1,1122:-1,1116:-1,1154:-1,1407:-1,1457:-1,1354:-1,1519:-1,13003:-1
+junon_in02,273,35,4	shop	Wand Dealer#jun	854,1601:-1,1604:-1,1607:-1,1617:-1,1619:-1
+junon_in02,105,21,3	shop	Jeweler#jun	91,721:-1,723:-1,726:-1,728:-1,729:-1,730:-1,2613:-1
+junon_in02,17,220,5	shop	Vegetable Gardener#jun2	91,515:-1,516:-1,535:-1
+junon_in02,21,220,5	shop	Fruit Gardener#jun2	102,512:-1,513:-1
+junon_in02,32,219,5	shop	Butcher#jun	54,517:-1
+junon_in02,38,145,5	shop	Gift Merchant#jun	91,734:-1,735:-1,736:-1,737:-1,746:-1
+junon_in02,47,148,3	shop	Wedding Shop Dealer#jun	71,744:-1,745:-1,2338:-1,2206:-1,7170:-1
+junon_in02,31,145,4	shop	Tool Dealer#jun	90,611:-1,503:-1,504:-1,506:-1,657:-1,656:-1,601:-1,602:-1,1065:-1,610:-1,1770:-1
+junon_in02,85,216,5	shop	Doll Supplier#jun	862,740:-1,741:-1,742:-1
+junon_in02,87,208,3	shop	Toy Supplier#jun	715,2243:-1,2212:-1,2242:-1,2241:-1
+junon_in03,239,106,5	shop	Tool Dealer#jun2	850,501:-1,502:-1,506:-1,645:-1,656:-1,601:-1,602:-1,1065:-1,611:-1
+junon_in03,258,101,3	shop	Arrow Merchant#jun	855,1750:-1,1770:-1,1752:-1,1751:-1
+junon_in03,249,24,4	shop	Merchant#jun	855,911:-1,910:-1,912:-1,528:-1
+
+//hotel
+junon_in02,242,172,1	script	Hotel Employee#jun3	868,{
+	mes "[Hotel Employee]";
+	mes "If you are experiencing";
+	mes "any sort of inconvenience,";
+	mes "please do not hesitate and";
+	mes "let us know right away.";
+	next;
+	mes "[Hotel Employee]";
+	mes "Please use the stairs";
+	mes "at the northern end to";
+	mes "go downstairs so that you";
+	mes "can go to the Front Desk.";
+	mes "Thank you and I hope that";
+	mes "you enjoy your stay here.";
+	close;
+}
+
+junon_in02,210,189,3	script	Spencer Ziff#jun	849,{
+	mes "[Spencer Ziff]";
+	mes "OoooOoh~";
+	mes "Soooo comfortable.";
+	mes "Don't want to wake up.";
+	mes "Don't want to get up.";
+	mes "Ever again. OoOoooh...";
+	close;
+}
+
+junon_in02,201,181,7	script	Safwat Fahmy#1	853,{
+	mes "[Safwat Fahmy]";
+	mes "This hotel is nice";
+	mes "and comfortable, but";
+	mes "to be quite frank, the";
+	mes "drinks here are horrible.";
+	mes "They're unfit for drinking";
+	mes "men such as myself.";
+	next;
+	mes "[Safwat Fahmy]";
+	mes "If this is the best hotel,";
+	mes "I expect them to provide me";
+	mes "with the best alcohol. When";
+	mes "I stay at a hotel, that's what";
+	mes "I want. To spend the entire";
+	mes "day not being sober.";
+	next;
+	mes "[Safwat Fahmy]";
+	mes "It looks like that";
+	mes "today I'll be heading";
+	mes "out to the bar again...";
+	mes "I just wish there were";
+	mes "someplace quieter to drink.";
+	close;
+}
+
+junon_in02,251,212,3	script	Hotel Employee#jun2	868,{
+	mes "[Hotel Employee]";
+	mes "This is the Couple Suite.";
+	mes "A single can also check";
+	mes "in here, but our hotel will";
+	mes "prioritize couples when";
+	mes "assigning this room.";
+	close;
+}
+
+
+junon_in02,229,217,3	script	Tanoue#jun04	863,{
+	mes "[Tanoue]";
+	mes "This chair looks";
+	mes "very nice, but it really";
+	mes "chills my bottom. Brr...!";
+	mes "It's a might uncomfortable!";
+	next;
+	mes "[Tanoue]";
+	mes "You know what the";
+	mes "perfect chair would";
+	mes "be like? It would be";
+	mes "plush and have electronic";
+	mes "massage and heating controls...";
+	close;
+}
+
+
+junon_in02,209,277,5	script	Ben Allen#jun11	84,{
+	mes "[Ben Allen]";
+	mes "Aaahhh Oooooh~";
+	mes "It's sooooo comfy~";
+	mes "The air's so fresh and";
+	mes "this couch is so plush...";
+	mes "Why can't home be like this?";
+	next;
+	mes "[Ben Allen]";
+	mes "I've been in those other";
+	mes "hotels and let me tell you,";
+	mes "this place is the best ever.";
+	mes "After a night's sleep over";
+	mes "here, I feel like a new man!";
+	close;
+}
+
+
+junon_in02,221,276,1	script	Harp#jun8	869,{
+	mes "[Harp]";
+	mes "Oh sweet jiminy...";
+	mes "That Kafra Lady is so hot.";
+	mes "What a body. And those glasses.";
+	mes "I just gotta ask her out somehow.";
+	next;
+	mes "[Harp]";
+	mes "Hm, but what should";
+	mes "I do? A love letter? Naw,";
+	mes "that's kind of outdated.";
+	mes "Argh, I can't think! Just";
+	mes "looking at her makes me feel";
+	mes "so happy! Praise be to Kafra!";
+	close;
+}
+
+junon_in02,238,275,5	script	Hotel Employee#jun1	869,{
+	mes "[Hotel Employee]";
+	mes "''Hospitality with a smile";
+	mes "and total devotion to your";
+	mes "comfort.'' That's our motto";
+	mes "in the Cavalero Hotel.";
+	mes "Please inquire at the front";
+	mes "desk if you wish to check in.";
+	close;
+}
+
+junon_in02,247,275,1	script	Hotel Employee#jun4	868,{
+	mes "[Hotel Employee]";
+	mes "Welcome to the";
+	mes "Cavalero Hotel Bar.";
+	mes "How about a nice night";
+	mes "cap before going to bed?";
+	next;
+	mes "[Hotel Employee]";
+	mes "If you're looking";
+	mes "for a friend, you";
+	mes "can almost always";
+	mes "make one in this bar.";
+	mes "Alcohol certainly is the";
+	mes "grease for social gears.";
+	close;
+}
+
+junon_in02,271,281,2	script	Citizen#junon09	47,{
+	mes "[Hachi]";
+	mes "Oh yeah. I love-love-love";
+	mes "bars. If I don't come here";
+	mes "for the booze, then I'm here";
+	mes "for all these beautiful ladies.";
+	next;
+	mes "[Hachi]";
+	mes "Weird. It's the very first";
+	mes "time I've tried this place's";
+	mes "rum, but doesn't it taste like";
+	mes "pure sexiness to you? Huh...";
+	mes "Oh well, back to schmoozin'";
+	mes "with all the hot chicks~";
+	close;
+}
+
+junon_in02,277,285,4	script	Bartender#junon07	61,{
+	mes "[Duff]";
+	mes "Hey, you're from";
+	mes "Rune-Midgarts, right?";
+	mes "Please make yourself";
+	mes "at home while you're here";
+	mes "in Lighthalzen and have";
+	mes "yourself a good time.";
+	close;
+}
+
+junon_in02,281,280,6	script	Customer#junon13	816,{
+	mes "[Rona]";
+	mes "I hate it when guys";
+	mes "just sidle up and sort";
+	mes "of just skip Steps One";
+	mes "and Two. And before you";
+	mes "get all weird, Step Three";
+	mes "is ''Ask for my phone number.''";
+	next;
+	mes "[Rona]";
+	mes "I would just really";
+	mes "appreciate it if one";
+	mes "nice boy would just";
+	mes "talk to me for real.";
+	close;
+}
+
+junon_in02,287,282,4	script	Customer#junon10	853,{
+	mes "[Greenfield]";
+	mes "I don't believe it...";
+	mes "This unlucky streak";
+	mes "will never end, will it?";
+	mes "I lost all my Apples";
+	mes "playing Dice today.";
+	mes "Again. Oh man...";
+	next;
+	mes "[Greenfield]";
+	mes "Okay. Okay.";
+	mes "If I just keep";
+	mes "playing, eventually";
+	mes "I'll win. I mean, that's";
+	mes "the way the odds work, right?";
+	mes "Even when they're against me...";
+	close;
+}
+
+junon_in02,287,273,3	script	Customer#junon11	50,{
+	mes "[Terry]";
+	mes "I'm not big on drinking,";
+	mes "but the atmosphere in this";
+	mes "place is really nice. The";
+	mes "music they play is always";
+	mes "smooth and relaxing...";
+	next;
+	mes "[Terry]";
+	mes "Yeah, this is a real cozy";
+	mes "joint. I recommend it to";
+	mes "all you tourists, acutally.";
+	mes "Now why don't you kick";
+	mes "back and chill with me?";
+	close;
+}
+
+junon_in02,283,276,4	script	Customer#junon12	815,{
+	mes "[Sei]";
+	mes "You see that guy?";
+	mes "That guy over there is";
+	mes "always looking at me.";
+	mes "I wonder... Does he want";
+	mes "to ask me out or something?";
+	next;
+	mes "[Sei]";
+	if (Sex == 1) {
+		mes "Well, if he does,";
+		mes "shouldn't he have";
+		mes "more guts? Or are ";
+		mes "you boys much more";
+		mes "shy than I think you are?";
+	}
+	else {
+		mes "Well, he is sort of";
+		mes "cute. Geez, this would";
+		mes "be so much easier if he";
+		mes "would just come up and";
+		mes "start talking to me...";
+	}
+	close;
+}
+
+junon_in02,34,41,1	script	Arthur#jun16	849,{
+	mes "[Arthur]";
+	mes "The chairs here are";
+	mes "so not ergonomic. And";
+	mes "they're uncomfortable too!";
+	mes "But it's sooo cool inside this";
+	mes "bank and I just wanted to get";
+	mes "get away from all this heat...";
+	close;
+}
+
+junon_in02,28,39,3	script	Helen#jun6	703,{
+	mes "[Helen]";
+	mes "You know, maybe when";
+	mes "I grow up, I'll be a bank";
+	mes "clerk. That sounds like a";
+	mes "really nice job, don't you";
+	mes "think? It's laid back and posh...";
+	close;
+}
+
+junon_in02,31,34,3	script	Tadem#jun6	847,{
+	mes "[Tadem]";
+	mes "I do so enjoy the";
+	mes "architectural structure";
+	mes "of this bank. It's quite";
+	mes "artistic with both classical";
+	mes "and modern elements. Would";
+	mes "you not agree? Fascinating...";
+	close;
+}
+
+junon_in02,31,33,3	script	Gracie#jun5	863,{
+	mes "[Gracie]";
+	mes "Oh, it's so comfortable";
+	mes "in here~ Though, why are";
+	mes "we inside the bank when";
+	mes "the bank services aren't even";
+	mes "working? Yes, we're standing,";
+	mes "but we're doing it in comfort.";
+	next;
+	mes "[Gracie]";
+	mes "In fact, it's so";
+	mes "comfortable here,";
+	mes "I think I'll refuse to leave.";
+	mes "Though, I'm willing to change";
+	mes "my mind if you can find a place";
+	mes "that's even more comfortable.";
+	close;
+}
+
+junon_in02,21,38,7	script	Bank Clerk#jun1::BankClerks	86,{
+	mes "[Bank Clerk]";
+	mes "Due to some critical system";
+	mes "errors, all of the bank services";
+	mes "have been temporarily stopped.";
+	mes "We apologize for any inconvenience and appreciate your understanding.";
+	close;
+}
+
+junon_in02,21,25,7	duplicate(BankClerks)	Bank Clerks#2	86
+junon_in02,34,22,1	duplicate(BankClerks)	Bank Clerks#3	755
+
+
+junon_in02,145,177,0	script	Togii#jun07	849,{
+	mes "[Togii]";
+	mes "Oooh yeah...";
+	mes "Goes down smooth.";
+	mes "Morroc whiskey's the best!";
+	mes "^333333*Hiccup*^000000 Whoa, this stuff";
+	mes "really works fast! Heh heh~";
+	close;
+}
+
+junon_in02,159,198,7	script	Healthy Looking Guy#jun	85,{
+	mes "[Healthy Looking Guy]";
+	mes "Grrrrrr! Leave me alone!";
+	mes "How many times do I have";
+	mes "to keep telling you? I've never";
+	mes "hoarded item upgrade materials!";
+	mes "I swear that I'm innocent!";
+	close;
+}
+
+junon_in02,157,201,6	script	Hinkley#jun06	870,{
+	mes "[Hinkley]";
+	mes "Meh heh heh...";
+	mes "^333333*Hiccup*^000000 Believe";
+	mes "it or notsh, I'm...";
+	mes "walkin on a... Air...";
+	mes "Nevah thought I could";
+	mes "b-be sho freee-eeee-eee~";
+	next;
+	mes "^3355FFThis guy";
+	mes "is completely";
+	mes "hammered out";
+	mes "of his mind!^000000";
+	close;
+}
+
+junon_in02,153,206,4	script	Millette#jun05	853,{
+	mes "[Millette]";
+	mes "Let me go!";
+	mes "Let me GO!!";
+	mes "LET ME GO!!!";
+	mes "I didn't do nuthin'";
+	mes "wrong! I'm innocent!";
+	mes "^333333*Hic-Hic-Hiccup...*^000000";
+	next;
+	mes "[Millette]";
+	mes "What's wrong with";
+	mes "drinking and singing";
+	mes "in the street, huh?";
+	mes "Is it a crime to have";
+	mes "a beautiful tenor voice?!";
+	mes "Get me outta this joint!";
+	close;
+}
+
+junon_in02,147,222,3	script	Officer Guo#jun06::off_guos	85,{
+	mes "[Officer Guo]";
+	mes "Tell me...!";
+	mes "TELL ME...!!";
+	mes "Admit you did it!!";
+	next;
+	mes "[Suspect]";
+	mes "Damn it!";
+	mes "I keep telling";
+	mes "you I'm not guilty!";
+	next;
+	mes "[Officer Guo]";
+	mes "^333333*Sigh...*^000000";
+	next;
+	mes "[Suspect]";
+	mes "You're wasting your";
+	mes "time. Just let me go.";
+	next;
+	mes "[Officer Guo]";
+	mes "So...";
+	mes "How's your mother?";
+	next;
+	mes "[Suspect]";
+	mes "That's none of";
+	mes "your business!";
+	mes "She's fine, I guess.";
+	next;
+	mes "[Officer Guo]";
+	mes "When was the last";
+	mes "time you've seen her?";
+	next;
+	mes "[Suspect]";
+	mes "I just told you,";
+	mes "that's none of";
+	mes "your business...!";
+	next;
+	mes "[Officer Guo]";
+	mes "You know, mothers";
+	mes "throughout the animal";
+	mes "kingdom instinctively";
+	mes "care for their young.";
+	mes "Humans are no exception.";
+	mes "Yours must be worried to death.";
+	next;
+	mes "[Suspect]";
+	mes "...";
+	mes "Man...";
+	mes "You're starting";
+	mes "to weird me out.";
+	next;
+	mes "[Officer Guo]";
+	mes "Funny thing about humans,";
+	mes "though. It seems to be their";
+	mes "nature to lie, even when they";
+	mes "know they'll be caught. But";
+	mes "like all animals, they";
+	mes "instinctively fear pain...";
+	next;
+	mes "[Suspect]";
+	mes "N-no, no...";
+	mes "You gotta be...";
+	mes "You're bluffing.";
+	mes "Right?";
+	next;
+	mes "[Officer Guo]";
+	mes "NO.";
+	mes "You're bluffing.";
+	mes "Tell me...!";
+	mes "TELL ME...!!";
+	mes "Admit you did it!!";
+	close;
+}
+
+junon_in02,142,222,6	duplicate(off_guos)	Suspect#jun6	870

@@ -1,0 +1,7 @@
+junon,231,165,3	script	Kafra	861,{
+mes "Hello "+strcharinfo(0)+"! What can I help you with?";
+switch(select("Storage:Save:")){
+	case 1: close2;	openstorage;	end;
+	case 2: mes " ";	mes "Your position has been saved.";	close2;	atcommand "@save";	end;
+}
+}

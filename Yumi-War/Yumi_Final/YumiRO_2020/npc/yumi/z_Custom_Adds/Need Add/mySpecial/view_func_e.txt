@@ -1,0 +1,1586 @@
+	//=======================================================================
+	// Function : timer and Looking View ID's // Функция : отсчет времени для опции 'Примерить' (View ID)
+	//=======================================================================	
+function	script	hattimer	{
+	set @c,rand(1,10);
+	if(@c==1)set @color,0x6495ED;
+	if(@c==2)set @color,0x00FFFF;
+	if(@c==3)set @color,0x00FF7F;
+	if(@c==4)set @color,0xFFD700;
+	if(@c==5)set @color,0xCD5C5C;
+	if(@c==6)set @color,0xFF6347;
+	if(@c==7)set @color,0xFF00F1;
+	if(@c==8)set @color,0x8A2BE2;
+	if(@c==9)set @color,0xFF1493;
+	if(@c==10)set @color,0xFFA500;
+	if(@view==0){
+	mes @npc_name$;
+	mes "Sorry, but option 'To try on on itself' is disable...";
+	next;
+	return;}
+	if(@view==1){
+	mes @npc_name$;
+	mes "You can put on a cap for ^FF3355"+ @ltimer +"^000000 seconds";
+	next;
+	menu "Start",-,"I change my mind",-;
+	if(@menu==2){return;}
+	set .MID,getequipid (9); // caiiiieou, ?oi auei iaaaoi.
+	set .LOW,getequipid (10); // caiiiieou, ?oi auei iaaaoi.
+	set .TOP,getequipid (1); // caiiiieou, ?oi auei iaaaoi.
+	unequip 1; // niyoea aaue, ?oiau eo?oa Примерить
+	unequip 9; // niyoea aaue, ?oiau eo?oa Примерить
+	unequip 10; // niyoea aaue, ?oiau eo?oa Примерить
+	changelook 3,@hat; // Примерить aauu
+		while (@ltimer) {
+
+	announce "*Last : "+ @ltimer +" seconds.*",bc_self,@color; // timer
+	mes "^FF3355Last : "+ @ltimer +" seconds^000000";
+	sleep2 1000 ;
+	set @ltimer, @ltimer-1;
+	set .@t,.@t+1;
+	}
+	changelook 3,0; // aica?ao a enoiaiia ninoiyiea ai i?eia?ee
+	if(.MID==.LOW==.TOP && .MID>0){equip .MID;set @ltimer, @ltimer + .@t;
+	return;}
+	if(.MID==.LOW && .MID>0){equip .MID; if(.TOP>0){equip .TOP;}set @ltimer, @ltimer + .@t;
+	return;}
+	if(.MID==.TOP && .MID>0){equip .TOP; if(.LOW>0){equip .LOW;} set @ltimer, @ltimer + .@t;
+	return;}
+	if(.MID>0){equip .MID;}
+	if(.LOW>0){equip .LOW;}
+	if(.TOP>0){equip .TOP;}
+	set @ltimer, @ltimer + .@t;
+	return;
+}}
+	//=======================================================================
+	// Function : wiew image // Функция : просмотр картинки
+	//=======================================================================
+function	script	hatimage	{
+	if(@image==0){
+	mes @npc_name$;
+	mes "Sorry, but this option is disable";
+	next;
+	return;}
+	cutin @id,3;
+	return;
+}
+	//=======================================================================
+	// Function : view info about cap// Функция : просмотр информации о шапке
+	//=======================================================================
+function	script	hatinfo	{
+	if(@info==0){
+	mes @npc_name$;
+	mes "Sorry, but this option is disable";
+	next;
+	return;}
+	set @c,rand(1,10);
+	if(@c==1)set @color,0x6495ED;
+	if(@c==2)set @color,0x00FFFF;
+	if(@c==3)set @color,0x00FF7F;
+	if(@c==4)set @color,0xFFD700;
+	if(@c==5)set @color,0xCD5C5C;
+	if(@c==6)set @color,0xFF6347;
+	if(@c==7)set @color,0xFF00F1;
+	if(@c==8)set @color,0x8A2BE2;
+	if(@c==9)set @color,0xFF1493;
+	if(@c==10)set @color,0xFFA500;
+	announce "***** "+getitemname(@id)+" *****",bc_self,@color;
+	if(@id==5086){dispbottom "Adds 50% resistance against 'Blind'";}
+	if(@id==5137){dispbottom "Increase damage on DemiHuman monster by 10%.";
+			dispbottom "Inflict the 'Sleep' status on yourself by a low chance.";
+			dispbottom "STR + 1";}
+	if(@id==5074){dispbottom "STR + 1";}
+	if(@id==5270){dispbottom "Perfect Dodge + 5";}
+	if(@id==5174){dispbottom "[TaeKwon Class]";
+			dispbottom "INT + 1, SP Recovery + 3%";}
+	if(@id==5076){dispbottom "LUK + 1";}
+	if(@id==5065){dispbottom "Increase 10% damage against Fish monster.";}
+	if(@id==5169){dispbottom "[TaeKwon Class]";
+			dispbottom "LUK + 2, Critical Rate + 5";}
+	if(@id==2214){dispbottom "LUK + 2";}
+	if(@id==5184){dispbottom "Increase resistance against 'Water' Property by 5%.";}
+	if(@id==5214){dispbottom "Auto cast Level 1 'Increase Agility' by chance when struck by Physical attack.";
+			dispbottom "DEX + 2";}
+	if(@id==5243){dispbottom "Increase resistance to the 'Freeze' status by 10%.";}
+	if(@id==5260){dispbottom "AGI + 1";
+			dispbottom "Perfect Dodge + 5, Inflict 5% more damage with Critical attacks.";}
+	if(@id==5142){dispbottom "VIT + 1";}
+	if(@id==5081){dispbottom "INT + 2, Maximum SP + 100";
+			dispbottom "Indestructible (except in upgrade attempts).";}
+	if(@id==5186){dispbottom "INT + 1.";
+			dispbottom "Add 5% chance of auto casting Level 1 'Heal' on the user when the user receives Physical Melee Damage.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5254){dispbottom "ATK, MATK + 2";
+			dispbottom "Increases 2% more Experience Points each time a monster is killed.";
+			dispbottom "[Refine Rate 7~10]";
+			dispbottom "Increases 1% more Experience Points.";}
+	if(@id==5198){dispbottom "DEX + 1, Flee Rate + 2";}
+	if(@id==5058){dispbottom "MDEF + 15";
+			dispbottom "Increase resistance to 'Curse' status by 30%.";}
+	if(@id==5253){dispbottom "INT + 1";
+			dispbottom "DEF descreases by Refine Rate. MDEF increases by Refine Rate.";}
+	if(@id==5252){dispbottom "AGI + 1, DEX + 1";
+			dispbottom "Add a 3% chance of auto casting Level 1 'Gloria' on the user when the user receives Physical Damage.";}
+	if(@id==2283){dispbottom "Increases resistance to 'Curse' status by 10%.";}
+	if(@id==5259){dispbottom "VIT + 1";
+			dispbottom "Add a 1% chance of auto casting Level 3 'Water Ball' on the enemy when attacking.";
+			dispbottom "Enables use of Level 1 'Aqua Benedicta'.";}
+	if(@id==5068){dispbottom "STR + 1";}
+	if(@id==5170){dispbottom "MDEF + 1";
+			dispbottom "Reduce 10% damage taken from DemiHuman monster.";}
+	if(@id==5210){dispbottom "Increases Attack Speed by 3%.";
+			dispbottom "Reduce Casting Time by 3%.";
+			dispbottom "INT + 1, AGI + 1";}
+	if(@id==5144){dispbottom "LUK + 5";}
+	if(@id==5179){dispbottom "INT + 2";}
+	if(@id==5176){dispbottom "[TaeKwon Class]";
+			dispbottom "LUK + 1, Perfect Dodge + 2.";}
+	if(@id==5001){dispbottom "Increases resistance to 'Curse' status by 10%.";}
+	if(@id==5031){dispbottom "DEX + 2";}
+	if(@id==5181){dispbottom "STR + 2";}
+	if(@id==5094){dispbottom "STR + 2, VIT + 1";}
+	if(@id==5070){dispbottom "STR + 2";}
+	if(@id==5071){dispbottom "DEX + 1";}
+	if(@id==5143){dispbottom "Increase resistance to 'Silence' status by 30%.";}
+	if(@id==5140){dispbottom "Reduces damage from Undead and Demon enemies by 5%.";}
+	if(@id==5069){dispbottom "AGI + 1, LUK + 1";}
+	if(@id==5084){dispbottom "Adds 20% resistance against 'Sleep'.";}
+	if(@id==5130){dispbottom "Add a 5% chance of auto casting 'Silence' on enemies.";
+			dispbottom "MDEF + 1";}
+	if(@id==5139){dispbottom "DEX + 1, INT + 1";
+			dispbottom "MDEF + 5";}
+	if(@id==5177){dispbottom "[TaeKwon Class]";
+			dispbottom "DEX + 2";
+			dispbottom "ATK increases by Refine Rate * 2";
+			dispbottom "Add a 10% chance of auto casting 'Stun' on the enemy when attacking.";}
+	if(@id==5027){dispbottom "INT + 2, Maximum SP + 150";}
+	if(@id==5138){dispbottom "Reduce Casting Time by 10%. Increases SP consumption of skills by 20%.";
+			dispbottom "MDEF + 5";}
+	if(@id==5045){dispbottom "DEX + 1, AGI + 1, Maximum SP + 50";
+			dispbottom "[Gentleman's Staff & Magician Hat Equip Set]";}
+	if(@id==5187){dispbottom "Maximum SP + 30, MDEF + 3";
+			dispbottom "Increases physical damage to the monster by 20% for 2 seconds when the user Received physical attack.";
+			dispbottom "Reduces MDEF by 20% for 2 seconds.";
+			dispbottom "Increases magical damage to the monster by 20% for 2 seconds when the user Received magical attack.";
+			dispbottom "Reduces DEF by 20% for 2 seconds.";}
+	if(@id==5073){dispbottom "DEX + 2";}
+	if(@id==5183){dispbottom "DEX + 1, AGI + 1";
+			dispbottom "Increase resistance to the 'Stun' status by 10%.";}
+	if(@id==5151){dispbottom "Increase resistance to 'Stun' and 'Freeze' by 10%.";
+			dispbottom "MDEF + 3";}
+	if(@id==5195){dispbottom "MDEF + 3";}
+	if(@id==5078){dispbottom "VIT + 1";}
+	if(@id==5067){dispbottom "AGI + 1";}
+	if(@id==5062){dispbottom "AGI + 1";}
+	if(@id==5171){dispbottom "MDEF + 5";
+			dispbottom "[+ Valkyrja's Armor & Valkyrja's Manteau & Valkyrja's Shoes]";
+			dispbottom "All Stats + 1";}
+	if(@id==5256){dispbottom "INT + 1";
+			dispbottom "Add a 1% chance of auto casting Level 1 'Heal' on the user when the user receives Physical Damage.";}
+	if(@id==5013){dispbottom "STR + 5, INT + 5";
+			dispbottom "VIT + 10, AGI + 10";
+			dispbottom "LUK + 20, MDEF + 10";}
+	if(@id==5428){dispbottom "Add a 12% resistance against DemiHuman monster.";}
+	if(@id==5333){dispbottom "MDEF + 5, CRIT + 5, FLEE + 5";
+			dispbottom "Enables use of Level 1 'Lightning Bolt'.";
+			dispbottom "Adds a chance autocast Level 5 'Thunder Storm' when receive physical attack.";}
+	if(@id==5379){dispbottom "Each refine increases your MATK.";
+			dispbottom "MATK + 2%, MDEF + 2";}
+	if(@id==5374){dispbottom "Increases physical damage to the Demi Human monster by 12%.";
+			dispbottom "As your JOB Level increases,the helm grants additional ATK.";}
+	if(@id==5436){dispbottom "LUK + 3. MDEF + 2";}
+	if(@id==5378){dispbottom "AGI + 3, Add chance of auto casting Level 5 'Increase Agility' when attacking.";}
+	if(@id==5446){dispbottom "FLEE + 5, Perfect Dodge + 3.";}
+	if(@id==5443){dispbottom "MDEF + 2";
+			dispbottom "When receiving physical damage, chance to cast Level 1 'Recovery' on yourself.";}
+	if(@id==5283){dispbottom "Allows usage Level 2' Double Attack', and if you already know higher than Level 2 'Double Attack', then the appropriate level will be used instead.";
+			dispbottom "Reduce damage from DemiHuman monster by 3%.";
+			dispbottom "LUK + 2, Maximum HP/SP + 50";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5431){dispbottom "Adds 1% chance STR + 3 for 10 seconds when dealing physical/magical damage.";}
+	if(@id==5341){dispbottom "Reduces damage from Demihuman monster by 5%.";
+			dispbottom "Recover +50 HP when defeating a monster with a magical attack.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5373){dispbottom "DEX + 3, MDEF + 1";}
+	if(@id==5340){dispbottom "Reduces damage from Demihuman monster by 5%.";
+			dispbottom "Add a chance of auto casting Level 10 'Angelus' on the user when the user receives Physical Damage.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5258){dispbottom "Add a 30% chance of auto casting 'First Aid' on the user when the user receives Physical Damage.";
+			dispbottom "Increase resistance to 'Neutral' Property attacks by 1%.";}
+	if(@id==5364){dispbottom "STR + 1, INT + 1, AGI + 2";}
+	if(@id==5304){dispbottom "Protect its user from 'Blind'.";
+			dispbottom "Add a 7% resistance against 'Curse' status.";}
+	if(@id==5480){dispbottom "ALL STATUS + 2, Adds resistance to ALL elements by 5%.";
+			dispbottom "Recovery 2% HP per 10 seconds, Recovery 1% SP per 10 seconds.";}
+	if(@id==5380){dispbottom "When dealing physical damage there is a small chance to cast Level 1 'Frost Weapon'.";}
+	if(@id==5361){dispbottom "ATK + 5";
+			dispbottom "[Rogue Class]";
+			dispbottom "Enables use of Level 1 'Gangster's Paradise'.";}
+	if(@id==5377){dispbottom "Decreases damage from Demi Human monster by 2%.";}
+	if(@id==5444){dispbottom "CRIT + 6";}
+	if(@id==5363){dispbottom "Increases 10% resistance from Boss monster when the user receives physical attack.";
+			dispbottom "Reduced 10% resistance from Demihuman monster when the user receives physical attack. ";}
+	if(@id==5367){dispbottom "Add a 10% resistance against Demon monster.";
+			dispbottom "MDEF + 3. Impossible to refine this item.";}
+	if(@id==5360){dispbottom "Increases critical attack damage by 10%.";
+			dispbottom "Adds 5% chance magical defense ignored for 5 seconds when dealing magical damage.";
+			dispbottom "FLEE + 10";}
+	if(@id==5383){dispbottom "Increases damage inflicted on Brute monster by 10%.";
+			dispbottom "Increases physical attack against Demi human monster by 5%.";
+			dispbottom "LUK + 1";}
+	if(@id==5396){dispbottom "DEX + 3, VIT + 1";}
+	if(@id==5371){dispbottom "LUK + 1, SP + 30";}
+	if(@id==5291){dispbottom "Add a 3% chance of auto casting Level 2 'Deluge' on the user when attacking.";
+			dispbottom "Add a 3% chance of auto casting Level 3 'Water Ball' on the enemy when attacking.";}
+	if(@id==5372){dispbottom "INT + 1. MATK + 3%. Maximum SP + 3%. MDEF + 3";
+			dispbottom "Reduces after-cast skill delay by 3%.";}
+	if(@id==5324){dispbottom "DEX + 3";
+			dispbottom "Add a chance of auto casting Level 3 'Grand Cross' on the user when the user receives Physical Damage.";}
+	if(@id==5366){dispbottom "ALL STATUS + 5.";}
+	if(@id==5173){dispbottom "[TaeKwon Class]";
+			dispbottom "AGI + 1, HP Recovery + 3%";}
+	if(@id==5389){dispbottom "HIT + 15, STR + 2";}
+	if(@id==5365){dispbottom "Enables use of Level 1 'Flasher'.";
+			dispbottom "Adds 5% resistance to the 'Stun'.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5211){dispbottom "MDEF + 7, STR + 1, INT + 1";
+			dispbottom "Increases ATK, MATK 2%, effectiveness of Heal skill 5%.";
+			dispbottom "Additional ATK, MATK 1% effectiveness of Heal skill 1%, when upgraded lv 7 or more.";}
+	if(@id==5442){dispbottom "VIT + 1, HIT - 5, Increases SP Consumption by 5%.";
+			dispbottom "[+ Blush]";
+			dispbottom "ASPD + 3%, increases cast time by 3%.";}
+	if(@id==5387){dispbottom "MDEF + 5";}
+	if(@id==5362){dispbottom "Increase MATK by 1%.";}
+	if(@id==5483){dispbottom "Decreased damage from Boss monster by 2%.";}
+	if(@id==5375){dispbottom "STR + 2";
+			dispbottom "Add a 3% chance of auto casting Level 3 'Weapon Perfection' on the user when receives Physical Damage.";}
+	if(@id==5370){dispbottom "INT + 1";}
+	if(@id==5285){dispbottom "AGI + 2";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5532){dispbottom "Reflect 1% of all Physical Damage back to the enemy which inflicted it.";}
+	if(@id==5271){dispbottom "MDEF + 3";
+			dispbottom "Depends on its Upgrade Level, damage from Boss monsters reduces.";}
+	if(@id==5415){dispbottom "MDEF, CRI, FLEE, Perfect Dodge + 5";
+			dispbottom "ASPD + 5%. Reduces Cast Time by 5%.";
+			dispbottom "Skill Delay reduced by 5%.";}
+	if(@id==5255){dispbottom "LUK + 3";
+			dispbottom "Add a 2% chance of auto casting 'Greed' around the user when attacking.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5409){dispbottom "INT + 2 , VIT + 2 , SP + 50";}
+	if(@id==5520){dispbottom "ATK + 4%, MATK + 4%.";}
+	if(@id==5213){dispbottom "AGI + 2, MDEF + 3";}
+	if(@id==5293){dispbottom "DEX + 4";
+			dispbottom "Chance of auto casting Level 1 'Concentration' on the enemy when attacking.";}
+	if(@id==5208){dispbottom "5% chance to absorb 8% HP on Physical attack.";
+			dispbottom "1% chance to absorb 4% SP on Physical attack.";
+			dispbottom "You lose 10 HP per 5 seconds when equipped.";}
+	if(@id==5381){dispbottom "Increases damage against Dark element monsters by 3%.";
+			dispbottom "Reduces damage received from Dark element monsters by 3%.";
+			dispbottom "Impossible to refine this item. MDEF + 2.";}
+	if(@id==5355){dispbottom "When use magic, Reduce Casting Time by 5%.";}
+	if(@id==5508){dispbottom "STR + 1, AGI + 2, MDEF + 1.";
+			dispbottom "Increase damage on 'Water' Property enemies by 5%.";
+			dispbottom "Resistance against 'Water' Property by 10%.";}
+	if(@id==5359){dispbottom "Increase physical ranged attack power by 3%.";}
+	if(@id==5203){dispbottom "Increases Movement Speed by 5% when equipped.";}
+	if(@id==5388){dispbottom "Enables use of Level 5 'Double Attack'.";}
+	if(@id==5212){dispbottom "Maximum HP + 50, Maximum SP + 10";
+			dispbottom "Enables use of Level 1 'Ruwach'.";}
+	if(@id==5354){dispbottom "When use magic, Reduce Casting Time by 5%.";}
+	if(@id==5342){dispbottom "Reduces damage from Demihuman monster by 5%.";
+			dispbottom "When physically attacking there is a chance that for 10 seconds you'll receive ATK +50.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5257){dispbottom "MDEF + 2";
+			dispbottom "Add a 1% chance of auto casting ^008800Level 1 Assumptio^000000 on the user when the user receives Physical Damage.";}
+	if(@id==5457){dispbottom "ATK, MATK + 5.";
+			dispbottom "If upgrade is to 5 or higher, ATK and MATK are increaded by 1 according to the upgrade level.";}
+	if(@id==5287){dispbottom "VIT + 1";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5343){dispbottom "Reduces damage from Demihuman monster by 5%.";
+			dispbottom "Increases the effectiveness HP using potion pitcher by 10%.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5395){dispbottom "Each refine increases your HP.";
+			dispbottom "Max HP + 100, LUK + 3";}
+	if(@id==5384){dispbottom "ALL STATUS + 1";
+			dispbottom "Enables use of Level 1 'Estimation'.";
+			dispbottom "Add chance of auto casting Level 1 'Increase Agility' when attacking.";}
+	if(@id==5289){dispbottom "Add a 1% chance of auto casting Level 1 all 4 types of bolts on the enemy when attacking.";
+			dispbottom "MDEF + 5";
+			dispbottom "Impossible to refine this item. Indestructible.";}
+	if(@id==5344){dispbottom "Reduces damage from Demihuman monster by 5%.";
+			dispbottom "When physically attacking there is a chance that for 30 seconds you'll gain ASPD +5%.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5188){dispbottom "INT + 1, DEX + 1";}
+	if(@id==5345){dispbottom "Reduces damage from Demihuman monster by 5%.";
+			dispbottom "Increases physical and magical damage to the undead monster by 5%.";
+			dispbottom "Impossible to refine this item.";}
+	if(@id==5294){dispbottom "AGI + 3, Increase damage from 'Ghost' Property attacks by 10%.";}
+	if(@id==5206){dispbottom "Reduces damage from Plant monster by 3%.";}
+	if(@id==5385){dispbottom "Enables use of Level 1 'Hiding'.";}
+	if(@id==5526){dispbottom "AGI + 2, FLEE + 3, Decreases damage inflicted on 'Wind' Property by 5%.";
+			dispbottom "Every time you kill a monster, small chance to drop Banana.";}
+	if(@id==5153){dispbottom "Flee Rate + 5";
+			dispbottom "[+ Angel's Dress]";
+			dispbottom "INT + 2, LUK + 6, Flee Rate + 5";}
+	if(@id==5020){dispbottom "MDEF + 3";}
+	if(@id==5132){dispbottom "Reduce damage taken from DemiHuman monster by 10%.";}
+	if(getiteminfo(@id,5)==1) dispbottom "Equipped on : Lower";
+	if(getiteminfo(@id,5)==256) dispbottom "Equipped on : Upper";
+	if(getiteminfo(@id,5)==512) dispbottom "Equipped on : Mid";
+	if(getiteminfo(@id,5)==513) dispbottom "Equipped on : Mid,Lower";
+	if(getiteminfo(@id,5)==768) dispbottom "Equipped on : Upper,Mid";
+	if(getiteminfo(@id,5)==769) dispbottom "Equipped on : Upper,Mid,Lower";
+	dispbottom "Weight : "+getiteminfo(@id,6)/10;
+	dispbottom "DEF : "+getiteminfo(@id,8);
+	dispbottom "Slot : "+getiteminfo(@id,10);
+	dispbottom "Required Level : "+getiteminfo(@id,12);
+	return;}
+	
+	//=======================================================================
+	// Function : make hat // Функция : создание шапок
+	//=======================================================================
+
+function	script	hatmake	{
+if(@id==5253){
+	if(countitem(1034)<300 || countitem(7445)<30 || countitem(5141)<10 || countitem(979)<1) goto no_item;
+	delitem 1034,300;
+	delitem 7445,30;
+	delitem 5141,10;
+	delitem 979,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; 
+	return;}
+if(@id==5086){
+	if(countitem(2288)<1 || countitem(1095)<3000) goto no_item; 
+		delitem 2288,1;
+		delitem 1095,3000;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5137){
+	alice_make:
+	if(countitem(5141)<5 || countitem(7047)<100 || countitem(661)<5) goto no_item;
+		delitem 5141,5;
+		delitem 7047,100;
+		delitem 661,5;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5074){
+	if(countitem(2286)<1 || countitem(2254)<1 || Zeny < 20000) goto no_item;
+		delitem 2286,1;
+		delitem 2254,1;
+		set zeny,zeny-20000;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5270){
+	if(countitem(7198)<200 || countitem(7097)<40) goto no_item; 
+		delitem 7198,200;
+		delitem 7097,40;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5174){
+	if(countitem(7445)<7 || countitem(7446)<7 || countitem(7447)<7 || countitem(7448)<7 || countitem(954)<300 || countitem(975)<1 || countitem(733)<5 || countitem(7166)<50) goto no_item;
+		delitem 7445,7;
+		delitem 7446,7;
+		delitem 7447,7;
+		delitem 7448,7;
+		delitem 945,300;
+		delitem 975,1;
+		delitem 733,5;
+		delitem 7166,50;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==2237){
+	if(countitem(1020)<100 || countitem(983)<1 || countitem(2241)<1) goto no_item; 
+		delitem 1020,100;
+		delitem 983,1;
+		delitem 2241,1;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5147){
+	if(countitem(2227)<1 || countitem(978)<1 || countitem(1057)<100) goto no_item; 
+		delitem 2227,1;
+		delitem 978,1;
+		delitem 1057,100;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5076){
+	if(countitem(2226)<1 || countitem(7038)<500) goto no_item; 
+		delitem 2226,1;
+		delitem 7038,500;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5057){
+	if(countitem(2213)<1 || countitem(983)<1 || countitem(914)<200 || Zeny <10000) goto no_item; 
+		delitem 2213,1;
+		delitem 983,1;
+		delitem 914,200;
+		set zeny,zeny-10000;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5102){
+	if(countitem(7263)<2 || countitem(2276)<1 || countitem(2239)<2 || countitem(568)<150) goto no_item;
+		delitem 7263,2;
+		delitem 2276,1;
+		delitem 2239,1;
+		delitem 568,150;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5065){
+	if(countitem(624)<1 || countitem(959)<300 || countitem(544)<50 || countitem(1023)<1) goto no_item;
+		delitem 624,1;
+		delitem 959,300;
+		delitem 544,50;
+		delitem 1023,1;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5016){
+	if(countitem(1030)<10) goto no_item; 
+		delitem 1030,10;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5169){
+	if(countitem(706)<1 || countitem(1019)<500 || countitem(7200)<10 || countitem(1049)<20 || countitem(7165)<500 || countitem(1054)<2 || countitem(1024)<100) goto no_item;
+		delitem 706,1;
+		delitem 1019,500;
+		delitem 7200,10;
+		delitem 1049,20;
+		delitem 7165,500;
+		delitem 1054,2;
+		delitem 1024,100;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==2214){
+	if(countitem(7441)<100 || countitem(706)<1 || countitem(722)<1 || countitem(2213)<1) goto no_item;
+		delitem 949,100;
+		delitem 706,1;
+		delitem 722,1;
+		delitem 2213,1;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5184){
+	if(countitem(5120)<5 || countitem(995)<50 || countitem(983)<1 || countitem(720)<50) goto no_item;	
+		delitem 5120,5;
+		delitem 995,50;
+		delitem 983,1;
+		delitem 720,50;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5214){
+	if(countitem(976)<1 || countitem(1060)<300 || countitem(1022)<100 || countitem(5008)<5) goto no_item; 
+		delitem 976,1;
+		delitem 1060,300;
+		delitem 1022,100;
+		delitem 5008,5;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5243){
+	if(countitem(975)<1 || countitem(976)<1 || countitem(914)<100 || countitem(7441)<150 || countitem(7065)<25 || countitem(2283)<1) goto no_item; 
+		delitem 975,1;
+		delitem 976,1;
+		delitem 914,100;
+		delitem 949,150;
+		delitem 7065,25;
+		delitem 2283,1;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5260){
+	if(countitem(4293)<1 || countitem(538)<100 || countitem(530)<100 || countitem(529)<50) goto no_item; 
+		delitem 4293,1;
+		delitem 538,100;
+		delitem 530,100;
+		delitem 529,50;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5200){
+	if(countitem(5016)<1 || countitem(981)<1 || countitem(7317)<20) goto no_item;
+		delitem 5016,1;
+		delitem 981,1;
+		delitem 7317,20;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5075){
+	if(countitem(2248)<1 || countitem(7030)<108 || countitem(7194)<108 || countitem(7120)<4) goto no_item; 
+	delitem 2248,1;
+	delitem 7030,108;
+	delitem 7194,108;
+	delitem 7120,4;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5048){
+	if(countitem(5041)<1 || countitem(999)<10) goto no_item;
+	delitem 5041,1;
+	delitem 999,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5142){
+	if(countitem(5017)<1 || countitem(2229)<1 || countitem(5014)<1 || countitem(7209)<100 || countitem(7123)<100 || countitem(1036)<100 || countitem(979)<1) goto no_item; 
+	delitem 5017,1;
+	delitem 2229,1;
+	delitem 5014,1;
+	delitem 7209,100;
+	delitem 7123,100;
+	delitem 1036,100;
+	delitem 979,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5080){
+	if(countitem(10006)<1 || countitem(714)<1 || countitem(969)<3) goto no_item;
+	delitem 10006,1;
+	delitem 714,1;
+	delitem 969,3;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5081){
+	if(countitem(2249)<1 || countitem(714)<1 || countitem(969)<3 || Zeny <40000) goto no_item; 
+		delitem 2249,1;
+		delitem 714,1;
+		delitem 969,3;
+		set zeny,zeny-40000;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5107){
+	if(countitem(519)<50 || countitem(7031)<50 || countitem(548)<50 || countitem(7205)<50) goto no_item;
+	delitem 519,50;
+	delitem 7031,50;
+	delitem 548,50;
+	delitem 7205,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5186){
+	if(countitem(1032)<100 || countitem(7100)<100 || countitem(905)<250) goto no_item; 
+	delitem 1032,100;
+	delitem 7100,100;
+	delitem 905,250;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5091){
+	if(countitem(10016)<1 || countitem(714)<1 || countitem(969)<3 || Zeny <20000) goto no_item;
+	delitem 10016,1;
+	delitem 714,1;
+	delitem 969,3;
+	set zeny,zeny-20000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5082){
+	if(countitem(921)<300) goto no_item; 
+	delitem 921,300;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5254){
+	if(countitem(5132)<1 || countitem(5068)<1 || countitem(2255)<1 || countitem(7023)<5 || countitem(983)<1) goto no_item;
+	delitem 5132,1;
+	delitem 5068,1;
+	delitem 2255,1;
+	delitem 7023,5;
+	delitem 983,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5198){
+	if(countitem(5058)<1 || countitem(2214)<1 || countitem(7441)<500 || countitem(914)<200 || countitem(622)<50) goto no_item;
+	delitem 5058,1;
+	delitem 2214,1;
+	delitem 7441,500;
+	delitem 914,200;
+	delitem 622,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5058){
+	if(countitem(2233)<1 || countitem(983)<1 || countitem(7206)<300 || countitem(7030)<1) goto no_item; 
+	delitem 2233,1;
+	delitem 983,1;
+	delitem 7206,300;
+	delitem 7030,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5252){
+if(countitem(5058)<1 || countitem(1022)<250 || countitem(7267)<100) goto no_item;
+	delitem 5058,1;
+	delitem 1022,250;
+	delitem 7267,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==2283){
+if(countitem(724)<1 || countitem(5001)<1 || countitem(949)<200) goto no_item; 
+	delitem 724,1;
+	delitem 5001,1;
+	delitem 949,200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5259){
+if(countitem(978)<1 || countitem(7561)<100 || countitem(949)<500 || countitem(1026)<200) goto no_item; 
+	delitem 978,1;
+	delitem 7561,100;
+	delitem 949,500;
+	delitem 1026,200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5068){
+if(countitem(2255)<1 || countitem(2286)<1 || Zeny <20000) goto no_item; 
+	delitem 2255,1;
+	delitem 2286,1;
+	set zeny,zeny-20000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5170){
+if(countitem(5172)<1 || countitem(7063)<100 || countitem(982)<1) goto no_item;
+	delitem 5172,1;
+	delitem 7063,100;
+	delitem 982,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5061){
+if(countitem(2269)<1 || countitem(999)<10 || Zeny <20000) goto no_item;
+	delitem 2269,1;
+	delitem 999,10;
+	set zeny,zeny-20000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5210){
+if(countitem(2254)<10 || countitem(7063)<50 || countitem(7168)<200 || countitem(7038)<200) goto no_item; 
+	delitem 2254,10;
+	delitem 7063,50;
+	delitem 7168,200;
+	delitem 7038,200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5056){
+if(countitem(5079)<1 || countitem(578)<100) goto no_item; 
+	delitem 5079,1;
+	delitem 578,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5144){
+if(countitem(2214)<1 || countitem(2221)<1 || countitem(7567)<25 || countitem(1001)<200) goto no_item;
+	delitem 2214,1;
+	delitem 2221,1;
+	delitem 7567,25;
+	delitem 1001,200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5063){
+if(countitem(970)<1 || countitem(930)<500) goto no_item;
+	delitem 970,1;
+	delitem 930,500;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5179){
+	if(countitem(2234)<1 || countitem(969)<3 || countitem(2610)<4 || countitem(13106)<2) goto no_item;
+	delitem 2234,1;
+	delitem 969,3;
+	delitem 2610,4;
+	delitem 13106,2;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5176){
+if(countitem(706)<1 || countitem(1019)<500 || countitem(7200)<10 || countitem(7015)<20 || countitem(2267)<1 || countitem(952)<100 || countitem(1028)<100) goto no_item; 
+	delitem 706,1;
+	delitem 1019,500;
+	delitem 7200,10;
+	delitem 7015,20;
+	delitem 2267,1;
+	delitem 952,100;
+	delitem 1028,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5001){
+if(countitem(999)<40 || countitem(948)<1 || countitem(970)<1 || countitem(1003)<1) goto no_item; 
+	delitem 999,40;
+	delitem 948,1;
+	delitem 970,1;
+	delitem 1003,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5031){
+if(countitem(7013)<1200) goto no_item; 
+	delitem 7013,1200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5181){
+if(countitem(7511)<100 || countitem(7340)<200 || countitem(7023)<10) goto no_item; 
+	delitem 7511,100;
+	delitem 7340,200;
+	delitem 7023,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5094){
+if(countitem(968)<100 || countitem(2299)<1 || countitem(1124)<1 || countitem(931)<1000) goto no_item; 
+	delitem 968,100;
+	delitem 2299,1;
+	delitem 1124,1;
+	delitem 931,1000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5070){
+if(countitem(7216)<300 || countitem(7097)<300 || countitem(2211)<1 || countitem(982)<1) goto no_item; 
+	delitem 7216,300;
+	delitem 7097,300;
+	delitem 2211,1;
+	delitem 982,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5071){
+if(countitem(5010)<1 || countitem(5049)<1 || countitem(7101)<10 || Zeny <10000) goto no_item; 
+	delitem 5010,1;
+	delitem 5049,1;
+	delitem 7101,10;
+	set zeny,zeny-10000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5143){
+if(countitem(5090)<1 || countitem(1020)<300 || countitem(975)<1 || countitem(982)<1) goto no_item; 
+	delitem 5090,1;
+	delitem 1020,300;
+	delitem 975,1;
+	delitem 982,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5140){
+if(countitem(5085)<1 || countitem(2244)<1 || countitem(5191)<1 || countitem(7166)<50) goto no_item;
+	delitem 5085,1;
+	delitem 2244,1;
+	delitem 5191,1;
+	delitem 7166,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5069){
+if(countitem(1022)<999) goto no_item;
+	delitem 1022,999;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5084){
+if(countitem(1026)<1000 || countitem(7065)<100 || countitem(945)<10 || countitem(7030)<1) goto no_item;
+	delitem 1026,1000;
+	delitem 7065,100;
+	delitem 945,10;
+	delitem 7030,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5130){
+if(countitem(1048)<100 || countitem(7564)<150 || countitem(517)<30) goto no_item; 
+	delitem 1048,100;
+	delitem 7564,150;
+	delitem 517,30;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5139){
+if(countitem(5085)<1 || countitem(710)<5 || countitem(7510)<1 || countitem(975)<1) goto no_item;
+	delitem 5085,1;
+	delitem 710,5;
+	delitem 7510,1;
+	delitem 975,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5177){
+if(countitem(706)<1 || countitem(1019)<500 || countitem(7200)<10 || countitem(1049)<500 || countitem(1053)<2 || countitem(980)<1) goto no_item;
+	delitem 706,1;
+	delitem 1019,500;
+	delitem 7200,10;
+	delitem 1049,500;
+	delitem 1053,2;
+	delitem 980,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5027){
+if(countitem(2252)<1 || countitem(1036)<400 || countitem(7001)<50 || countitem(4052)<1) goto no_item;
+	delitem 2252,1;
+	delitem 1036,400;
+	delitem 7001,50;
+	delitem 4052,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5138){
+if(countitem(5123)<1 || countitem(5027)<1 || countitem(7337)<50 || countitem(981)<1) goto no_item;
+	delitem 5123,1;
+	delitem 5027,1;
+	delitem 7337,50;
+	delitem 918,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5045){
+if(countitem(2252)<1 || countitem(1054)<450 || countitem(943)<1200) goto no_item;
+	delitem 2252,1;
+	delitem 1054,450;
+	delitem 943,1200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5187){
+if(countitem(5085)<1 || countitem(5091)<1 || countitem(5117)<2 || countitem(978)<1 || countitem(975)<1) goto no_item;
+	delitem 5085,1;
+	delitem 5091,1;
+	delitem 5117,2;
+	delitem 978,1;
+	delitem 975,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5073){
+if(countitem(2285)<1 || countitem(1550)<1) goto no_item; 
+	delitem 2285,1;
+	delitem 1550,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==2278){
+if(countitem(705)<10 || countitem(909)<10 || countitem(914)<10) goto no_item; 
+	delitem 705,10;
+	delitem 909,10;
+	delitem 914,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5183){
+if(countitem(604)<100 || countitem(916)<100 || countitem(7115)<100) goto no_item;
+	delitem 604,100;
+	delitem 916,100;
+	delitem 7115,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5151){
+if(countitem(5001)<1 || countitem(978)<1 || countitem(991)<200) goto no_item; 
+	delitem 5001,1;
+	delitem 978,1;
+	delitem 991,200;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==2281){
+if(countitem(998)<20 || countitem(707)<1 || Zeny <5000) goto no_item;
+	delitem 998,20;
+	delitem 707,1;
+	set zeny,zeny-5000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5109){
+if(countitem(10015)<1 || countitem(10007)<1 || countitem(5032)<1 || countitem(975)<1 || Zeny <50000) goto no_item;
+	delitem 10015,1;
+	delitem 10007,1;
+	delitem 5023,1;
+	delitem 975,1;
+	set zeny,zeny-50000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5195){
+if(countitem(2244)<1 || countitem(2209)<1 || countitem(10007)<1) goto no_item;
+	delitem 2244,1;
+	delitem 2209,1;
+	delitem 10007,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5108){
+if(countitem(10015)<1 || countitem(10007)<1 || countitem(5032)<1 || countitem(975)<1 || Zeny <50000) goto no_item;
+	delitem 10015,1;
+	delitem 10007,1;
+	delitem 5023,1;
+	delitem 975,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5078){
+if(countitem(5033)<1 || countitem(5064)<1) goto no_item;
+	delitem 5033,1;
+	delitem 5064,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5064){
+if(countitem(945)<600 || countitem(7030)<1) goto no_item;
+	delitem 945,600;
+	delitem 7030,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5067){
+if(countitem(5062)<1 || countitem(952)<50 || countitem(1907)<1) goto no_item;
+	delitem 5062,1;
+	delitem 952,50;
+	delitem 1907,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5062){
+if(countitem(2280)<1 || countitem(7197)<300 || countitem(7150)<300) goto no_item;
+	delitem 2280,1;
+	delitem 7197,300;
+	delitem 7150,300;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5032){
+if(countitem(1059)<250 || countitem(2221)<1 || countitem(2227)<1 || countitem(7063)<600) goto no_item; 
+	delitem 1059,250;
+	delitem 2221,1;
+	delitem 2227,1;
+	delitem 7063,600;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5059){
+if(countitem(5030)<1 || countitem(7213)<100 || countitem(7217)<100 || countitem(7161)<300) goto no_item; 
+	delitem 5030,1;
+	delitem 7213,100;
+	delitem 7217,100;
+	delitem 7161,300;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5077){
+if(countitem(2278)<1 || countitem(975)<1) goto no_item;
+	delitem 2278,1;
+	delitem 975,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5171){
+if(countitem(4219)<1 || countitem(4114)<1 || countitem(4177)<1 || countitem(4259)<1 || countitem(4212)<1 || countitem(4073)<1 || countitem(4112)<1 || countitem(4081)<1 || countitem(4251)<1 || countitem(4166)<1 || countitem(7563)<1000 || countitem(7511)<1000 || Zeny <10000000) goto no_item;
+	delitem 4219,1;
+	delitem 4114,1;
+	delitem 4177,1;
+	delitem 4259,1;
+	delitem 4212,1;
+	delitem 4073,1;
+	delitem 4112,1;
+	delitem 4081,1;
+	delitem 4251,1;
+	delitem 4166,1;
+	delitem 7511,1000;
+	delitem 7563,1000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5256){
+if(countitem(7510)<1 || countitem(2210)<1 || countitem(7063)<100) goto no_item; 
+	delitem 7510,1;
+	delitem 2210,1;
+	delitem 7063,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5079){
+if(countitem(2294)<1 || countitem(7220)<400) goto no_item;
+	delitem 2294,1;
+	delitem 7220,400;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5013){
+if(countitem(754) < 1 || countitem(753) < 1 || countitem(752) < 1 || countitem(751) < 1 || countitem(750) < 1
+			|| countitem(743) < 1 || countitem(742) < 1 || countitem(741) < 1 || countitem(2613) < 1
+			|| countitem(5053) < 1 || countitem(7020) < 1 || countitem(7036) < 1 || countitem(2268) < 1
+			|| countitem(734) < 1 || countitem(923) < 1 || countitem(968) < 1 || countitem(7005) < 1
+			|| countitem(714) < 3 || Zeny < 5000000) goto no_item;
+		delitem 754,1;
+		delitem 753,1;
+		delitem 752,1;
+		delitem 751,1;
+		delitem 750,1;
+		delitem 743,1;
+		delitem 742,1;
+		delitem 741,1;
+		delitem 2613,1;
+		delitem 5053,1;
+		delitem 7020,1;
+		delitem 7036,1;
+		delitem 2268,1;
+		delitem 734,1;
+		delitem 923,1;
+		delitem 968,1;
+		delitem 7005,1;
+		delitem 714,3;
+		set Zeny,Zeny-5000000;
+		getitem @id,1;
+		atcommand "@effect 348 22"; return;}
+if(@id==5283){
+if(countitem(925)<50 || countitem(916)<100 || countitem(7063)<10) goto no_item;
+	delitem 925,50;
+	delitem 916,100;
+	delitem 7063,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5258){
+if(countitem(10005)<5 || countitem(1021)<200 || countitem(980)<1) goto no_item;
+	delitem 10005,5;
+	delitem 1021,200;
+	delitem 980,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5211){
+if(countitem(7063)<500 || countitem(10007)<20 || countitem(5140)<1 || countitem(5045)<1) goto no_item;
+	delitem 7063,500;
+	delitem 10007,20;
+	delitem 5140,1;
+	delitem 5045,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5271){
+if(countitem(975)<10 || countitem(978)<10 || countitem(7301)<500 || countitem(7754)<1 || countitem(7441)<50 || countitem(7440)<50) goto no_item;
+	delitem 975,10;
+	delitem 978,10;
+	delitem 7301,500;
+	delitem 7754,1;
+	delitem 7441,50;
+	delitem 7440,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5213){
+if(countitem(949)<300 || countitem(722)<50 || countitem(983)<1 || countitem(2213)<1) goto no_item;
+	delitem 949,300;
+	delitem 722,50;
+	delitem 983,1;
+	delitem 2213,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5208){
+if(countitem(7449)<500 || countitem(7015)<100 || countitem(738)<10) goto no_item;
+	delitem 7449,500;
+	delitem 7015,100;
+	delitem 738,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5257){
+if(countitem(7064)<500 || countitem(2282)<3 || countitem(7435)<50 || countitem(1060)<50) goto no_item;
+	delitem 7064,500;
+	delitem 2282,3;
+	delitem 7435,50;
+	delitem 1060,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5188){
+if(countitem(979)<5 || countitem(976)<5 || countitem(7063)<750) goto no_item;
+	delitem 979,5;
+	delitem 976,5;
+	delitem 7063,750;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5206){
+if(countitem(906)<500 || countitem(982)<5 || countitem(2269)<1) goto no_item;
+	delitem 906,500;
+	delitem 982,5;
+	delitem 2269,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5153){
+if(countitem(5125)<1 || countitem(7063)<500 || countitem(975)<1) goto no_item;
+	delitem 5125,1;
+	delitem 7063,500;
+	delitem 975,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5020){
+if(countitem(975)<10 || countitem(976)<10 || countitem(7047)<50 || countitem(661)<1) goto no_item;
+	delitem 975,10;
+	delitem 976,10;
+	delitem 7047,50;
+	delitem 661,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5132){
+if(countitem(714)<10 || countitem(5035)<1 || countitem(7510)<1 || countitem(5074)<1) goto no_item;
+	delitem 714,10;
+	delitem 5035,1;
+	delitem 7510,1;
+	delitem 5074,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5428){
+if(countitem(7111)<750 || countitem(983)<1 || countitem(7510)<1 || zeny<1000000) goto no_item;
+	delitem 7111,750;
+	delitem 5035,1;
+	delitem 983,1;
+	set zeny,zeny-1000000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5333){
+if(countitem(4278)<1 || countitem(2221)<1 || countitem(692)<100 || countitem(1972)<1) goto no_item;
+	delitem 4278,1;
+	delitem 2221,1;
+	delitem 692,100;
+	delitem 1972,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5379){
+if(countitem(2229)<1 || countitem(7322)<100 || zeny<100000) goto no_item;
+	delitem 2229,1;
+	delitem 7322,100;
+	set zeny,zeny-100000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5374){
+if(countitem(7108)<3 || countitem(7754)<3 || countitem(750)<1 || countitem(969)<20 || countitem(7510)<10) goto no_item;
+	delitem 7108,3;
+	delitem 7754,3;
+	delitem 750,1;
+	delitem 969,20;
+	delitem 7510,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5436){
+if(countitem(2221)<1 || countitem(2207)<1 || zeny<500000) goto no_item;
+	delitem 2221,1;
+	delitem 2207,1;
+	set zeny,zeny-500000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5378){
+if(countitem(5198)<2 || countitem(5001)<1 || countitem(7063)<200 || countitem(982)<1 || countitem(969)<20) goto no_item;
+	delitem 5198,2;
+	delitem 5001,1;
+	delitem 7063,200;
+	delitem 982,1;
+	delitem 969,20;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5446){
+if(countitem(2607)<1 || countitem(983)<3 || countitem(7206)<50) goto no_item;
+	delitem 2607,1;
+	delitem 983,3;
+	delitem 7206,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5443){
+if(countitem(2282)<1 || countitem(7105)<250 || countitem(7104)<250 || countitem(969)<10) goto no_item;
+	delitem 2282,1;
+	delitem 7105,250;
+	delitem 7104,250;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5431){
+if(countitem(5283)<1 || countitem(975)<3 || countitem(7063)<100 || zeny<500000) goto no_item;
+	delitem 5283,1;
+	delitem 975,3;
+	delitem 7063,100;
+	set zeny,zeny-500000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5341 || @id==5340 || @id==5342 || @id==5344 || @id==5344 || @id==5345){
+if(countitem(5324)<1 || countitem(969)<20 || countitem(7047)<100) goto no_item;
+	delitem 5324,1;
+	delitem 969,20;
+	delitem 7047,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5373){
+if(countitem(7511)<500 || countitem(12020)<500 || countitem(7023)<5) goto no_item;
+	delitem 7511,500;
+	delitem 12020,500;
+	delitem 7023,5;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5364){
+if(countitem(5012)<1 || countitem(923)<300 || countitem(936)<300 || countitem(926)<300 || countitem(7169)<300 || zeny<3000000) goto no_item;
+	delitem 5012,1;
+	delitem 923,300;
+	delitem 936,300;
+	delitem 926,300;
+	delitem 7169,30;
+	set zeny,zeny-3000000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5304){
+if(countitem(7024)<10 || countitem(7017)<10 || countitem(1004)<10 || countitem(969)<10) goto no_item;
+	delitem 7024,10;
+	delitem 7017,10;
+	delitem 1004,10;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5480){
+if(countitem(7113)<10 || countitem(7063)<500 || countitem(12119)<100 || countitem(12120)<100 || countitem(12118)<100 || countitem(12121)<100) goto no_item;
+	delitem 7113,10;
+	delitem 7063,500;
+	delitem 12119,100;
+	delitem 12120,100;
+	delitem 12118,100;
+	delitem 12121,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5380){
+if(countitem(1023)<750 || countitem(544)<5 || countitem(995)<150 || countitem(7066)<150 || countitem(938)<150) goto no_item;
+	delitem 1023,750;
+	delitem 544,5;
+	delitem 995,150;
+	delitem 7066,150;
+	delitem 938,150;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5361){
+if(countitem(2265)<5 || countitem(7157)<100 || countitem(7216)<300 || zeny<50000) goto no_item;
+	delitem 2265,5;
+	delitem 7157,100;
+	delitem 7216,300;
+	set zeny,zeny-50000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5377){
+if(countitem(2268)<1 || countitem(2268)<1 || countitem(969)<150 || countitem(7323)<500 || countitem(5016)<1) goto no_item;
+	delitem 2268,1;
+	delitem 969,150;
+	delitem 7323,500;
+	delitem 5016,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5444){
+if(countitem(7041)<500 || countitem(969)<20 || countitem(951)<500) goto no_item;
+	delitem 7041,500;
+	delitem 969,20;
+	delitem 951,500;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5363){
+if(countitem(5053)<1 || countitem(7209)<200 || countitem(983)<20 || countitem(1415)<1 || countitem(1009)<5) goto no_item;
+	delitem 5053,1;
+	delitem 7209,200;
+	delitem 983,20;
+	delitem 1415,1;
+	delitem 1009,5;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5367){
+if(countitem(2264)<1 || countitem(5046)<1 || countitem(7277)<1 || zeny<50000) goto no_item;
+	delitem 2264,1;
+	delitem 5046,1;
+	delitem 7277,1;
+	set zeny,zeny-50000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5360){
+if(countitem(5057)<1 || countitem(2213)<1 || countitem(7206)<300 || countitem(983)<25) goto no_item;
+	delitem 5057,1;
+	delitem 2213,1;
+	delitem 7206,300;
+	delitem 983,25;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5383){
+if(countitem(996)<100 || countitem(7301)<100 || countitem(7445)<100 || countitem(511)<100 || zeny<100000) goto no_item;
+	delitem 996,100;
+	delitem 7301,100;
+	delitem 7445,100;
+	delitem 511,100;
+	set zeny,zeny-100000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5396){
+if(countitem(2626)<3 || countitem(975)<3 || countitem(2235)<1 || zeny<100000) goto no_item;
+	delitem 2626,3;
+	delitem 975,3;
+	delitem 2235,1;
+	set zeny,zeny-100000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5371){
+if(countitem(7111)<250 || countitem(983)<5 || zeny<150000) goto no_item;
+	delitem 7111,250;
+	delitem 983,5;
+	set zeny,zeny-150000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5291){
+if(countitem(7323)<250 || countitem(7220)<100 || countitem(717)<100 || countitem(715)<100 || countitem(969)<1) goto no_item;
+	delitem 7323,250;
+	delitem 7220,100;
+	delitem 717,100;
+	delitem 715,100;
+	delitem 969,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5372){
+if(countitem(982)<50 || countitem(509)<500 || countitem(5058)<1 || countitem(969)<20) goto no_item;
+	delitem 982,50;
+	delitem 509,500;
+	delitem 5058,1;
+	delitem 969,20;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5324){
+if(countitem(5125)<1 || countitem(2420)<1 || countitem(2521)<1 || countitem(2116)<1 || countitem(2355)<1 || countitem(7105)<100 || countitem(7104)<100 || countitem(7063)<300) goto no_item;
+	delitem 5125,1;
+	delitem 2420,1;
+	delitem 2521,1;
+	delitem 2116,1;
+	delitem 2355,1;
+	delitem 7105,100;
+	delitem 7104,100;
+	delitem 7063,300;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5366){
+if(countitem(2211)<10 || countitem(980)<10 || countitem(548)<100 || countitem(582)<100 || zeny<500000) goto no_item;
+	delitem 2211,10;
+	delitem 980,10;
+	delitem 548,100;
+	delitem 582,100;
+	set zeny,zeny-500000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5173){
+if(countitem(7445)<7 || countitem(7446)<7 || countitem(7447)<7 || countitem(7448)<7 || countitem(954)<300 || countitem(983)<1 || countitem(2221)<1) goto no_item;
+	delitem 7445,7;
+	delitem 7446,7;
+	delitem 7447,7;
+	delitem 7448,7;
+	delitem 954,300;
+	delitem 983,1;
+	delitem 2221,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5389){
+if(countitem(7157)<250 || countitem(5069)<1 || countitem(702)<10 || countitem(982)<10 || countitem(976)<10) goto no_item;
+	delitem 7157,250;
+	delitem 5069,1;
+	delitem 702,10;
+	delitem 982,10;
+	delitem 976,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5365){
+if(countitem(7031)<250 || countitem(737)<250 || countitem(736)<5 || countitem(12129)<5 || countitem(509)<250) goto no_item;
+	delitem 7031,250;
+	delitem 737,250;
+	delitem 736,5;
+	delitem 12129,5;
+	delitem 509,250;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5442){
+if(countitem(2275)<1 || countitem(991)<100 || countitem(978)<5 || zeny<100000) goto no_item;
+	delitem 2275,1;
+	delitem 991,100;
+	delitem 978,5;
+	set zeny,zeny-100000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5387){
+if(countitem(5020)<1 || countitem(5118)<2 || countitem(969)<10) goto no_item;
+	delitem 5020,1;
+	delitem 5118,2;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5362){
+if(countitem(2359)<1 || countitem(7337)<5 || countitem(5107)<1 || countitem(618)<250) goto no_item;
+	delitem 2359,1;
+	delitem 7337,5;
+	delitem 5107,1;
+	delitem 618,250;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5483){
+if(countitem(7511)<500 || countitem(2202)<1 || countitem(7510)<50 || countitem(969)<20) goto no_item;
+	delitem 7511,500;
+	delitem 2202,1;
+	delitem 7510,50;
+	delitem 969,20;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5375){
+if(countitem(968)<50 || countitem(1043)<500 || countitem(5094)<1 || countitem(714)<15) goto no_item;
+	delitem 968,50;
+	delitem 1043,500;
+	delitem 5094,1;
+	delitem 714,15;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5370){
+if(countitem(629)<10 || countitem(7510)<10 || countitem(710)<10 || countitem(7164)<250) goto no_item;
+	delitem 629,10;
+	delitem 7510,10;
+	delitem 710,10;
+	delitem 7164,250;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5285){
+if(countitem(7448)<10 || countitem(508)<50 || countitem(976)<5 || countitem(1060)<100 || countitem(2234)<1) goto no_item;
+	delitem 7448,10;
+	delitem 508,50;
+	delitem 976,5;
+	delitem 1060,100;
+	delitem 2234,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5532){
+if(countitem(1214)<1 || countitem(1223)<1 || countitem(611)<50 || countitem(969)<10) goto no_item;
+	delitem 1214,1;
+	delitem 1223,1;
+	delitem 611,50;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5415){
+if(countitem(5024)<1 || countitem(5060)<1 || countitem(539)<450 || countitem(558)<10 || countitem(561)<10 || countitem(536)<10 || countitem(969)<20) goto no_item;
+	delitem 5024,1;
+	delitem 5060,1;
+	delitem 539,450;
+	delitem 558,10;
+	delitem 561,10;
+	delitem 536,10;
+	delitem 969,20;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5255){
+if(countitem(938)<500 || countitem(2236)<1 || countitem(531)<50 || countitem(2282)<1 || countitem(969)<10) goto no_item;
+	delitem 938,500;
+	delitem 2236,1;
+	delitem 531,50;
+	delitem 2282,1;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5409){
+if(countitem(5075)<2 || countitem(981)<10 || countitem(617)<50 || countitem(719)<20) goto no_item;
+	delitem 5075,2;
+	delitem 981,10;
+	delitem 617,50;
+	delitem 719,20;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5520){
+if(countitem(5199)<2 || countitem(5001)<1 || countitem(982)<10 || countitem(7063)<500 || countitem(969)<30) goto no_item;
+	delitem 5199,2;
+	delitem 5001,1;
+	delitem 982,10;
+	delitem 7063,500;
+	delitem 969,30;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5293){
+if(countitem(526)<1 || countitem(568)<100 || countitem(578)<100 || countitem(513)<100 || countitem(515)<100 || countitem(518)<100 || countitem(7031)<100) goto no_item;
+	delitem 526,100;
+	delitem 568,100;
+	delitem 578,100;
+	delitem 513,100;
+	delitem 515,100;
+	delitem 518,100;
+	delitem 7031,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5381){
+if(countitem(2236)<1 || countitem(7159)<90 || countitem(7447)<90 || countitem(507)<90 || countitem(969)<10) goto no_item;
+	delitem 2236,1;
+	delitem 7159,90;
+	delitem 7447,90;
+	delitem 507,90;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5355 || @id==5354){
+if(countitem(1041)<100 || countitem(7096)<100 || countitem(1059)<350 || countitem(7112)<100) goto no_item;
+	delitem 1041,100;
+	delitem 7096,100;
+	delitem 1059,350;
+	delitem 7112,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5508){
+if(countitem(951)<300 || countitem(956)<300 || countitem(991)<300 || countitem(995)<300) goto no_item;
+	delitem 951,300;
+	delitem 956,300;
+	delitem 991,300;
+	delitem 995,300;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5359){
+if(countitem(5019)<1 || countitem(975)<15 || countitem(1760)<250 || zeny<500000) goto no_item;
+	delitem 5019,1;
+	delitem 975,15;
+	delitem 1760,250;
+	set zeny,zeny-500000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5203){
+if(countitem(2278)<1 || countitem(1015)<100 || zeny<500000) goto no_item;
+	delitem 2278,1;
+	delitem 1015,100;
+	set zeny,zeny-500000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5388){
+if(countitem(926)<500 || countitem(1048)<500 || zeny<1000000) goto no_item;
+	delitem 926,500;
+	delitem 1048,500;
+	set zeny,zeny-1000000;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5212){
+if(countitem(2213)<1 || countitem(2259)<2 || countitem(2217)<3 || countitem(714)<10 || countitem(969)<10) goto no_item;
+	delitem 2213,1;
+	delitem 2259,2;
+	delitem 2217,3;
+	delitem 714,10;
+	delitem 969,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5457){
+if(countitem(5198)<1 || countitem(975)<25 || countitem(7063)<350 || countitem(969)<20) goto no_item;
+	delitem 5198,1;
+	delitem 975,25;
+	delitem 7063,350;
+	delitem 969,20;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5287){
+if(countitem(2221)<1 || countitem(582)<50 || countitem(1034)<50 || countitem(976)<50 || countitem(7188)<50 || countitem(2209)<5) goto no_item;
+	delitem 2221,1;
+	delitem 582,50;
+	delitem 1034,50;
+	delitem 976,50;
+	delitem 7188,50;
+	delitem 2209,5;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5395){
+if(countitem(5018)<1 || countitem(5032)<1 || countitem(7511)<100 || countitem(983)<10 || countitem(7049)<10) goto no_item;
+	delitem 5018,1;
+	delitem 5032,1;
+	delitem 7511,100;
+	delitem 983,10;
+	delitem 7049,10;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5384){
+if(countitem(5076)<1 || countitem(1059)<100 || countitem(7166)<100 || countitem(7065)<150 || countitem(2294)<1) goto no_item;
+	delitem 5076,1;
+	delitem 1059,100;
+	delitem 7166,100;
+	delitem 7065,150;
+	delitem 2294,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5289){
+if(countitem(938)<350 || countitem(7052)<350 || countitem(991)<100 || countitem(992)<100 || countitem(993)<100 || countitem(990)<100) goto no_item;
+	delitem 938,350;
+	delitem 7052,350;
+	delitem 991,100;
+	delitem 992,100;
+	delitem 993,100;
+	delitem 990,100;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5294){
+if(countitem(1059)<1000 || countitem(2229)<1) goto no_item;
+	delitem 1059,1000;
+	delitem 2229,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5385){
+if(countitem(942)<100 || countitem(1026)<100 || countitem(578)<500 || countitem(4051)<1) goto no_item;
+	delitem 942,100;
+	delitem 1026,100;
+	delitem 578,500;
+	delitem 4051,1;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+if(@id==5526){
+if(countitem(5116)<2 || countitem(513)<500 || countitem(532)<200 || countitem(634)<50) goto no_item;
+	delitem 5116,2;
+	delitem 513,500;
+	delitem 532,200;
+	delitem 634,50;
+	getitem @id,1;
+	atcommand "@effect 348 22"; return;}
+
+mes @npc_name$;
+	if($lang==1){
+	mes "Для этой шапки нет квеста! Свяжитесь с администратором!";
+	next;
+	return;}
+	if($lang==0){
+	mes "For this cap there is no quest! Contact administration!";
+	next;
+	return;}
+
+	//=======================================================================
+	// No items // Нет предметов
+	//=======================================================================
+no_item:
+	mes @npc_name$;
+	mes "You don't have materials for cap creation";
+	next;
+	return;
+
+}

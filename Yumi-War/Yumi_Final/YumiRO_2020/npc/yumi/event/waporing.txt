@@ -1,0 +1,137 @@
+//----------------------------------------------------------------------------------------------------//
+//                   Created by Squishtastic / (MSN + Email) squishtastic@gmail.com
+//----------------------------------------------------------------------------------------------------//
+// This event is just like Wack A Mole, but since Mole's are way too small of a monster, I switched it
+// to Porings. Every 4 seconds for 3 minutes players have to kill the Porings as they spawn. Each kill
+// gives you 1 poring coin for use with the Poring Coin Suite of npcs.
+//-------------------------------------------How to install:------------------------------------------//
+// Install the script as you normally would.
+//----------------------------------------------------------------------------------------------------//
+-	script	waporing	-1,{
+OnStart:
+	initnpctimer;
+	end;
+
+OnTimer61000:
+	enablenpc "Poring Wrangler";
+	donpcevent "Poring Wrangler::OnBegin";
+	stopnpctimer;
+	end;
+}
+
+06guild_02,50,50,3	script	Poring Wrangler	508,{
+	if(!getgmlevel()){ dispbottom "Stop clicking me and get ready for the event.";	end;}
+
+OnInit:
+disablenpc "Poring Wrangler";
+end;
+
+OnMobDead:
+	getitem 7539,1;
+	end;	
+
+OnBegin:
+	set .wapstart,1; // started event
+	mapannounce "06guild_02","To play, all you have to do is hit the porings as they spawn to earn Poring Coins.",bc_yellow;
+	sleep 2000;
+	mapannounce "06guild_02","Wack A Poring lasts 3 minutes, so make your kills count!",bc_yellow;
+	sleep 1000;
+	npctalk "Get Ready!";
+	sleep 1000;
+	npctalk "5";
+	sleep 1000;
+	npctalk "4";
+	sleep 1000;
+	npctalk "3";
+	sleep 1000;
+	npctalk "2";
+	sleep 1000;
+	npctalk "1";
+	sleep 1000;
+	npctalk "GO!";
+	initnpctimer;
+	
+OnTimer1000:
+OnTimer4000:
+OnTimer7000:
+OnTimer10000:
+OnTimer13000:
+OnTimer16000:
+OnTimer19000:
+OnTimer22000:
+OnTimer25000:
+OnTimer28000:
+OnTimer31000:
+OnTimer34000:
+OnTimer37000:
+OnTimer40000:
+OnTimer43000:
+OnTimer46000:
+OnTimer49000:
+OnTimer52000:
+OnTimer55000:
+OnTimer58000:
+OnTimer61000:
+OnTimer64000:
+OnTimer67000:
+OnTimer70000:
+OnTimer73000:
+OnTimer76000:
+OnTimer79000:
+OnTimer82000:
+OnTimer85000:
+OnTimer88000:
+OnTimer91000:
+OnTimer94000:
+OnTimer97000:
+OnTimer100000:
+OnTimer103000:
+OnTimer106000:
+OnTimer109000:
+OnTimer112000:
+OnTimer115000:
+OnTimer118000:
+OnTimer121000:
+OnTimer124000:
+OnTimer127000:
+OnTimer130000:
+OnTimer133000:
+OnTimer136000:
+OnTimer139000:
+OnTimer142000:
+OnTimer145000:
+OnTimer148000:
+OnTimer151000:
+OnTimer154000:
+OnTimer157000:
+OnTimer160000:
+OnTimer163000:
+OnTimer166000:
+OnTimer169000:
+OnTimer172000:
+OnTimer175000:
+OnTimer178000:
+
+
+	for( set .@j, 0; .@j < GetArraySize($@wackaporing); set .@j, .@j + 1) { // if somehow they still manage to gain access to a pet or homunc while inside, this handles it
+		attachrid $@wackaporing[.@j];
+		if(getpetinfo(2) !="null" || gethominfo(2) !="null"){ dispbottom "You have broken the rules by using your pet and/or homunculus.";	warp "alexandria",156,141;	deletearray $@wackaporing[.@j], 1;	set .@j, .@j - 1;}
+		detachrid;
+		sleep 1;
+	}
+	killmonsterall "06guild_02";
+	areamonster "06guild_02",30,63,63,30,"Wack A Poring",1973,3,"Poring Wrangler::OnMobDead";
+	sleep 500;
+	areamonster "06guild_02",30,63,63,30,"Wack A Poring",1973,3,"Poring Wrangler::OnMobDead";
+	end;
+
+OnTimer180000:
+	killmonsterall "06guild_02";
+	set .wapstart,0; //ended event
+	mapannounce "06guild_02","Wack A Poring has ended, congratulations to this round's winners!",bc_yellow;
+	sleep 2000;
+	deletearray $@wackaporing[0], GetArraySize($@wackaporing);
+	mapwarp "06guild_02","junon",263,235;;
+	disablenpc "Poring Wrangler";
+	end;
+}

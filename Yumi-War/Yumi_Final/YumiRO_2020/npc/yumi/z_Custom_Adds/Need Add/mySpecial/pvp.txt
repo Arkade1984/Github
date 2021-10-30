@@ -1,0 +1,72 @@
+-	script	PVP_Warper	-1,{
+	mes "[^FFA500Battle Recruiter^000000]";
+	mes "Good day, adventurer.";
+	mes "Are you looking for battle?";
+	next;
+	switch( select("-- ^0000FFJoin BattleGround Waiting Room^000000 --",
+		       "-- ^FFA500Join PVP Event Arena^000000 --",
+		       "^000080[" + (getmapusers("guild_vs1")) + " users] ^4169E1--PvP Arena 1--",
+		       "^000080[" + (getmapusers("guild_vs2")) + " users] ^4169E1--PvP Arena 2--",
+		       "^000080[" + (getmapusers("guild_vs3")) + " users] ^4169E1--PvP Arena 3--",) )
+	{
+		case 1:
+			if ( getmapusers(guild_vs1,0,0) >= 100 ) {
+				next;
+				mes "[^FFA500PvP Warper^000000]";
+				mes "This room is full";
+				close;
+			} else { warp guild_vs1,0,0; end; }
+		
+
+			
+		case 2:
+			if ( getmapusers(guild_vs2,0,0) >= 100 ) {
+				next;
+				mes "[^FFA500PvP Warper^000000]";
+				mes "This room is full";
+				close;
+			} else { warp guild_vs2,0,0; }
+
+
+		case 3:
+			if ( getmapusers(guild_vs3,0,0) >= 100 ) {
+				next;
+				mes "[^FFA500PvP Warper^000000]";
+				mes "This room is full";
+				close;
+			} else { warp guild_vs3,0,0; end; }
+	}
+OnInit:
+	waitingroom "CavaleRO Battle Room",0;
+	end;
+}
+
+
+
+guild_vs1	mapflag	nowarp
+guild_vs1	mapflag	nowarpto
+guild_vs1	mapflag	nomemo
+guild_vs1	mapflag	noteleport
+guild_vs1	mapflag	noreturn
+guild_vs1	mapflag	noexp
+guild_vs1	mapflag	nobranch
+
+guild_vs2	mapflag	nowarp
+guild_vs2	mapflag	nowarpto
+guild_vs2	mapflag	nomemo
+guild_vs2	mapflag	noteleport
+guild_vs2	mapflag	noreturn
+guild_vs2	mapflag	noexp
+guild_vs2	mapflag	nobranch
+
+guild_vs3	mapflag	nowarp
+guild_vs3	mapflag	nowarpto
+guild_vs3	mapflag	nomemo
+guild_vs3	mapflag	noteleport
+guild_vs3	mapflag	noreturn
+guild_vs3	mapflag	noexp
+guild_vs3	mapflag	nobranch
+
+
+//dp
+junon,226,159,6	duplicate(PVP_Warper)	Battle Recruiter#1	730

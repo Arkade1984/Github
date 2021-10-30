@@ -1,0 +1,32 @@
+Crystilia,68,67,0	script	rainbow	111,{
+OnInit:
+initnpctimer;
+end;
+
+OnTimer10000:
+specialeffect 410;
+initnpctimer;
+end;
+}
+
+zephyr,149,142,0	script	bowofrian	111,{
+OnInit:
+initnpctimer;
+end;
+
+OnTimer9000:
+specialeffect 410;
+initnpctimer;
+end;
+}
+
+prontlegend,190,227,0	script	rainbows	111,{
+OnInit:
+initnpctimer;
+end;
+
+OnTimer10000:
+specialeffect 410;
+initnpctimer;
+end;
+}

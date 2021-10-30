@@ -1,0 +1,133 @@
+-	script	card_exchange_main	-1,{
+		OnInit:
+									    /* HeadGear Cards */				/*  Armor Cards  */			/*  Shield Cards  */				/*  Garment Cards  */			/*  Footgear Cards  */			/*  Weapon Cards  */
+setarray $@Cards_Tier01[0],  4041  ,  /*Coco Card			*/	4401  ,  /*Alicel Card			*/	4032  ,  /*Ambernite Card		*/	4015  ,  /*Condor Card		*/	4009  ,  /*Chonchon Card	*/	4043  ,  /*Andre Card			*/	4103  ,  /*Horong Card			*/
+							 4052  ,  /*Elder Willow Card	*/	4023  ,  /*Baby Desert Wolf Card*/	4074  ,  /*Bigfoot Card			*/	4088  ,  /*Frilldora Card	*/	4050  ,  /*Male Thief Bug Ca*/	4018  ,  /*Andre Larva Card		*/	4027  ,  /*Kukre Card			*/
+							 4112  ,  /*Marduk Card			*/	4061  ,  /*Cornutus Card		*/	4045  ,  /*Horn Card			*/	4287  ,  /*Kapha Card		*/	4038  ,  /*Zombie Card		*/	4004  ,  /*Drops Card 			*/	4079  ,  /*Mantis Card			*/
+							 4185  ,  /*Rideword Card		*/	4370  ,  /*Dimik Card			*/	0000  ,  /*DUMMY DATA			*/	4306  ,  /*Toad Card		*/	0000  ,  /*DUMMY DATA		*/	4002  ,  /*Fabre Card			*/	4033  ,  /*Poporing Card		*/
+							 4010  ,  /*Willow Card			*/	4150  ,  /*Goat Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4020  ,  /*Familiar Card		*/	4044  ,  /*Smokie Card 			*/
+							 4260  ,  /*Wootan Shooter Card	*/	4339  ,  /*Mineral Card 		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4019  ,  /*Hornet Card			*/	4028  ,  /*Tarou Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4099  ,  /*Pasana Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4006  ,  /*Lunatic Card 		*/	4034  ,  /*Wormtail Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4008  ,  /*Picky Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4106  ,  /*Mummy Card			*/	4051  ,  /*Yoyo Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4337  ,  /*Porcellio Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4007  ,  /*Peco Peco Egg Car	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4001  ,  /*Poring Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4005  ,  /*Santa Poring Card	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4021  ,  /*Rocker Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4017  ,  /*Savage Babe Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4078  ,  /*Savage Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4068  ,  /*Scorpion Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4042  ,  /*Steel Chonchon Card	*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4117  ,  /*Sidewinder Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4089  ,  /*Swordfish Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4025  ,  /*Skeleton Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4016  ,  /*Thief Bug Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4037  ,  /*Snake Card			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4086  ,  /*Soldier Skeleton 	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4029  ,  /*Wolf Card			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ;  /*DUMMY DATA			*/
+							 
+							 
+setarray $@Cards_Tier02[0],  4288  ,  /*Carat Card 			*/	4400  ,  /*Aliza Card			*/	4253  ,  /*Alice Card 			*/	4129  ,  /*Bapho Jr. Card	*/	4235  ,  /*Christmas Cookie	*/	4094  ,  /*Archer Skeleton Card	*/	4252  ,  /*Alligator Card		*/
+							 4296  ,  /*Cramp Card			*/	4243  ,  /*Antonio Card 		*/	4013  ,  /*Andre Egg Card		*/	4285  ,  /*Choco Card		*/	4070  ,  /*Eggyra Card		*/	4390  ,  /*Breeze Card			*/	4347  ,  /*Armeyer Dinze Card	*/
+							 4110  ,  /*Ghoul Card			*/	4114  ,  /*Argiope Card			*/	4240  ,  /*Arclouze Card		*/	4179  ,  /*Dragon Fly Card	*/	4160  ,  /*Firelock Soldier */	4063  ,  /*Caramel Card			*/	4212  ,  /*Bongun Card			*/
+							 4278  ,  /*Gibbet Card			*/	4233  ,  /*Baby Leopard Card	*/	4075  ,  /*Argos Card			*/	4266  ,  /*Eclipse Card		*/	4200  ,  /*Megalith Card	*/	4284  ,  /*Chepet Card			*/	4293  ,  /*Cookie Card			*/
+							 4434  ,  /*Knocker Card		*/	4119  ,  /*Bathory Card			*/	4250  ,  /*Executioner Card		*/	4303  ,  /*Giant Whisper Car*/	4208  ,  /*Miyabi Doll Card	*/	4153  ,  /*Crab Card			*/	4154  ,  /*Dumpling Child Card	*/
+							 4195  ,  /*Leaf Cat Card		*/	4213  ,  /*Brilight Card		*/	4231  ,  /*Mi Gao Card			*/	4197  ,  /*Mastering Card	*/	4186  ,  /*Raggler Card		*/	4082  ,  /*Desert Wolf Card		*/	4283  ,  /*Greatest General Card*/
+							 4188  ,  /*Leib Olmai Card		*/	4098  ,  /*Dokebi Card			*/	4090  ,  /*Munak Card			*/	4159  ,  /*Nine Tail Card	*/	4257  ,  /*Wild Rose Card	*/	4026  ,  /*Female Thief Bug Card*/	4232  ,  /*Hermit Plant Card 	*/
+							 4046  ,  /*Martin Card			*/	4141  ,  /*Evil Druid Card		*/	4207  ,  /*Mysteltainn Card		*/	4334  ,  /*Noxious Card 	*/	0000  ,  /*DUMMY DATA		*/	4157  ,  /*Goblin Archer Card	*/	4139  ,  /*Joker Card			*/
+							 4206  ,  /*Myst Case Card		*/	4047  ,  /*Ghostring Card		*/	4066  ,  /*Orc Warrior Card		*/	4183  ,  /*Vagabond Wolf Car*/	0000  ,  /*DUMMY DATA		*/	4060  ,  /*Goblin Card			*/	4091  ,  /*Kobold Card			*/
+							 4127  ,  /*Nightmare Card		*/	4270  ,  /*Giant Spider Card	*/	4309  ,  /*Parasite Card		*/	4211  ,  /*Vocal Card		*/	0000  ,  /*DUMMY DATA		*/	4072  ,  /*Golem Card			*/	4084  ,  /*Marine Sphere Card	*/
+							 4039  ,  /*Stainer Card		*/	4162  ,  /*Grizzly Card			*/	4083  ,  /*Rafflesia Card		*/	4210  ,  /*Wanderer Card 	*/	0000  ,  /*DUMMY DATA		*/	4292  ,  /*Kobold Archer Card	*/	4036  ,  /*Muka Card			*/
+							 4223  ,  /*Stalactic Golem Card*/	4286  ,  /*Karakasa Card		*/	4226  ,  /*Sting Card			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4030  ,  /*Mandragora Card		*/	4073  ,  /*Pirate Skeleton Card	*/
+							 4261  ,  /*Wootan Fighter Card	*/	4301  ,  /*Killer Mantis Card	*/	4012  ,  /*Thief Bug Egg Card	*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4055  ,  /*Marina Card			*/	4048  ,  /*Poison Spore Card	*/
+							 0000  ,  /*DUMMY DATA			*/	4295  ,  /*Kraben Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4057  ,  /*Metaller Card		*/	4219  ,  /*Sage Worm Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4201  ,  /*Majoruros Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4255  ,  /*Orc Lady Card		*/	4064  ,  /*Zerom Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4031  ,  /*Peco Peco Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4085  ,  /*Orc Skeleton Card	*/	4272  ,  /*Zhu Po Long Card		*/
+							 0000  ,  /*DUMMY DATA			*/  4011  ,  /*Picky Egg Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4104  ,  /*Requiem Card			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4003  ,  /*Pupa Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4192  ,  /*Rotar Zairo Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	4014  ,  /*Roda Frog Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4312  ,  /*Seal Card			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/  0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4273  ,  /*Shell Fish Card		*/	0000  ;  /*DUMMY DATA			*/
+							 
+setarray $@Cards_Tier03[0],  4122  ,  /*Deviruchi Card		*/	4409  ,  /*Agav Card			*/	4138  ,  /*Anubis Card			*/	4402  ,  /*Aliot Card		*/	4244  ,  /*Alarm Card		*/	4062  ,  /*Anacondaq Card		*/	4356  ,  /*Beholder Card		*/
+							 4177  ,  /*Dryad Card 			*/	4387  ,  /*Ancient Mimic Card	*/	4217  ,  /*Enchanted Peach Tree */	4178  ,  /*Dragon Tail Card	*/	4245  ,  /*Am Mut Card		*/	4247  ,  /*Aster Card			*/	4327  ,  /*Bloody Butterfly Card*/
+							 4271  ,  /*Giant Hornet Card	*/	4450  ,  /*Banshee Master Card	*/	4322  ,  /*High Orc Card		*/	4056  ,  /*Dustiness Card	*/	4249  ,  /*Ancient Worm Card*/	4307  ,  /*Beetle King Card		*/	4262  ,  /*Cloud Hermit Card	*/
+							 4087  ,  /*Giearth Card		*/	4299  ,  /*Clock Card 			*/	4413  ,  /*Hodremlin Card		*/	4081  ,  /*Hode Card		*/	4267  ,  /*Explosion Card	*/	4428  ,  /*Bow Guardian Card	*/	4040  ,  /*Creamy Card			*/
+							 4161  ,  /*Grand Peco Card		*/	4298  ,  /*Creamy Fear Card		*/	4136  ,  /*Khalitzburg Card		*/	4116  ,  /*Isis Card		*/	4151  ,  /*Gajomart Card	*/	4452  ,  /*Centipede Larva Card */	4423  ,  /*Galion Card			*/
+							 4269  ,  /*Incubus Card		*/	4170  ,  /*Dark Frame Card		*/	4067  ,  /*Megalodon Card		*/	4109  ,  /*Jakk Card		*/	4164  ,  /*Gullinbursti Card*/	4297  ,  /*Cruiser Card			*/	4418  ,  /*Gazeti Card			*/
+							 4311  ,  /*Permeter Card 		*/	4173  ,  /*Demon Pungus Card	*/	4420  ,  /*Muscipular Card		*/	4351  ,  /*Kavach Icarus Car*/	4417  ,  /*Ice Titan Card 	*/	4069  ,  /*Drainliar Card 		*/	4377  ,  /*Grove Card 			*/
+							 4229  ,  /*Tower Keeper Card 	*/	4181  ,  /*Disguise Card		*/	4254  ,  /*Ogretooth Card		*/	4113  ,  /*Marionette Card	*/	4239  ,  /*Iron Fist Card	*/	4180  ,  /*Driller Card			*/	4331  ,  /*Heater Card			*/
+							 4336  ,  /*Ungoliant Card		*/	4279  ,  /*Earth Deleter Card 	*/	4314  ,  /*Penomena Card		*/	4095  ,  /*Marse Card		*/	4097  ,  /*Matyr Card		*/	4421  ,  /*Drosera Card			*/	4193  ,  /*Lude Card			*/
+							 4411  ,  /*Vanberk Card 		*/	4280  ,  /*Geographer Card		*/	4304  ,  /*Tamruan Card			*/	4108  ,  /*Myst Card		*/	4204  ,  /*Mini Demon Card	*/	4118  ,  /*Earth Petite Card	*/	4196  ,  /*Marin Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4105  ,  /*Marc Card			*/	4340  ,  /*Teddy Bear Card		*/	4375  ,  /*Orc Baby Card	*/	4221  ,  /*Skeleton General */	4080  ,  /*Flora Card			*/	4093  ,  /*Obeaune Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4166  ,  /*Nightmare Terror Card*/	0000  ,  /*DUMMY DATA			*/	4133  ,  /*Raydric Card		*/	4107  ,  /*Verit Card		*/	4165  ,  /*Gig Card				*/	4238  ,  /*Owl Baron Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4315  ,  /*Pest Card			*/	0000  ,  /*DUMMY DATA			*/	4422  ,  /*Roween Card		*/	4275  ,  /*Zombie Prisoner	*/	4155  ,  /*Goblin Leader Card	*/	4237  ,  /*Owl Duke Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4194  ,  /*Rybio Card			*/	0000  ,  /*DUMMY DATA			*/	4102  ,  /*Whisper Card		*/	0000  ,  /*DUMMY DATA		*/	4156  ,  /*Goblin Steamrider Car*/	4077  ,  /*Phen Card 			*/
+							 0000  ,  /*DUMMY DATA			*/	4101  ,  /*Sandman Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4163  ,  /*Gryphon Card 		*/	4389  ,  /*Plasma Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4216  ,  /*Sasquatch Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4453  ,  /*Hillsrion Card		*/	4175  ,  /*Poisonous Toad Card	*/
+							 0000  ,  /*DUMMY DATA			*/	4222  ,  /*Skeleton Prisoner Car*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4268  ,  /*Injustice Card		*/	4294  ,  /*Quve Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4220  ,  /*Solider Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4291  ,  /*Kobold Leader Card	*/	4187  ,  /*Raydric Archer CarD	*/
+							 0000  ,  /*DUMMY DATA			*/	4259  ,  /*Wooden Golem Card	*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4126  ,  /*Minorous Card 		*/	4230  ,  /*Shinobi Card 		*/
+							 0000  ,  /*DUMMY DATA			*/	4189  ,  /*Wraith Dead Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4024  ,  /*Plankton Card		*/	4228  ;  /*Sleeper Card			*/
+							 
+							 
+setarray $@Cards_Tier04[0],  4438  ,  /*Banshee Card		*/	4054  ,  /*Angeling Card		*/	4248  ,  /*Ancient Mummy Card	*/	4174  ,  /*Deviling Card	*/	4290  ,  /*Cat O' Nine Tails*/	4140  ,  /*Abysmal Knight Card	*/	4391  ,  /*Baroness of Retri	*/
+							 4379  ,  /*Blue Acidus Card	*/	4234  ,  /*Anolian Card			*/	4443  ,  /*Aqua Elemental Card	*/	4325  ,  /*Harpy Card		*/	4319  ,  /*Freezer Card		*/	4246  ,  /*Assaulter Card 		*/	4215  ,  /*Blazer Card			*/
+							 4258  ,  /*Evil Nymph Card		*/	4371  ,  /*Archdam Card 		*/	4447  ,  /*Centipede Card 		*/	4431  ,  /*Kasa Card		*/	4199  ,  /*Merman Card		*/	4320  ,  /*Bloody Knight Card	*/	4385  ,  /*Dragon Egg Card 		*/
+							 4343  ,  /*Holden Card			*/	4392  ,  /*Dame of Sentinel Card*/	4448  ,  /*Cornus Card			*/	4432  ,  /*Magmaring Card	*/	4100  ,  /*Sohee Card		*/	4214  ,  /*Bloody Murderer Card	*/	4152  ,  /*Galapago Card		*/
+							 4412  ,  /*Isilla Card			*/	4410  ,  /*Echio Card 			*/	4449  ,  /*Dark Shadow Card		*/	4071  ,  /*Orc Zombie Card	*/	4435  ,  /*Zombie Slaughter */	4171  ,  /*Dark Priest Card 	*/	4149  ,  /*Gargoyle Card		*/
+							 0000  ,  /*DUMMY DATA			*/  4191  ,  /*Loli Ruri Card		*/	4444  ,  /*Draco Card			*/	4313  ,  /*Punk Card		*/	0000  ,  /*DUMMY DATA		*/	4388  ,  /*Death Word Card		*/	4355  ,  /*Gremlin Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4393  ,  /*Mistress of Shelter C*/	4445  ,  /*Luciola Vespa Card	*/	4429  ,  /*Salamander Card	*/	0000  ,  /*DUMMY DATA		*/	4182  ,  /*Diabolic Card		*/	4437  ,  /*Hell Poodle Card 	*/
+							 0000  ,  /*DUMMY DATA			*/	4338  ,  /*Obsidian Card		*/	4414  ,  /*Seeker Card			*/	4328  ,  /*Yao Jun Card		*/	0000  ,  /*DUMMY DATA		*/	4398  ,  /*Dolor of Thanatos Car*/	4321  ,  /*Hylozoist Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4383  ,  /*Red Novus Card		*/	4120  ,  /*Sky Petite Card		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4176  ,  /*Dullahan Card		*/	4265  ,  /*Jing Guai Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4404  ,  /*Skogul Card			*/	4059  ,  /*Soldier Andre Card 	*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4316  ,  /*False Angel Card		*/	4256  ,  /*Orc Archer Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4158  ,  /*Sky Deleter Card		*/	4442  ,  /*Tatacho Card	 		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4115  ,  /*Hunter Fly Card		*/	4436  ,  /*Ragged Zombie Card	*/
+							 0000  ,  /*DUMMY DATA			*/	4218  ,  /*Succubus Card		*/	4058  ,  /*Thara Frog Card		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4035  ,  /*Hydra Card			*/	4326  ,  /*Sea-Otter Card		*/
+							 0000  ,  /*DUMMY DATA			*/	4333  ,  /*Venomous Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4065  ,  /*Kaho Card			*/	4416  ,  /*Siroma Card			*/
+							 0000  ,  /*DUMMY DATA			*/	4332  ,  /*Waste Stove Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4394  ,  /*Lady Solace Card		*/	4227  ,  /*Spring Rabbit Card	*/
+							 0000  ,  /*DUMMY DATA			*/	4382  ,  /*Yellow Novus Card 	*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4184  ,  /*Lava Golem Card		*/	4224  ,  /*Stem Worm Card		*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4076  ,  /*Magnolia Card		*/	4282  ,  /*Tengu Card			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4202  ,  /*Mao Guai Card		*/	4264  ,  /*Wind Ghost Card 		*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4317  ,  /*Mobster Card			*/	4190  ,  /*Wraith Card			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4167  ,  /*Nereid Card			*/	0000  ,  /*DUMMY DATA			*/	
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4335  ,  /*Pitman Card			*/	0000  ;  /*DUMMY DATA			*/
+							 
+setarray $@Cards_Tier05[0],  4241  ,  /*Arc Angeling Card	*/	4242  ,  /*Apocalipse Card		*/	4397  ,  /*Despero of Thanatos  */	4373  ,  /*Green Maiden Car	*/	4378  ,  /*Gold Acidus Card	*/	4289  ,  /*Caterpillar Card		*/	4349  ,  /*Errende Ebecee Card	*/
+							 4169  ,  /*Dark Illusion Card	*/	4426  ,  /*Byorgue Card			*/	4439  ,  /*Flame Skull Card		*/	0000  ,  /*DUMMY DATA		*/	4381  ,  /*Green Ferus Card	*/	4368  ,  /*Cecil Damon Card		*/	4384  ,  /*Hydrolancer Card		*/
+							 4354  ,  /*Gemini-S58 Card		*/	4300  ,  /*Chimera Card			*/	4124  ,  /*Medusa Card			*/	0000  ,  /*DUMMY DATA		*/	4396  ,  /*Odium of Thanatos*/	4125  ,  /*Deviace Card			*/	4433  ,  /*Imp Card				*/
+							 4366  ,  /*Kathryne Keyron Card*/	4346  ,  /*Egnigem Cenia Card	*/	4277  ,  /*Zealotus Card		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4251  ,  /*Elder Card			*/	4205  ,  /*Mimic Card			*/
+							 4364  ,  /*Margaretha Sorin Car*/	4451  ,  /*Entweihen Crothen Car*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4360  ,  /*Eremes Guile Card 	*/	4424  ,  /*Stapo Card			*/
+							 4198  ,  /*Maya Purple Card	*/	4405  ,  /*Frus Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4323  ,  /*Hatii Babe Card		*/	4209  ,  /*Vitata Card			*/
+							 4358  ,  /*Seyren Windsor Card	*/	4353  ,  /*Remover Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4345  ,  /*Hill Wind Card		*/	4348  ,  /*Wickebine Tres Card	*/
+							 0000  ,  /*DUMMY DATA			*/	4369  ,  /*Venatu Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4362  ,  /*Howard Alt-Eisen Card*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4350  ,  /*Laurell Weinder Card	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4395  ,  /*Maero of Thanatos Car*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4341  ,  /*Metaling Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4203  ,  /*Mutant Dragonoid Card*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4440  ,  /*Necromancer Card 	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4310  ,  /*Panzer Goblin Card	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4329  ,  /*Phendark Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4380  ,  /*Red Ferus Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4406  ,  /*Skeggiold Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4092  ,  /*Skeleton Worker Card	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4427  ,  /*sword Guardian Card	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4172  ,  /*The Paper Card 		*/	0000  ;  /*DUMMY DATA			*/
+							 
+							 
+setarray $@Cards_Tier06[0],  4330  ,  /*Evil Snake Lord Card*/	4386  ,  /*Detardeurus Card		*/	4128  ,  /*Golden Thief Bug Card*/	4359  ,  /*Assassin Cross	*/	4236  ,  /*Amon Ra Card		*/	4425  ,  /*Atroce Card 			*/	4145  ,  /*Berzebub Card		*/
+							 4365  ,  /*High Wizard Card	*/	4408  ,  /*Gloom Under Night Car*/	4146  ,  /*Maya Card			*/	0000  ,  /*DUMMY DATA		*/	4168  ,  /*Dark Lord Card	*/	4147  ,  /*Baphomet Card		*/	4430  ,  /*Ifrit Card			*/
+							 4403  ,  /*Kiel-D-01 Card		*/	4324  ,  /*Hatii Card			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	4123  ,  /*Eddga Card		*/	4142  ,  /*Doppelganger Card	*/	4144  ,  /*Osiris Card			*/
+							 4357  ,  /*Lord Knight Card	*/	4363  ,  /*High Priest Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	4441  ,  /*Fallen Bishop Hib*/	4134  ,  /*Dracula Card			*/	0000  ,  /*DUMMY DATA			*/
+							 4132  ,  /*Mistress Card		*/	4419  ,  /*Ktullanux Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	4352  ,  /*General Egnigem	*/	4137  ,  /*Drake Card			*/	0000  ,  /*DUMMY DATA			*/
+							 4143  ,  /*Orc Hero Card 		*/	4135  ,  /*Orc Lord Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	4376  ,  /*Lady Tanee Card	*/	4276  ,  /*Lord of The Dead Card*/	0000  ,  /*DUMMY DATA			*/
+							 4148  ,  /*Pharaoh Card		*/	4342  ,  /*RSX-0806 Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	4131  ,  /*Moonlight Flower */	4361  ,  /*MasterSmith Card		*/	0000  ,  /*DUMMY DATA			*/
+							 4374  ,  /*Vesper Card			*/	4302  ,  /*Tao Gunka Card		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4399  ,  /*Memory of Thanatos Ca*/	0000  ,  /*DUMMY DATA			*/
+							 4372  ,  /*White Lady Card 	*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4121  ,  /*Phreeoni Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4407  ,  /*Randgris Card		*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4263  ,  /*Incantation Samurai C*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4367  ,  /*Sniper Card			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4318  ,  /*Stormy Knight Card 	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	4305  ,  /*Turtle General Card 	*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/
+							 0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA			*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA		*/	0000  ,  /*DUMMY DATA			*/	0000  ;  /*DUMMY DATA			*/
+							 
+}

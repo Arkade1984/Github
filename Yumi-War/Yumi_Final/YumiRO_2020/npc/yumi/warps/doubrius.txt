@@ -1,0 +1,257 @@
+//===================================================================
+// Doubrius Shops
+//===================================================================
+
+doubrius_n3,105,125,3	duplicate(SocketEnchant2)	Socket Enchanter#do4	542
+doubrius_n3,99,123,5	shop	Stone Dealer#do3	66,990:-1,991:-1,992:-1,993:-1,994:-1,523:-1,7033:-1,715:-1
+
+//alexa_in,225,221,4	shop	Weapon Dealer#do1	54,1750:-1,1751:-1,1701:-1,1201:-1,1204:-1,1207:-1,1601:-1,1101:-1,1104:-1,1107:-1,1110:-1,1113:-1,1122:-1,1119:-1,1123:-1,1126:-1,1129:-1,1116:-1,1301:-1
+//alexa_in,238,296,2	shop	Armor Dealer#do2	48,2101:-1,2103:-1,2401:-1,2403:-1,2501:-1,2503:-1,2220:-1,2226:-1,2301:-1,2303:-1,2305:-1,2328:-1,2307:-1,2309:-1,2312:-1,2314:-1,2628:-1,2627:-1
+// 1-7+ Doubrius Refine Shop.. 
+doubrius_w3,102,123,2	script	Gear Refiner	448,{
+	callfunc "refinemain","Hollgrehenn",0;
+	end;
+}
+//	NOVENDING
+-	script	novending	-1,{
+OnInit:	setcell "doubrius",120,43,183,15,cell_novending,1;     // A
+	setcell "doubrius",144,85,175,78,cell_novending,1;     // B
+	setcell "doubrius",144,77,167,77,cell_novending,1;
+	setcell "doubrius",144,76,166,76,cell_novending,1;
+	setcell "doubrius",144,75,165,75,cell_novending,1;
+	setcell "doubrius",144,74,164,74,cell_novending,1;
+	setcell "doubrius",144,73,163,73,cell_novending,1;
+	setcell "doubrius",144,72,162,72,cell_novending,1;
+	setcell "doubrius",144,71,161,56,cell_novending,1;
+	setcell "doubrius",127,125,152,122,cell_novending,1;     // C
+	setcell "doubrius",127,121,151,121,cell_novending,1;
+	setcell "doubrius",127,120,150,120,cell_novending,1;
+	setcell "doubrius",127,119,149,119,cell_novending,1;
+	setcell "doubrius",127,118,148,118,cell_novending,1;
+	setcell "doubrius",127,117,147,117,cell_novending,1;
+	setcell "doubrius",127,116,146,116,cell_novending,1;
+	setcell "doubrius",127,115,145,115,cell_novending,1;
+	setcell "doubrius",127,114,144,114,cell_novending,1;
+	setcell "doubrius",127,113,143,113,cell_novending,1;
+	setcell "doubrius",127,112,142,112,cell_novending,1;
+	setcell "doubrius",127,111,141,111,cell_novending,1;
+	setcell "doubrius",127,110,140,110,cell_novending,1;
+	setcell "doubrius",127,109,139,109,cell_novending,1;
+	setcell "doubrius",127,108,138,108,cell_novending,1;
+	setcell "doubrius",127,107,137,107,cell_novending,1;
+	setcell "doubrius",127,106,136,106,cell_novending,1;
+	setcell "doubrius",127,105,135,105,cell_novending,1;
+	setcell "doubrius",127,104,134,104,cell_novending,1;
+	setcell "doubrius",127,103,133,103,cell_novending,1;
+	setcell "doubrius",127,102,132,102,cell_novending,1;
+	setcell "doubrius",127,101,131,101,cell_novending,1;
+	setcell "doubrius",127,100,130,100,cell_novending,1;
+	setcell "doubrius",127,99,129,99,cell_novending,1;
+	setcell "doubrius",69,125,125,102,cell_novending,1;     // D
+	setcell "doubrius",103,101,125,101,cell_novending,1;
+	setcell "doubrius",104,100,125,100,cell_novending,1;
+	setcell "doubrius",105,99,125,99,cell_novending,1;
+	setcell "doubrius",69,183,96,158,cell_novending,1;     // E
+	setcell "doubrius",97,183,97,159,cell_novending,1;
+	setcell "doubrius",98,183,98,160,cell_novending,1;
+	setcell "doubrius",99,183,99,161,cell_novending,1;
+	setcell "doubrius",100,183,100,162,cell_novending,1;
+	setcell "doubrius",101,183,101,163,cell_novending,1;
+	setcell "doubrius",102,183,102,164,cell_novending,1;
+	setcell "doubrius",103,183,103,165,cell_novending,1;
+	setcell "doubrius",104,183,127,166,cell_novending,1;
+	setcell "doubrius",104,183,127,166,cell_novending,1;
+	setcell "doubrius",128,183,128,165,cell_novending,1;
+	setcell "doubrius",129,183,129,164,cell_novending,1;
+	setcell "doubrius",130,183,130,163,cell_novending,1;
+	setcell "doubrius",131,183,131,162,cell_novending,1;
+	setcell "doubrius",132,183,132,161,cell_novending,1;
+	setcell "doubrius",133,183,133,160,cell_novending,1;
+	setcell "doubrius",134,183,134,159,cell_novending,1;
+	setcell "doubrius",135,183,135,158,cell_novending,1;
+	setcell "doubrius",136,183,136,157,cell_novending,1;
+	setcell "doubrius",137,183,137,156,cell_novending,1;
+	setcell "doubrius",138,183,138,155,cell_novending,1;
+	setcell "doubrius",139,183,139,154,cell_novending,1;
+	setcell "doubrius",140,183,140,153,cell_novending,1;
+	setcell "doubrius",141,183,141,152,cell_novending,1;
+	setcell "doubrius",142,183,142,151,cell_novending,1;
+	setcell "doubrius",143,183,182,150,cell_novending,1;
+	setcell "doubrius",11,127,11,89,cell_novending,1;	// F
+	setcell "doubrius",11,88,11,88,cell_novending,1;
+	setcell "doubrius",11,87,11,87,cell_novending,1;
+	setcell "doubrius",11,86,11,86,cell_novending,1;
+	setcell "doubrius",11,85,11,85,cell_novending,1;
+	setcell "doubrius",11,84,11,84,cell_novending,1;
+	setcell "doubrius",11,83,11,83,cell_novending,1;
+	setcell "doubrius",11,82,11,82,cell_novending,1;
+	setcell "doubrius",11,81,11,81,cell_novending,1;
+	setcell "doubrius",11,80,11,80,cell_novending,1;
+	setcell "doubrius",11,79,11,79,cell_novending,1;
+	setcell "doubrius",11,78,11,78,cell_novending,1;
+	setcell "doubrius",11,77,11,77,cell_novending,1;
+	setcell "doubrius",11,76,11,76,cell_novending,1;
+	setcell "doubrius",11,75,11,75,cell_novending,1;
+	setcell "doubrius",11,74,11,74,cell_novending,1;
+	setcell "doubrius",11,73,11,50,cell_novending,1;
+	setcell "doubrius",11,49,11,49,cell_novending,1;
+	setcell "doubrius",11,48,11,48,cell_novending,1;
+	setcell "doubrius",11,47,11,47,cell_novending,1;
+	setcell "doubrius",11,46,11,46,cell_novending,1;
+	setcell "doubrius",11,45,11,45,cell_novending,1;
+	setcell "doubrius",11,44,11,44,cell_novending,1;
+	setcell "doubrius",11,43,11,43,cell_novending,1;
+	setcell "doubrius",11,42,11,12,cell_novending,1;
+	setcell "doubrius",69,67,107,48,cell_novending,1;     // G
+	setcell "doubrius",70,47,107,47,cell_novending,1;
+	setcell "doubrius",71,46,107,44,cell_novending,1;
+	setcell "doubrius",71,35,107,33,cell_novending,1;
+	setcell "doubrius",70,32,107,32,cell_novending,1;
+	setcell "doubrius",69,31,107,12,cell_novending,1; end;}
+
+//===================================================================
+//	TOWN
+doubrius	mapflag	sakura
+doubrius	mapflag	town
+doubrius	mapflag	nobranch
+doubrius	mapflag	nobaseexp
+doubrius	mapflag	nojobexp
+doubrius	mapflag	nomobloot
+doubrius	mapflag	nomvploot
+doubrius,0,0,0,0	boss_monster	Aliza	1737,3,0,0,0
+doubrius,0,0,0,0	boss_monster	Alice	1275,2,0,0,0
+
+//===================================================================
+//	BANK
+doubrius_ba	mapflag	nobranch
+doubrius_ba	mapflag	nomemo
+doubrius_ba	mapflag	noteleport
+doubrius,109,110,0	warp	doubrius_ba01	1,1,doubrius_ba,14,246
+doubrius_ba,11,246,0	warp	doubrius_ba02	1,1,doubrius,106,107
+
+//===================================================================
+//	PARADISE
+doubrius_pa	mapflag	nobranch
+doubrius_pa	mapflag	nomemo
+doubrius_pa	mapflag	noteleport
+doubrius_pa	mapflag	nowarp
+doubrius,83,112,0	warp	doubrius_pa01	1,1,doubrius_pa,31,14
+doubrius_pa,30,10,0	warp	doubrius_pa02	1,1,doubrius,83,108
+//	doubrius_pa,47,39,0	warp	doubrius_pa03	1,1,doubrius_pa,106,14
+doubrius_pa,29,187,0	warp	doubrius_pa04	1,1,doubrius_pa,179,159
+doubrius_pa,179,156,0	warp	doubrius_pa05	1,1,doubrius_pa,29,184
+doubrius_pa,17,187,0	warp	doubrius_pa06	1,1,doubrius_pa,131,159
+doubrius_pa,131,156,0	warp	doubrius_pa07	1,1,doubrius_pa,17,184
+doubrius_pa,57,27,0	warp	doubrius_pa08	1,1,doubrius_pa,161,26
+doubrius_pa,158,26,0	warp	doubrius_pa09	1,1,doubrius_pa,54,27
+doubrius_pa,48,16,0	warp	doubrius_pa10	1,1,doubrius_pa,47,164
+doubrius_pa,47,161,0	warp	doubrius_pa11	1,1,doubrius_pa,48,19
+doubrius_pa,41,187,0	warp	doubrius_pa12	1,1,doubrius_pa,179,93
+doubrius_pa,179,90,0	warp	doubrius_pa13	1,1,doubrius_pa,41,184
+doubrius_pa,100,27,0	warp	doubrius_pa14	1,1,doubrius_pa,46,86
+doubrius_pa,49,86,0	warp	doubrius_pa15	1,1,doubrius_pa,103,27
+doubrius_pa,113,32,0	warp	doubrius_pa16	1,1,doubrius_pa,105,92
+doubrius_pa,102,92,0	warp	doubrius_pa17	1,1,doubrius_pa,110,32
+doubrius_pa,107,12,0	warp	doubrius_pa18	1,1,doubrius_pa,48,36
+
+//===================================================================
+//	SHIP
+doubrius_sh	mapflag	nobranch
+doubrius_sh	mapflag	nomemo
+doubrius_sh	mapflag	noteleport
+doubrius,163,23,0	warp	doubrius_sh01	1,1,doubrius_sh,165,172
+doubrius_sh,160,172,0	warp	doubrius_sh02	1,1,doubrius,158,23
+doubrius,134,31,0	warp	doubrius_sh03	1,1,doubrius_sh,36,164
+doubrius_sh,41,164,0	warp	doubrius_sh04	1,1,doubrius,139,31
+doubrius,125,26,0	warp	doubrius_sh05	1,1,doubrius_sh,26,172
+doubrius_sh,25,167,0	warp	doubrius_sh06	1,1,doubrius,125,31
+doubrius_sh,36,174,0	warp	doubrius_sh07	1,2,doubrius_sh,75,99
+doubrius_sh,69,99,0	warp	doubrius_sh08	1,2,doubrius_sh,32,173
+
+//===================================================================
+//	NORTH
+doubrius_n1	mapflag	nobranch
+doubrius_n1	mapflag	nomemo
+doubrius_n1	mapflag	noteleport
+doubrius,88,161,0	warp	doubrius_n101	1,1,doubrius_n1,246,363
+doubrius_n1,246,359,0	warp	doubrius_n102	1,1,doubrius,88,158
+doubrius_n1,244,315,0	warp	doubrius_n103	1,1,doubrius_n1,243,388
+doubrius_n1,248,388,0	warp	doubrius_n104	1,1,doubrius_n1,250,315
+doubrius_n1,229,313,0	warp	doubrius_n105	1,1,doubrius_n1,164,315
+doubrius_n1,168,315,0	warp	doubrius_n106	1,1,doubrius_n1,234,313
+doubrius_n1,168,307,0	warp	doubrius_n107	1,1,doubrius_n1,167,376
+doubrius_n1,168,379,0	warp	doubrius_n108	1,1,doubrius_n1,168,311
+doubrius,80,175,0	warp	doubrius_n109	1,1,doubrius_n1,231,303
+doubrius_n1,231,301,0	warp	doubrius_n110	1,1,doubrius,77,175
+doubrius_n2	mapflag	nobranch
+doubrius_n2	mapflag	nomemo
+doubrius_n2	mapflag	noteleport
+doubrius,103,175,0	warp	doubrius_n201	2,2,doubrius_n2,168,128
+doubrius_n2,168,124,0	warp	doubrius_n202	2,1,doubrius,103,171
+doubrius,139,113,0	warp	doubrius_n203	2,2,doubrius_n2,284,127
+doubrius_n2,284,123,0	warp	doubrius_n204	2,1,doubrius,142,110
+doubrius_n3	mapflag	nobranch
+doubrius_n3	mapflag	nomemo
+doubrius_n3	mapflag	noteleport
+doubrius,120,170,0	warp	doubrius_n301	2,2,doubrius_n3,104,119
+doubrius_n3,104,115,0	warp	doubrius_n302	2,1,doubrius,120,167
+doubrius_n4	mapflag	nobranch
+doubrius_n4	mapflag	nomemo
+doubrius_n4	mapflag	noteleport
+doubrius,168,165,0	warp	doubrius_n401	1,1,doubrius_n4,232,265
+doubrius_n4,232,261,0	warp	doubrius_n402	1,1,doubrius,165,165
+doubrius_n4,210,284,0	warp	doubrius_n403	1,1,doubrius_n4,241,219
+doubrius_n4,236,219,0	warp	doubrius_n404	1,1,doubrius_n4,206,284
+doubrius_n4,250,278,0	warp	doubrius_n405	1,1,doubrius_n4,265,278
+doubrius_n4,261,278,0	warp	doubrius_n406	1,1,doubrius_n4,246,278
+doubrius_n4,254,212,0	warp	doubrius_n407	1,1,doubrius_n4,273,212
+doubrius_n4,269,212,0	warp	doubrius_n408	1,1,doubrius_n4,250,212
+doubrius_n4,238,169,0	warp	doubrius_n409	1,1,doubrius_n4,238,150
+doubrius_n4,238,154,0	warp	doubrius_n410	1,1,doubrius_n4,238,173
+doubrius_n4,231,182,0	warp	doubrius_n411	1,1,doubrius_n4,212,182
+doubrius_n4,216,182,0	warp	doubrius_n412	1,1,doubrius_n4,235,182
+doubrius_n4,231,200,0	warp	doubrius_n413	1,1,doubrius_n4,212,200
+doubrius_n4,216,200,0	warp	doubrius_n414	1,1,doubrius_n4,235,200
+
+//===================================================================
+//	WEST
+doubrius_w1	mapflag	nobranch
+doubrius_w1	mapflag	nomemo
+doubrius_w1	mapflag	noteleport
+doubrius,33,31,0	warp	doubrius_w101	1,1,doubrius_w1,246,363
+doubrius_w1,246,359,0	warp	doubrius_w102	1,1,doubrius,36,31
+doubrius_w1,244,315,0	warp	doubrius_w103	1,1,doubrius_w1,243,388
+doubrius_w1,248,388,0	warp	doubrius_w104	1,1,doubrius_w1,250,315
+doubrius_w1,229,313,0	warp	doubrius_w105	1,1,doubrius_w1,164,315
+doubrius_w1,168,315,0	warp	doubrius_w106	1,1,doubrius_w1,234,313
+doubrius_w1,168,307,0	warp	doubrius_w107	1,1,doubrius_w1,167,376
+doubrius_w1,168,379,0	warp	doubrius_w108	1,1,doubrius_w1,168,311
+doubrius,19,23,0	warp	doubrius_w109	1,1,doubrius_w1,231,303
+doubrius_w1,231,301,0	warp	doubrius_w110	1,1,doubrius,19,20
+doubrius_w2	mapflag	nobranch
+doubrius_w2	mapflag	nomemo
+doubrius_w2	mapflag	noteleport
+doubrius,19,46,0	warp	doubrius_w201	2,2,doubrius_w2,168,128
+doubrius_w2,168,124,0	warp	doubrius_w202	2,1,doubrius,23,46
+doubrius_w3	mapflag	nobranch
+doubrius_w3	mapflag	nomemo
+doubrius_w3	mapflag	noteleport
+doubrius,24,63,0	warp	doubrius_w301	2,2,doubrius_w3,104,119
+doubrius_w3,104,115,0	warp	doubrius_w302	2,1,doubrius,27,63
+doubrius_w4	mapflag	nobranch
+doubrius_w4	mapflag	nomemo
+doubrius_w4	mapflag	noteleport
+doubrius,29,111,0	warp	doubrius_w401	1,1,doubrius_w4,232,265
+doubrius_w4,232,261,0	warp	doubrius_w402	1,1,doubrius,29,108
+doubrius_w4,210,284,0	warp	doubrius_w403	1,1,doubrius_w4,241,219
+doubrius_w4,236,219,0	warp	doubrius_w404	1,1,doubrius_w4,206,284
+doubrius_w4,250,278,0	warp	doubrius_w405	1,1,doubrius_w4,265,278
+doubrius_w4,261,278,0	warp	doubrius_w406	1,1,doubrius_w4,246,278
+doubrius_w4,254,212,0	warp	doubrius_w407	1,1,doubrius_w4,273,212
+doubrius_w4,269,212,0	warp	doubrius_w408	1,1,doubrius_w4,250,212
+doubrius_w4,238,169,0	warp	doubrius_w409	1,1,doubrius_w4,238,150
+doubrius_w4,238,154,0	warp	doubrius_w410	1,1,doubrius_w4,238,173
+doubrius_w4,231,182,0	warp	doubrius_w411	1,1,doubrius_w4,212,182
+doubrius_w4,216,182,0	warp	doubrius_w412	1,1,doubrius_w4,235,182
+doubrius_w4,231,200,0	warp	doubrius_w413	1,1,doubrius_w4,212,200
+doubrius_w4,216,200,0	warp	doubrius_w414	1,1,doubrius_w4,235,200

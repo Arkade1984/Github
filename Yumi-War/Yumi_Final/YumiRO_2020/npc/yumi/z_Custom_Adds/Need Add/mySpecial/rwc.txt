@@ -1,0 +1,239 @@
+zephyr,257,52,4	script	Party vs Party::teamwar	796,{
+if (getgmlevel() >= 99){
+	menu "standard menu",standard,"reset",lend1;
+}
+
+if( bg_logincount() > 0 )
+	{
+		mes "[^FFA500Party vs Party^000000]";
+		mes "Dual Login is not allowed, Sorry.";
+		close;
+	}
+
+standard:
+set $@members,7; // number of party members change this to your party size you want
+set $@start,0;
+	getpartymember(getcharid(1));
+	set @partymembercount,$@partymembercount;
+	if ( $@start==1) {
+			mes "The Sign Ups are currently unavailable because a match is in progress. Don't hesitate to try again in a few minutes!";
+			close;
+	}
+
+	if ( @partymembercount==$@members) {
+		mes "Hello "+strcharinfo(0)+" Welcome to 7vs7 Party vs Party Team War Organizer";
+		mes "Do you want to sign up for a Match?";
+		if (($@TeamID1!=0) && ($@TeamID2!=0)) 
+		{
+			mes "The Sign Ups are currently unavailable because a match is in progress. Don't hesitate to try again in a few minutes!";
+			close;
+		}
+		if ( getpartyleader(getcharid(1),2) != getcharid(0) )
+		{
+			mes "Only party leader have the right to sign up / out from the game with me..";
+			close;
+		}
+			mes "Choose your team to register.";
+			switch(select("Red Team - [" + GetPartyName($@TeamID1) + "] :Blue Team - [" + GetPartyName($@TeamID2) + "]")) 
+				{
+				case 1:	mes "[  Team War  ]";
+
+						if ($@TeamID1==0 || getpartyname($@TeamID1)=="null") 
+						{
+							getpartymember(getcharid(1)),1;
+							getpartymember(getcharid(1)),2;
+							copyarray $@partymembercidt1[0],$@partymembercid[0],$@members;
+							copyarray $@partymemberaid1[0],$@partymemberaid[0],$@members;
+								for (set .@i,0; .@i<$@members; set .@i,.@i+1) {
+									if(isloggedin($@partymemberaid1[.@i],$@partymembercidt1[.@i]))  set .@count,.@count+1;
+								}
+								if(.@count < $@members) {
+									mes "You need all your party members to be online to Register";
+									close;
+								}
+							set $@TeamID1, getcharid(1);	
+							initnpctimer;	
+							mes "Your Party is now subscribed, good luck!";	
+							announce "Team 1 : [ " +getpartyname($@TeamID1)+ " ] has sign up For the Team War!",bc_blue|bc_map;	
+							doevent "teamwar::OnSubscriptionTeam";	
+							close;	
+						} else {
+							mes "I'm sorry! Another Team has sign up before you...";	
+							close;	
+						}
+				case 2:	mes "[  Team War  ]";
+					if ($@TeamID2==0 || getpartyname($@TeamID2)=="null") 
+					{	
+						getpartymember(getcharid(1)),1;
+						getpartymember(getcharid(1)),2;
+						copyarray $@partymembercidt2[0],$@partymembercid[0],$@members;
+						copyarray $@partymemberaid2[0],$@partymemberaid[0],$@members;
+							for (set .@i,0; .@i<$@members; set .@i,.@i+1) {
+								if(isloggedin($@partymemberaid2[.@i],$@partymembercidt2[.@i])) set .@count,.@count+1;
+							}
+							if(.@count < $@members) {
+								mes "You need all your party members to be online to Register";
+								close;
+							}
+						set $@TeamID2, getcharid(1);	
+						initnpctimer;	
+						mes "Your Party is now subscribed, good luck!";	
+						announce "Team 2 : [ " +getpartyname($@TeamID2)+ " ] has sign up For the Team War!",bc_blue|bc_map;
+						doevent "teamwar::OnSubscriptionTeam";	
+						close;	
+					}
+					else 
+					{	
+						mes "I'm sorry! Another Team has sign up before you...";	
+						close;
+					}
+				}
+	} else {
+		mes "[Event Handler]";
+		mes "Please contact your party leader.";
+		mes "Your team must have a party consisting of "+$@members+" members.";
+		close;
+	}
+
+OnSubscriptionTeam:
+		getpartymember($@TeamID2),1;
+		getpartymember($@TeamID2),2;
+		copyarray $@partymembercidtc2[0],$@partymembercid[0],$@members;
+		copyarray $@partymemberaidc2[0],$@partymemberaid[0],$@members;
+		for (set .@i,0; .@i<$@members; set .@i,.@i+1) {
+		if(isloggedin($@partymemberaidc2[.@i],$@partymembercidtc2[.@i])) set .@countx,.@countx+1;
+		}
+		if(.@countx < $@members) {
+		announce "Team War : "+getpartyname($@TeamID2)+"are not all online the match has been canceled",0;
+		announce "Team War : registration for 2 new teams are now available",0;
+		goto lend;
+		close;
+		}
+		getpartymember($@TeamID1),1;
+		getpartymember($@TeamID1),2;
+		copyarray $@partymembercidtc1[0],$@partymembercid[0],$@members;
+		copyarray $@partymemberaidc1[0],$@partymemberaid[0],$@members;
+		for (set .@i,0; .@i<$@members; set .@i,.@i+1) {
+		if(isloggedin($@partymemberaidc1[.@i],$@partymembercidtc1[.@i])) set .@countz,.@countz+1;
+		}
+		if(.@countz < $@members) {
+		announce "Team War : "+getpartyname($@TeamID1)+"are not all online the match has been canceled",0;
+		announce "Team War : registration for 2 new teams are now available",0;
+		goto lend;
+		close;
+		}
+	if($@TeamID1!=0 && $@TeamID2!=0){
+		announce "Team War : We have 2 Teams signed up now : "+getpartyname($@TeamID1)+" and "+getpartyname($@TeamID2)+".",bc_blue|bc_map;
+		set @win1, 0;
+		set @win2, 0;
+		goto Onstart;
+	}
+	end;
+
+OnTimer50000:
+	if (($@TeamID1!=0) && ($@TeamID2!=0)) {
+		end;
+	}
+	stopnpctimer;
+	set $@TeamID1, 0;
+	set $@TeamID1, 0;
+	announce "Team War : we lack teams to start registration for two teams are now available",0;
+	end;
+	
+OnStart:
+	warpparty "06guild_01",89,49,$@TeamID1;
+	warpparty "06guild_01",11,49,$@TeamID2;
+	set $@start,1;
+	end;
+
+lend:
+	stopnpctimer;
+	set $@TeamID1,0;
+	set $@TeamID2,0;
+	set $@start,0;
+	set @win1,0;
+	set @win2,0;
+	set @partymembercount,$@members;
+	end;
+lend1:
+	stopnpctimer;
+	set $@TeamID1,0;
+	set $@TeamID2,0;
+	set $@start,0;
+	set @win1,0;
+	set @win2,0;
+	set @partymembercount,$@members;
+	announce "Team War has been reset, you may register your team now",0;
+	close;
+	end;
+
+OnTimer250000:
+	Announce "Team War : No Party won due to time limit!",0;
+	mapwarp "06guild_01","zephyr",251,46;
+	goto lend;
+	end;
+
+	
+OnPCDieEvent:
+OnPCLogoutEvent:
+	if(strcharinfo(3) != "06guild_01") end;
+	warp "zephyr",251,46;
+		for(set .@i, 0; .@i < $@members; set .@i, .@i + 1) {
+			if ( $@partymembercidt1[.@i] == getcharid(0)) {
+				deletearray $@partymembercidt1[.@i], 1;
+				if( getarraysize($@partymembercidt1) == 0 ) {
+					set @win2,$@partymembercount;
+					goto onwin;
+				}
+			}
+			if ( $@partymembercidt2[.@i] == getcharid(0) ) {
+				deletearray $@partymembercidt2[.@i], 1;
+				if( getarraysize($@partymembercidt2)  == 0 ) {
+					set @win1,$@partymembercount;
+					goto onwin;
+				}
+			}
+		}
+	end;
+
+
+onwin:
+	if (@win1==0)
+	{
+		warpparty "quiz_00",114,102,$@TeamID2;
+		warpparty "zephyr",251,46,$@TeamID1;
+		Announce "Team War :"+GetPartyName($@TeamID2)+" won",0;
+		goto lend;
+		end;
+	}
+	if (@win2==0)
+	{
+		warpparty "quiz_00",114,102,$@TeamID1;
+		warpparty "zephyr",251,46,$@TeamID2;
+		Announce "Team War :"+GetPartyName($@TeamID1)+" won",0;
+		goto lend;
+		end;
+	}
+	end;
+}
+
+06guild_01	mapflag	nosave
+06guild_01	mapflag	nomemo
+06guild_01	mapflag	nobranch
+06guild_01	mapflag	pvp_noguild
+06guild_01	mapflag	nocommand	60
+06guild_01	mapflag	noicewall
+06guild_01	mapflag	pvp
+quiz_00	mapflag	nosave
+quiz_00	mapflag	nomemo
+quiz_00	mapflag	nobranch
+quiz_00	mapflag	pvp_noparty
+quiz_00	mapflag	nocommand
+
+quiz_00,114,102,0	script	#prizegiver	111,5,5,{
+//OnTouch2:
+OnTouch:
+	getitem 7829,100;
+	warp "zephyr",251,46;
+	close;
+}

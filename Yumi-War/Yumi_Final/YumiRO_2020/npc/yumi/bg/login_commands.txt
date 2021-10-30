@@ -1,0 +1,19 @@
+
+alexa_in,84,146,0	script	Enable Commands	563,{
+mes "[Settings]";
+mes "What would you like to do?";
+if(select("@autoloot - "+((#aloot == 0)?"^ff0000":"^00ff00")+#aloot+"^000000","@showexp - "+((#settings & 1)?"^00ff00On":"^ff0000Off"),"^000000@PacketFilter - "+((#settings & 2)?"^ff0000Off":"^00ff00On"))==1){ mes "[Settings]"; mes "Input a number between 0 and 100"; mes "An input of 0 turns this off."; input #aloot; if ( #aloot < 0  || #aloot > 100 ) { set #aloot, 100; } atcommand "@aloot rate "+#aloot+"";  mes "@autoloot saved " +(( #aloot == 0)?"as ^ff0000off^000000!":"at ^00ff00"+#aloot+"^000000%!"); close; }
+	if(@menu==2){ mes "[Settings]"; set #settings, #settings ^ 1; mes "@showexp saved as "+((#settings & 1)?"^00ff00on!":"^ff0000off!"); 
+	if (#settings & 1) atcommand "@showexp";
+	close; 
+	}
+	if(@menu==3){ mes "[Settings]"; set #settings, #settings ^ 2; mes "@packetfilter saved as "+((#settings & 2)?"^ff0000off!":"^00ff00on!"); close; }
+}
+
+-	script	Settings#login	-1,{
+OnPCLoginEvent:
+	if (#aloot > 100) atcommand "@autoloot "+#aloot+"";
+	if (#settings & 1) atcommand "@showexp";
+	if (!(#settings & 2)) atcommand "@packetfilter CI";
+	end;
+}

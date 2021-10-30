@@ -1,0 +1,125 @@
+//Rental NPC for 3rd Classes
+//by Pancake
+map,x,y,face	script	Rental Services	##,{
+	mes "[Rental Services]";
+	mes "Hi, here you can rent Carts, Falcons, Mounts, and Mechanic Mado's";
+	next;
+	switch(select("Cart:Falcon:Mount:Mado"))
+	{
+		case 1:
+			if( (BaseClass == Job_Merchant || BaseJob == Job_SuperNovice) && checkcart() == 0 && getskilllv("MC_PUSHCART") > 0 )
+			{
+				setcart;
+				close;
+			}
+			else
+			{
+				mes "[Rental Services]";
+				mes "Sorry " + strcharinfo(0) + ", Please make sure you are the required job and have the required skill.";
+				close;
+			}
+		case 2:
+			if( (Class == Job_Ranger || Class == Job_Ranger_T) && checkriding() )
+			{
+				mes "Sorry " + strcharinfo(0) + ", you can't rent a Falcon if you have a Warg rented.";
+				close;
+			}
+			if( BaseJob != Job_Archer && BaseClass == Job_Archer && checkfalcon() == 0 && getskilllv("HT_FALCON") > 0 )
+			{
+				setfalcon;
+				close;
+			}
+			else
+			{
+				mes "[Rental Services]";
+				mes "Sorry " + strcharinfo(0) + ", Please make sure you are the required job and have the required skill.";
+				close;
+			}					
+		case 3:
+			mes "[Mount Rentals]";
+			if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_H || Class == Job_Baby_Rune ) {
+			mes "Welcome. Would you like to rent a Dragon?";
+			next;
+			switch(select("Yes:No")) {
+			case 1:
+				//if (!getskilllv("RK_DRAGONTRAINING")) {
+				if (!getskilllv("KN_RIDING")) {
+					mes "[Mount Rentals]";
+					mes "Please learn how to ride a Dragon first.";
+					close;
+				}
+				if (checkriding()) {
+					mes "[Mount Rentals]";
+					mes "You already have a Dragon.";
+					close;
+				}
+				setdragon;
+				close;
+			case 2:
+				mes "[Mount Rentals]";
+				mes "I see. Then have a great day.";
+				close;
+		}
+	}
+
+	else if (Class == Job_Royal_Guard || Class == Job_Royal_Guard_H || Class == Job_Baby_Guard) {
+		mes "Welcome. Would you like to rent a Gryphon?";
+		next;
+		switch(select("Yes:No")) {
+		case 1:
+			if(!getskilllv("KN_RIDING")) {
+				mes "[Mount Rentals]";
+				mes "Please learn how to ride a Gryphon first.";
+				close;
+			}
+			else if (checkriding()) {
+				mes "[Mount Rentals]";
+				mes "You already have a Gryphon.";
+				close;
+			}
+			setriding;
+			close;
+		case 2:
+			mes "[Mount Rentals]";
+			mes "I see. Then have a great day.";
+			close;
+		}
+	}
+
+		else {
+			mes "Welcome. Would you like to rent/remove a Mount?";
+			next;
+			switch(select("Yes:No")) {
+			case 1:
+					if ((Class >= 4054 && Class <= 4079) && (Class != 4056 && Class != 4062)){
+					atcommand "@newmount";
+					close;
+					}
+					else
+					mes "[Mount Rentals]";
+					mes "You must be a 3rd class, and not a Ranger to rent a mount from me.";
+					close;
+			case 2:
+				mes "[Mount Rentals]";
+				mes "I see. Then have a great day.";
+				close;
+			}
+	}
+
+		case 4:
+			if( (Class == Job_Mechanic || Class == Job_Mechanic_T) && checkriding() == 0 )
+			{
+				setriding;
+				close;
+			}
+			else
+			{
+				mes "[Rental Services]";
+				mes "Sorry " + strcharinfo(0) + ", Please make sure you are the required job.";
+				close;
+			}
+	}
+
+
+}
+

@@ -1,0 +1,23 @@
+
+// Bulletin Board
+zephyr,152,137,6	script	Info Board#i1-1::Info Board	837,{
+	mes "^FF0000=================================^000000";
+	mes "^FF0000 You can rent equipments down at the Valkyrie Looking NPC at @go 28^000000";
+	mes "^FF0000 By typing @joinbg - you can automatically join the Battlegrounds ^000000";
+	mes "By typing @guild and @guildlvl <guild level> you can make a guild";
+	next;
+	mes "^FF0000Going to the north of @go 0 will lead you to a low-tier mid-tier equip NPC^000000";
+	mes "^FF0000You can exchange your Badges for Cash points at @go 28^000000";
+	mes "^FF0000You can buy permanent equipment at Donation Room^000000";
+	mes "^FF0000Disguises are 1 badge and every win is 150 badges and lose is 85 badges +/-^000000";
+	mes "^FF0000All permenant Gears are available in Silver Coin Trader^000000";
+	mes "^FF0000You can also Quest permenant gears via Battleground points in Alisyn^000000";
+	close;
+
+OnInit:
+	waitingroom "cRO Info Board!",0;
+	end;
+}
+
+//Duplicate
+zephyr,255,40,4	duplicate(Info Board)	Info Board#i1-2	837

@@ -1,0 +1,529 @@
+prontlegend,210,207,3	script	Miko Miko#1	725,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Wait a minute! -";
+		mes "- Currently you're carrying -";
+		mes "- too many items with you. -";
+		mes "- Please try again after -";
+		mes "- you put some items into Kafra Storage. -";
+		close;
+	}
+	if (countitem(5104) > 0 && countitem(2291) > 0 && countitem(7511) > 49 && countitem(983) > 0 && countitem(7799) > 9 && countitem(6089) > 4) {
+		mes "[Miko Miko]";
+		mes "Heh? You brought all the items~";
+		mes "Okay, give me some time.";
+		next;
+		mes "[Miko Miko]";
+		mes "*Squish Squish Bang Bang Bang Tap Tap Scrape Scrape*";
+		mes "*Scratch Scratch Tap Tap Tap Tap*";
+		next;
+		mes "[Miko Miko]";
+		mes "*Squish Squish Bang Bang Bang Tap Tap Scrape Scrape*";
+		mes "*Scratch Scratch Tap Tap Tap Tap*";
+		next;
+		mes "[Miko Miko]";
+		mes "Phew! There you go.";
+		mes "Now you can wear";
+		mes "Black Cat Ears";
+		mes "of your very own~";
+		delitem 5104,1; //Cat_Hairband
+		delitem 2291,1; //Black_Dyestuffs
+		delitem 7511,50; //Fluff
+		delitem 983,1; //Black Dye
+		delitem 7799,10; //Crystal of dark
+		delitem 6089,5; //Dark Piece
+		getitem 5483,1; //Ear_Of_Black_Cat
+		next;
+		mes "[Miko Miko]";
+		mes "Thank you for using my service~!";
+		close;
+	}
+	mes "[Miko Miko]";
+	mes "Umm...?";
+	mes "Excuse me?";
+	mes "Do I know you?...";
+	mes "Oh, I know why you";
+	mes "want to talk to me.";
+	mes "Heh heh~!";
+	next;
+	mes "[Miko Miko]";
+	mes "You want to know where I got these Dark Color Blinker, don't you? I knew it! Hahaha~!";
+	next;
+	mes "[Miko Miko]";
+	mes "Well, I made these myself.";
+	mes "If you want, I can make one for you too for a small price.";
+	mes "Heh heh heh~";
+	next;
+	mes "[Miko Miko]";
+	mes "Just bring me";
+	mes "1 ^FF0000Dark Blinker^000000,";
+	mes "1 ^FF0000Masquerade^000000,";
+	mes "50 ^FF0000Runes of Darkness^000000,";
+	mes "1 ^FF0000Black Dyestuffs^000000,";
+	mes "10 ^FF0000Crystal of Darkness^000000,";
+	mes "5 ^FF0000Dark Piece^000000";
+	next;
+	mes "[Miko Miko]";
+	mes "^FF0000Just remember, if you bring me any item that has a card inserted, or has been upgraded, the additional abilities of the item will disappear after I have used them. So please keep that in mind.";
+	close;
+}
+
+//Jasper Quest..
+prontlegend,163,213,5	script	Jass#1	732,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Wait a minute! -";
+		mes "- Currently you're carrying -";
+		mes "- too many items with you. -";
+		mes "- Please try again after -";
+		mes "- you put some items into Kafra Storage. -";
+		close;
+	}
+	if (countitem(723) > 99 && countitem(4004) > 0 && countitem(5123) > 0 && countitem(5081) > 0 && countitem(7211) > 2) {
+		mes "[Jass]";
+		mes "Oh! You brought all of them! Now I shall make you an Jasper Crest of your very own.";
+		next;
+		mes "[Jass]";
+		mes "Take this! The items you have brought will be very useful for continuing my work in spreading headbands around Rune-Midgard.";
+		delitem 723,100; //Indian_Hair_Piece
+		delitem 4004,1; //Stripe_Band
+		delitem 5123,1; //Peco_Wing_Feather
+		delitem 5081,1;
+		delitem 7211,3;
+		getitem 5396,1; //Indian_Headband
+		next;
+		mes "[Jass]";
+		mes "iiiyiyiyiyiyiyiiiiii~~!";
+		close;
+	}
+	mes "[Jass]";
+	mes "iiiyiyiyiyiyiyiiiiii~~!";
+	mes " ";
+	mes "Flower spirit, forever~!";
+	mes "On behalf of the Comodo Flowers, I give reverence to all Flowery Tribes!";
+	next;
+	mes "[Jass]";
+	mes "Would you like to have an Jasper Crest? You wouldn't become an official member of my tribe, but wearing it would show your respect if you happen to encounter tribal Flowers in your adventures.";
+	next;
+	mes "[Jass]";
+	mes "You could just bring...";
+	mes "100 ^FF0000Rubies^000000,";
+	mes "1 ^FF0000Drops Card^000000,";
+	mes "1 ^FF0000Ulle's Cap^000000,";
+	mes "1 ^FF0000Crown of Mistress^000000,";
+	mes "3 ^FF0000Fragment of Rossata Stone^000000,";
+	mes "and ^FF00001 zeny! (If you are poor I wont take)";
+	next;
+	mes "[Jass]";
+	mes "I will be using the items you've given me so I can continue my work in spreading Flower Headbands, and paying homage to the tribes of Rune-Midgard.";
+	next;
+	mes "[Jass]";
+	mes "^FF0000For your information, if you bring me any item that has a card inserted, or has been upgraded, the additional abilities of the item will disappear after I have used them. So please keep that in mind.^000000";
+	next;
+	mes "[Jass]";
+	mes "iiiyiyiyiyiyiyiiiiii~~!";
+	close;
+}
+
+//===================== Cyclop's Eye =====================================================
+prontlegend,228,224,3	script	Iron Man	930,{
+	if (countitem(5104) > 0 && countitem(7317) > 49 && countitem(999) > 9  && countitem(975) > 0 && countitem(976) > 0) {
+		mes "[?]";
+		mes "Giggle giggle...isn't it my partner, eh?";
+		mes "So, did you bring everything that I asked?";
+		mes "Great, now I can make the item which will help you";
+		mes "to cover your identity! Giggle giggle...";
+		next;
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		next;
+		mes "[?]";
+		mes "...Hey, don't look over my shoulder.";
+		mes "I don't want to share";
+		mes "my business secret with you, you know?";
+		next;
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		next;
+		delitem 5104,1; //Black_Dyestuffs
+		delitem 7317,50; //Smooth_Paper
+		delitem 999,10; //Sticky_Mucus
+		delitem 975,1; //Sticky_Mucus
+		delitem 976,1; //Sticky_Mucus 
+		set Zeny,Zeny-100000;
+		getitem 5135,1; //Cyclop's Eye
+		mes "[?]";
+		mes "Phew...it's done. Well, it was not that difficult to make, but...";
+		mes "Giggle giggle, what is important is that";
+		mes "now you can hide your identity. Now, take this.";
+		mes "Hopefully, this mask will help you";
+		mes "to avoid encountering your enemies. Ahahaha!";
+		close;
+	}
+	mes "[?]";
+	mes "...No way! Don't you dare to find out about me!";
+	mes "Don't you even speak to me!";
+	mes "Shushhh! Don't let my enemy know where I am!";
+	next;
+	mes "[?]";
+	mes "Err? You are a my kind person.";
+	mes "So, you are running away from something,";
+	mes "and you want to hide your identity, am I right?";
+	mes "Yeah...I guess that I am right... Giggle giggle.";
+	next;
+	mes "[?]";
+	mes "Well, I should be kind to my comrade.";
+	mes "Although I can't reveal my identity to you,";
+	mes "I can help you to safely hide from your enemies.";
+	next;
+	mes "[?]";
+	mes "Bring me ^FF00001 Dark Blinder^000000,";
+	mes "^FF000050 Rusty Screws, ^FF000010 Steel^000000,";
+	mes "^FF00001 Scarlet Dyestuff, ^FF00001 Lemon Dyestuff^000000,";
+	mes "and ^FF0000100,000 zeny^000000.";
+	mes "Then I will make you Cyclop's Eye !";
+	next;
+	mes "[?]";
+	mes "You may leave now.";
+	mes "Somehow we can be so helpful to each other.";
+	mes "Once you finish gathering all the material,";
+	mes "come back without anyone knowning. Giggle giggle.";
+	close;
+}
+
+// Yellow Ribbon //
+//===================== Cyclop's Eye =====================================================
+prontlegend,126,220,6	script	Ginny	80,{
+	if (countitem(7448) > 49 && countitem(508) > 99 && countitem(7149) > 19  && countitem(1059) > 49 && countitem(2209) > 0 && countitem(7291) > 4 && Zeny > 4999999) {
+		mes "[?]";
+		mes "Giggle giggle...isn't it my partner, eh?";
+		mes "So, did you bring everything that I asked?";
+		mes "Great, now I can make the item which will help you";
+		mes "to cover your identity! Giggle giggle...";
+		next;
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		next;
+		mes "[?]";
+		mes "...Hey, don't look over my shoulder.";
+		mes "I don't want to share";
+		mes "my business secret with you, you know?";
+		next;
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		next;
+		delitem 7448,50; //Black_Dyestuffs
+		delitem 508,100; //Smooth_Paper
+		delitem 7149,20; //Sticky_Mucus
+		delitem 1059,50; //Sticky_Mucus
+		delitem 2209,1; //Sticky_Mucus
+		delitem 7291,5; //Sticky_Mucus 
+		set Zeny,Zeny-5000000;
+		getitem 5278,1; //Cyclop's Eye
+		mes "[?]";
+		mes "Phew...it's done. Well, it was not that difficult to make, but...";
+		mes "Giggle giggle, what is important is that";
+		mes "now you can hide your identity. Now, take this.";
+		mes "Hopefully, this mask will help you";
+		mes "to avoid encountering your enemies. Ahahaha!";
+		close;
+	}
+	mes "[?]";
+	mes "...No way! Don't you dare to find out about me!";
+	mes "Don't you even speak to me!";
+	mes "Shushhh! Don't let my enemy know where I am!";
+	next;
+	mes "[?]";
+	mes "Err? You are a my kind person.";
+	mes "So, you are running away from something,";
+	mes "and you want to hide your identity, am I right?";
+	mes "Yeah...I guess that I am right... Giggle giggle.";
+	next;
+	mes "[?]";
+	mes "Well, I should be kind to my comrade.";
+	mes "Although I can't reveal my identity to you,";
+	mes "I can help you to safely hide from your enemies.";
+	next;
+	mes "[?]";
+	mes "Bring me ^FF000050 Yellow Bijou ID# 7448^000000,";
+	mes "^FF0000100 Yellow Herb ID# 508, ^FF000020 Yellow Plate ID# 7149^000000,";
+	mes "^FF000050 Fabric ID# 1059, ^FF00001 Ribbon[1] Item ID# 2209^000000,";
+	mes "and ^FF00005 Agate ID# 7291, 5,00,0000 zeny^000000.";
+	mes "Then I will make you Yellow Ribbon !";
+	next;
+	mes "[?]";
+	mes "You may leave now.";
+	mes "Somehow we can be so helpful to each other.";
+	mes "Once you finish gathering all the material,";
+	mes "come back without anyone knowning. Giggle giggle.";
+	close;
+}
+
+// Yellow Bandana //
+//===================== Cyclop's Eye =====================================================
+prontlegend,126,196,4	script	Elan	934,{
+	if (countitem(7448) > 49 && countitem(508) > 99 && countitem(7149) > 19  && countitem(1059) > 49 && countitem(2211) > 2 && countitem(7291) > 4 && Zeny > 4999999) {
+		mes "[?]";
+		mes "Giggle giggle...isn't it my partner, eh?";
+		mes "So, did you bring everything that I asked?";
+		mes "Great, now I can make the item which will help you";
+		mes "to cover your identity! Giggle giggle...";
+		next;
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		next;
+		mes "[?]";
+		mes "...Hey, don't look over my shoulder.";
+		mes "I don't want to share";
+		mes "my business secret with you, you know?";
+		next;
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		mes "- Bzzz Bzzz Click Click -";
+		mes "- Fumble Fumble Fumble Fumble -";
+		next;
+		delitem 7448,50; //Black_Dyestuffs
+		delitem 508,100; //Smooth_Paper
+		delitem 7149,20; //Sticky_Mucus
+		delitem 1059,50; //Sticky_Mucus
+		delitem 2211,3; //Sticky_Mucus
+		delitem 7291,5; //Sticky_Mucus 
+		set Zeny,Zeny-5000000;
+		getitem 5277,1; //Cyclop's Eye
+		mes "[?]";
+		mes "Phew...it's done. Well, it was not that difficult to make, but...";
+		mes "Giggle giggle, what is important is that";
+		mes "now you can hide your identity. Now, take this.";
+		mes "Hopefully, this mask will help you";
+		mes "to avoid encountering your enemies. Ahahaha!";
+		close;
+	}
+	mes "[?]";
+	mes "...No way! Don't you dare to find out about me!";
+	mes "Don't you even speak to me!";
+	mes "Shushhh! Don't let my enemy know where I am!";
+	next;
+	mes "[?]";
+	mes "Err? You are a my kind person.";
+	mes "So, you are running away from something,";
+	mes "and you want to hide your identity, am I right?";
+	mes "Yeah...I guess that I am right... Giggle giggle.";
+	next;
+	mes "[?]";
+	mes "Well, I should be kind to my comrade.";
+	mes "Although I can't reveal my identity to you,";
+	mes "I can help you to safely hide from your enemies.";
+	next;
+	mes "[?]";
+	mes "Bring me ^FF000050 Yellow Bijou ID# 7448^000000,";
+	mes "^FF0000100 Yellow Herb ID# 508, ^FF000020 Yellow Plate ID# 7149^000000,";
+	mes "^FF000050 Fabric ID# 1059, ^FF00003 Bandana ID# 2211^000000,";
+	mes "and ^FF00005 Agate ID# 7291, 5,00,0000 zeny^000000.";
+	mes "Then I will make you Yellow Bandana !";
+	next;
+	mes "[?]";
+	mes "You may leave now.";
+	mes "Somehow we can be so helpful to each other.";
+	mes "Once you finish gathering all the material,";
+	mes "come back without anyone knowning. Giggle giggle.";
+	close;
+}
+
+// Pink Night Cap
+//============================================================
+payon,143,230,3	script	Pinny	700,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Wait a minute! -";
+		mes "- Currently you're carrying -";
+		mes "- too many items with you. -";
+		mes "- Please try again after -";
+		mes "- you put some items into Kafra Storage. -";
+		close;
+	}
+	if (countitem(5506) > 0 && countitem(975) > 0 && countitem(982) > 0 && Zeny > 999999) {
+		mes "^3355FF*Sprinkle Sprinkle*";
+		mes "Pinny pours a cute hat for sleeping at bed <3.^000000";
+		next;
+		mes "[Pinny]";
+		mes "Hocus pocus!";
+		next;
+		mes "[Pinny]";
+		mes ".......................";
+		mes "Phew! Success! There's a sleeping cap growing out of your head!";
+		next;
+		mes "[Pinny]";
+		mes "But...";
+		mes "I don't like the way it's tilting. It should have grown in the ^FF3333other^000000 direction.";
+		next;
+		mes "[Pinny]";
+		mes "I guess...";
+		mes "I guess we should make into a headband so that you can adjust it to your style.";
+		next;
+		mes "[Pinny]";
+		mes "I know, I know...";
+		mes "It's not as cool as having the ribbon actually attached to your skull, but it's all we can do. I'm sorry I let you down.";
+		next;
+		mes "[Pinny]";
+		mes "...There.";
+		mes "It's done. But are you okay? Luckily, I don't think I scalped you.";
+		next;
+		mes "[Pinny]";
+		mes "Anyway, now you can wear that Headgears at a rakish angle, the way it's supposed to be worn. Stay cool, you fashion rebel, you.";
+		delitem 5506,1; //Headgears_Spore
+		delitem 975,1; //Headgears_Spore
+		delitem 982,1; //Headgears_Spore
+		set Zeny,Zeny-1000000;
+		getitem 5507,1; //Headgears_Band
+		close;
+	}
+	mes "[Pinny]";
+	mes "Even...";
+	mes "On top of the human head...";
+	next;
+	mes "[Pinny]";
+	mes "Some may think it grotesque, but wouldn't you agree that sporting a Pink Night cap, grown from your head, would start an art revolution?";
+	next;
+	mes "[Pinny]";
+	mes "Just think! It's the perfect fusion of magic and art, fashion and living life...";
+	mes "Man and Headgears?";
+	mes "Ah...I've piqued your curiosity I see.";
+	next;
+	mes "[Pinny]";
+	mes "So...";
+	mes "But in order to cast this spell, I need the magical power  So, if you bring me all of those stuffs, you can see my magic for yourself!";
+	next;
+	mes "[Pinny]";
+	mes "Now now, you do understand that I have to make the Headgears grow out of your head. Anywhere else, you could suspect that there's some kind of trick or illusion involved.";
+	next;
+	mes "[Pinny]";
+	mes "Besides, nothing says 'rebel without a cause' like a Headgears growing out of your head! You would look soooo cool, independent and countercultured!";
+	next;
+	mes "[Pinny]";
+	mes "Remember, bring me...";
+	mes "^FF00001 Blue Night Cap[1] 5506, 1 Scarlet Dyestuffs 975, 1 White Dye 982, 1,000,000z ^000000,";
+	mes "so that I can let you experience my amazing magic for yourself~!";
+	close;
+}
+
+//Moon owl Cap
+
+// Pink Night Cap
+//============================================================
+prontlegend,210,191,4	script	Moon Walker	706,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Wait a minute! -";
+		mes "- Currently you're carrying -";
+		mes "- too many items with you. -";
+		mes "- Please try again after -";
+		mes "- you put some items into Kafra Storage. -";
+		close;
+	}
+	if (countitem(4159) > 0 && countitem(1022) > 49 && countitem(919) > 49) {
+		mes "[Moon Walker]";
+		mes "Wow! Did you really gather these stuffs all by yoruself? Nice! Now it's time to use my magic~";
+		next;
+		mes "^3355FF*Sprinkle Sprinkle*";
+		mes "Pinny pours a cute hat for sleeping at bed <3.^000000";
+		next;
+		mes "[Moon Walker]";
+		mes "Hocus pocus!";
+		next;
+		mes "[Moon Walker]";
+		mes ".......................";
+		mes "Phew! Success! There's a sleeping cap growing out of your head!";
+		next;
+		mes "[Moon Walker]";
+		mes "But...";
+		mes "I don't like the way it's tilting. It should have grown in the ^FF3333other^000000 direction.";
+		next;
+		mes "[Moon Walker]";
+		mes "I guess...";
+		mes "I guess we should make that Headgears into a headband so that you can adjust it to your style.";
+		next;
+		mes "[Moon Walker]";
+		mes "I know, I know...";
+		mes "It's not as cool as having the Headgears actually attached to your skull, but it's all we can do. I'm sorry I let you down.";
+		next;
+		mes "[Moon Walker]";
+		mes "...There.";
+		mes "It's done. But are you okay? Luckily, I don't think I scalped you.";
+		next;
+		mes "[Moon Walker]";
+		mes "Anyway, now you can wear that Headgears at a rakish angle, the way it's supposed to be worn. Stay cool, you fashion rebel, you.";
+		delitem 4159,1; //Headgears_Spore
+		delitem 1022,50; //Headgears_Spore
+		delitem 919,50; //Headgears_Spore
+		getitem 5214,1; //Headgears_Band
+		close;
+	}
+	mes "[Moon Walker]";
+	mes "Even...";
+	mes "On top of the human head...";
+	next;
+	mes "[Moon Walker]";
+	mes "Some may think it grotesque, but wouldn't you agree that sporting a Pink Night cap, grown from your head, would start an art revolution?";
+	next;
+	mes "[Moon Walker]";
+	mes "Just think! It's the perfect fusion of magic and art, fashion and living life...";
+	mes "Man and Headgears?";
+	mes "Ah...I've piqued your curiosity I see.";
+	next;
+	mes "[Moon Walker]";
+	mes "So...";
+	mes "But in order to cast this spell, I need the magical power in ^FF0000 Headgears^000000. So, if you bring me all of those Headgears Spores, you can see my magic for yourself!";
+	next;
+	mes "[Moon Walker]";
+	mes "Now now, you do understand that I have to make the Headgears grow out of your head. Anywhere else, you could suspect that there's some kind of trick or illusion involved.";
+	next;
+	mes "[Moon Walker]";
+	mes "Besides, nothing says 'rebel without a cause' like a Headgears growing out of your head! You would look soooo cool, independent and countercultured!";
+	next;
+	mes "[Moon Walker]";
+	mes "Remember, bring me...";
+	mes "^FF00001 X Nine Tail Card - Item ID# 4159, 50 X Nine Tail - Item ID# 1022 ,50 X Animal Skin - Item ID# 919^000000";
+	mes "so that I can let you experience my amazing magic for yourself~!";
+	close;
+}
+
+//LBH EXCHANGER
+prt_monk,256,91,5	script	Great Bapho	76,{
+	mes "[Great Bapho]";
+	mes "What you need";
+	mes "I can Exchange your ATK Bapho horns to Large Baphomet horns for you but here's the list you need";
+	next;
+	mes "The requirements, should you be brave enough to collect them, are:";
+	mes "^00008B1x Baphomet Horns #5374^000000";
+	mes "^00008B5x Cursed Ruby #724^000000";
+	next;
+	mes "[Great Bapho]";
+	mes "Are you ready for me to make this special item?";
+	next;
+	menu "Sure am!",-, "The requirements are unfathomable!",L_Unfathomable;
+
+	mes "[Great Bapho]";
+	if(countitem(5374) < 1 || countitem(724) < 5) goto L_NotEnough;
+	delitem 5374,1;
+	delitem 724,5;
+	getitem 5518,1;
+	close;
+
+L_NotEnough:
+	mes ". . .I'm sorry. You don't have enough money and items.";
+	mes "I can't afford to make this if you don't bring all materials needed.";
+	mes "Please understand this is to benefit heroes such as yourself!";
+	close;
+
+L_Unfathomable:
+	mes "[Great Bapho]";
+	mes "What I had to go through was more unfathomable..";
+	mes "If you succeed in getting these items, you will have incredible strength!";
+	close;
+}

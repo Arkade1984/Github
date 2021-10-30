@@ -1,0 +1,72 @@
+goodev_c02,105,31,3	script	Pet Manager#Novice	553,{
+
+	set .@name$, "[^0000FFPet Manager^000000]";
+	
+	mes .@name$;
+	mes "Did you know that Pets are useful?";
+	mes "They can do many things!";
+	mes "Do you know how?";
+	next;
+	switch(select("• No, give me some information:• I know everything about them:• I don't want to listen to you.")) {
+		case 1:
+			mes .@name$;
+			mes "Pets are very important for you. If you get a Pet, you'll found a great friend.";
+			next;
+			mes .@name$;
+			mes "There are Pet Groomers all around the world, they can feed and train your pet.";
+			next;
+			mes .@name$;
+			mes "They have an especial job, since they are the only ones who knows all the secrets behind the pets.";
+			next;
+			mes .@name$;
+			mes "Since their job requires a great responsability, they must charge in a different coin.";
+			next;
+			mes .@name$;
+			mes "The regular coin we use it's the Zeny, but they aren't interested on that, they want something else.";
+			next;
+			mes .@name$;
+			mes "The Poring Coin it's a coin used for certain transactions, and you can get it by some monster drops.";
+			next;
+			mes .@name$;
+			mes "That concludes my explanation.";
+			next;
+		case 2:
+			if ( !reward_001 ) {
+				mes .@name$;
+				mes "So, you want a Pet for yourself?";
+				next;
+				switch(select( "• Yes!:• No, i don't need pets" )) {
+					case 1:
+						mes .@name$;
+						mes "Once you go into a city, search for a Pet Groomer, he will feed your pet.";
+						mes "Here is a Poring Coin for you, don't expend it anywhere else, you will need it.";
+						close2;
+						set reward_001, !reward_001;
+						getitem 7539,1;
+						getitem 9016,6;
+						getitem 643,2;
+						sleep2 100;
+						callfunc("AutolootPetTimer");
+						end;
+					
+					case 2:
+						mes .@name$;
+						mes "Well, if you change your mind, i will be here.";
+						close;
+			
+				}
+			}
+			
+			mes .@name$;
+			mes "I'm sorry, but i can't give you another pet.";
+			close;
+			
+		
+		case 3:
+			mes .@name$;
+			mes "Well, you will need to know about the pets sooner or later.";
+			close;
+	}
+}
+//~Original~goodev_c02,105,31,3	script	Pet Manager#Novice	553,{
+alexa_in,76,151,5	duplicate(Pet Manager#Novice)	Pet Manager#1-2	553,{

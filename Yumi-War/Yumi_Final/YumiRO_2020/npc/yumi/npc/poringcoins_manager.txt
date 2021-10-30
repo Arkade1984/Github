@@ -1,0 +1,15 @@
+
+-	script	PoringCoins_Manager	-1,{
+
+	OnNPCKillEvent:
+		
+		if ( killedrid == 1002 ) {
+			if ( rand(4,10) == 10 ) {
+				
+				getitem 7539,1;
+				message strcharinfo(0),"You got a Poring Coin!";
+				end;
+				
+			}
+		}
+}

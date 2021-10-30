@@ -1,0 +1,25 @@
+zephyr,147,137,5	script	YumiRO Placard	837,{
+
+	mes "[YumiRO Placard]";
+	mes "Please, click on the links below to help ^FF6633Yumi Ragnarok Online^000000 grow!";
+	mes " ";
+	mes "<URL>XtremeTop 100<INFO>https://www.facebook.com/yumi.game?fref=ts</INFO></URL>";
+	mes " ";
+	mes "<URL>ROTop 100<INFO>https://www.facebook.com/yumi.game?fref=ts</INFO></URL>";
+	mes " ";
+	mes "<URL>GameSites 200<INFO>https://www.facebook.com/yumi.game?fref=ts</INFO></URL>";
+	next;
+	mes "[YumiRO Placard]";
+	mes "Check our ^0000ffFacebook^000000 page to stay updated with our ^ff0000weekly events^000000 and share it to advertise us!";
+	mes " ";
+	mes "<URL>YumiRO Facebook Page<INFO>https://www.facebook.com/yumi.game?fref=ts</INFO></URL>";
+	next;
+	mes "[YumiRO Placard]";
+	mes "... and do not forget to write us a review in order to let the other players know how awesome the game and the community are!";
+	mes " ";
+	mes "<URL>RateMyServer<INFO>https://www.facebook.com/yumi.game?fref=ts</INFO></URL>";
+	next;
+	mes "[YumiRO Placard]";
+	mes "Remember... the more we are, the more is the fun!";
+	close;
+}

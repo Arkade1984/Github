@@ -1,0 +1,29 @@
+junon,242,151,4	shop	Tool Dealer	895,13889:500,13890:500,611:40,602:300,601:60,506:40,501:50,502:200,503:500,533:500,504:1000,505:5000,645:800,656:1500,657:3000,717:600,716:600,715:600,1025:184,523:6000,1065:100,1750:1,1766:40,1767:3,1755:3,1754:3,1761:10,1752:3,1760:10,1759:10,1757:3,1770:2,1769:10,1765:30,1763:10,1762:3,1764:20,1751:3,1768:10,1753:4,1756:3,1758:10,7623:2000000,7822:1000,7823:1000,6105:1000,6111:1000,6110:1000,6096:1000,6097:1000,6095:1000,6098:1000,6108:1000,6106:1000,6112:1000,6099:1000,7766:1000,6109:1000,6100:1000,7824:1000,6107:1000
+
+morocc,162,97,5	duplicate(Tool Dealer)	Tool Dealer#2tdealer	895
+geffen,124,62,5	duplicate(Tool Dealer)	Tool Dealer#3tdealer	895
+payon,156,238,5	duplicate(Tool Dealer)	Tool Dealer#4tdealer	895
+alberta,182,144,5	duplicate(Tool Dealer)	Tool Dealer#5tdealer	895
+izlude,123,116,5	duplicate(Tool Dealer)	Tool Dealer#6tdealer	895
+aldebaran,133,117,5	duplicate(Tool Dealer)	Tool Dealer#7tdealer	895
+xmas,154,136,5	duplicate(Tool Dealer)	Tool Dealer#8tdealer	895
+comodo,216,148,5	duplicate(Tool Dealer)	Tool Dealer#9tdealer	895
+amatsu,202,92,5	duplicate(Tool Dealer)	Tool Dealer#10tdealer	895
+gonryun,165,122,5	duplicate(Tool Dealer)	Tool Dealer#11tdealer	895
+umbala,83,162,5	duplicate(Tool Dealer)	Tool Dealer#12tdealer	895
+louyang,212,101,5	duplicate(Tool Dealer)	Tool Dealer#13tdealer	895
+ayothaya,144,112,5	duplicate(Tool Dealer)	Tool Dealer#14tdealer	895
+lighthalzen,156,100,5	duplicate(Tool Dealer)	Tool Dealer#15tdealer	895
+rachel,134,114,5	duplicate(Tool Dealer)	Tool Dealer#16tdealer	895
+moscovia,230,191,5	duplicate(Tool Dealer)	Tool Dealer#17tdealer	895
+prontlegend,182,197,3	duplicate(Tool Dealer)	Tool Dealer#18tdealer	895
+mellina,81,62,4	duplicate(Tool Dealer)	Tool Dealer#19tdealer	895
+rent_in,25,18,4	duplicate(Tool Dealer)	Tool Dealer#20tdealer	895
+rent_in2,25,18,4	duplicate(Tool Dealer)	Tool Dealer#21tdealer	895
+rent_in3,25,19,4	duplicate(Tool Dealer)	Tool Dealer#22tdealer	895
+rent_in4,25,18,4	duplicate(Tool Dealer)	Tool Dealer#23tdealer	895
+rent_in5,18,25,4	duplicate(Tool Dealer)	Tool Dealer#24tdealer	895
+prontera,150,188,4	duplicate(Tool Dealer)	Tool Dealer#25tdealer	895
+zephyr,142,141,4	duplicate(Tool Dealer)	Tool Dealer#26tdealer	895
+
+//*********************************************************************************************************************************************************************************

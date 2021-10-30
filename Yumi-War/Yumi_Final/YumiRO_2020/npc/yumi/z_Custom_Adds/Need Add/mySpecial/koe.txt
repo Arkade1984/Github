@@ -1,0 +1,566 @@
+//===== Athena Script ========================================
+//= Advanced [King Of Emperium]
+//===== By: ==================================================
+//= rahuldev345
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= eAthena SVN which supports, strcharinfo(3) function
+//===== Description: =========================================
+//= Advanced [King Of Emperium]
+//= 
+//===== Additional Comments: =================================
+//= Version 1.1 if there are any Bugs please let me know.
+//===== Changelogs: ==========================================
+// 1.2 Changed the Emperium Id ( I think there is a bug with 
+//     using the official Emperium ).
+//     Modified Exit npc. Now Gives items to all members, those
+//     stay till the end of the KoE.
+// 1.3 Corrected a small Error with variable.
+//============================================================
+
+-	script	KoE	-1,{
+/*
+OnClock2200:
+OnClock0200:
+OnClock0600:
+OnClock1000:
+OnClock1400:
+OnClock1800:
+goto L_start;
+OnClock2245:
+OnClock0245:
+OnClock0645:
+OnClock1045:
+OnClock1445:
+OnClock1845:
+goto L_end;
+*/
+OnInit:
+	disablenpc "The King";
+	disablenpc "Exit#01";
+	end;
+
+OnWhisperGlobal:
+	if ( getgmlevel() < 99 ) end;
+	else if ( compare ( @whispervar0$, "on" ) ) goto L_start;
+	else if ( compare ( @whispervar0$, "off" ) ) goto L_end;
+	else end;
+		
+L_end:
+	announce "The King of Emperium is over!", 0;
+		if (.koe_start) end;
+	set .koe_start, 0;
+	enablenpc "Exit#01";
+	disablenpc "The King";
+	killmonsterall "06guild_01";
+	end;
+
+L_start:
+	deletearray $GMS1$, 128;
+	deletearray $GMS2$, 128;
+	deletearray $GMS3$, 128;
+	deletearray $GMS4$, 128;
+	set $@P1, 0;
+	set $@P2, 0;
+	set $@P3, 0;
+	set $@P4, 0;
+	set $@Geast, 0;
+	set $@Gwest, 0;
+	set $@Gnorth, 0;
+	set $@Gsouth, 0;
+	announce "[King of Emperium]: The King of Emperium has begun!", 0;
+	set .koe_start, 1;
+	enablenpc "The King";
+	disablenpc "Exit#01";
+	donpcevent "::OnRevKoE";
+	monster "06guild_01",49,49,"EMPERIUM",1907,1,"KoE::OnEmpDead";
+	end;
+
+OnEmpDead:
+	set $koegid, getcharid(2);
+	announce "[King of Emperium]: The King of Emperium is the [" + strcharinfo(2) + "] guild.", 0;
+	donpcevent "::OnRevKoE";
+	set .koe_start, 0;
+	enablenpc "Exit#01";
+	disablenpc "The King";
+	end;
+}
+
+// KoE Entrance
+zephyr,150,130,6	script	The King	58,{
+OnTouch:
+set .@name$, "[The King]";
+if(BaseLevel < 90) end;
+	if ( $@Geast == getcharid(2) || $@Gwest == getcharid(2) || $@Gnorth == getcharid(2) || $@Gsouth == getcharid(2) ) {
+		mes .@name$;
+		mes "Your Guild is alreday Registered with us. Wait, till Everyone Get's Ready.";
+		close;
+	}
+	mes "[The King]";
+	if ( getcharid(2) == 0 ) {
+		mes "You must have a guild to participate in the ^FF0000King of Emperium Tournament^000000.";
+		close;
+	}
+	if ( getguildmasterid(getcharid(2)) != getcharid(0) ) {	// checks if Guild Master
+		mes "You are Not the Guild Master of the "+getguildname(getcharid(2))+" Guild.";
+		close;
+	}
+    mes "Hello.";
+    mes "Would you like to Register in the ^FF0000King of Emperium Tournament^000000?";
+	next;
+	if ( select ( "Yes", "No" ) == 2 ) close;
+	// Query Guild Member Information ( Only Online Members )
+	set .@id, query_sql ("SELECT guild_member.char_id, char.name FROM guild_member LEFT JOIN `char` ON guild_member.char_id = char.char_id WHERE (guild_member.guild_id = " + getcharid(2) + ") AND guild_member.lv >= '90' AND guild_member.online = '1' ORDER BY guild_member.position",.@char_id,.@chname$);
+		if (.@id < $@Gmem) {
+			mes .@name$;
+			mes "Not Enough Members from your guild are Online.";
+			close;
+		}
+	mes "[The King]";
+	mes "Select a Position to attach from.";
+	switch(select("East ["+getguildname($@Geast)+"]:West ["+getguildname($@Gwest)+"]:North ["+getguildname($@Gnorth)+"]:South ["+getguildname($@Gsouth)+"]")) {
+		case 1:
+			if ($@P1) {		// Some one selection
+				mes .@name$;
+				mes "Some alreday Choosen This possion.";
+				close;
+			}
+			if ($@Geast) {		// Alreday Captured by the guild
+				mes "The East position is alreday been captured by " + getguildname($@Geast) + " Guild.";
+				close;
+			}
+			set $@P1, 1;
+			for (set .@i, 0; .@i < .@id; set .@i, .@i + 1) {		// Build menu with all online users of the Guild.
+				set .@menu$, .@menu$ + "  -  ^0000ff" + .@chname$[.@i] + "^000000:";
+			}
+			addtimer 60000, strnpcinfo(3)+"::On_Leave1";
+			mes "You have only 1 Minute to Select your Fighter's. So be fast!";
+			set $GMS1$[getarraysize($GMS1$)], strcharinfo(0);		// Guild Master alreday Selected.
+			mes "^00ff00Selected:^000000 " + strcharinfo(0);
+			REG1:
+				if ( getarraysize($GMS1$) != $@Gmem ) {
+					set .@choice, select(.@menu$) - 1;
+					
+						for ( set .@i, 0; .@i < getarraysize($GMS1$); set .@i, .@i + 1 ) {	// Checks if Already Registered.
+							if ( ( $GMS1$[.@i] == .@chname$[.@choice] ) ) {
+								mes "^ff0000Alreday Selected:^000000 " + .@chname$[.@choice] + /* + Jobname(@class[.@choice]) +  " || " + @class[.@choice] + " .." + $GJob1[.@i] + "*/".";
+								goto REG1;
+							}
+						}
+
+				set $GMS1$[getarraysize($GMS1$)], .@chname$[.@choice];		// Guild member selection 1st Guild
+				mes "^00ff00Selected:^000000 " + .@chname$[.@choice];
+				goto REG1;
+				}
+				next;
+				mes .@name$;
+				mes "You have Selected your Fighter's.";
+				mes "Be Ready to Fight with your Enemy.";
+				mes "We will Start in few Seconds.";
+
+				for ( set .@i, 0; .@i < getarraysize($GMS1$); set .@i, .@i + 1 ) {		// Announcing All Chars Selected to Fight
+					announce "[" + $GMS1$[.@i] + "] ~ Selected as a Fighter for Guild ~" + GetGuildName(getcharid(2)) + "~.",0;
+				}
+				set $@Geast, getcharid(2);
+				donpcevent strnpcinfo(0)+"::OnGReady";
+				set $@P1, 0;
+				close;
+		case 2:
+			if ($@P2) {		// Some one selection
+				mes .@name$;
+				mes "Some alreday Choosen This possion.";
+				close;
+			}
+			if ($@Gwest) {
+				mes "The West position is alreday been captured by " + getguildname($@Gwest) + " Guild.";
+				close;
+			}
+			set $@P2, 1;
+			for (set .@i, 0; .@i < .@id; set .@i, .@i + 1) {		// Build menu with all online users of the Guild.
+				set .@menu$, .@menu$ + "  -  ^0000ff" + .@chname$[.@i] + "^000000:";
+			}
+			addtimer 60000, strnpcinfo(3)+"::On_Leave2";
+			mes "You have only 1 Minute to Select your Fighter's. So be fast!";
+			set $GMS2$[getarraysize($GMS2$)], strcharinfo(0);		// Guild Master alreday Selected.
+			mes "^00ff00Selected:^000000 " + strcharinfo(0);
+			REG2:
+				if ( getarraysize($GMS2$) != $@Gmem ) {
+					set .@choice, select(.@menu$) - 1;
+					
+						for ( set .@i, 0; .@i < getarraysize($GMS2$); set .@i, .@i + 1 ) {	// Checks if Already Registered.
+							if ( ( $GMS2$[.@i] == .@chname$[.@choice] ) ) {
+								mes "^ff0000Alreday Selected:^000000 " + .@chname$[.@choice] + /* + Jobname(@class[.@choice]) +  " || " + @class[.@choice] + " .." + $GJob1[.@i] + "*/".";
+								goto REG2;
+							}
+						}
+
+				set $GMS2$[getarraysize($GMS2$)], .@chname$[.@choice];		// Guild member selection 1st Guild
+				mes "^00ff00Selected:^000000 " + .@chname$[.@choice];
+				goto REG2;
+				}
+				next;
+				mes .@name$;
+				mes "You have Selected your Fighter's.";
+				mes "Be Ready to Fight with your Enemy.";
+				mes "We will Start in few Seconds.";
+
+				for ( set .@i, 0; .@i < getarraysize($GMS2$); set .@i, .@i + 1 ) {		// Announcing All Chars Selected to Fight
+					announce "[" + $GMS2$[.@i] + "] ~ Selected as a Fighter for Guild ~" + GetGuildName(getcharid(2)) + "~.",0;
+				}
+				set $@Gwest, getcharid(2);
+				donpcevent strnpcinfo(0)+"::OnGReady";
+				set $@P2, 0;
+				close;
+		case 3:
+			if ($@P3) {		// Some one selection
+				mes .@name$;
+				mes "Some alreday Choosen This possion.";
+				close;
+			}
+			if ($@Gnorth) {
+				mes "The North position is alreday been captured by " + getguildname($@Gnorth) + " Guild.";
+				close;
+			}
+			set $@P3, 1;
+			for (set .@i, 0; .@i < .@id; set .@i, .@i + 1) {		// Build menu with all online users of the Guild.
+				set .@menu$, .@menu$ + "  -  ^0000ff" + .@chname$[.@i] + "^000000:";
+			}
+			addtimer 60000, strnpcinfo(3)+"::On_Leave3";
+			mes "You have only 1 Minute to Select your Fighter's. So be fast!";
+			set $GMS3$[getarraysize($GMS3$)], strcharinfo(0);		// Guild Master alreday Selected.
+			mes "^00ff00Selected:^000000 " + strcharinfo(0);
+			REG3:
+				if ( getarraysize($GMS3$) != $@Gmem ) {
+					set .@choice, select(.@menu$) - 1;
+					
+						for ( set .@i, 0; .@i < getarraysize($GMS3$); set .@i, .@i + 1 ) {	// Checks if Already Registered.
+							if ( ( $GMS3$[.@i] == .@chname$[.@choice] ) ) {
+								mes "^ff0000Alreday Selected:^000000 " + .@chname$[.@choice] + /* + Jobname(@class[.@choice]) +  " || " + @class[.@choice] + " .." + $GJob1[.@i] + "*/".";
+								goto REG3;
+							}
+						}
+
+				set $GMS3$[getarraysize($GMS3$)], .@chname$[.@choice];		// Guild member selection 1st Guild
+				mes "^00ff00Selected:^000000 " + .@chname$[.@choice];
+				goto REG3;
+				}
+				next;
+				mes .@name$;
+				mes "You have Selected your Fighter's.";
+				mes "Be Ready to Fight with your Enemy.";
+				mes "We will Start in few Seconds.";
+
+				for ( set .@i, 0; .@i < getarraysize($GMS3$); set .@i, .@i + 1 ) {		// Announcing All Chars Selected to Fight
+					announce "[" + $GMS3$[.@i] + "] ~ Selected as a Fighter for Guild ~" + GetGuildName(getcharid(2)) + "~.",0;
+				}
+				set $@Gnorth, getcharid(2);
+				donpcevent strnpcinfo(0)+"::OnGReady";
+				set $@P3, 0;
+				close;
+		case 4:
+			if ($@P4) {		// Some one selection
+				mes .@name$;
+				mes "Some alreday Choosen This possion.";
+				close;
+			}
+			if ($@Gsouth) {
+				mes "The South position is alreday been captured by " + getguildname($@Gsouth) + " Guild.";
+				close;
+			}
+			set $@P4, 1;
+			for (set .@i, 0; .@i < .@id; set .@i, .@i + 1) {		// Build menu with all online users of the Guild.
+				set .@menu$, .@menu$ + "  -  ^0000ff" + .@chname$[.@i] + "^000000:";
+			}
+			addtimer 60000, strnpcinfo(3)+"::On_Leave4";
+			mes "You have only 1 Minute to Select your Fighter's. So be fast!";
+			set $GMS4$[getarraysize($GMS4$)], strcharinfo(0);		// Guild Master alreday Selected.
+			mes "^00ff00Selected:^000000 " + strcharinfo(0);
+			REG4:
+				if ( getarraysize($GMS4$) != $@Gmem ) {
+					set .@choice, select(.@menu$) - 1;
+					
+						for ( set .@i, 0; .@i < getarraysize($GMS4$); set .@i, .@i + 1 ) {	// Checks if Already Registered.
+							if ( ( $GMS4$[.@i] == .@chname$[.@choice] ) ) {
+								mes "^ff0000Alreday Selected:^000000 " + .@chname$[.@choice] + /* + Jobname(@class[.@choice]) +  " || " + @class[.@choice] + " .." + $GJob1[.@i] + "*/".";
+								goto REG4;
+							}
+						}
+
+				set $GMS4$[getarraysize($GMS4$)], .@chname$[.@choice];		// Guild member selection 1st Guild
+				mes "^00ff00Selected:^000000 " + .@chname$[.@choice];
+				goto REG4;
+				}
+				next;
+				mes .@name$;
+				mes "You have Selected your Fighter's.";
+				mes "Be Ready to Fight with your Enemy.";
+				mes "We will Start in few Seconds.";
+
+				for ( set .@i, 0; .@i < getarraysize($GMS4$); set .@i, .@i + 1 ) {		// Announcing All Chars Selected to Fight
+					announce "[" + $GMS4$[.@i] + "] ~ Selected as a Fighter for Guild ~" + GetGuildName(getcharid(2)) + "~.",0;
+				}
+			set $@Gsouth, getcharid(2);
+			donpcevent strnpcinfo(0)+"::OnGReady";
+			set $@P4, 0;
+			close;
+	}
+	close;
+	
+On_Leave1:
+	if ($@Geast) end;
+	set $@P1, 0;
+	deletearray $GMS1$, 128;
+	atcommand "@refresh";
+	announce "[King of Emperium]: East Slot is Vacant, if any guild wants to get Registerd then please come and talk to me.",0;
+	end;
+	
+On_Leave2:
+	if ($@Gwest) end;
+	set $@P2, 0;
+	deletearray $GMS2$, 128;
+	atcommand "@refresh";
+	announce "[King of Emperium]: West Slot is Vacant, if any guild wants to get Registerd then please come and talk to me.",0;
+	end;
+	
+On_Leave3:
+	if ($@Gnorth) end;
+	set $@P3, 0;
+	deletearray $GMS3$, 128;
+	atcommand "@refresh";
+	announce "[King of Emperium]: North Slot is Vacant, if any guild wants to get Registerd then please come and talk to me.",0;
+	end;
+	
+On_Leave4:
+	if ($@Gsouth) end;
+	set $@P4, 0;
+	deletearray $GMS4$, 128;
+	atcommand "@refresh";
+	announce "[King of Emperium]: South Slot is Vacant, if any guild wants to get Registerd then please come and talk to me.",0;
+	end;
+	
+OnGReady:
+	set $@GSides, $@GSides + 1;
+	if ( $@GSides >= 4 ) {
+		donpcevent strnpcinfo(0)+"::OnGWarpMap";
+	}
+	end;
+	
+OnGWarpMap:
+	announce "[King of Emperium]: All Guilds are Ready, Will be starting in 10 Seconds. Stay Ready.",0;
+	sleep2 10000;
+	for ( set .@i, 0; .@i < $@Gmem; set .@i, .@i + 1 ) {	// East
+		warpchar "06guild_01",91,49,getcharid(0,$GMS1$[.@i]);
+	}
+	for ( set .@i, 0; .@i < $@Gmem; set .@i, .@i + 1 ) {	// West
+		warpchar "06guild_01",8,50,getcharid(0,$GMS2$[.@i]);
+	}
+	for ( set .@i, 0; .@i < $@Gmem; set .@i, .@i + 1 ) {	// North
+		warpchar "06guild_01",49,91,getcharid(0,$GMS3$[.@i]);
+	}
+	for ( set .@i, 0; .@i < $@Gmem; set .@i, .@i + 1 ) {	// South
+		warpchar "06guild_01",50,8,getcharid(0,$GMS4$[.@i]);
+	}
+	donpcevent strnpcinfo(0)+"::OnGMatchStart";
+	end;
+	
+OnGMatchStart:
+	sleep2 1000;
+	mapannounce "06guild_01","[King of Emperium]: Ok, Timer starts now.",0;
+	sleep2 1000;
+	mapannounce "06guild_01","[King of Emperium]: 3.",0;
+	sleep2 1000;
+	mapannounce "06guild_01","[King of Emperium]: 2.",0;
+	sleep2 1000;
+	mapannounce "06guild_01","[King of Emperium]: 1.",0;
+	sleep2 1000;
+	mapannounce "06guild_01","[King of Emperium]: Start!.",0;
+	donpcevent strnpcinfo(0)+"::OnGDelWall";
+	end;	
+
+OnPCDieEvent:
+	if (strcharinfo(3) == "06guild_01" ) {
+	mapannounce "06guild_01","[King of Emperium]: " + strcharinfo(0) + " Died of guild ~" + GetGuildName(getcharid(2)) + "~.",0;
+		for ( set .@i, 0; .@i < $@Gmem; set .@i, .@i + 1 ) {
+			if ( $GMS1$[.@i] == strcharinfo(0)) {
+				deletearray $GMS1$[.@i], 1;
+				if (!getarraysize($GMS1$)) {
+					announce "[King of Emperium]: " + GetGuildName(getcharid(2)) + " is out of the match.",0;
+					set $@GSides, $@GSides - 1;
+				}
+			}
+			if ( $GMS2$[.@i] == strcharinfo(0) ) {
+				deletearray $GMS2$[.@i], 1;
+				if (!getarraysize($GMS2$)) {
+					announce "[King of Emperium]: " + GetGuildName(getcharid(2)) + " is out of the match.",0;
+					set $@GSides, $@GSides - 1;
+				}
+			}
+			if ( $GMS3$[.@i] == strcharinfo(0) ) {
+				deletearray $GMS3$[.@i], 1;
+				if (!getarraysize($GMS3$)) {
+					announce "[King of Emperium]: " + GetGuildName(getcharid(2)) + " is out of the match.",0;
+					set $@GSides, $@GSides - 1;
+				}
+			}
+			if ( $GMS4$[.@i] == strcharinfo(0) ) {
+				deletearray $GMS4$[.@i], 1;
+				if (!getarraysize($GMS4$)) {
+					announce "[King of Emperium]: " + GetGuildName(getcharid(2)) + " is out of the match.",0;
+					set $@GSides, $@GSides - 1;
+				}
+			}
+		}
+		if ($@GSides == 1) {
+			donpcevent strnpcinfo(0)+"::OnEmpKillable";
+		}
+		sleep2 1000;
+		warp "Save",0,0;
+	}
+	end;
+	
+OnEmpKillable:	//50,49 50,50 49,50 48,50 48,49 48,48 49,48 50,48
+	delwall "GWall41";
+	delwall "GWall42";
+	delwall "GWall43";
+	delwall "GWall44";
+	delwall "GWall45";
+	delwall "GWall46";
+	delwall "GWall47";
+	delwall "GWall48";
+	end;	
+	
+OnGDelWall:
+	delwall "GWall9";
+	delwall "GWall10";
+	delwall "GWall11";
+	delwall "GWall12";
+	delwall "GWall13";
+	delwall "GWall14";
+	delwall "GWall15";
+	delwall "GWall16";
+	delwall "GWall17";
+	delwall "GWall18";
+	delwall "GWall19";
+	delwall "GWall20";
+	delwall "GWall21";
+	delwall "GWall22";
+	delwall "GWall23";
+	delwall "GWall24";
+	delwall "GWall25";
+	delwall "GWall26";
+	delwall "GWall27";
+	delwall "GWall28";
+	delwall "GWall29";
+	delwall "GWall30";
+	delwall "GWall31";
+	delwall "GWall32";
+	delwall "GWall33";
+	delwall "GWall34";
+	delwall "GWall35";
+	delwall "GWall36";
+	delwall "GWall37";
+	delwall "GWall38";
+	delwall "GWall39";
+	delwall "GWall40";
+	end;
+	
+OnInit:
+	set $@Gmem, 2;		// Guild member in each guild
+	
+	// Do not touch
+	setwall "06guild_01",87,46,1,0,0,"GWall33";	// East
+	setwall "06guild_01",87,47,1,0,0,"GWall34";	// East
+	setwall "06guild_01",87,48,1,0,0,"GWall35";	// East
+	setwall "06guild_01",87,49,1,0,0,"GWall36";	// East
+	setwall "06guild_01",87,50,1,0,0,"GWall37";	// East
+	setwall "06guild_01",87,51,1,0,0,"GWall38";	// East
+	setwall "06guild_01",87,52,1,0,0,"GWall39";	// East
+	setwall "06guild_01",87,53,1,0,0,"GWall40";	// East
+	
+	setwall "06guild_01",46,87,1,0,0,"GWall9";	// West
+	setwall "06guild_01",47,87,1,0,0,"GWall10";	// West
+	setwall "06guild_01",48,87,1,0,0,"GWall11";	// West
+	setwall "06guild_01",49,87,1,0,0,"GWall12";	// West
+	setwall "06guild_01",50,87,1,0,0,"GWall13";	// West
+	setwall "06guild_01",51,87,1,0,0,"GWall14";	// West
+	setwall "06guild_01",52,87,1,0,0,"GWall15";	// West
+	setwall "06guild_01",53,87,1,0,0,"GWall16";	// West
+	
+	setwall "06guild_01",12,46,1,0,0,"GWall17";	// North
+	setwall "06guild_01",12,47,1,0,0,"GWall18";	// North
+	setwall "06guild_01",12,48,1,0,0,"GWall19";	// North
+	setwall "06guild_01",12,49,1,0,0,"GWall20";	// North
+	setwall "06guild_01",12,50,1,0,0,"GWall21";	// North
+	setwall "06guild_01",12,51,1,0,0,"GWall22";	// North
+	setwall "06guild_01",12,52,1,0,0,"GWall23";	// North
+	setwall "06guild_01",12,53,1,0,0,"GWall24";	// North
+	
+	setwall "06guild_01",46,12,1,0,0,"GWall25";	// South
+	setwall "06guild_01",47,12,1,0,0,"GWall26";	// South
+	setwall "06guild_01",48,12,1,0,0,"GWall27";	// South
+	setwall "06guild_01",49,12,1,0,0,"GWall28";	// South
+	setwall "06guild_01",50,12,1,0,0,"GWall29";	// South
+	setwall "06guild_01",51,12,1,0,0,"GWall30";	// South
+	setwall "06guild_01",52,12,1,0,0,"GWall31";	// South
+	setwall "06guild_01",53,12,1,0,0,"GWall32";	// South
+	// Emp Wall	
+	setwall "06guild_01",50,49,1,0,0,"GWall41";	// South
+	setwall "06guild_01",50,50,1,0,0,"GWall42";	// South
+	setwall "06guild_01",49,50,1,0,0,"GWall43";	// South
+	setwall "06guild_01",48,50,1,0,0,"GWall44";	// South
+	setwall "06guild_01",48,49,1,0,0,"GWall45";	// South
+	setwall "06guild_01",48,48,1,0,0,"GWall46";	// South
+	setwall "06guild_01",49,48,1,0,0,"GWall47";	// South
+	setwall "06guild_01",50,48,1,0,0,"GWall48";	// South
+	end;
+}
+
+// KoE Exit
+06guild_01,49,56,5	script	Exit#01	51,{
+	mes "[Exit]";
+	mes "See ya.";
+	next;
+	getitem 674, 5; // configure prize here
+	warp "Save",0,0;
+	initnpctimer;
+	close;
+	
+OnTimer1000:
+	if(getmapusers("06guild_01")) {
+		initnpctimer;
+		end;
+	}
+		disablenpc "Exit#01";
+		stopnpctimer;
+		end;
+}
+
+// Flags
+zephyr,145,130,5	script	King of Emperium #1::koe_flag	722,{
+	set .@gid, $koegid;
+	if ( .@gid == 0 ) end;
+	mes "[King of Emperium]";
+	mes "The Current King of Emperium is the ["+ getguildname(.@gid) +"] guild.";
+	close;
+OnRevKoE:
+	flagemblem $koegid;
+	end;
+OnInit:
+	flagemblem $koegid;
+	end;
+}
+
+
+06guild_01	mapflag	gvg
+06guild_01	mapflag	nobranch
+06guild_01	mapflag	nomemo
+06guild_01	mapflag	nopenalty
+06guild_01	mapflag	noreturn
+06guild_01	mapflag	nosave	SavePoint
+06guild_01	mapflag	noteleport
+06guild_01	mapflag	nowarp
+06guild_01	mapflag	nowarpto
+06guild_01	mapflag	noicewall
+06guild_01	mapflag	novending
+06guild_01	mapflag	restricted	6

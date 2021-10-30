@@ -1,0 +1,90 @@
+/*		Changelog		*\
+
+Stable 1.0 (22/02/2012)
+	• Creation of the main NPC
+	• Main function
+	• Working Perfectly
+	
+/*		Credits			*\
+
+This script it´s create for use only in CavaleRO.
+
+Created by Miles Reginal
+
+Valent1no_tr1bal
+
+Mithril Coin# 674 - Standard Coin
+Gold Coin# 7929 - Standard Coin
+Bronze Coin# 673 - Standard Coin
+Token of the Ox# 7606 - MvP Event Coin
+Monster Voucher# 7617 - MvP Event Ticket 
+Platinum Coin# 677 - Event Coin
+Ancient Gold Coin# 7959 - Donation Coin
+Ancient Silver Coin# 7960 - Vote Coin
+
+*/
+
+//prontera,156,163,5	script	MVP Merchant	556,{
+prontlegend,190,216,5	script	MVP Merchant	556,{	
+	set .@name$,"[^7401DFMVP Merchant^000000]";
+	
+	while (1 == 1) {
+	mes .@name$;
+	mes "I sell rare MVP stuff if you want to purchace anything, just ask. I have the rarest items, just name it.";
+	next;
+	switch(prompt("^0000FFInformation^000000:Buy MVP Stuff:Close")) {
+		case 255:
+		case 3:
+			mes .@name$;
+			mes "It´s always a pleasure bring rare stuff to everyone.";
+			close;
+		case 1:
+			mes .@name$;
+			mes "One thing for sure, i don´t accept ^0000FFnormal currency^000000.";
+			next;
+			mes .@name$;
+			mes "If you want to purchase anything from me, you need ^0000FFAnciente Gold Coins^000000";
+			next;
+			break;
+		
+		case 2:
+			mes .@name$;
+			mes "Remember, i only accept ^0000FFAncient Gold Coins^000000 as currency.";
+			close2;
+			callshop "MVP_shop",1;
+			npcshopattach "MVP_shop";
+			end;
+			
+	}
+	}
+	
+OnBuyItem:
+	set .@name$,"[^7401DFMVP Merchant^000000]";
+	for (set .@a,0; .@a <= getarraysize(@bought_nameid); set .@a,.@a + 1) {
+		for (set .@b,0; .@b <= getarraysize($@capital_nameid); set .@b,.@b + 1) {
+		if ($@capital_nameid[.@b] == @bought_nameid[.@a]) {
+		set .@total,.@total + $@bought_cost[.@b];
+		}
+		}
+		
+	}
+	if (countitem(7959) < .@total) {
+		mes .@name$;
+		mes "I´m sorry, but i can´t sell anything to anyone who can´t afford the price.";
+		close;
+	}
+	for (set .@a,0; .@a <= getarraysize(@bought_nameid); set .@a,.@a + 1) 
+		getitem @bought_nameid[.@a],@bought_quantity[.@a];
+	delitem 7959,.@total;
+	mes .@name$;
+	mes "Thanks for your purchase. Enjoy your items.";
+	close;
+	
+
+OnInit:
+	setarray $@capital_nameid[0],2410,2541,2533,2551,12921,14176,13624,12937,14288,13710,14240,14238,12914,14108,13976,14004,13973,13747,13571,14220,13610,7621,12214,12132,12260,12210,5137,5362,5594,5462,5206,5592,5421,5288,5396,5324,5383,5528,5756,5359,12967,5748,2399,2729,2433,2374;
+	setarray $@bought_cost[0],500,500,200,40,10,10,2,15,5,15,7,7,15,15,7,5,25,15,30,5,5,2,4,2,2,4,12,2,5,5,5,12,12,3,5,7,15,3,5,7,7,12,7,7,12,15;
+}
+
+
+-	shop	MVP_shop	-1,2410:500,2541:500,2533:200,2551:40,12921:10,14176:10,13624:2,12937:15,14288:5,13710:15,14240:7,14238:7,12914:15,14108:15,13976:7,14004:5,13973:25,13747:15,13571:30,14220:5,13610:5,7621:2,12214:4,12132:2,12260:2,12210:4,5137:12,5362:2,5594:5,5462:5,5206:5,5592:12,5421:12,5288:3,5396:5,5324:7,5383:15,5528:3,5756:5,5359:7,12967:7,5748:12,2399:7,2729:7,2433:12,2374:15

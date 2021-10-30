@@ -1,0 +1,21 @@
+prontlegend,218,223,4	script	Market Place	45,1,2,{
+	mes"[Market Place]";
+	mes"^D15FEECavaleRO Vending Area :^000000 ^7D26CDAs Per the CavaleRO Rules, Vending is Only Allowed in our Vending Area..^000000.";
+	mes"^DA70D6Do you Really Want to me to Warp you to our Vending Area?^000000.";
+	next;
+		if (select("Yes Please:^8B8386No..I'll Go There Later^000000") == 2) {
+		close;
+	}
+	// I didn't see the need to check and show venders.... Since it didnt even work
+	warp "sl_mall",150,150;
+	end;
+
+OnInit:
+	waitingroom "Vending Arena",0;
+	end;
+}
+ 
+sl_mall,150,177,0	script	MarketExit	45,1,2,{
+	warp "prontlegend",190,192;
+	end;
+}

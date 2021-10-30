@@ -1,0 +1,105 @@
+// ==== *Athena Script =================================
+// Kamishi's Palettes Protection V.1.0
+// Never show this file to anyone, except yourself. ;)
+// =====================================================
+
+// =====================================================
+// Initialize the hash table required to access secret 
+// palette file numbers.
+// =====================================================
+
+prontera,179,27,5	script	#121345	111,{
+	end;
+	OnPcLoginEvent:
+		if (!setPaletteToProtectedNumber){
+			callfunc("setlook2", 6, getlook(6));
+			callfunc("setlook2", 7, getlook(7));
+			set setPaletteToProtectedNumber,1;
+		}
+		end;
+
+	OnInit:
+		set $paletteSECRET1, 416;
+		set $paletteMAGIC2, 20;
+		set $paletteSECRET3, 5000;
+		set $paletteOFFSET, 1;
+		setarray $paletteHash[0],31,62,55,66,208,88,243,220,50,91,110,219,356,212,223,167,407,377,262,195,233,142,268,312,387,251,413,415,204,99,275,229,388,126,124,125,329,392,18,74,289,309,28,260,207,27,179,369,217,48,390,9,106,134,141,57,43,92,287,306,280,405,103,59,285,246,402,298,5,353,325,7,308,305,194,46,231,102,284,26,157,12,358,70,363,44,372,335,15,366,160,326,184,139,371,209,10,292,190,410,65,321,318,336,192,408,279,177,147,94,114,25,333,236,3,210,354,348,170,379,225,355,261,146,297,397,276;
+		end;
+}
+
+
+// ====== Access the secret file palette number. =======
+// Method replacement for setlook, changelook, getlook.
+// ==> setLook2, getLook2, changeLook2
+// =====================================================
+
+
+function	script	getProtectedPal	{
+	set @i, getarg(0);
+	
+	if(@i == 0) return 0;
+
+	set @type, getarg(1);
+	if(@type == 7){
+		if(@i < 700) return @i; // set 0 to your unprotected clothes palette #.
+	}
+	if(@type == 6){
+		if(@i < 251) return @i; // set 0 to your unprotected hair palette #.
+	}
+
+	set @m, @i / 127; 
+	set @d, $paletteHash[(@i +($paletteMAGIC2*@m)) % 127] + ($paletteSECRET1* @m);
+	if (Sex == 0) { set @d, $paletteSECRET3-@d; }
+	return @d+$paletteOFFSET;
+}
+
+function	script	setlook2	{
+	//Save current value:
+	set @type, getarg(0);
+	set @i, getarg(1);
+	
+	
+	if(@type == 6){
+		set realPlayerLookHair, @i;		
+	
+	}else if (@type == 7){
+		set realPlayerLookClothes, @i;		
+	}else{
+		setlook @type, @i;
+		return;
+	}
+	
+	setlook @type, callfunc("getProtectedPal", @i, @type);
+	
+	return;
+}
+
+function	script	changelook2	{
+	//Save current value:
+	set @type, getarg(0);
+	set @i, getarg(1);
+	
+	
+	if((@type == 6) || (@type == 7)){
+		changelook @type, callfunc("getProtectedPal", @i, @type);
+	}else{
+		changelook @type, @i;
+	}
+	
+	
+	return;
+}
+
+function	script	getlook2	{
+	set @type, getarg(0);
+	
+	if(@type == 6){
+		return realPlayerLookHair;		
+	}else if (@type == 7){
+		return realPlayerLookClothes;		
+	}else{
+		return getlook(@type);
+	}
+}
+
+		

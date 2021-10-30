@@ -1,0 +1,18 @@
+yumibg,125,121,3	script	Pront Invasion	751,{
+	if ( countitem( 7539 ) < 10 || !countitem( 506 ) ) {
+		mes "You need 10 Poring Coins and 1 Green Potion ";
+		close;
+	}
+	if ( !getcharid( 1 ) ) {
+		mes "You don't have a party";
+		close;
+	}
+	if ( getpartyleader( getcharid( 1 ), 2 ) != getcharid( 0 ) ) {
+		mes "You must be a party leader";
+		close;
+	}
+	delitem 7539, 10;
+	delitem 506, 1;
+	warpparty "prontera",150,150,getcharid( 1 );
+	end;
+}

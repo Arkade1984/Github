@@ -1,0 +1,20 @@
+-	script	GMRestrict	-1,{
+
+OnInit:
+setarray .Map$,"aldeg_cas03","prtg_cas01","arug_cas03";
+for( set .@a,0; .@a < getarraysize( .Map$ ); set .@a,.@a + 1 ){
+	setmapflag .Map$[.@a],mf_loadevent;
+	}
+end;
+
+OnPCLoadMapEvent:
+for( set .@a,0; .@a < getarraysize( .Map$ ); set .@a,.@a + 1 ){
+	if( strcharinfo(3) == .Map$[.@a] && getgmlevel() > 1 ){
+		dispbottom "GM Above level 1 , You cant enter this map.";
+		close2;
+		warp "Crystilia",69,65;
+		end;
+		} 
+	}
+end;
+}

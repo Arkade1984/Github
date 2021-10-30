@@ -1,0 +1,324 @@
+//===== eAthena Script ======================================= 
+//= Royal Rumble Event
+//===== By: ==================================================
+//= Masao
+//===== Current Version: =====================================
+//= 2.0
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Description: =========================================
+//= Starts an little PvP Event when a total of 10 Players
+//= have Signed Up. After that every 30 seconds
+//= a new Player will be warped onto the PvP Map until
+//= all 10 Players have been warped.
+//===== Additional Comments: =================================
+//= Version 1.0 [Masao]
+//= Verison 1.1 added GM Control Panel & Autostart [Masao]
+//= Version 2.0 complete re-script [Masao]
+//============================================================
+junon,113,144,3	script	Royal Rumble	730,{
+
+	set .@n$,"[Royal Rumble]";
+
+	if (getgmlevel() >= 40) goto L_GMCP;
+
+	mes .@n$;
+	mes "Hello "+strcharinfo(0)+",";
+	mes "I'm the Royal Rumble NPC, you can Sign Up here for the Royal Rumble Event!";
+	mes "";
+	mes "So, would you like to Sign Up?";
+	next;
+	menu "Yes, please!",-,"Royal Rumble?!",L_R,"No, thanks.",L_E;
+	
+	if(.rrp == 10)
+	{
+		mes .@n$;
+		mes "I'm sorry but the Event already begun!";
+		close;
+	}
+
+	set .rrp,.rrp+1;
+	set .rra[.rrp],getcharid(3);
+	set @rre,1;
+	set @rre2,1;
+	if(.rrp < 10)
+	{
+		mes .@n$;
+		mes "Allright, you have been signed up. As soon as the Event beginns you'll see an Broadcast.";
+		close;
+	}
+	mes .@n$;
+	mes "Allright, you have been signed up. The Event beginns now!";
+	close2;
+	initnpctimer;
+	disablenpc "Royal Rumble";
+	announce "The Royal Rumble Event beginns now! The first 2 players will now be warped into the Royal Rumble Arena!",bc_all;
+	end;
+
+L_R:
+	mes .@n$;
+	mes "The Rules are very easy!";
+	mes "Just Sign Up to the Game and then wait until a total of 10 Players have Signed Up, as soon as this happens the Game will start.";
+	mes "When the Event starts 2 Players will be warped onto an PvP Map, then they fight each other, the loser get warped out and the Winner stays.";
+	mes "And after the first 2 Players have been warped in, every 30 Seconds a new Player will be warped onto the Map.";
+	mes "As soon as the last player is killed on the Map the Game will end and the last survivor is the Winner!";
+	mes "And that's all, have Fun and good Luck!";
+	close;
+
+L_E:
+	mes .@n$;
+	mes "Ok, bye.";
+	close;
+
+L_GMCP:
+	mes .@n$;
+	mes "Hello "+strcharinfo(0)+",";
+	mes "what can i do for you?";
+	switch(select("Start Event!:End Event.:Set Prize:Cancel")) {
+		case 1:
+			next;
+			mes .@n$;
+			mes "Allright, the Event starts now!";
+			close2;
+			enablenpc "Royal Rumble";
+			for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+			{
+				if(attachrid(.rra[.@i])){
+					if (@rre == 1) {
+						set @rre,0;
+						set @rre2,0;
+						detachrid;
+					}
+				}
+			}
+			set .rrp,0;
+			deletearray .rra[0],128;
+			mapwarp "guild_vs3","prontera",155,185;
+			announce "The Royal Rumble Event is Open now!",bc_all;
+			end;
+		case 2:
+			next;
+			mes .@n$;
+			mes "Allright, the Event ends now!";
+			close2;
+			disablenpc "Royal Rumble";
+			for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+			{
+				if(attachrid(.rra[.@i])){
+					if (@rre == 1) {
+						set @rre,0;
+						set @rre2,0;
+						detachrid;
+					}
+				}
+			}
+			set .rrp,0;
+			deletearray .rra[0],128;
+			mapwarp "guild_vs3","prontera",155,185;
+			announce "The Royal Rumble Event has been ended by an GM!",bc_all;
+			end;
+		case 3:
+			next;
+			mes .@n$;
+			mes "The current Prize is "+getitemname($rr_id)+", would you like to change it?";
+			switch(select("No:Yes")) {
+				case 1:
+					next;
+					mes .@n$;
+					mes "Ok, bye.";
+					close;
+				case 2:
+					next;
+					mes .@n$;
+					mes "Ok, then please insert now the new Item ID";
+					input $rr_id;
+					next;
+					mes .@n$;
+					mes "And now the Amount please.";
+					input $rr_amount;
+					next;
+					mes .@n$;
+					mes "Allright, so the Prize now is ^008000"+$rr_amount+" "+getitemname($rr_id)+"^000000";
+					close;
+			}
+		case 4:
+			next;
+			mes .@n$;
+			mes "Ok, bye";
+			close;
+	}
+
+OnPCDieEvent:
+	getmapxy .@m$,.@x,.@y,0;
+	if(.@m$ == "guild_vs3")
+	{
+		for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+		{
+			if(attachrid(.rra[.@i])){
+				if (@rre == 1) {
+					set @rre,0;
+					warp "prontera",155,185;
+				}
+				detachrid;
+			}
+		}
+		set .rrp,.rrp-1;
+	}
+	end;
+
+OnPCLogoutEvent:
+	getmapxy .@m$,.@x,.@y,0;
+	if(.@m$ == "guild_vs3")
+	{
+		for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+		{
+			if(attachrid(.rra[.@i])){
+				if (@rre == 1) {
+					set @rre,0;
+					save "prontera",155,185;
+				}
+				detachrid;
+			}
+		}
+		set .rrp,.rrp-1;
+	}
+	end;
+
+OnPCKillEvent:
+	getmapxy .@m$,.@x,.@y,0;
+	if(.@m$ == "guild_vs3")
+	{
+		if(.rrp <= 1)
+		{
+			for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+			{
+				if(attachrid(.rra[.@i])){
+					if (@rre == 1) 
+					{
+						dispbottom "Congratulations "+strcharinfo(0)+"!";
+						dispbottom "You won the Royal Rumble Event!";
+						dispbottom "Here is your Prize, and see you next time!";
+						getitem $rr_id,$rr_amount;
+						set @rre,0;
+						warp "prontera",155,185;
+					}
+					detachrid;
+					announce strcharinfo(0)+" won this Game of Royal Rumble! Congratulations!",bc_all;
+				}
+			}
+			deletearray .rra[0],128;
+		}
+	}
+	end;
+
+OnTimer1000:
+	for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+	{
+		if(attachrid(.rra[.@i])){
+			if (@rre2 == 1) {
+				set @rre2,0;
+				warpchar "guild_vs3",0,0,.rra[.@i];
+			}
+			end;
+		}
+	}
+	end;
+OnTimer1100:
+	for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+	{
+		if(attachrid(.rra[.@i])){
+			if (@rre2 == 1) {
+				set @ree2,0;
+				warpchar "guild_vs3",0,0,.rra[.@i];
+			}
+			end;
+		}
+	}
+	end;
+OnTimer30000:
+OnTimer60000:
+OnTimer90000:
+OnTimer120000:
+OnTimer150000:
+OnTimer180000:
+OnTimer210000:
+OnTimer240000:
+OnTimer270000:
+OnTimer300000:
+	for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+	{
+		if(attachrid(.rra[.@i])){
+			if (@rre2 == 1) {
+				set @rre2,0;
+				warpchar "guild_vs3",0,0,.rra[.@i];
+			}
+			end;
+		}
+	}
+	end;
+
+OnClock0400:
+OnClock0800:
+OnClock1200:
+OnClock1600:
+OnClock2000:
+OnClock0000:
+	enablenpc "Royal Rumble";
+	for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+	{
+		if(attachrid(.rra[.@i])){
+			if (@rre == 1) {
+				set @rre,0;
+				set @rre2,0;
+			}
+			detachrid;
+		}
+	}
+	set .rrp,0;
+	deletearray .rra[0],128;
+	mapwarp "guild_vs3","prontera",155,185;
+	announce "The Royal Rumble Event starts now! You have 3 Minutes to Sign Up!",bc_all;
+	end;
+	
+OnClock0403:
+OnClock0803:
+OnClock1203:
+OnClock1603:
+OnClock2003:
+OnClock0003:
+	if(.rrp < 10)
+	{
+		disablenpc "Royal Rumble";
+		announce "The Royal Rumble Event is closed now! Since there were not 10 Players the Event will not take place.",bc_all;
+		for(set .@i,0;.@i<=.rrp;set .@i,.@i+1)
+		{
+			if(attachrid(.rra[.@i])){
+				if (@rre == 1) {
+					set @rre,0;
+					set @rre2,0;
+				}
+				detachrid;
+			}
+		}
+		set .rrp,0;
+		deletearray .rra[0],128;
+	}
+	end;
+
+OnInit:
+	disablenpc "Royal Rumble";
+	end;
+}
+
+//============== Mapflags ====================
+guild_vs3	mapflag	nogo
+guild_vs3	mapflag	pvp_noguild
+guild_vs3	mapflag	pvp_noparty
+guild_vs3	mapflag	nobranch
+guild_vs3	mapflag	nomemo
+guild_vs3	mapflag	nopenalty
+guild_vs3	mapflag	noreturn
+guild_vs3	mapflag	noteleport
+guild_vs3	mapflag	nowarp
+guild_vs3	mapflag	nowarpto
+guild_vs3	mapflag	noicewall

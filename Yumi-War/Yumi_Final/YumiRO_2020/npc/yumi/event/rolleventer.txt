@@ -1,0 +1,67 @@
+//= Roll Machine - Daily Roll Script
+//===== By: =================================================================================
+//= WordsUp - www.Ensign-RO.com
+//===== Compatible With: ====================================================================
+//= Any eAthena Version
+//===== Description: ========================================================================
+//= Single NPC that Randomly pick an item in it's list.
+//= Script Restart every 24hours. Find "OnHour24:" and change which fits you.
+//===== Additional =========================================================================
+//= Thanks to Emistry 
+//======================================================================================
+
+alexa_in,85,148,5	script	Poring Roller	464,{
+set @npc$,"[ Roll Machine ]";
+// Hours Delay for each Roll
+set .Hours,24;
+// Ticket ID used for this Roll Machine
+set .TicketID,7539;
+// Items Available to Gain through Roll Machine
+setarray .Items[0],607,608,609,610,512;
+// Amount of Ticket required to change into Items.
+setarray .Cost[0],1,3,5,10,50;
+mes @npc$;
+mes "Roll machine restarts everyday 12:00AM";
+next;
+if ( #Roll_Claimed > gettimetick(2) ){
+mes "You already rolled for the day";
+mes "see you tomorrow";
+close;
+}else{
+mes @npc$;
+mes "Roll the machine?";
+next;
+if( select("Yes!:No! not yet") == 2 )
+close;
+mes @npc$;
+mes "Are you sure?";
+next;
+mes @npc$;
+mes "Puff* Puff* Tink***";
+next;
+if( select("Yes, let's roll it!:I change my mind") == 2 )
+close;
+mes @npc$;
+mes "Random Item Flashing....";
+mes "Rolling........";
+next;
+mes @npc$;
+set .@i,rand( getarraysize( .Items ) );
+mes "A ^0000FF"+getitemname( .Items[.@i] )+"^000000 appear on the screen.";
+mes "This item cost ^FF0000"+.Cost[.@i]+" x "+getitemname( .TicketID )+"^000000.";
+next;
+if( select("Spend my Coin:Waste my roll") == 2 )
+close;
+  mes @npc$;
+  if( !countitem( .TicketID ) ){
+   mes "You don't have enough "+getitemname( .TicketID )+"";
+   mes "Better luck next time";
+  }else{
+   mes "Thanks for using Roll Machine";
+   set #Roll_Claimed,gettimetick(2) + ( .Hours * 3600 );
+   getitem .Items[.@i],1;
+   delitem .TicketID,.Cost[.@i];
+}
+close;
+}
+}

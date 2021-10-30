@@ -1,0 +1,720 @@
+    
+
+    //<?> -o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o \\
+    //          Blacksmith/Card Removal Npc V.2.0         \\
+    //                   by Luther                        \\
+    // Credit To : Mytzer,TyrNemisis,ShadowMaster and     \\
+    // who ever made the Item Identifyer Deckard Cain.    \\
+    // Whoms Scripts were used in making this npc.        \\
+    // Also ToastOfDoom and Chachi911 for helping Debug it\\
+    // (V.2.0 Uses the original eAthena Refine Script that\\
+    //can have its rates configured in the refine_db.txt) \\
+    // -o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o \\
+    turbo_room,78,98,5	script	Pro Refiner	806,{
+     
+            callfunc "refinemainx","Melchior",1;
+            end;
+    }
+    //============================================================
+    //= Main Refiner Function
+    //============================================================
+    //= To allow auto safe refining/multiple refining set the
+    //= 0 after Melchior to '1' in the function call.
+    //= To Change the Name of the NPC, just Edit it in the
+    //= Beginning of the Script and the Melchior part of the
+    //= Call function.
+    //============================================================
+    function	script	refinemainx     {
+            set .@features,getarg(1);
+            set @donate,0;
+            set @donateitem,7227;//change this to your item number of choice
+            set @donateamount,1;//amount of donation refine ticket per refine
+      mes "[" + getarg(0) + "]";
+            mes "I can Refine, Extract Cards, Identify Items, and Repair Broken Items ^FF0000which of my services are you interested in?^000000";
+            menu "Refining",L_Refine,"Item Repair",L_Repair,"Card Removal",L_CardRemoval,"Item Identification",L_ItemIdentify,"Buy Materials",L_Buy_Materials;
+      L_Refine:
+      mes "refining eh?";
+      next;
+      mes "[" + getarg(0) + "]";
+            mes "There are 2 kinds of refining you can use.....";
+            mes "You can use "+ @donateamount +" piece/s "+ getitemname(@donateitem) +" so your item wont break if it fails or Do the normal refine";
+            mes "Note: if you use refining protection either it will success or fail it will consume 1 Refining Protection Ticket per refine";
+            mes "Do you want to use Refining Protection Ticket?";
+            switch(select("No:Yes")){
+                            case 1:
+                            set @donate,0;
+                            goto L_cont;
+                            break;
+                            case 2:
+                            if(countitem(@donateitem)<=(@donateamount-1)){ next; mes "You Dont have enough Refining Protection Ticket";set @donate,0; close; break;}
+                            else{
+                            set @donate,1;
+                            goto L_cont;
+                            break;
+                            }
+                            }
+            L_cont:
+            mes "I can refine all kinds of weapons, armor and equipment, so let me";
+            mes "know what you want me to refine.";
+            next;
+     
+      setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+            set .@menu$,"";
+            for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
+            {
+                    if( getequipisequiped(.@i) )
+                            set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+     
+                    set .@menu$, .@menu$ + ":";
+            }
+            set .@part,select(.@menu$);
+            if(!getequipisequiped(.@part)) {
+                    mes "[" + getarg(0) + "]";
+                    mes "You're not wearing";
+                    mes "anything there that";
+                    mes "I can refine.";
+                    emotion 6;
+                    close;
+            }
+            //Check if the item is refinable...
+            if(!getequipisenableref(.@part)) {
+                    mes "[" + getarg(0) + "]";
+                    mes "I don't think I can";
+                    mes "refine this item at all...";
+                    close;
+            }
+            //Check if the item is identified... (Don't know why this is in here... but kept it anyway)
+            if(!getequipisidentify(.@part)) {
+                    mes "[" + getarg(0) + "]";
+                    mes "You can't refine this";
+                    mes "if you haven't appraised";
+                    mes "it first. Make sure your";
+                    mes "stuff is identified before";
+                    mes "I can refine it.";
+                    close;
+            }
+            //Check to see if the items is already +10
+            if(getequiprefinerycnt(.@part) >= 10) {
+                    mes "[" + getarg(0) + "]";
+                    mes "I can't refine this";
+                    mes "any more. This is as";
+                    mes "refined as it gets!";
+                    close;
+            }
+            set .@refineitemid, getequipid(.@part); // save id of the item
+            set .@refinerycnt, getequiprefinerycnt(.@part); //save refinery count
+            switch(getequipweaponlv(.@part)){
+            case 0:         //Refine Armor
+                    set .@price,5000;
+                    set .@material,985;
+                    set .@safe,4;
+                    break;
+            case 1:         //Refine Level 1 Weapon
+                    set .@price,5000;
+                    set .@material,1010;
+                    set .@safe,7;
+                    break;
+            case 2:         //Refine Level 2 Weapon
+                    set .@price,5000;
+                    set .@material,1011;
+                    set .@safe,6;
+                    break;
+            case 3:         //Refine Level 3 Weapon
+                    set .@price,5000;
+                    set .@material,984;
+                    set .@safe,5;
+                    break;
+            case 4:         //Refine Level 4 Weapon
+                    set .@price,5000;
+                    set .@material,984;
+                    set .@safe,4;
+                    break;
+            case 5:         //Refine other stuff?
+                    set .@price,5000;
+                    set .@material,985;
+                    set .@safe,4;
+                    break;
+            }
+            if(.@features != 1) {
+                    mes "[" + getarg(0) + "]";
+                    mes "To refine this I need";
+                    if (@donate==1){mes "one ^003366"+@donateamount+" piece/s "+getitemname(@donateitem)+"^000000 And";}
+                    mes "one ^003366"+getitemname(.@material)+"^000000 Plus";
+                    mes "a service fee of " + .@price + " Zeny.";
+                    mes "Do you really wish to continue?";
+                    next;
+                    if(select("Yes:No") == 2){
+                            mes "[" + getarg(0) + "]";
+                            mes "Yeah...";
+                            mes "There's no need to";
+                            mes "rush. Take your time.";
+                            close;
+                    }
+                    if(getequippercentrefinery(.@part) < 100) {
+                            mes "[" + getarg(0) + "]";
+                            mes "Oh no! If I continue to";
+                            mes "refine this, there's a risk it could";
+                            switch(.@material) {
+                            case 985:
+                                    mes "be destroyed! That means that ^FF0000this equipment^000000, and ^FF0000any cards^000000 or special properties added to this armor, ^FF0000will be gone^000000.";
+                                    break;
+                            default:
+                                    mes "be destroyed, and you'd ^FF0000lose the weapon^000000, any ^FF0000cards in the weapon^000000,";
+                                    mes "or any added special properties.";
+                                    break;
+                            }
+                            next;
+                            mes "["+getarg(0)+"]";
+                            mes "I can't make it any clearer.";
+                            mes "Once a weapon is destroyed,";     
+                            mes "there's no getting it back.";
+                            mes "You really have a chance to";
+                            mes "^FF0000lose this weapon^000000 forever.";
+                            mes "Do you still want to refine?";
+                            next;
+                            if(select("Yes:No") == 2){
+                                    mes "[" + getarg(0) + "]";
+                                    mes "I completely agree...";
+                                    mes "I might be a great refiner, but sometimes even I make mistakes.";
+                                    close;
+                            }
+                    }
+                    if (@donate==1){
+                            if (countitem(@donateitem)<=(@donateamount-1))
+                            mes "[" + getarg(0) + "]";
+                            mes "You don't Have enough";
+                            mes getitemname(@donateitem)+"...";
+                            mes "Go get some more. I'll be";
+                            mes "here all day if you need me.";
+                            close;
+                    }
+                    if((countitem(.@material) < 1) || (Zeny < .@price)) {
+                            mes "[" + getarg(0) + "]";
+                            mes "You don't seem to have";
+                            mes "enough Zeny or "+getitemname(.@material)+"...";
+                            mes "Go get some more. I'll be";
+                            mes "here all day if you need me.";
+                            close;
+                    }
+                    if (@donate==1){ delitem @donateitem,@donateamount; }
+                    set Zeny,Zeny-.@price;
+                    delitem .@material,1;
+                    if(getequipisequiped(.@part) == 0) { // hacker has removed the item (not changed, why?)
+                            mes "[" + getarg(0) + "]";
+                            mes "Look here... you don't have any Items on...";
+                            close;
+                    }
+                    if(getequiprefinerycnt(.@part) != .@refinerycnt || getequipid(.@part) != .@refineitemid) { // hacker has changed the item
+                            mes "[" + getarg(0) + "]";
+                            Emotion e_an;
+                            mes "Wait a second...";
+                            mes "Do you think I'm stupid?!";
+                            mes "You switched the item while I wasn't looking! Get out of here!";
+                            close;
+                    }
+                    if(getequippercentrefinery(.@part) <= rand(100)) {
+                            if (@donate==1){}else{failedrefitem .@part;}
+                            mes "[" + getarg(0) + "]";
+                            set .@emo,rand(1,5);
+                            if (.@emo == 1) {
+                                    Emotion e_cash;
+                            } else {
+                                    Emotion e_swt;
+                            }
+                            if (@donate==1){set .@lose,4;}else{set .@lose,rand(1,3);}
+                            if (.@lose == 1) {
+                                    mes "OH! MY GOD!";
+                                    mes "Damn it! Not again!";
+                                    mes "I'm terribly sorry, but you know practice does make perfect.";
+                                    mes "Um, right? Heh heh...";
+                            } else if(.@lose == 2) {
+                                    mes "Nooooooo!";
+                                    mes "It broke!";
+                                    mes "I-I'm sorry!";
+                            } else if(.@lose == 3){
+                                    mes "Crap!";
+                                    mes "It couldn't take";
+                                    mes "much more tempering!";
+                                    mes "Sorry about this...";
+                            }
+                            else{
+                                    Mes "The item Failed to be upgraded but it did not break";
+                            }
+                            close;
+                    }
+                    mes "["+getarg(0)+"]";
+                    successrefitem .@part;
+                    Emotion e_heh;
+                    set .@win,rand(1,3);
+                    if (.@win == 1) {
+                            mes "Perfect!";
+                            mes "Heh heh!";
+                            mes "Once again,";
+                            mes "flawless work";
+                            mes "from the master~";
+                    } else if(.@win == 2) {
+                            mes "Success...!";
+                            mes "Yet again, my amazing";
+                            mes "talent truly dazzles";
+                            mes "and shines today.";
+                    } else {
+                            mes "Heh heh!";
+                            mes "I'm all done.";
+                            mes "No doubt, my work is";
+                            mes "to your satisfaction.";
+                            mes "Sheer, utter perfection~";
+                    }
+                    close;
+            }
+     
+    // New Refining Functions ========================
+            if(getequiprefinerycnt(.@part) < .@safe) {
+                    mes "[" + getarg(0) + "]";
+                    mes "I can refine this to the safe limit or a desired number of times... it's your choice..." +@donate;
+                    next;
+                    set .@menu2,select("To the safe limit please.","I'll decide how many times.","I've changed my mind...");
+            } else set .@menu2,2;
+            switch(.@menu2){
+            case 1:
+                    set .@refinecnt,.@safe - getequiprefinerycnt(.@part);
+                    mes "You don't need to use"+ getitemname(@donateitem)+"...";
+                    mes "I will not take any of your donation tickets";
+                    set @donate,0;
+                    break;
+            case 2:
+                    next;
+                    mes "[" + getarg(0) + "]";
+                    mes "So how many times would you like me to refine your item?";
+                    next;
+                    input .@refinecnt;
+                    set .@refinecheck,.@refinecnt + getequiprefinerycnt(.@part);
+                    if (.@refinecnt < 1 || .@refinecheck > 10) {
+                            mes "[" + getarg(0) + "]";
+                            mes "I can't refine this item that many times.";
+                            close;
+                    }
+                    if(.@refinecheck > .@safe) {
+                            set .@refinecheck,.@refinecheck - .@safe;
+                            mes "[" + getarg(0) + "]";
+                            mes "This will try to refine the equipment " + .@refinecheck + " times past the safe limit.";
+                            if (@donate ==1){mes "Your equipment will not destroyed if it fails in the process... is that ok?";}
+                            else{
+                            mes "Your equipment may be destroyed... is that ok?";
+                            }
+                            next;
+                            if(select("Yes...","No...") == 2){
+                                    mes "[" + getarg(0) + "]";
+                                    mes "You said so..Hmm so be it...";
+                                    close;
+                            }
+                    }
+                    break;
+            case 3:
+                    next;
+                    mes "[" + getarg(0) + "]";
+                    mes "You said so..Hmm so be it...";
+                    close;
+            }
+            next;
+            set .@fullprice,.@price * .@refinecnt;
+            mes "[" + getarg(0) + "]";
+            mes "That will cost you " + .@refinecnt + " piece/s " + getitemname(.@material) + " plus " + .@fullprice + " Zeny ";
+            if (@donate==1){ mes "and " + (.@refinecnt*@donateamount) + " piece/s " + getitemname(@donateitem) + "";}
+            mes "Is that ok?";
+            next;
+            if(select("Yes","No...") == 2){
+                    mes "[" + getarg(0) + "]";
+                    mes "You said so..Hmm so be it...";
+                    close;
+            }
+            if(@donate==1){
+            if(countitem(@donateitem) <=((.@refinecnt * @donateamount)-1)){
+                    mes "[" + getarg(0) + "]";
+                    mes "You don't have enough "+ getitemname(@donateitem) +"...";
+                    close;
+            }
+            }
+            if(countitem(.@material) < .@refinecnt || Zeny < .@fullprice) {
+                    mes "[" + getarg(0) + "]";
+                    mes "Is that all you got? Unfortunately I can't work for you at a lower price. Try putting yourself in my shoes.";
+                    close;
+            }
+            if(@donate==1){delitem @donateitem,.@refinecnt * @donateamount;}
+            set Zeny,Zeny - .@fullprice;
+            delitem .@material,.@refinecnt;
+            while(.@refinecnt){
+                    if (getequipisequiped(.@part) == 0) {
+                            mes "[" + getarg(0) + "]";
+                            mes "Look here... you don't have any Items on...";
+                            close;
+                    }
+                    if (getequipid(.@part) != .@refineitemid || (.@menu2 == 1 && getequippercentrefinery(.@part) < 100)) {
+                            mes "[" + getarg(0) + "]";
+                            mes "Clan... No, but Did you imagine I could be so stupid !?!";
+                            mes "You have changed it...";
+                            mes "Go out before I stun you with my Hammer!!!";
+                            close;
+                    }
+                    mes "Clang, clang!!!";
+                    if(.@menu2 == 2 && getequippercentrefinery(.@part) <= rand(100)) {
+                            if (@donate==1){}else{failedrefitem .@part;}
+                            emotion 23;
+                            mes "[" + getarg(0) + "]";
+                            if (@donate==1){ mes "The item Failed to be upgraded but it did not break";}else{mes "WAHHHH!!! I'm so sorry... I warned you this could happen...";}
+                            set .@refinecnt,.@refinecnt - 1;
+                            if(.@refinecnt == 0) close;
+                            mes "Here's the unused Zeny and Material back...";
+                            if (@donate==1){getitem @donateitem,.@refinecnt * @donateamount;}
+                            getitem .@material,.@refinecnt;
+                            set .@fullprice,.@refinecnt * .@price;
+                            set Zeny,Zeny + .@fullprice;
+                            close;
+                    }
+                    successrefitem .@part;
+                    emotion 21;
+                    set .@refinecnt,.@refinecnt - 1;
+                    next;
+            }
+            mes "[" + getarg(0) + "]";
+            mes "All finished... Come again soon.";
+            close;         
+     
+    L_CardRemoval:
+    UPGRADEROOT:
+      mes "Card Removal it is.";
+      next;
+      mes "[" + getarg(0) + "]";
+            mes "I see you desire some cards taken from your equipment,or does this sound like what your looking for?";
+            next;
+            menu "Yes, it does.",REMOVEMENU,"What do you charge?",REMOVEPRICE,"No thanks.",CLOSEOUT;
+     
+    REMOVEPRICE:
+            mes "[" + getarg(0) + "]";
+            mes "I charge a flat fee of 5000 zeny, plus 5000 zeny for each card I remove from the item.";
+            next;
+            menu "Alright. Let's do it.",REMOVEMENU,"No thanks.",CLOSEOUT;
+     
+    REMOVEMENU:
+            mes "[" + getarg(0) + "]";
+            mes "Very well. Which item shall I examine for you?";
+            next;
+            menu "I changed my mind.",CLOSEOUT,
+                 getequipname(1),SLOT1,
+                 getequipname(2),SLOT2,
+                 getequipname(3),SLOT3,
+                 getequipname(4),SLOT4,
+                 getequipname(5),SLOT5,
+                 getequipname(6),SLOT6,
+                 getequipname(7),SLOT7,
+                 getequipname(8),SLOT8,
+                 getequipname(9),SLOT9,
+                 getequipname(10),SLOT10;
+     
+    SLOT1:
+            set @part,1;
+            goto CARDNUMCHECK;
+     
+    SLOT2:
+            set @part,2;
+            goto CARDNUMCHECK;
+     
+    SLOT3:
+            set @part,3;
+            goto CARDNUMCHECK;
+     
+    SLOT4:
+            set @part,4;
+            goto CARDNUMCHECK;
+     
+    SLOT5:
+            set @part,5;
+            goto CARDNUMCHECK;
+     
+    SLOT6:
+            set @part,6;
+            goto CARDNUMCHECK;
+     
+    SLOT7:
+            set @part,7;
+            goto CARDNUMCHECK;
+     
+    SLOT8:
+            set @part,8;
+            goto CARDNUMCHECK;
+     
+    SLOT9:
+            set @part,9;
+            goto CARDNUMCHECK;
+     
+    SLOT10:
+            set @part,10;
+            goto CARDNUMCHECK;
+     
+    CARDNUMCHECK:
+            if(getequipcardcnt(@part) == 0) goto DENYCARDCOUNT;
+            set @cardcount,getequipcardcnt(@part);
+            if(@cardcount > 1) goto CARDNUMMULTIMSG;
+            mes "[" + getarg(0) + "]";
+            mes "This item has " + @cardcount + " card compounded on it. To perform my magic, I will need 5000 zeny.";
+            goto CARDNUMPOSTMSG;
+    CARDNUMMULTIMSG:
+            mes "[" + getarg(0) + "]";
+            mes "This item has " + @cardcount + " cards compounded on it. To perform my magic, I will need " + (5000+(@cardcount * 5000)) + " zeny.";
+    CARDNUMPOSTMSG:
+            next;
+            menu "Very well. Do it.",REMOVECARDWARNING,"Never mind.",CLOSEOUT;
+     
+    REMOVECARDWARNING:
+            mes "[" + getarg(0) + "]";
+            mes "Before I begin, I must warn you--I may fail. If I do, you will only lose what you have invested?";
+            menu "Go Ahead",PRIORITYITEM,"I changed my mind about this.",CLOSEOUT;
+                 
+     
+    PRIORITYITEM:
+            set @failtype,1;
+            goto REMOVECARD;
+     
+     
+     
+    REMOVECARD:
+            mes "[" + getarg(0) + "]";
+            mes "Very well. I shall begin.";
+            next;
+            if((zeny < (5000+(@cardcount * 5000)))) goto DENYMATERIAL;
+            set zeny,zeny - (5000+(@cardcount * 5000));
+     
+    // Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
+    // First value = Total failure chance (item and cards destroyed)
+    // Second value = Partial failure chance (one or the other is destroyed, player decides which one is safe)
+    // Third value = Harmless failure chance (all that's lost is your investment)
+     
+            set @failchance,rand(100);
+    //      if(@failchance < 2) goto FAILREMOVECARD0;
+    //      if((@failchance < 8) && (@failtype == 1)) goto FAILREMOVECARD1;
+    //      if((@failchance < 8) && (@failtype == 2)) goto FAILREMOVECARD2;
+            if(@failchance < 1) goto FAILREMOVECARD3;
+            successremovecards @part;
+            mes "[" + getarg(0) + "]";
+            mes "The process was a success. Here are your cards and your item. Farewell.";
+            close;
+     
+    FAILREMOVECARD0:
+            mes "[" + getarg(0) + "]";
+            mes "The process was a total failure. I am afraid the item and the cards were destroyed.";
+            failedremovecards @part,0;
+            close;
+     
+    FAILREMOVECARD1:
+            mes "[" + getarg(0) + "]";
+            mes "While I have managed to remove the cards from the item, they were destroyed in the process. The item, however, is okay.";
+            failedremovecards @part,1;
+            close;
+     
+    FAILREMOVECARD2:
+            mes "[" + getarg(0) + "]";
+            mes "Most unfortunate. I succeeded at removing the cards, but the item itself was destroyed in the process.";
+            failedremovecards @part,2;
+            close;
+     
+    FAILREMOVECARD3:
+            mes "[" + getarg(0) + "]";
+            mes "I have failed to remove the cards. Better luck next time.";
+            failedremovecards @part,3;
+            close;
+     
+    DENYCARDCOUNT:
+            mes "[" + getarg(0) + "]";
+            mes "There are no cards compounded on this item. Quit wasting my time.";
+            close;
+     
+    DENYMATERIAL:
+            mes "[" + getarg(0) + "]";
+            mes "You do not have enough zeny, go get some cash. My work isn't for free.";
+            close;
+     
+    CLOSEOUT:
+            mes "[" + getarg(0) + "]";
+            mes "Very well. Return at once if you seek my services.";
+            close;
+     
+    L_ItemIdentify:
+            // Price
+            // =====
+            // This is the Price in Zeny for one identified Item
+     
+            set @price, 40;
+            // Actual Script Begins Here
+            // =========================
+      mes "Item Identification, ok then.";
+      next;
+            mes "[" + getarg(0) + "]";
+            mes "Want me to Identify your items?";
+            mes "It's just "+@price+" Zeny each item.";
+            next;
+            menu "Sure.",-,"No thanks...",L_Bye;
+     
+            getinventorylist;
+            set @identify, 0;
+     
+            for(set @i, 0; @i < @inventorylist_count; set @i, @i + 1) {
+                    if (@inventorylist_identify[@i] == 0) set @identify, @identify + 1;
+            }
+     
+            if (@identify == 0) goto L_Nothing;
+     
+            mes "[" + getarg(0) + "]";
+            if (@identify < 2) {
+            mes "You've got one unidentified item in your inventory.";
+            mes "I'll identify it for "+@price+" Zeny.";
+     
+            } else {
+            mes "You've got "+@identify+" unidentified items in your inventory.";
+            mes "I'll identify them for "+(@identify * @price)+" Zeny.";
+     
+            }
+            mes "If you've got any ^00AA00Magnifiers^000000, I'll take those instead.";
+            mes "Shall I start now?";
+            next;
+            menu "Ok, let's go!",-,"What a ripoff...",L_Bye;
+           
+            getinventorylist;
+            set @identified, 0;
+     
+            for(set @i, 0; @i < @inventorylist_count; set @i, @i + 1) {
+                    if (@inventorylist_identify[@i] == 0) {
+                            if (countitem(611) > 0) delitem 611,1;
+                            else if (Zeny < @price) goto L_NoZeny;
+                            else set Zeny, Zeny - @price;
+                            delitem2 @inventorylist_id[@i],1,0,0,0,0,0,0,0;
+                            getitem @inventorylist_id[@i],1;
+                            set @identified, @identified + 1;
+                    }
+            }
+     
+            mes "[" + getarg(0) + "]";
+            mes "Well, I identified everything!";
+            mes "I've identified a total of "+@identified+" items for you.";
+            mes "Bye~";
+            close;
+     
+    L_Nothing:
+            mes "[" + getarg(0) + "]";
+            mes "You don't have any unidentified Items.";
+            close;
+     
+    L_NoZeny:
+            mes "[" + getarg(0) + "]";
+            mes "You don't have enough Zeny.";
+            close;
+     
+    L_Bye:
+            mes "[" + getarg(0) + "]";
+            mes "...";
+            close;
+     
+    L_Repair:
+    mes "Repairing it is!";
+    next;
+    if (getbrokenid(1) == 0) goto L_Waste;
+    mes "[" + getarg(0) + "]";
+    mes "Each repair costs 2000 zeny would you like to repair an item now?";
+    menu "Yes",L_RepairItem,"No",L_Bye;
+     
+    L_RepairItem:
+    if(zeny < (2000)) goto L_NoZeny;
+    mes "Select the item to repair from the menu.";
+    set @choice, select(getitemname(getbrokenid(1)), getitemname(getbrokenid(2)), getitemname(getbrokenid(3)), getitemname(getbrokenid(4)), getitemname(getbrokenid(5)), getitemname(getbrokenid(6)), getitemname(getbrokenid(7)), getitemname(getbrokenid(8)), getitemname(getbrokenid(9)), getitemname(getbrokenid(10)));
+     
+    set zeny, zeny - 2000;
+    repair(@choice);
+    goto L_Repaired;
+     
+    L_Waste:
+    mes "[" + getarg(0) + "]";
+    mes "Do not waste my time, you have no items in need of repair.";
+    close;
+    L_Repaired:
+    mes "[" + getarg(0) + "]";
+    mes "Your item has been repaired, please be more careful.";
+    close;
+    L_Buy_Materials:
+      mes "so you want to buy materials.";
+      next;
+            mes "[" + getarg(0) + "]";
+            mes "I sell 4 kinds of Metal";
+            mes "for tempering weaponry and armor.";
+            next;
+            mes "[" + getarg(0) + "]";
+            mes "I have Phracon for lvl 1 Weapons.";
+            mes "Emveretarcon for lvl 2 Weapons,and";
+            mes "Oridecon for lvl 3/4 Weapons";
+            mes "As well as Elunium for armors.";
+            next;
+            switch(select("Phracon - 10000 Zeny:Emveretarcon - 10000 Zeny:Oridecon - 80000 Zeny:Elunium - 80000 Zeny")) {
+            case 1:
+                    set .@material,1010;
+                    set .@price,10000;
+                    break;
+            case 2:
+                    set .@material,1011;
+                    set .@price,10000;
+                    break;
+            case 3:
+                    set .@material,984;
+                    set .@price,80000;
+                    break;
+            case 4:
+                    set .@material,985;
+                    set .@price,80000;
+                    break;
+            }
+            mes "[" + getarg(0) + "]";
+            mes "So how many do you wish to buy?";
+            mes "If you don't want any, please enter the number, '0.'";
+            next;
+            while(1) {
+                    input .@input;
+                    if (.@input == 0) {
+                            mes "[" + getarg(0) + "]";
+                            mes "The deal has";
+                            mes "been cancelled.";
+                            close;
+                    }
+                    else if (.@input < 0 || .@input > 500) {
+                            mes "[" + getarg(0) + "]";
+                            mes "Alright, you can";
+                            mes "puchase up to 500.";
+                            mes "No more than that,";
+                            mes "got it? Good.";
+                            next;
+                    }
+                    else {
+                            break;
+                    }
+            }
+            set .@sell,.@input * .@price;
+            if (Zeny < .@sell) {
+        mes "[" + getarg(0) + "]";
+                    mes "Err...";
+                    mes "You don't have";
+                    mes "enough Zeny to buy";
+                    mes ""+ .@input +" of them.";
+                    close;
+            }
+            if (checkweight(.@material,.@input) == 0) {
+                    mes "[" + getarg(0) + "]";
+                    mes "Hmm...";
+                    mes "I can't give you anything if you don't have enough room in your inventory. Why don't you put your extra things in Storage and try again?";
+                    close;
+            }
+            getitem .@material,.@input;
+            set Zeny,Zeny-.@sell;
+            mes "[" + getarg(0) + "]";
+            mes "Here you are!";
+            mes "Thank you for";
+            mes "your patronage.";
+            close;
+     
+     
+    }
+

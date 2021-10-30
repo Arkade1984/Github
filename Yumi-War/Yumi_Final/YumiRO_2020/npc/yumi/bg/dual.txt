@@ -1,0 +1,21 @@
+-	script	dual_mac	-1,{
+
+OnPCLoadMapEvent:
+   getmapxy .@map$, .@x, .@y, 0;
+   if ( .@map$=="schg_cas06" || .@map$=="schg_cas07" || .@map$=="schg_cas08" || .@map$=="arug_cas06" || .@map$=="arug_cas07" || .@map$=="arug_cas08" || .@map$=="rush_cas01" || .@map$=="rush_cas02" || .@map$=="rush_cas03" || .@map$=="rush_cas04" ) {
+      if(harm_map_multicount("rush_cas01")>1 || harm_map_multicount("rush_cas02")>1 || harm_map_multicount("rush_cas03")>1 || harm_map_multicount("rush_cas04")>1 || harm_map_multicount("schg_cas06")>1 || harm_map_multicount("schg_cas07")>1 || harm_map_multicount("schg_cas08")>1 || harm_map_multicount("arug_cas06")>1 || harm_map_multicount("arug_cas07")>1 || harm_map_multicount("arug_cas08")>1 ){
+         dispbottom "[^FFA500Battlegrounds^000000]";
+         dispbottom "Double Login is forbidden in Battlegrounds Maps";
+         warp "SavePoint",0,0;
+         end;
+      }
+   }
+   end;
+}
+
+schg_cas06	mapflag	loadevent
+schg_cas07	mapflag	loadevent
+schg_cas08	mapflag	loadevent
+arug_cas06	mapflag	loadevent
+arug_cas07	mapflag	loadevent
+arug_cas08	mapflag	loadevent

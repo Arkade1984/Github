@@ -1,0 +1,136 @@
+
+prontera,150,150,5	script	Card Exchange	544,{
+	set .@name$,"[^0000FFCat Exchange^000000]";
+	
+	mes .@name$;
+	mes "Meow~";
+	mes "I can fuse card for you. If you want powerful cards, fuse them Meow~";
+	next;
+	switch(select("Fuse Cards:Information:Close")) {
+		case 3:
+			mes .@name$;
+			mes "~Meoow?";
+			mes "Come back soon.";
+			close;
+		
+		case 2:
+			mes .@name$;
+			mes "The Card Fusing it is purfect for an adventure like you.";
+			next;
+			mes .@name$;
+			mes "The cards has it's own Worth Value, and depending of the Cards Tier, you can fuse stronger cards.";
+			next;
+			mes .@name$;
+			mes "Meow~";
+			mes "Use the search function to find the cards that you want to fuse, you can select up to 6 cards.";
+			next;
+			mes .@name$;
+			mes "Once you have select the cards, you will now search a Superior Tier or equal Tier of the cards that you selected.";
+			next;
+			mes .@name$;
+			mes "Meow~";
+			mes "Now you can fuse the cards.";
+			close;
+		
+		case 1:
+			mes .@name$;
+			mes "Select a Slot to choose a card.";
+			next;
+			while (1==1) {
+			if (.@count_card == 1000) {
+				mes .@name$;
+				mes "Select a Slot to choose a card.";
+				next;
+			}
+			set .@card_select,select( ""+(.@slot1!=0 ? "[slot 1]["+getitemname(.@slot1)+"]" : "[slot 1][Choose a Card]")+""+(.@slot1==0 ? ":" : (.@slot2!=0 ? ":[slot 2]["+getitemname(.@slot2)+"]" : ":[slot 2][Choose a Card]"))+""+(.@slot2==0 ? ":" : (.@slot3!=0 ? ":[slot 3]["+getitemname(.@slot3)+"]" : ":[slot 3][Choose a Card]"))+""+(.@slot3==0 ? ":" : (.@slot4!=0 ? ":[slot 4]["+getitemname(.@slot4)+"]" : ":[slot 4][Choose a Card]"))+""+(.@slot4==0 ? ":" : (.@slot5!=0 ? ":[slot 5]["+getitemname(.@slot5)+"]" : ":[slot 5][Choose a Card]"))+""+(.@slot5==0 ? ":" : (.@slot6!=0 ? ":[slot 6]["+getitemname(.@slot6)+"]" : ":[slot 6][Choose a Card]"))+""+(.@slot1!=0 ? ":Fuse Cards" : ":"));
+			if (.@card_select <= 6) {
+			if (!getd(".@slot"+.@card_select)) {
+				set .@count_card,0;
+				setd ".@slot"+.@card_select,callfunc("card_exchange_func");
+				for (set .@s,1; .@s < 7; set .@s,.@s + 1)
+					if (getd(".@slot"+.@card_select) == getd(".@slot"+.@s)) set .@count_card,.@count_card+1;
+				if (getd(".@slot"+.@card_select) != 0) { //in case of Not Category Card In Inventory
+				
+				if (countitem(getd(".@slot"+.@card_select)) < .@count_card) {
+					mes .@name$;
+					mes "Meow?~";
+					mes "You can only choose the amount of cards that you have in your inventory.";
+					next;
+					set .@count_card, 1000;
+					setd ".@slot"+.@card_select,0;
+				}
+				} else set .@count_card, 1000;
+			}
+			else {
+				set .@selectp,.@card_select+1;
+				if (getd(".@slot"+.@selectp)) {
+					setd ".@slot"+.@card_select,getd(".@slot"+.@selectp);
+					setd ".@slot"+.@selectp,0;
+					
+					set .@selectp2,.@selectp+1;
+						if (getd(".@slot"+.@selectp2)) {
+							setd ".@slot"+.@selectp,getd(".@slot"+.@selectp2);
+							setd ".@slot"+.@selectp2,0;
+						}
+						
+						set .@selectp3,.@selectp2+1;
+							if (getd(".@slot"+.@selectp3)) {
+								setd ".@slot"+.@selectp2,getd(".@slot"+.@selectp3);
+								setd ".@slot"+.@selectp3,0;
+							}
+								
+							set .@selectp4,.@selectp3+1;
+								if (getd(".@slot"+.@selectp4)) {
+									setd ".@slot"+.@selectp3,getd(".@slot"+.@selectp4);
+									setd ".@slot"+.@selectp4,0;
+								}
+								
+								set .@selectp5,.@selectp4+1;
+									if (getd(".@slot"+.@selectp5)) {
+										setd ".@slot"+.@selectp4,getd(".@slot"+.@selectp5);
+										setd ".@slot"+.@selectp5,0;
+									}
+				}
+				
+				else setd ".@slot"+.@card_select,0;
+			}
+			}
+			
+			if (.@card_select == 7) break;
+			}
+			next;
+			mes .@name$;
+			mes "This may take a while, please wait.";
+			set .@card_value,callfunc("card_fuse_func",.@slot1,.@slot2,.@slot3,.@slot4,.@slot5,.@slot6);
+			next;
+			mes .@name$;
+			mes "You have a Total Card Value of: "+.@card_value;
+			mes (.@card_value > 1 ? "You can fuse cards of Tier #"+(.@card_value <= 3 ? "1" : (.@card_value <= 7 ? "2" : (.@card_value <= 15 ? "3" : (.@card_value <= 31 ? "4" : (.@card_value <= 63 ? "5" : "6"))))) : "Your Card Fuse Value it's too small.");
+			if (.@card_value < 2) close;
+			next;
+				set .@d,select("" + (.@card_value >= 2 ? "Tier #1:" : ":") + "" + (.@card_value >= 4 ? "Tier #2:" : ":") + "" + (.@card_value >= 8 ? "Tier #3:" : ":") + "" + (.@card_value >= 16 ? "Tier #4:" : ":") + "" + (.@card_value >= 32 ? "Tier #5:" : ":") + "" + (.@card_value >= 64 ? "Tier #6:" : ":"));
+				set .@cSelection,0;
+				
+				for (set .@a,.@b; .@a < getarraysize(getd("$@Cards_Tier0"+.@d)); set .@a,.@a + 1) {
+					if (getd("$@Cards_Tier0"+.@d+"["+.@a+"]")) {
+						set .@aMenu$, .@aMenu$ + getitemname(getd("$@Cards_Tier0"+.@d+"["+.@a +"]")) + ":";
+						setarray .@bSelection[.@cSelection],getd("$@Cards_Tier0"+.@d+"["+.@a+"]");
+						set .@cSelection,.@cSelection + 1;
+						
+					}
+				}
+				mes .@name$;
+				mes "You can still change your mind, choose cancel to quit.";
+				next;
+				set .@b,select(.@aMenu$)-1;
+				close2;
+				getitem .@bSelection[.@b],1;
+				if (.@slot1) delitem .@slot1,1;
+				if (.@slot2) delitem .@slot2,1;
+				if (.@slot3) delitem .@slot3,1;
+				if (.@slot4) delitem .@slot4,1;
+				if (.@slot5) delitem .@slot5,1;
+				if (.@slot6) delitem .@slot6,1;
+				end;
+	}
+}

@@ -1,0 +1,204 @@
+-	script	Dice#disable	-1,{
+end;
+
+OnDEventStop:
+	set $@DiceEvent, 0;
+	set $@DiceEventa, 0;
+	donpcevent "EventWarp::OnEventFind";
+	announce "[ Dice ]: The Dice event is being Terminated, Accept my Appoligies!",bc_blue;
+	stopnpctimer;
+	end;
+
+OnInit:
+	set $get_item_id, 8963;
+	set $get_item_amount, 2;
+	hideonnpc "Dice#evnt1";
+	end;
+
+OnClock0400:
+OnClock1600:
+OnDiceEventStart:	
+	announce "[ Dice ]: The Dice event will be starting shortly.",bc_blue;
+	sleep2 2000;
+	announce "[ Dice ]: Those who want to play, please proceed to the Cavale City and enter the [ Event Warp Portal ].",bc_blue;
+	set $@DiceEventa, 1;
+	set $@DiceEvent, 1;
+	sleep2 1000;
+	donpcevent "EventWarp::OnEventFind";
+	initnpctimer;
+	end;
+
+OnTimer30000:
+	announce "[ Dice ]: Last 30 seconds.",bc_blue;
+	sleep2 5000;
+	announce "[ Dice ]: If you want to join please enter the [ Event Warp Portal ] in Cavale City.",bc_blue;
+	end;
+	
+OnTimer50000:
+	announce "[ Dice ]: Last 10 seconds.",bc_blue;
+	end;
+	
+OnTimer55000:
+	announce "[ Dice ]: 5.",bc_blue;
+	end;
+	
+OnTimer56000:
+	announce "[ Dice ]: 4.",bc_blue;
+	end;
+	
+OnTimer57000:
+	announce "[ Dice ]: 3.",bc_blue;
+	end;
+	
+OnTimer58000:
+	announce "[ Dice ]: 2.",bc_blue;
+	end;
+	
+OnTimer59000:
+	announce "[ Dice ]: 1.",bc_blue;
+	end;
+	
+OnTimer60000:
+	announce "[ Dice ]: Time's up.",bc_blue;
+	end;
+	
+OnTimer61000:
+	set $@DiceEventa, 0;
+	if(getmapusers("quiz_01") <= 1) {
+		announce "[ Dice ]: Event Failed to Start, Atleast Two player's are needed to start the event.",bc_blue;
+		mapwarp "quiz_01","prontlegend",190,185;
+		set $@DiceEvent, 0;
+		donpcevent "EventWarp::OnEventFind";
+		stopnpctimer;
+		end;
+	}
+	donpcevent "Dice#evnt1::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+//--------------------------------------------------
+
+quiz_01,204,93,6	script	Dice#evnt1	715,{
+
+//--------------------------------------------------
+
+	mes "[ Dice ]";
+	mes "Congrats. You've won.";
+	close2;
+	set $@DiceEvent, 0;
+	set $DiceEventWinner$, strcharinfo(0);
+	announce "[ Dice ]: We have a winner! well done "+ strcharinfo(0) +".",bc_blue;
+	getitem $get_item_id,$get_item_amount;
+	donpcevent "EventWarp::OnEventFind";
+	warp "prontlegend",190,192;
+	hideonnpc "Dice#evnt1";
+	end;
+	
+OnEnable:
+	mapannounce "quiz_01","[ Dice ]: We are about to start the Dice event.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: But before we start the event here's how to play the game...",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: I'm only gonna say this once so read carefully.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: I'm going to roll a number, 1 to 4. Then I'll do a count down from 5 to 0.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: All you have to do is go stand on the box of the number you want.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: For example, If I roll a number 4, All the players standing on numbers 1 to 3 will be warped back to town.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: We will do it until we only have 1 player left on the map.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: Oh yeah! Before I forget you MUST GO INSIDE THE BOX, because if you're caught standing on the stairs you'll be automatically disqualified.",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: Simple huh?.. Let's play...",bc_blue;
+	sleep2 5000;
+	goto L_Start;
+	end;
+	
+L_Start:
+	if(getmapusers("quiz_01") == 1) goto L_Champ;
+	if(getmapusers("quiz_01") == 0) goto L_None;
+	if(getmapusers("quiz_01") > 1) {
+	mapannounce "quiz_01","[ Dice ]: . . . . .",bc_blue;
+	set $@number, rand(1,4);
+	sleep2 10000;
+	mapannounce "quiz_01","[ Dice ]: I have rolled. Please pick a number and go stand there.... GO!",bc_blue;
+	sleep2 10000;
+	mapannounce "quiz_01","[ Dice ]: 5",bc_blue;
+	sleep2 5000;
+	mapannounce "quiz_01","[ Dice ]: 4",bc_blue;
+	sleep2 4000;
+	mapannounce "quiz_01","[ Dice ]: 3",bc_blue;
+	sleep2 3000;
+	mapannounce "quiz_01","[ Dice ]: 2",bc_blue;
+	sleep2 2000;
+	mapannounce "quiz_01","[ Dice ]: 1",bc_blue;
+	sleep2 1000;
+	mapannounce "quiz_01","[ Dice ]: Time's up.",bc_blue;
+	donpcevent "evnt#1::OnEnable";
+	mapannounce "quiz_01","[ Dice ]: The winning number is "+$@number+".",bc_blue;
+	if(($@number != 1) && ($@number != 2) && ($@number != 3)) goto L_Lose1;
+	if(($@number != 1) && ($@number != 2) && ($@number != 4)) goto L_Lose2;
+	if(($@number != 1) && ($@number != 3) && ($@number != 4)) goto L_Lose3;
+	if(($@number != 2) && ($@number != 3) && ($@number != 4)) goto L_Lose4;
+	end;
+	}
+	
+L_Lose1:
+	areawarp "quiz_01",183,81,191,59,"prontlegend",190,192;
+	areawarp "quiz_01",195,81,203,59,"prontlegend",190,192;
+	areawarp "quiz_01",207,81,215,59,"prontlegend",190,192;
+	goto L_Start;
+	end;
+
+L_Lose2:
+	areawarp "quiz_01",183,81,191,59,"prontlegend",190,192;
+	areawarp "quiz_01",195,81,203,59,"prontlegend",190,192;
+	areawarp "quiz_01",219,81,227,59,"prontlegend",190,192;
+	goto L_Start;
+	end;
+	
+L_Lose3:
+	areawarp "quiz_01",183,81,191,59,"prontlegend",190,192;
+	areawarp "quiz_01",207,81,215,59,"prontlegend",190,192;
+	areawarp "quiz_01",219,81,227,59,"prontlegend",190,192;
+	goto L_Start;
+	end;
+	
+L_Lose4:
+	areawarp "quiz_01",195,81,203,59,"prontlegend",190,192;
+	areawarp "quiz_01",207,81,215,59,"prontlegend",190,192;
+	areawarp "quiz_01",219,81,227,59,"prontlegend",190,192;
+	goto L_Start;
+	end;
+	
+L_Champ:
+	mapannounce "quiz_01","[ Dice ]: Come to me and tell me your name.",bc_blue;
+	hideoffnpc "Dice#evnt1";
+	end;
+	
+L_None:
+	hideonnpc "Dice#evnt1";
+	end;
+}
+	
+-	script	evnt#1	-1,{
+
+OnEnable:
+	areawarp "quiz_01",182,94,228,88,"prontlegend",190,192;
+	areawarp "quiz_01",185,87,188,82,"prontlegend",190,192;
+	areawarp "quiz_01",197,87,200,82,"prontlegend",190,192;
+	areawarp "quiz_01",209,87,212,82,"prontlegend",190,192;
+	areawarp "quiz_01",221,87,224,82,"prontlegend",190,192;
+	end;
+}
+
+// -- Mapflags
+quiz_01	mapflag	nowarp
+quiz_01	mapflag	nowarpto
+quiz_01	mapflag	noteleport
+quiz_01	mapflag	nosave
+quiz_01	mapflag	nomemo
+quiz_01	mapflag	nobranch

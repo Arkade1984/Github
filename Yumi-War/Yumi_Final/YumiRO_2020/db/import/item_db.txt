@@ -1,0 +1,527 @@
+// Items Additional Database
+//
+// Structure of Database:
+// ID,Name,Name,Type,Price,Sell,Weight,ATK,DEF,Range,Slot,Job,Class,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+//
+// THQ Quest Items
+//=============================================================
+//7950,THG_Membership,THG Membership,3,,10,10,,,,,,,,,,,,,{},{},{}
+//7951,Token_Bag,Token Bag,3,,10,10,,,,,,,,,,,,,{},{},{}
+//1998,Jeramiah's_Jur,Jeramiah's Jur,3,,10,10,,,,,,,,,,,,,{},{},{}
+//1999,Zed's_Staff,Zed's Staff,3,,10,10,,,,,,,,,,,,,{},{},{}
+
+// Official Event Items that had their Effects removed after the event was completed
+//585,Wurst,Brusti,11,2,,40,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(15,20),0; itemskill "PR_MAGNIFICAT",3; },{},{}
+//679,Gold_Pill,Pilule,0,5000,,300,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 50,50; },{},{}
+
+//2681,Republic_Ring,Republic Anniversary Ring,4,20,,100,,0,,0,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus bAllStats,3; },{},{}
+
+//5134,Pumpkin_Hat,Pumpkin-Head,4,20,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus2 bSubRace,RC_Demon,5; },{},{}
+//5136,Santa's_Hat_,Louise's Santa Hat,4,20,,100,,3,,0,0xFFFFFFFF,7,2,256,,0,1,20,{ bonus bMdef,1; bonus bLuk,1; bonus3 bAutoSpellWhenHit,"AL_HEAL",3,50; bonus3 bAutoSpellWhenHit,"AL_BLESSING",10,50; },{},{}
+//5145,Carnival_Joker_Jester,Carnival Jester,4,10,,100,,0,,0,0xFFFFFFFF,7,2,256,,0,1,89,{ bonus bAllStats,3; },{},{}
+//5147,Baseball_Cap,Baseball Cap,4,0,,200,,3,,0,0xFFFFFFFF,7,2,256,,0,1,216,{ bonus2 bExpAddRace,RC_Boss,50; bonus2 bExpAddRace,RC_NonBoss,50; },{},{}
+//5201,Party_Hat_B,2nd Anniversary Party Hat,4,20,,300,,3,,0,0xFFFFFFFF,7,2,256,,0,1,144,{ bonus bAllStats,3; },{},{}
+//5202,Pumpkin_Hat_,Pumpkin Hat,4,20,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus bAllStats,2; bonus2 bSubRace,RC_Demon,5; bonus3 bAddMonsterDropItem,529,RC_DemiHuman,1500; },{},{}
+//5204,Event_Pierrot_Nose,Rudolf's Red Nose,4,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,49,{ bonus2 bResEff,Eff_Blind,3000; bonus2 bAddMonsterDropItem,12130,30; },{},{}
+//5264,Aussie_Flag_Hat,Australian Flag Hat,4,20,,500,,4,,0,0xFFFFFFFF,7,2,256,,0,1,304,{ bonus bAllStats,2; },{},{}
+//5356,Pumpkin_Hat_H,Pumpkin Hat,4,20,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus bAllStats,2; bonus2 bSubRace,RC_Demon,5; bonus2 bMagicAddRace,RC_Demon,5; },{},{}
+//5811,Santa_Beard,Santa Beard,4,20,,100,,5,,0,0xFFFFFFFF,7,2,1,,0,0,25,{ bonus2 bSubRace,RC_Brute,5; },{},{}
+
+//11702,Moon_Cookie,Moon Cookie,11,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_end SC_Poison; sc_end SC_Silence; sc_end SC_Blind; sc_end SC_Confusion; sc_end SC_Curse; sc_end SC_Hallucination; itemskill "AL_BLESSING",7; },{},{}
+//12131,Lucky_Potion,Lucky Potion,0,2,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_LUKFood,180000,15; },{},{}
+//12143,Red_Can,Red Can,2,50000,,300,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 25,25; },{},{}
+//Event effect: Summon monster? Probably Rice_Cake. x_x
+//12199,Rice_Scroll,Rice Scroll,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+//12200,Event_Cake,Event Cake,2,20,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "PR_MAGNIFICAT",3; },{},{}
+//12238,New_Year_Rice_Cake_1,New Year Rice Cake,0,20,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 20,15; sc_start SC_STRFood,1200000,3; sc_start SC_INTFood,1200000,3; sc_start SC_LUKFood,1200000,3; sc_start SC_SpeedUp1,5000,0; },{},{}
+//12239,New_Year_Rice_Cake_2,New Year Rice Cake,0,20,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 20,15; sc_start SC_DEXFood,1200000,3; sc_start SC_AGIFood,1200000,3; sc_start SC_VITFood,1200000,3; sc_start SC_SpeedUp1,5000,0; },{},{}
+
+// iRO St. Patrick's Day Event 2008
+//=============================================================
+//12715,Black_Treasure_Chest,Black Treasure Chest,2,0,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_08stpattyseventbox"; },{},{}
+
+// iRO Valentine's Day Event 2009
+//=============================================================
+//12742,Valentine_Gift_Box_M,Valentine Gift Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 7946,1; },{},{}
+//12743,Valentine_Gift_Box_F,Valentine Gift Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 7947,1; },{},{}
+//12744,Chocolate_Box,Chocolate Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 558,1; },{},{}
+//14466,Valentine's_Emblem_Box,Valentine's Emblem Box,2,10,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5817,1; },{},{}
+//7946,Gold_Ring_Of_Valentine,Gold Ring Of Valentine,3,10,,0,,,,,,,,,,,,,{},{},{}
+//7947,Silver_Ring_Of_Valentine,Silver Ring Of Valentine,3,10,,0,,,,,,,,,,,,,{},{},{}
+//7948,Box,Box,3,10,,10,,,,,,,,,,,,,{},{},{}
+//5817,Valentine's_Emblem,Valentine's Emblem,4,10,,0,,3,,0,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus bAtkRate,3; bonus bMatkRate,3; bonus bAllStats,2; bonus bFlee,10; bonus bAspd,1; bonus bMdef,3; bonus2 bSkillAtk,"AL_HEAL",10; bonus2 bSkillHeal,"AL_HEAL",10; bonus2 bSkillHeal,"AM_POTIONPITCHER",10; bonus2 bAddItemHealRate,IG_Potion,10; },{},{}
+
+// iRO Halloween Event 2009
+//=============================================================
+//5668,Weird_Pumpkin_Hat,Weird Pumpkin Hat,4,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,206,{ bonus bMdef,5; bonus2 bAddMonsterDropItem,12192,2500; },{},{}
+//6298,Crushed_Pumpkin,Crushed Pumpkin,3,0,,0,,,,,,,,,,,,,{},{},{}
+//6299,Worn_Fabric,Worn Fabric,3,0,,0,,,,,,,,,,,,,{},{},{}
+
+// Old Tuxedo and Wedding Dress, will display the outfit when worn.
+//==================================================================
+//2338,Wedding_Dress,Wedding Dress,4,43000,,500,,0,,0,0xFFFFFFFE,7,0,16,,0,1,0,{},{ setoption Option_Wedding,1; },{ setoption Option_Wedding,0; }
+//7170,Tuxedo,Tuxedo,4,43000,,10,,0,,0,0xFFFFFFFE,7,1,16,,0,1,0,{},{ setoption Option_Wedding,1; },{ setoption Option_Wedding,0; }
+
+
+
+
+// Items Additional Database - Custom Items go here
+//
+// Structure of Database:
+// ID,Name,Name,Type,Price,Sell,Weight,ATK,DEF,Range,Slot,Job,Upper,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+//
+
+//Loc: Equipment's placement. Values are:
+//2^12 1024 = Costume Low Headgear
+//2^11 2048 = Costume Middle Headgear
+//2^10 4096 = Costume Top Headgear
+//2^8  256 = Upper Headgear
+//2^9  512 = Middle Headgear
+//2^0  001 = Lower Headgear
+//2^4  016 = Armor
+//2^1  002 = Weapon
+//2^5  032 = Shield
+//2^2  004 = Garment
+//2^6  064 = Footgear
+//2^3  008 = Accessory 1
+//2^7  128 = Accessory 2
+
+//Miles Customs :3
+//==================================================================
+26001,Premium_Box,Premium Box,11,1,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "Unlock_Box"; },{},{}
+26002,Premium_Key,Premium Key,11,1,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "Unlock_Box"; },{},{}
+26003,Premium_Featured_Key,Featured Key,11,1,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 26002,rand(1,3); delitem 26003,1; },{},{}
+26004,Premium_Feather_Wing,Feather Wing,11,1,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "Fate_Wing"; },{},{}
+26005,Premium_Fate_Wing,Fate Wing,11,1,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "Fate_Wing"; },{},{}
+26006,Premium_Fate_Wing2,Fate Wing,11,1,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "Fate_Wing"; },{},{}
+26007,Premium_Wing_Badge,Wing Badge,5,1,,100,,5,,0,0xFFFFFFFF,7,2,136,,,,,{ bonus bSpeedAddRate,1; },{},{}
+26008,Premium_Backpack_Storage,Backpack Storage,5,1,,100,,5,,0,0xFFFFFFFF,7,2,136,,0,0,0,{  },{},{}
+//==================================================================
+
+
+
+// Yumi Custom Weapons
+
+1299,Prometheus_Double-Edged_Sword,Prometheus Double-Edged Sword,4,19500,,800,125,,1,4,0x00001000,7,2,34,3,100,1,16,{bonus bStr,8; bonus bAtkRate,7; bonus bNoMagicDamage,20; bonus bCritAtkRate,35; bonus bHit,30;},{},{} // to add
+1699,Highness_Staff,Highness Staff,4,50,,400,15,,1,4,0x00000100,7,2,2,3,100,1,10,{bonus bUseSPrate,-30; bonus bFlee2,5; bonus bHealPower,10; bonus bDex,10;},{},{} // to add
+1749,Celestial_Bow,Celestial Bow,4,1000,,500,15,,5,4,0x00000800,7,2,34,3,100,1,11,{bonus bAtk,56; bonus bNoMagicDamage,15; bonus3 bAutoSpell,"AS_SONICBLOW",4,50; bonus bDex,8; bonus bCritAtkRate,8;},{},{} // to add
+1499,Revenant_Spear,Revenant Spear,4,150,,700,28,,3,4,0x00004080,7,2,2,3,100,1,4,{bonus bAtk,30; bonus2 bAddRace,RC_DemiHuman,15; bonus bUseSPrate,-30; bonus bAspdRate,30;},{},{} // to add
+1698,Strike_Eagle_Staff,Strike Eagle Staff,4,50,,400,15,,1,3,0x00818315,7,2,2,1,1,1,10,{},{},{}
+1191,onehand_sword1,onehand_sword1,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,2,1,2,{},{},{}
+1192,onehand_sword2,onehand_sword2,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1193,onehand_sword3,onehand_sword3,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1194,onehand_sword4,onehand_sword4,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1195,onehand_sword5,onehand_sword5,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1196,onehand_sword6,onehand_sword6,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1197,onehand_sword7,onehand_sword7,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1198,onehand_sword9,onehand_sword9,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,1,1,10,{},{},{}
+1697,normal_rodsprite,normal_rodsprite,4,50,,400,15,,1,3,0x00818315,7,2,2,1,1,1,10,{},{},{}
+1696,blue_rodsprite,blue_rodsprite,4,50,,400,15,,1,3,0x00818315,7,2,2,1,1,1,10,{},{},{}
+1695,pink_rodsprite,pink_rodsprite,4,50,,400,15,,1,3,0x00818315,7,2,2,1,1,1,10,{},{},{}
+1694,Psychic_Rod,Psychic Rod,4,50,,400,15,,1,4,0x00010200,7,2,2,3,100,1,10,{bonus bFlee,10; bonus bMatkRate,22; bonus bInt,5; bonus bDex,10; bonus bCastrate,-17;},{},{} // to add
+1693,silver_rodsprite,silver_rodsprite,4,50,,400,15,,1,3,0x00818315,7,2,2,1,1,1,10,{},{},{}
+1199,Oriental_Black_Sword,Oriental_Black_Sword,4,100,,500,25,,1,4,0x00040000,7,2,2,3,100,1,2,{skill "MG_LIGHTNINGBOLT",2; bonus bMatkRate,12; bonus bDefRate,-18; bonus bDef2Rate,-18; bonus bInt,10;},{},{} // to add
+13198,Pulsing_Gun,Pulsing Gun,4,4500,,400,30,,7,4,0x01000000,7,2,34,3,100,1,17,{bonus bDex,10; bonus bAgi,10; bonus bNoMagicDamage,20; bonus bCastrate,-35; bonus bDelayRate,-10; },{},{} // to add
+13199,SychoGun_bl,SychoGun bl,4,4500,,400,30,,7,1,0x01000000,7,2,34,1,10,1,17,{},{},{}
+18199,Dorcus,Dorcus,4,8000,,400,30,,1,3,0x00008100,7,2,2,1,1,1,12,{},{},{}
+
+
+// Custom Yumi RO Testing
+//==================================================================
+//Customs Yumi RO testing MSD
+
+
+// Hats & Helms ~Costume HeadGears~
+
+20303,White_Anubis_Hat,White Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1652,{},{},{}
+20304,Red_Anubis_Hat,Red Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1653,{},{},{}
+20305,Purple_Anubis_Hat,Purple Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1654,{},{},{}
+20306,Green_Anubis_Hat,Green Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1655,{},{},{}
+20307,Gold_Anubis_Hat,Gold Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1656,{},{},{}
+20308,Cyan_Anubis_Hat,Cyan Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1657,{},{},{}
+20309,Blue_Anubis_Hat,Blue Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1658,{},{},{}
+20310,Black_Anubis_Hat,Black Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1659,{},{},{}
+20311,Anubis_Hat,Anubis Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1660,{},{},{}
+20321,brown_girlheadband,brown girlheadband,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1670,{},{},{}
+20322,Cancer_Diadem,Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1671,{},{},{}
+20323,Black_Cancer_Diadem,Black Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1672,{},{},{}
+20324,Blue_Cancer_Diadem,Blue Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1673,{},{},{}
+20325,Cyan_Cancer_Diadem,Cyan Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1674,{},{},{}
+20326,Gold_Cancer_Diadem,Gold Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1675,{},{},{}
+20327,Green_Cancer_Diadem,Green Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1676,{},{},{}
+20328,Purple_Cancer_Diadem,Purple Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1677,{},{},{}
+20329,White_Cancer_Diadem,White Cancer Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1678,{},{},{}
+20330,Black_Captain_Hat,Black Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1679,{},{},{}
+20331,Blue_Captain_Hat,Blue Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1680,{},{},{}
+20332,Cyan_Captain_Hat,Cyan Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1681,{},{},{}
+20333,Gold_Captain_Hat,Gold Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1682,{},{},{}
+20334,Green_Captain_Hat,Green Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1683,{},{},{}
+20335,Purple_Captain_Hat,Purple Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1684,{},{},{}
+20336,Red_Captain_Hat,Red Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1685,{},{},{}
+20337,White_Captain_Hat,White Captain Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1686,{},{},{}
+20339,Black_Dowry,Black Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1688,{},{},{}
+20340,Blue_Dowry,Blue Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1689,{},{},{}
+20341,Cyan_Dowry,Cyan Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1690,{},{},{}
+20342,Dowry,Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1691,{},{},{}
+20343,Gold_Dowry,Gold Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1692,{},{},{}
+20344,Green_Dowry,Green Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1693,{},{},{}
+20345,Purple_Dowry,Purple Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1694,{},{},{}
+20346,Red_Dowry,Red Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1695,{},{},{}
+20347,White_Dowry,White Dowry,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1697,{},{},{}
+20348,Black_Dragon_s_Head,Black Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1698,{},{},{}
+20349,Blue_Dragon_s_Head,Blue Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1699,{},{},{}
+20350,Cyan_Dragon_s_Head,Cyan Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1700,{},{},{}
+20351,Dragon_s_Head,Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1701,{},{},{}
+20352,Gold_Dragon_s_Head,Gold Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1702,{},{},{}
+20353,Green_Dragon_s_Head,Green Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1703,{},{},{}
+20354,Purple_Dragon_s_Head,Purple Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1704,{},{},{}
+20355,Red_Dragon_s_Head,Red Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1705,{},{},{}
+20356,White_Dragon_s_Head,White Dragon s Head,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1706,{},{},{}
+20357,emperor_fishcrown,emperor fishcrown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1707,{},{},{}
+20365,Purple_Gemini_Crown,Purple Gemini Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1715,{},{},{}
+20367,White_Gemini_Crown,White Gemini Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1717,{},{},{}
+20368,Blue_Helm_of_Baal,Blue Helm of Baal,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1718,{},{},{}
+20369,Cyan_Helm_of_Baal,Cyan Helm of Baal,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1719,{},{},{}
+20370,Gold_Helm_of_Baal,Gold Helm of Baal,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1720,{},{},{}
+20371,Green_Helm_of_Baal,Green Helm of Baal,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1721,{},{},{}
+20374,Purple_Helm_of_Baal,Purple Helm of Baal,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1723,{},{},{}
+20376,White_Helm_of_Baal,White Helm of Baal,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1725,{},{},{}
+20387,New_Black_Helm,New Black Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1737,{},{},{}
+20388,New_Blue_Helm,New Blue Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1738,{},{},{}
+20389,New_Cyan_Helm,New Cyan Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1739,{},{},{}
+20390,New_Gold_Helm,New Gold Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1740,{},{},{}
+20391,New_Green_Helm,New Green Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1741,{},{},{}
+20392,New_Pink_Helm,New Pink Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1742,{},{},{}
+20393,New_Purple_Helm,New Purple Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1743,{},{},{}
+20394,New_Red_Helm,New Red Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1744,{},{},{}
+20395,Black_Peacock_Feather,Black Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1745,{},{},{}
+20396,Blue_Peacock_Feather,Blue Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1746,{},{},{}
+20397,Cyan_Peacock_Feather,Cyan Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1747,{},{},{}
+20398,Gold_Peacock_Feather,Gold Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1748,{},{},{}
+20399,Green_Peacock_Feather,Green Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1749,{},{},{}
+20400,Peacock_Feather,Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1750,{},{},{}
+20401,Purple_Peacock_Feather,Purple Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1751,{},{},{}
+20402,Red_Peacock_Feather,Red Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1752,{},{},{}
+20403,White_Peacock_Feather,White Peacock Feather,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1753,{},{},{}
+20404,Black_Pisces_Crown,Black Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1754,{},{},{}
+20405,Cyan_Pisces_Crown,Cyan Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1755,{},{},{}
+20406,Gold_Pisces_Crown,Gold Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1756,{},{},{}
+20407,Green_Pisces_Crown,Green Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1757,{},{},{}
+20408,Pisces_Crown,Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1758,{},{},{}
+20409,Purple_Pisces_Crown,Purple Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1759,{},{},{}
+20410,Red_Pisces_Crown,Red Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1760,{},{},{}
+20411,White_Pisces_Crown,White Pisces Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1761,{},{},{}  //Customs Below This Point to 30000 are not Installed for costume shop
+20412,Black_Pisces_Diadem,Black Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1762,{},{},{}
+20413,Cyan_Pisces_Diadem,Cyan Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1763,{},{},{}
+20414,Gold_Pisces_Diadem,Gold Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1764,{},{},{}
+20415,Green_Pisces_Diadem,Green Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1765,{},{},{}
+20416,Pisces_Diadem,Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1766,{},{},{}
+20417,Purple_Pisces_Diadem,Purple Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,11767,{},{},{}
+20418,Red_Pisces_Diadem,Red Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1768,{},{},{}
+20419,White_Pisces_Diadem,White Pisces Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1769,{},{},{}
+20420,Black_Police_Hat,Black Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1760,{},{},{}
+20421,Blue_Police_Hat,Blue Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1771,{},{},{}
+20422,Cyan_Police_Hat,Cyan Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1772,{},{},{}
+20423,Gold_Police_Hat,Gold Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,177,{},{},{}
+20424,Green_Police_Hat,Green Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1774,{},{},{}
+20425,Police_Hat,Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1775,{},{},{}
+20426,Purple_Police_Hat,Purple Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1776,{},{},{}
+20427,Red_Police_Hat,Red Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1777,{},{},{}
+20428,White_Police_Hat,White Police Hat,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1778,{},{},{}
+20429,Black_Power_Of_Thor,Black Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1779,{},{},{}
+20430,Blue_Power_Of_Thor,Blue Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1780,{},{},{}
+20431,Cyan_Power_Of_Thor,Cyan Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1781,{},{},{}
+20432,Gold_Power_Of_Thor,Gold Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1782,{},{},{}
+20433,Green_Power_Of_Thor,Green Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1783,{},{},{}
+20434,Power_Of_Thor,Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1784,{},{},{}
+20435,Purple_Power_Of_Thor,Purple Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1785,{},{},{}
+20436,Red_Power_Of_Thor,Red Power Of Thor,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1786,{},{},{}
+20438,Black_Taurus_Crown,Black Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1788,{},{},{}
+20439,Blue_Taurus_Crown,Blue Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1789,{},{},{}
+20440,Cyan_Taurus_Crown,Cyan Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1790,{},{},{}
+20441,Gold_Taurus_Crown,Gold Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1791,{},{},{}
+20442,Green_Taurus_Crown,Green Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1792,{},{},{}
+20443,Purple_Taurus_Crown,Purple Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1793,{},{},{}
+20444,Red_Taurus_Crown,Red Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1794,{},{},{}
+20445,Taurus_Crown,Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1795,{},{},{}
+20446,White_Taurus_Crown,White Taurus Crown,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1796,{},{},{}
+20447,Black_Taurus_Diadem,Black Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1797,{},{},{}
+20448,Blue_Taurus_Diadem,Blue Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1798,{},{},{}
+20449,Cyan_Taurus_Diadem,Cyan Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1799,{},{},{}
+20450,Gold_Taurus_Diadem,Gold Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1800,{},{},{}
+20451,Green_Taurus_Diadem,Green Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1801,{},{},{}
+20452,Purple_Taurus_Diadem,Purple Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1802,{},{},{}
+20453,Red_Taurus_Diadem,Red Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1803,{},{},{}
+20454,Taurus_Diadem,Taurus Diadem,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1804,{},{},{}
+20455,Black_Valkyrie_Randgris_Helm,Black Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1805,{},{},{}
+20456,Blue_Valkyrie_Randgris_Helm,Blue Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1806,{},{},{}
+20457,Cyan_Valkyrie_Randgris_Helm,Cyan Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1807,{},{},{}
+20458,Gold_Valkyrie_Randgris_Helm,Gold Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1808,{},{},{}
+20459,Green_Valkyrie_Randgris_Helm,Green Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1809,{},{},{}
+20460,Purple_Valkyrie_Randgris_Helm,Purple Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1810,{},{},{}
+20461,Red_Valkyrie_Randgris_Helm,Red Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1811,{},{},{}
+20463,White_Valkyrie_Randgris_Helm,White Valkyrie Randgris Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1813,{},{},{}
+20464,Black_Viking_Helm,Black Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1814,{},{},{}
+20465,Blue_Viking_Helm,Blue Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1815,{},{},{}
+20466,Cyan_Viking_Helm,Cyan Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1816,{},{},{}
+20467,Gold_Viking_Helm,Gold Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1817,{},{},{}
+20468,Green_Viking_Helm,Green Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1818,{},{},{}
+20469,Purple_Viking_Helm,Purple Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1819,{},{},{}
+20470,Red_Viking_Helm,Red Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1820,{},{},{}
+20472,White_Viking_Helm,White Viking Helm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1822,{},{},{}
+20473,Taurus,Taurus,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1823,{},{},{}
+20474,VPHelm,VPHelm,5,20,,0,,5,,0,0xFFFFFFFF,7,2,256,,0,1,1824,{},{},{}
+30000,Akatsuki_Hat,Akatsuki Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1500,{},{},{}
+30002,Angel_Ripper,Angel Ripper,5,1000,,200,,2,,0,0xFFFFFFFF,7,2,256,,0,1,1502,{},{},{}
+30011,Black_Ear_Ice_Feathers,Black Ear Ice Feathers,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1511,{},{},{}
+30012,Black_Feather_Beret,Black Feather Beret,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1256,{},{},{}
+30014,Black_Grand_Peco_Hairband,Black Grand Peco Hairband,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1514,{},{},{}
+30015,Black_Hat_of_the_Sun_God,Black Hat of the Sun God,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1515,{},{},{}
+30016,Black_Helm_of_Darkness,Black Helm of Darkness,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1516,{},{},{}
+30017,Black_Love_Hat,Black Love Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1517,{},{},{}
+30021,Black_Orcish_Helm,Black Orcish Helm,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1521,{},{},{}
+30025,Black_Traveler_Hat,Black Traveler Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1525,{},{},{}
+30027,Black_Valkyrie_Randgris_Helm,Black Valkyrie Randgris Helm,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1527,{},{},{}
+30029,Black_Cap,Black Cap,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1529,{},{},{}
+30032,Cell_Head,Cell Head,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1532,{},{},{}
+30036,Chii_Hat,Chii Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1536,{},{},{}
+30042,Cyan_Little_Angel_Doll,Cyan Little Angel Doll,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1542,{},{},{}
+30043,Cyan_Shin_Tilt_Hat,Cyan Shin Tilt Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1543,{},{},{}
+30044,Cyan_Vesper_Mask,Cyan Vesper Mask,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1544,{},{},{}
+30049,dj_headset,DJ Headset,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1549,{},{},{}
+30057,Felinus,Felinus,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1557,{},{},{}
+30062,Geffen_Helm,Geffen Helm,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1562,{},{},{}
+30063,Gentel_Hat,Gentel Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1563,{},{},{}
+30069,Guardian_Helm,Guardian Helm,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1569,{},{},{}
+30070,Half_Hollow_Mask,Half Hollow Mask,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1570,{},{},{}
+30076,holyessence,Holy Essence,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1576,{},{},{}
+30077,Hood_of_Death,Hood of Death,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1577,{},{},{}
+30081,Kankuro_Hood,Kankuro Hood,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1581,{},{},{}
+30088,Lupus,Lupus,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1588,{},{},{}
+30089,Majora_Mask,Majora Mask,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1589,{},{},{}
+30101,Piccolo_Hat,Piccolo Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1601,{},{},{}
+30110,Reisz_Helmet,Reisz Helmet,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1610,{},{},{}
+30111,Rider,Rider,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1611,{},{},{}
+30112,Robo_Headphones,Robo Headphones,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1612,{},{},{}
+30118,Samurai_Wig,Samurai Wig,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1618,{},{},{}
+30121,Sapling_Hat,Sapling Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1621,{},{},{}
+30124,Sensor,Sensor,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1624,{},{},{}
+30132,Star_Wars_Helm,Star Wars Helm,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1632,{},{},{}
+30136,Tales_Hat,Tales Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1636,{},{},{}
+30147,WingedHeadset,Winged Headset,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1647,{},{},{}
+30149,angelingmuffs,angelingmuffs,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1649,{},{},{}
+
+30115,RTC,RTC,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1615,{bonus2 bSubRace,RC_DemiHuman,10; bonus2 bSubEle,Ele_Neutral,5; bonus bShortWeaponDamageReturn, 5;},{},{} ---------------------------
+30094,Nekoring_Hat,Nekoring Hat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1594,{},{},{} ------------
+30010,Black_Capricorn_Crown,Black Capricorn Crown,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1510,{bonus2 bAddRace,RC_DemiHuman,14; bonus bBaseAtk,(JobLevel*2)/7;},{},{} ----------------
+
+
+
+
+
+// Backpacks, Wings & Aura's ~Costume MidGears~
+20300,Runes_of_Power,Runes of Power,5,20,,0,35,5,,0,0xFFFFFFFF,7,2,001,,0,1,1649,{},{},{}
+20314,Black_Bag,Black Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1663,{},{},{}
+20315,Cyan_Bag,Cyan Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1664,{},{},{}
+20316,Gold_Bag,Gold Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1665,{},{},{}
+20318,Purple_Bag,Purple Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1667,{},{},{}
+20319,Red_Bag,Red Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1668,{},{},{}
+20320,White_Bag,White Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1669,{},{},{}
+20377,black_hip_ribbon,black hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1726,{},{},{}
+20378,blue_hip_ribbon,blue hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1727,{},{},{}
+20379,brown_hip_ribbon,brown hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1729,{},{},{}
+20380,green_hip_ribbon,green hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1730,{},{},{}
+20381,pink_hip_ribbon,pink hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1731,{},{},{}
+20382,purple_hip_ribbon,purple hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1732,{},{},{}
+20383,red_hip_ribbon,red hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1733,{},{},{}
+20384,white_hip_ribbon,white hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1734,{},{},{}
+20385,yellow_hip_ribbon,yellow hip ribbon,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1735,{},{},{}
+30005,Archan_Rucksack,Archan Rucksack,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1505,{},{},{}
+30007,Bat_Bag,Bat Bag,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1507,{},{},{}
+30023,Black_Sage_Ring,Black Sage Ring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1523,{},{},{}
+30030,Black_Spell_Ring,Black Spellring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1530,{},{},{}
+30039,Cyan_Angel_of_Ghost,Cyan Angel of Ghost,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1539,{},{},{}
+30045,Dark_Angel,Dark Angel,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1545,{},{},{}
+30048,Day_Ring,Day Ring,5,1000,,200,,2,,0,1xFFFFFFFF,7,2,001,,0,1,1548,{},{},{}
+30050,Doctor_Octopus,Doctor Octopus,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1550,{},{},{}
+30056,epsholders,Epsholders,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1556,{},{},{}
+30060,Francoise_Wings,Francoise Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1560,{},{},{}
+30061,Furry_Black_Coat,Furry Black Coat,5,1000,,200,,2,,0,0xFFFFFFFF,7,2,001,,0,1,1561,{},{},{}
+30066,Green_Aura,Green Aura,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1566,{},{},{}
+30067,Grinch_Bag,Grinch Bag,5,1000,,200,,2,,0,0xFFFFFFFF,7,2,001,,0,1,1567,{},{},{}
+30068,Guardian_Aura,Guardian Aura,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1568,{},{},{}
+30071,Heart_Ring,Heart Ring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1571,{},{},{}
+30083,Kernal_Greatsword,Kernal Greatsword,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1583,{},{},{}
+30084,Kernal_Pauldron,Kernal Pauldron,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1584,{if(isequipped(30082)) bonus bAllstats,8; bonus bAtk,8; bonus bMatk,8; bonus3 bAutoSpellWhenHit,"CR_AUTOGUARD",3,50; bonus bLongAtkDef,5;},{},{}
+30082,Kernal_Crown,Kernal Crown,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1582,{bonus2 bAddRace,RC_DemiHuman,8; bonus bNoMagicDamage,3; bonus bFlee,15; bonus bAllstats,5;},{},{}
+30099,Phoenix_Will,Phoenix Will,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1599,{},{},{}
+30100,Phoera_Will,Phoera Will,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1600,{},{},{}
+30107,Rare_Cape,Rare Cape,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1607,{},{},{}
+30108,Rare_Cloth,Rare Cloth,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1608,{},{},{}
+30109,Rare_Gear_Wings,Rare Gear Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1609,{},{},{}
+30113,Rogue_Cape,Rogue Cape,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1613,{},{},{}
+30114,Rose_Ring,Rose Ring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1614,{},{},{}
+
+30120,Sapling_Bag,Sapling Bag,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1620,{},{},{} ---------------
+30093,Music_Ring,Music Ring,5,1000,,200,,2,,1,0x00080000,7,2,001,,0,1,1593,{bonus bDex,7; bonus bFlee,15; bonus bDelayRate,-2; bonus bSPrecovRate,100;},{},{} -------------
+30008,Bat_Ring,Bat Ring,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1508,{bonus bInt,7; bonus bStr,7; bonus bHit,35; bonus3 bAutoSpell,"SA_DISPELL",1,50;},{},{} ----------
+30009,Black_Aura,Black Aura,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1509,{},{},{} -----------
+30024,Black_Stealth_Circle,Black Stealth Circle,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1524,{bonus bAllStats,7; bonus bMatkRate,5; bonus bDef2Rate,-15; bonus bMaxHPrate,7;},{},{} ---------
+20386,mini_girl_redwings,mini girl redwings,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1736,{},{},{} ---------
+20358,Fallen_Soul,Fallen Soul,5,20,,200,,5,,1,0xFFFFFFFF,7,2,001,,0,1,1708,{bonus bFlee2,7; bonus bInt,7; bonus2 bSkillAtk,18,15; bonus2 bSkillAtk,91,5;},{},{} ---------
+20312,Bombring_Rucksack,Bombring Rucksack,5,20,,200,,5,,0,0x00040000,7,2,001,,0,1,1661,{bonus bInt,10; bonus2 bSkillAtk,229,70; bonus4 bAutoSpellWhenHit,"AL_PNEUMA",1,60,0;},{},{}
+30037,Cookie_Ring,Cookie Ring,5,1000,,200,,2,,1,0x00010200,7,2,001,,0,1,1537,{skill 36,10; bonus bNoGemStone,0; bonus bSpeedRate,25; bonus bMatkRate,5; bonus bInt,7; bonus2 bSubRace,RC_DemiHuman,2;},{},{} ---------------
+30038,Cowring_Bag,Cowring Bag,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1538,{sc_start4 SC_ENDURE,60000,10,0,0,10; bonus bMdef,9; bonus2 bAddRace,RC_DemiHuman,5; bonus bAllStats,5; bonus2 bResEff,Eff_Freeze,2500; bonus2 bResEff,Eff_Curse,5000;},{},{sc_end SC_ENDURE;} --------------
+30103,Poring_Ring,Poring Ring,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1603,{bonus bAllStats,10; skill "TF_HIDING",1; bonus bSpeedRate,25; },{},{sc_end SC_HIDING;} -----------------
+
+30128,Snow_Ring,Snow Ring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1628,{},{},{}
+30129,snowring,Snowring Rucksack,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1629,{},{},{}
+30131,Star_Ring,Star Ring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1631,{},{},{}
+30133,Sun_Flower_Ring,Sunflower Ring,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1633,{},{},{}
+30134,Sword_of_Lore,Sword of Lore,5,1000,,200,,2,,0,0xFFFFFFFF,7,2,001,,0,1,1634,{},{},{}
+30135,Sword_Barrier,Sword Barrier,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1635,{},{},{}
+30138,Turtle_Back,Turtle Back,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1638,{},{},{}
+30140,TZangetsu,TZangetsu,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1640,{},{},{}
+30143,Vortex_Wings_White,Vortex Wings White,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1643,{},{},{}
+30144,White_Aura,White Aura,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1644,{},{},{}
+30148,Zorosword,Zorosword,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1648,{},{},{}
+
+
+
+// Broken Middle Headgears
+
+//20317,Green_Bag,Green Bag,5,20,,0,,5,,0,0xFFFFFFFF,7,2,001,,0,1,1666,{},{},{}
+//To Long//30001,Ancient_Phoenix_Wings,Ancient Phoenix Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1501,{},{},{}
+//30003,Angelbackpack,Angel Backpack,5,1000,,200,,2,,0xFFFFFFFE,7,2,001,,0,1,1503,{},{},{}
+//30019, santa poporing sack
+//Looks Wierd//30034,Cell_Wing,Cell Wing,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,512,,0,1,1534,{},{},{}
+//30035,chaser_cape
+//30046,Dark_Spirit,Dark Spirit,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1546,{},{},{}
+//30053,drooping_inchant
+//Broke//30054,Elemental_Wings,Elemental Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1554,{},{},{}
+//30058,flowerring
+//Broke//30064,Ghotic_Ribbon,Ghotic Ribbon,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1564,{},{},{}
+//Broke//30065,Goddess_Wings,Goddess Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1565,{},{},{}
+//30074,heavenlywings
+//Broke//30073,Heart_Wing,Heart Wing,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1573,{},{},{}
+//30080,kakashi
+//30085,Kisame_Sword,Kisame Sword,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1585,{},{},{} ~Crash + No Sprite
+//30086,Kusanagi,Kusanagi,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1586,{},{},{}
+//30087,Little_Angel_Wings,Little Angel Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1587,{},{},{}
+//30095,night ring
+//30116,Rune_Aura,Rune Aura,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1616,{},{},{}
+//30126,Skelling_Sack,Skelling Sack,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1626,{},{},{}
+//30127,Snow_Beanie,Snow Beanie,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,512,,0,1,1627,{},{},{}
+//30137,Thanatos_Sword,Thanatos Sword,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,512,,0,1,1637,{},{},{}
+//30141,usakosack
+//30142,Valkyrie_Wings,Valkyrie Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,512,,0,1,1642,{},{},{}
+
+// Broken Lower Headgears
+
+//30022,Black_Robo_Eyes,Black Robo Eyes,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1522,{},{},{}
+//Looks Bogus//30033,Cell_Tail,Cell Tail,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1533,{},{},{}
+//30059,Fox_Tail,Fox Tail,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1559,{},{},{}
+//30096,Night_Scarf,Night Scarf,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,001,,0,1,1596,{},{},{}
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CUSTOMS ONLY~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+// Upper Headgears CUSTOMS ONLY
+
+30125,Sidehat,Sidehat,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,256,,0,1,1625,{},{},{} ------------------
+
+30102,Pikachu_Ears,Pikachu Ears,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1602,{bonus2 bSubEle,Ele_Wind,15; bonus bMaxHPrate,10; bonus bAllStats,10;},{},{}
+30105,Purple_Enchanted_Magical_Hat,Purple Enchanted Magical Hat,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1605,{bonus bInt,8; bonus bMatkRate,8; bonus bFlee,15;},{},{}
+30106,Rainbow_Angeling_Hat,Rainbow Angeling Hat,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1606,{bonus2 bSubRace,RC_DemiHuman,10; bonus bMaxHPrate,15; bonus bAllstats,5;},{},{}
+30117,Samurai_Helmet,Samurai Helmet,5,1000,,200,,2,,1,0x02021040,7,2,256,,0,1,1617,{bonus bFlee,20; bonus bMaxHPrate,20; bonus bStr,10; bonus bInt,10;},{},{}
+30098,Owl_Black,Owl Black,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1598,{bonus bInt,15; bonus bMatkRate,10;},{},{}
+30090,Maya_Helmet,Maya Helmet,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1590,{bonus bIntravision,0; bonus bStr,10; bonus bInt,10; bonus bDex,10; bonus bMaxHPrate,10;},{},{}
+30078,Hatii_Hat,Hatii Hat,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1578,{bonus bLongAtkDef,10; bonus bMaxHPrate,5; bonus bStr,10; bonus bInt,10; bonus bDex,10;},{},{}
+30051,Dragon_Helmet,Dragon Helmet,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1551,{bonus bStr,10; bonus bAtkRate,15;},{},{}
+30055,Enchanted_Magical_Hat,Enchanted Magical Hat,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1555,{bonus bInt,8; bonus bMatkRate,8; bonus bFlee,15;},{},{}
+30040,Cyan_Enchanted_Magical_Hat,Cyan Enchanted Magical Hat,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1540,{bonus bInt,8; bonus bMatkRate,8; bonus bFlee,15;},{},{}
+30026,Black_Valkyrie_Helm,Black Valkyrie Helm,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1526,{bonus bStr,15; bonus bFlee,10; bonus bHit,25; bonus2 bSubRace,7,13;},{},{} // Donation
+30019,Black_Noble_Hat,Black Noble Hat,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,256,,0,1,1519,{bonus2 bSkillAtk,156,50; bonus bInt,5; bonus bLuk,10;},{},{}
+20471,Viking_Helm,Viking Helm,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1821,{bonus2 bAddRace,RC_DemiHuman,10; bonus2 bSubRace,7,10; bonus bAllstats,5; bonus bAtkRate,3; bonus bMatkRate,3;},{},{}
+20462,Valkyrie_Randgris_Helm,Valkyrie Randgris Helm,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1812,{bonus2 bSubEle,Ele_Neutral,10; bonus bMaxHPrate,7; bonus bAllstats,5; if(getrefine()>8) { bonus bDef,5; bonus bAllstats,5; } },{},{}
+20359,Red_Gemini_Crown,Red Gemini Crown,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1709,{bonus bStr,7; bonus2 bSubEle,Ele_fire,10; if(getrefine()>8) { bonus bMdef,20; bonus bStr,5; } },{},{}
+20360,Black_Gemini_Crown,Black Gemini Crown,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1710,{bonus bAgi,7; bonus2 bSubEle,Ele_fire,10; if(getrefine()>8) { bonus bMdef,20; bonus bAgi,5; } },{},{}
+20361,Blue_Gemini_Crown,Blue Gemini Crown,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1711,{bonus bVit,7; bonus2 bSubEle,Ele_fire,10; if(getrefine()>8) { bonus bMdef,20; bonus bVit,5; } },{},{}
+20362,Cyan_Gemini_Crown,Cyan Gemini Crown,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1712,{bonus bInt,7; bonus2 bSubEle,Ele_fire,10; if(getrefine()>8) { bonus bMdef,20; bonus bInt,5; } },{},{}
+20363,Gemini_Crown,Gemini Crown,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1713,{bonus bDex,7; bonus2 bSubEle,Ele_fire,10; if(getrefine()>8) { bonus bMdef,20; bonus bDex,5; } },{},{}
+20364,Green_Gemini_Crown,Green Gemini Crown,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1714,{bonus bLuk,7; bonus2 bSubEle,Ele_fire,10; if(getrefine()>8) { bonus bMdef,20; bonus bLuk,5; } },{},{}
+20372,Helm_of_Baal,Helm of Baal,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1722,{bonus2 bAddRace,RC_DemiHuman,10; bonus2 bSubRace,RC_DemiHuman,10; if(getrefine()>8) { bonus2 bAddRace,RC_DemiHuman,5; bonus bAllstats,3; bonus bMdef,10; } },{},{}
+20375,Red_Helm_of_Baal,Red Helm of Baal,5,20,,0,,5,,1,0xFFFFFFFF,7,2,256,,0,1,1724,{bonus2 bAddRace,RC_DemiHuman,10; bonus2 bSubRace,RC_DemiHuman,10; if(getrefine()>8) { bonus2 bSubRace,RC_DemiHuman,5; bonus bAllstats,3; bonus bMdef,10; } },{},{}
+
+
+// Middle Headgears CUSTOMS ONLY
+30075,Hei_mask,Hei Mask,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1575,{},{},{}
+30079,Jason_Mask,Jason Mask,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1579,{},{},{}
+30122,Scream_Mask,Scream Mask,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1622,{},{},{}
+30145,White_Tengu_Mask,White Tengu Mask,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1645,{},{},{}
+30020,Black_Odin_Mask,Black Odin Mask,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1520,{},{},{}
+30018,Black_Neptune_Protector,Black Neptune Protector,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1518,{bonus bMdef,7; bonus2 bSubRace,7,3;},{},{}
+30028,Black_Vesper_Mask,Black Vesper Mask,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,512,,0,1,1528,{bonus bAllStats,5;},{},{}
+
+// Lower Headgears CUSTOMS ONLY
+20338,deviling_rucksack,deviling rucksack,5,20,,0,,5,,1,0xFFFFFFFF,7,2,001,,0,1,1687,{bonus2 bAddRace,RC_DemiHuman,6; bonus bSpeedRate,15;},{},{}
+30097,Nofear,NoFear,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1597,{bonus bAtkRate,5; bonus bMatkRate,5; bonus bSpeedRate,20;},{},{}
+20301,Poring_Rucksack,Poring Rucksack,5,20,,0,,5,,1,0xFFFFFFFF,7,2,001,,0,1,1650,{bonus2 bSubRace,RC_DemiHuman,3; bonus bAllstats,4; bonus bSpeedRate,10; if(getrefine()>8) {bonus bDef,5; bonus bAllstats,5;} },{},{}
+20302,Archan_Rucksack,Archan Rucksack,5,20,,0,,5,,1,0xFFFFFFFF,7,2,001,,0,1,1651,{bonus bStr,10; bonus bInt,10; bonus bDex,10; bonus bIntravision,0; bonus2 bSubEle,Ele_Neutral,5; bonus2 bSubEle,Ele_Water,5; bonus2 bSubEle,Ele_Earth,5; bonus2 bSubEle,Ele_Fire,5; bonus2 bSubEle,Ele_Wind,5; bonus2 bSubEle,Ele_Poison,5; bonus2 bSubEle,Ele_Holy,5; bonus2 bSubEle,Ele_Dark,5; bonus2 bSubEle,Ele_Ghost,5; bonus2 bSubEle,Ele_Undead,5;},{},{}
+20313,Blue_Bag,Blue Bag,5,20,,0,,5,,1,0xFFFFFFFF,7,2,001,,0,1,1662,{bonus bFlee,20; bonus bFlee2,10; bonus bAllstats,10;},{},{}
+30004,Aquaring_Rucksack,Aquaring Rucksack,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1504,{skill 34,10; skill 29,10; bonus2 bSkillAtk,156,50; if(class==Job_High_Priest) bonus bNoGemStone,0; if(class==Job_High_Priest) bonus bHealPower,20; if(class==Job_Baby_Priest) bonus bHealPower,20;},{},{}
+30041,Cyan_Gangster_Scarf,Cyan Gangster Scarf,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1541,{bonus bBaseAtk,40; bonus2 bResEff,Eff_sleep,7000;},{},{}
+30013,Black_Gangster_Scarf,Black Gangster Scarf,5,1000,,200,,2,,1,0xFFFFFFFE,7,2,001,,0,1,1513,{},{},{}
+
+// NEW STUFFS
+30149,Aztecs_Wings,Aztecs Wings,5,10,5,100,0,0,1,4,268435455,7,2,1,1,1,0,1827,{},{},{}
+30150,Bankai_Aura,Bankai Aura,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,001,,0,1,1829,{},{},{}
+30151,Bankai_Helm,Bankai Helm,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,256,,0,1,1828,{},{},{}
+30152,Bankai_Wings,Bankai Wings,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,512,,0,1,1830,{},{},{}
+30154,lifeordeath,Life Or Death,5,40,20,10,,10,,4,0xFFFFFFFF,7,3,1,,0,1,1832,{},{},{}
+30155,oceanbluewings,Ocean Blue Wings,5,40,20,10,,10,,4,0xFFFFFFFF,7,3,1,,0,1,1833,{},{},{}
+30156,War_Helm_Of_Darkness,War Helm Of Darkness,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,256,,0,1,1834,{},{},{}
+30157,War_Helm_Of_Flame,War Helm Of Flame,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,256,,0,1,1835,{},{},{}
+30158,War_Helm_Of_God_Warrier,War Helm Of God Warrier,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,256,,0,1,1836,{},{},{}
+30159,War_Helm_Of_Horn,War Helm Of Horn,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,256,,0,1,1837,{},{},{}
+30160,War_Helm_Of_illusion,War Helm Of Illusion,5,100000,,10,,10,,4,0xFFFFFFFF,7,2,256,,0,1,1838,{},{},{}
+30162,arcanewings,Arcane Wings,5,40,20,10,,10,,4,0xFFFFFFFF,7,3,1,,0,1,1826,{},{},{}
+// Weapons
+30153,Icarus_Axe,Icarus Axe,4,16777215,1000,4200,140,,1,4,263169,7,2,2,3,76,1,6,{},{},{}
+30161,yamamotostaff,Yamamoto Staff,4,16777215,1000,4200,140,,1,4,263169,7,2,2,3,76,1,6,{},{},{}
+
+// >>>> Black and Gold Valk Sets
+
+//Duplicates (Item Views are set to "0000", change to desired itemViewID)
+25248,blackvarmor,[Rental] Black Valkyrie ,5,5,0,10,,1,,1,2147483647,7,2,16,,1,1,1840,{ bonus bAllStats,3; bonus bUnbreakableArmor,0; bonus bMaxHPrate,150; bonus2 bResEff,Eff_Freeze,10000; },{ misceffect(6); },{ misceffect(44); }
+25249,blackvmanteau,[Rental] Black Valkyrie ,5,5,0,10,,1,,1,2147483647,7,2,4,,1,1,1841,{ bonus bAllStats,4; bonus bUnbreakableGarment,0; bonus bShortWeaponDamageReturn,10; bonus bMdef,10; },{ misceffect(6); },{ misceffect(44); }
+25250,blackvshoes,[Rental] Black Valkyrie ,5,5,0,10,,1,,1,2147483647,7,2,64,,1,1,1842,{ bonus bAllStats,2; bonus bUnbreakableShoes,0; bonus bSPrecovRate,50; bonus bHPrecovRate,50; },{ misceffect(6); },{ misceffect(44); }
+25251,_Black_Valkyrie_Helm,[Rental] Black Valkyrie ,5,5,0,10,,1,,1,0xFFFFFFFF,7,2,256,,1,1,1843,{ bonus bAllStats,5; bonus bIntMatk,3; bonus bMaxHPrate,8; bonus bMaxSPrate,8; bonus bUseSPrate,8; bonus3 bAutoSpellWhenHit,"AL_HEAL",2,2; bonus2 bSkillAtk,"WZ_JUPITEL",10; bonus2 bSkillAtk,"WZ_VERMILION",10; },{ misceffect(6); },{ misceffect(44); }
+
+//No Item Views
+25252,Magingiorde,[Rental] Megingjard,5,20,,50,,2,,0,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus bStr,50; bonus bMdef,7; },{},{}
+25253,Brysinggamen,[Rental] Brisingamen,5,20,,50,,1,,0,2147483647,7,2,136,,0,0,0,{ bonus bInt,70; bonus bDex,70; },{},{}
+25254,Valkyrja's_Shield,[Rental] Valkyrja's Shie,5,30000,,50,,3,,1,2147483647,7,2,32,,0,1,0,{ bonus2 bSubRace,0,20; bonus2 bSubRace,1,20; bonus2 bSubRace,2,20; bonus2 bSubRace,3,20; bonus2 bSubRace,4,20; bonus2 bSubRace,5,20; bonus2 bSubRace,6,20; bonus2 bSubRace,7,20; bonus2 bSubRace,8,20; bonus2 bSubRace,9,20; bonus2 bSubRace,10,20; bonus2 bSubRace,11,20; },{},{}
+25255,Buckler,Shield of Lore,5,14000,,600,,80,,1,0xFFFFFFFF,7,2,32,,0,1,2,{ bonus2 bSubRace,0,20; bonus2 bSubRace,1,20; bonus2 bSubRace,2,20; bonus2 bSubRace,3,20; bonus2 bSubRace,4,20; bonus2 bSubRace,5,20; bonus2 bSubRace,6,20; bonus2 bSubRace,7,20; bonus2 bSubRace,8,20; bonus2 bSubRace,9,20; bonus2 bSubRace,10,20; bonus2 bSubRace,11,20; bonus bMagicDamageReturn,10; bonus4 bAutoSpellWhenHit,"AL_PNEUMA",1,100,0; },{ misceffect(6); },{ misceffect(44); }
+
+
+//Black V.Set
+25063,Black_Valkyrie_Helm,Black Valkyrie Helm v.2,5,5,0,100,,10,,1,0xFFFFFFFF,7,2,256,,1,1,1843,{ bonus2 bSubEle,Ele_Neutral,10; },{},{}
+25217,blackvarmor,Black Valkyrie Armor,5,5,0,280,,55,,1,2147483647,7,2,16,,1,1,1840,{ bonus bAllStats,2; bonus bUnbreakableArmor,0; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus2 bResEff,Eff_Silence,5000; else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus2 bResEff,Eff_Stun,5000; },{},{}
+25218,blackvmanteau,Black Valkyrie Manteau,5,5,0,50,,10,,1,0xFFFFFFFF,7,2,4,,1,1,1841,{ bonus bUnbreakableGarment,0; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus bFlee2,5+(getequiprefinerycnt(EQI_GARMENT)*2); else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus bShortWeaponDamageReturn,5+(getequiprefinerycnt(EQI_GARMENT)*2); },{},{}
+25219,blackvshoes,Black Valkyrie Shoes,5,5,0,50,,13,,1,0xFFFFFFFF,7,2,64,,1,1,1842,{ bonus bUnbreakableShoes,0; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus bMaxHP,(BaseLevel*5); else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus bMaxSP,(JobLevel*2); },{},{}
+//Gold V.Set
+
+25070,Gold_Valkyrie_Helm,Gold Valkyrie Helm,5,5,0,100,,10,,1,0xFFFFFFFF,7,2,256,,1,1,1846,{ bonus bMdef,10; bonus2 bSubEle,Ele_Neutral,5; },{},{}
+25191,_gold_armor, Gold Valkyrie Armor,5,5,0,280,,55,,1,2147483647,7,2,16,,1,1,1847,{ bonus bUnbreakableArmor,0; bonus bAllStats,2; },{},{}
+25192,_gold_boots, Gold Valkyrie Shoes,5,5,0,50,,13,,1,0xFFFFFFFF,7,2,64,,1,1,1844,{ bonus bUnbreakableShoes,0; bonus bMaxHP,550; },{},{}
+25193,_gold_garment, Gold Valkyrie Manteau,5,5,0,50,,10,,1,0xFFFFFFFF,7,2,4,,1,1,1845,{ bonus bUnbreakableGarment,0; bonus bLongAtkDef,5; },{},{}
+
+
+
+//~~~ Working on these... Fixed
+
+
+30137,Thanatos_Sword,Thanatos Sword,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,512,,0,1,1637,{},{},{}
+30142,Valkyrie_Wings,Valkyrie Wings,5,1000,,200,,2,,0,0xFFFFFFFE,7,2,512,,0,1,1642,{},{},{}
+

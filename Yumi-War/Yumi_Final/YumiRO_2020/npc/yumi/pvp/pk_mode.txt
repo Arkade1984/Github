@@ -1,0 +1,198 @@
+/*
+[=========================================================]
+	PK Mode
+[=========================================================]
+	Documentation
+	
+	[Miles]
+	Version	1.0:
+		• THIS VERSION ONLY WORKS FOR RATHENA r15157+
+		• Does the work of a Enchanter.
+			- Only applies enchants of +1 to +3
+			- The success rate it's a fixed rate
+			  
+		• For Configuration files, goto Line #44
+
+[=========================================================]
+*/
+
+-	script	Pvpmode	-1,{
+	
+	function PKmapAllow;
+	
+	OnInit:
+		setarray .restrictionmaps$[0], "prontera",
+								"morocc",
+								"geffen",
+								"payon",
+								"alberta",
+								"izlude",
+								"aldebaran",
+								"xmas",
+								"comodo",
+								"yuno",
+								"amatsu",
+								"gonryun",
+								"umbala",
+								"niflheim",
+								"louyang",
+								"new_1-1",
+								"sec_pri",
+								"jawaii",
+								"ayothaya",
+								"einbronch",
+								"lighthalzen",
+								"einbech",
+								"hugel",
+								"rachel",
+								"veins",
+								"moscovia",
+								"mid_camp",
+								"manuk",
+								"splendide",
+								"brasilis",
+								"discastes01",
+								"mora",
+								"dewata",
+								"malangdo",
+								"malaya",
+								"eclage";
+		end;
+	
+	OnPkCheck:
+		addtimer 10000000,"Pvpmode::OnPkCheck";
+		@allow = PKmapAllow( strcharinfo(3), 0 );
+		switch( @allow ) {
+			case 1:
+				if ( pvpmode ) {
+					break;
+				}
+				pkmode = !pvpmode;
+				atcommand "@pvpmode";
+				break;
+			
+			case 2:
+				if ( pvpmode ) {
+					pvpmode = !pvpmode;
+					atcommand "@pvpmode";
+					break;
+				}
+				break;
+			
+			case 0:
+				break;
+		}
+		end;
+	
+	OnPCDieEvent:
+		deltimer "Pvpmode::OnPkCheck";
+		pvpmode = 0;
+		end;
+		
+	OnPCLoginEvent:
+		if ( notpk ) {
+			end;
+		}
+		if ( Class == 0 ) 
+			end;
+			
+		pvpmode = 0;
+		
+		@allow = PKmapAllow( strcharinfo(3), 0 );
+		switch( @allow ) {
+			case 1:
+				pvpmode = !pvpmode;
+				atcommand "@pvpmode";
+				break;
+			
+			default:
+				break;
+			
+		
+		}
+
+		addtimer 10000000,"Pvpmode::OnPkCheck";
+		end;
+		
+	
+	function	PKmapAllow	{
+	
+		if ( getarg(1) ) {	
+			if ( pvpmode ) 
+				return 0;
+			else 
+				return 1;
+			
+		}
+	
+		for ( .@a = 0; .@a < getarraysize(.restrictionmaps$); .@a++ ) {
+			if ( .restrictionmaps$[.@a] == getarg(0) ) {
+					return 2;
+			}
+		}
+		return 1;
+		
+	}
+}
+
+-	script	Peace Agent#main	728,{
+	
+	mes .name$;
+	mes "I'm a Peace Agent, i'm in charge of keeping peace and prosperity to the world. What can i do for you?";
+	next;
+	switch(select( "X Set PK Peace ["+((notpk) ? "^00FF00Active^000000":"^FF0000Inactive^000000")+"]:• Information:• Nothing" )) {
+		case 1:
+			if ( notpk ) {
+				mes .name$;
+				mes "Are you sure that you want to break the PK Peace?";
+				next;
+				if (select( "X Yes:X No" ) == 2) {
+					mes .name$;
+					mes "Excellent.";
+					close;
+				}
+				mes .name$;
+				mes "I will remove the PK Peace, but remember that you will be able to kill and be killed by other players.";
+				next;
+				mes .name$;
+				mes "Be carefull out there.";
+				close2;
+				notpk = !notpk;
+				doevent "Pvpmode::OnPkCheck";
+				end;
+			}
+			
+			else {
+				mes .name$;
+				mes "Excellent. Now you won't have to fight everyone out there.";
+				close2;
+				notpk = !notpk;
+				end;
+			}
+			
+		case 2:
+			mes .name$;
+			mes "The PK Peace it's like a truce between players. If you have your PK Peace, you won't be able to attack any player on the fields and viceversa.";
+			next;
+			mes .name$;
+			mes "If you quit your PK Peace, players will be able to attack you, and viceversa.";
+			next;
+			mes .name$;
+			mes "If you want to confront any players, add more excitement to your adventure, take off your PK Peace and go and fight the world.";
+			close;
+		
+		case 3:
+			mes .name$;
+			mes "Well, see you.";
+			close;
+	}
+	
+	end;
+	OnInit:
+		.name$ = "[Peace Agent]";
+		end;
+}
+
+prontera,159,185,3	duplicate(Peace Agent#main)	Peace Agent#1	540
+alexandria,151,124,5	duplicate(Peace Agent#main)	Peace Agent#2	540
+zephyr,138,123,5	duplicate(Peace Agent#main)	Peace Agent#3	540

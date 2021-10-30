@@ -1,0 +1,43 @@
+goodev_c02,96,121,5	script	Mounts Master::mounter	938,{
+	
+	set .@name$, "[Mount Master]";
+	
+	mes .@name$;
+	mes "Hello ~";
+	mes "I can exchange my ^0000FFMount Reins^000000 for a certain period of time.";
+	next;
+	mes .@name$;
+	mes "You'll need some ^0000FF"+getitemname(.coin)+"s^000000 to get it.";
+	next;
+	mes .@name$;
+	mes "Currently you have ^0000FF"+ countitem(.coin) +"^000000 "+ getitemname(.coin) +"(s) left.";
+	next;
+	switch(select(	((countitem(.coin) < .amount) ? "^848484You don't have enough "+getitemname(.coin)+" ^000000":"Buy the Mount") +":I don't need a mount") ) {
+		case 1:
+			if (countitem(.coin) < .amount) {
+				mes .@name$;
+				mes "I'm sorry, but you don't have enough ^0000FF"+getitemname(.coin)+"(s)^000000 to get my mount.";
+				close;
+			}
+			delitem .coin, .amount;
+			rentitem .exitem, 600000;
+			close;
+			
+		case 2:
+			mes .@name$;
+			mes "See you soon ~";
+			close;
+	}
+			
+			
+	rentitem 12622,50;
+	
+	OnInit:
+		set .coin, 7539;
+		set .amount, 5;
+		set .exitem, 12622;
+		
+		end;
+}
+alexa_in,235,218,2	duplicate(mounter)	Custom Mount#1	529,(
+invek,163,211,4	duplicate(mounter)	Mount Expert#2	529,(

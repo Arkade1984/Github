@@ -1,0 +1,927 @@
+junon,128,132,6	script	HeadGear Quest[J-Q]	911,{
+		set @npc_name$,"[^FF3355Makensi^000000]";
+		set @ltimer,7; 
+		set @image,0;
+		set @view,1;
+		set @info,1;
+		setarray @menu$[0],"Make","View info","View image","^FF3355To put on^000000","Return to the initial menu","Exit";
+m_menu:
+	menu "Indian Headband",indian,
+	"Jasper Crest",jasper,
+	"Judge Cap",judge,
+	"Kabuki Mask",kabukimask,
+	"Kafra Band",kafraband,
+	"Kawaii Ribbon",kawaiirib,
+	"Kitsune Mask",kitsunemask,
+	"Kettle Hat",kettle,
+	"Koneko Hat",konekohat,
+	"Lady Tanee Doll",ladytanee,
+	"Lazy Smokie",lsmokie,
+	"Lion Mask",lionmask,
+	"Little Angel Doll",litangel,
+	"Lotus",lotus,
+//	"Love Dad Bandana",lovedadband,
+	"Magistrate Hat",magistr,
+	"Mask Of Goddess",maskofgoddess,
+	"Magnolia Hat",magnolia,
+	"Maiden Hat",maidenhat,
+	"Mythical Lion Mask",myslionmask,
+	"Mage Hat",magehat,
+	"Magic Eyes",mageyes,
+	"Magician Hat",magichat,
+	"Maiden Twin Ribbon",twinrib,
+	"Model Training Hat",modtrainhat,
+	"Mr. Smile",mrsmile,
+	"Neck Tie",necktie,
+	"Nekomimi Kafra Headband",nekokafraband,
+	"Nest Hat",nesthat,
+	"Ninja's Scroll",ninjascroll,
+	"Note Headphones",nhead,
+	"Odin Mask",odinmask,
+	"Opera Masque",operamask,
+	"Orc Hero Headdress",orcherodress,
+	"Orchid Hairband",orcishband,
+	"Pinwheel",pihwheel,
+	"Pirate Dagger",piratedagg,
+	"Phoenix Crown",pheonix,
+	"Poring Cake Hat",porcakehat,
+	"Poring Tower",portow,
+	"Purple Cowboy Hat",newcowboy,
+	"Nothing",m_close;
+
+	
+	
+indian:
+	set @hat,155;
+	set @id,5071;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Indian Filet";
+	mes "^0000FF1^000000x Striped Headband";
+	mes "^0000FF1^000000x Peco Peco Feather";
+	mes "^0000FF10,000^000000 zeny";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto indian;
+		
+kabukimask:
+	set @hat,214;
+	set @id,5143;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Goblin Leader Mask";
+	mes "^0000FF300^000000x Black Hair";
+	mes "^0000FF1^000000x Scarlet Dyestuff";
+	mes "^0000FF1^000000x White Dyestuff";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto kabukimask;
+		
+kawaiirib:
+	set @hat,211;
+	set @id,5140;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Small Ribbon";
+	mes "^0000FF1^000000x Big Ribbon";
+	mes "^0000FF1^000000x Black Ribbon";
+	mes "^0000FF50^000000x Soft Silk";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto kawaiirib;
+		
+kitsunemask:
+	set @hat,153;
+	set @id,5069;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF999^000000x Ninetails";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto kitsunemask;
+		
+lsmokie:
+	set @hat,168;
+	set @id,5084;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1000^000000x Acorn";
+	mes "^0000FF100^000000x Sea Otter Fur";
+	mes "^0000FF10^000000x Raccon Leaf";
+	mes "^0000FF1^000000x Claw of Desert Wolf";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto lsmokie;
+		
+lionmask:
+	set @hat,202;
+	set @id,5130;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF100^000000x Horrendous Hair";
+	mes "^0000FF150^000000x Rotten Meat";
+	mes "^0000FF30^000000x Meat";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto lionmask;
+		
+lotus:
+	set @hat,210;
+	set @id,5139;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Small Ribbon";
+	mes "^0000FF5^000000x Illusion Flower";
+	mes "^0000FF1^000000x Valhalla Flower";
+	mes "^0000FF1^000000x Scarlet Dyestuff";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto lotus;
+		
+myslionmask:
+	set @hat,231;
+	set @id,5177;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x 4 Leaf Clover";
+	mes "^0000FF500^000000x Trunk";
+	mes "^0000FF10^000000x Elastic Band";
+	mes "^0000FF500^000000x Horrendous Hair";
+	mes "^0000FF2^000000x Ancient Teeth";
+	mes "^0000FF1^000000x Orange Dyestuff";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto myslionmask;
+		
+magehat:
+	set @hat,112;
+	set @id,5027;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Wizard Hat";
+	mes "^0000FF400^000000x Dragon Scale";
+	mes "^0000FF50^000000x Mould Powder";
+	mes "^0000FF1^000000x Elder Willow Card";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto magehat;
+		
+mageyes:
+	set @hat,209;
+	set @id,5138;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Ulle's Cap";
+	mes "^0000FF1^000000x Mage Hat";
+	mes "^0000FF50^000000x Eye of Hellion";
+	mes "^0000FF1^000000x Violet Dyestuff";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto mageyes;
+		
+magichat:
+	set @hat,130;
+	set @id,5045;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Wizard Hat";
+	mes "^0000FF450^000000x Ancient Lips";
+	mes "^0000FF1200^000000x Solid shell";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto magichat;
+		
+twinrib:
+	set @hat,239;
+	set @id,5187;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Small Ribbon";
+	mes "^0000FF1^000000x Decorative Golden Bell";
+	mes "^0000FF2^000000x Mystic Rose";
+	mes "^0000FF1^000000x Cobaltblue Dyestuff";
+	mes "^0000FF1^000000x Scarlet Dyestuff";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto twinrib;
+		
+modtrainhat:
+	set @hat,157;
+	set @id,5073;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Apple of Archer";
+	mes "^0000FF1^000000x Book[3]";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto modtrainhat;
+		
+mrsmile:
+	set @hat,65;
+	set @id,2278;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF10^000000x Clover";
+	mes "^0000FF10^000000x Jellopy";
+	mes "^0000FF10^000000x Fluff";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto mrsmile;
+		
+nesthat:
+	set @hat,235;
+	set @id,5183;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF100^000000x Dead Branch";
+	mes "^0000FF100^000000x Feather of Bird";
+	mes "^0000FF100^000000x Harpy Feather";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto nesthat;
+		
+nhead:
+	set @hat,220;
+	set @id,5151;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Headset";
+	mes "^0000FF1^000000x Cobaltblue Dyestuff";
+	mes "^0000FF200^000000x Crystal Blue";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto nhead;
+		
+operamask:
+	set @hat,68;
+	set @id,2281;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF20^000000x Iron";
+	mes "^0000FF1^000000x Singing Plant";
+	mes "^0000FF5.000^000000 zeny";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto operamask;
+		
+jasper:
+	set @hat,399;
+	set @id,5396;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF3^000000x Rosary[1]";//2626
+	mes "^0000FF3^000000x Scarlet Dyestuff";//975
+	mes "^0000FF1^000000x Crown";//2235
+	mes "^0000FF100.000 ^000000zeny";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto jasper;
+		
+judge:
+	set @hat,377;
+	set @id,5371;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF250x^000000 Slick Paper";//7111
+	mes "^0000FF5^000000x Black Dyestuff";//983
+	mes "^0000FF150.000 ^000000zeny";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto judge;
+		
+kettle:
+	set @hat,318;
+	set @id,5291;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF250^000000x Battered Kettle";//7323
+	mes "^0000FF100^000000x Ectoplasm";//7220
+	mes "^0000FF100^000000x Blue Gemstone";//717
+	mes "^0000FF100^000000x Yellow Gemstone";//715
+	mes "^0000FF1^000000x Gold";//969
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto kettle;
+		
+konekohat:
+	set @hat,378;
+	set @id,5372;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF50^000000x White Dyestuff";//982
+	mes "^0000FF500^000000x White Herb";//509
+	mes "^0000FF1^000000x Drooping Cat";//5058
+	mes "^0000FF20^000000x Gold";//969
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto konekohat;
+		
+litangel:
+	set @hat,344;
+	set @id,5324;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Angel's Kiss";//5125
+	mes "^0000FF1^000000x Angel's Reincarnation";//2420
+	mes "^0000FF1^000000x Angelic Cardigan";//2521
+	mes "^0000FF1^000000x Angelic Guard";//2116
+	mes "^0000FF1^000000x Angelic Protection";//2355
+	mes "^0000FF100^000000x False Heaven Ring";//7105
+	mes "^0000FF100^000000x False Angel Wing";//7104
+	mes "^0000FF300^000000x Soft Feather";//7063
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto litangel;
+		
+lovedadband:
+	set @hat,374;
+	set @id,20297;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF10^000000x Bandana";//2211
+	mes "^0000FF10^000000x Orange Dyestuff";//980
+	mes "^0000FF100^000000x Cheese";//548
+	mes "^0000FF100^000000x Orange";//582
+	mes "^0000FF500.000^000000 zeny";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto lovedadband;
+		
+magistr:
+	set @hat,227;
+	set @id,5173;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF7^000000x Green Bijou";//7445
+	mes "^0000FF7^000000x Blue Bijou";//7446
+	mes "^0000FF7^000000x Red Bijou";//7447
+	mes "^0000FF7^000000x Yellow Bijou";//7448
+	mes "^0000FF300^000000x Shining Scale";//954
+	mes "^0000FF1^000000x Black Dyestuff";//983
+	mes "^0000FF1^000000x Hat[1]";//2221
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto magistr;
+		
+maskofgoddess:
+	set @hat,394;
+	set @id,5389;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF250^000000x Dark Mask";//7157
+	mes "^0000FF1^000000x Kitsune Mask";//5069
+	mes "^0000FF50^000000x Animal Gore";//702
+	mes "^0000FF10^000000x White Dyestuff";//982
+	mes "^0000FF10^000000x Lemon Dyestuff";//976
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto maskofgoddess;
+		
+magnolia:
+	set @hat,373;
+	set @id,5365;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF250^000000x Old Frying Pan";//7031
+	mes "^0000FF250^000000x Black Ladle";//737
+	mes "^0000FF5^000000x China";//736
+	mes "^0000FF5^000000x Fantastic Cooking Kit";//12129
+	mes "^0000FF250^000000x White Herb";//509
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto magnolia;
+		
+maidenhat:
+	set @hat,265;
+	set @id,5211;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF500^000000x Soft Feather";//7063
+	mes "^0000FF20^000000x Silk Ribbon";//10007
+	mes "^0000FF1^000000x Kawaii Ribbon";//5140
+	mes "^0000FF1^000000x Magician Hat";//5045
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto maidenhat;
+		
+necktie:
+	set @hat,443;
+	set @id,5442;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Red Bandana";//2275
+	mes "^0000FF100^000000x Crystal Blue";//991
+	mes "^0000FF5^000000x Cobaltblue Dyestuff";//978
+	mes "^0000FF100.000^000000 zeny";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto necktie;
+		
+nekokafraband:
+	set @hat,392;
+	set @id,5387;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Kafra Band";//5020
+	mes "^0000FF2^000000x Puppy Headband";//5118
+	mes "^0000FF10^000000x Gold";//969
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto nekokafraband;
+		
+ninjascroll:
+	set @hat,370;
+	set @id,5362;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Ninja Suit";//2359
+	mes "^0000FF5^000000x Eye of Hellion";//7337
+	mes "^0000FF1^000000x Crunch Toast";//5107
+	mes "^0000FF250^000000x Worn Out Scroll";//618
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto ninjascroll;
+		
+odinmask:
+	set @hat,480;
+	set @id,5483;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF500^000000x Darkness Rune";//7511
+	mes "^0000FF1^000000x Sunglasses[1]";//2202
+	mes "^0000FF50^000000x Valhalla's Flower";//7510
+	mes "^0000FF20^000000x Gold";//969
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto odinmask;
+		
+orcherodress:
+	set @hat,381;
+	set @id,5375;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF50^000000x Heroic Emblem";//968
+	mes "^0000FF500^000000x Orc Claw";//1043
+	mes "^0000FF1^000000x Helm of Orc Hero";//5094
+	mes "^0000FF15^000000x Emperium";//714
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto orcherodress;
+		
+orcishband:
+	set @hat,376;
+	set @id,5370;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF10^000000x Singing Flower";//629
+	mes "^0000FF10^000000x Valhalla's Flower";//7510
+	mes "^0000FF10^000000x Illusion Flower";//710
+	mes "^0000FF250^000000x Solid Peach";//7164
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto orcishband;
+		
+pihwheel:
+	set @hat,313;
+	set @id,5285;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF10^000000x Yellow Bijou";//7448
+	mes "^0000FF50^000000x Yellow Herb";//508
+	mes "^0000FF5^000000x Lemon Dyestuff";//976
+	mes "^0000FF100^000000x Golden Hair";//1060
+	mes "^0000FF1^000000x Tiara";//2234
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto pihwheel;
+		
+piratedagg:
+	set @hat,327;
+	set @id,5532;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Dagger[3]";//1214
+	mes "^0000FF1^000000x Fortune Sword";//1223
+	mes "^0000FF50^000000x Magnifier";//611
+	mes "^0000FF10^000000x Gold";
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto piratedagg;
+		
+pheonix:
+	set @hat,221;
+	set @id,5271;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF10^000000x Scarlet Dyestuffs";//975
+	mes "^0000FF10^000000x Cobaltblue Dyestuffs";//978
+	mes "^0000FF500^000000x Tassel"; // 7301
+	mes "^0000FF1^000000x Broken Crown"; //7754
+	mes "^0000FF50^000000x Red Feather";//7440
+	mes "^0000FF50^000000x Blue Feather";//7441
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto pheonix;
+		
+porcakehat:
+	set @hat,417;
+	set @id,5415;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF1^000000x Cake Hat";//5024
+	mes "^0000FF1^000000x Party Hat";//5060
+	mes "^0000FF450^000000x Piece of Cake";//539
+	mes "^0000FF10^000000x Chocolate";//558
+	mes "^0000FF10^000000x White Chocolate";//561
+	mes "^0000FF10^000000x Ice Cream";//536
+	mes "^0000FF20^000000x Gold";//969
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto porcakehat;
+		
+portow:
+	set @hat,299;
+	set @id,5255;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF500^000000x Sticky Mucus";//938
+	mes "^0000FF1^000000x Santa Hat";//2236
+	mes "^0000FF50^000000x Apple Juice";//531
+	mes "^0000FF1^000000x Halo";//2282
+	mes "^0000FF10^000000x Gold";//969
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto portow;
+		
+newcowboy:
+	set @hat,411;
+	set @id,5409;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF2^000000x Cowboy Hat";//5075
+	mes "^0000FF10^000000x Violet Dyestuff";//981
+	mes "^0000FF50^000000x Old Purple Box";//617
+	mes "^0000FF20^000000x Amethyst";//719
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto newcowboy;
+		
+ladytanee:
+	set @hat,520;
+	set @id,5526;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF2^000000x Banana Hat";//5116
+	mes "^0000FF500^000000x Banana";//513
+	mes "^0000FF200^000000x Banana Juice";//532
+	mes "^0000FF50^000000x Tropical Banana";//634
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto ladytanee;
+
+		
+kafraband:
+	set @hat,106;
+	set @id,5020;
+	mes @npc_name$;
+	mes "^6495ED *"+getitemname(@id)+"* ^000000";
+	mes "^0000FF10^000000x Scarlet Dyestufs";//975
+	mes "^0000FF10^000000x Lemon Dyestuffs";//976
+	mes "^0000FF50^000000x Alice's Apron";//7047
+	mes "^0000FF1^000000x Soft Apron";//661
+	next;
+	menu @menu$[@l],-,@menu$[@l+1],-,@menu$[@l+2],-,@menu$[@l+3],-,@menu$[@l+4],m_menu,@menu$[@l+5],m_close;
+		if(@menu==1){
+		callfunc "hatmake";}
+		if(@menu==2){
+		callfunc "hatinfo";}
+		if(@menu==3){
+		callfunc "hatimage";}
+		if(@menu==4){
+		callfunc "hattimer";}
+		goto kafraband;
+	
+	
+m_close:
+	close;
+}

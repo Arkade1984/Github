@@ -1,0 +1,59 @@
+mellina,104,77,3 script login 100,{
+mes "choose which command you like to on/off on your next login";
+next;
+while (1) {
+set .@menu$, "";
+for ( set .@i, 0; .@i < .size; set .@i, .@i +1 )
+set .@menu$, .@menu$ +( ( @auto_atcmd_login & pow(2, .@i) )?"^00FF00":"^FF0000" )+ .cmd$[.@i] +":";
+for ( set .@i, 1; .@i <= .size_lv; set .@i, .@i +1 )
+set .@menu$, .@menu$ +( ( @auto_atcmd_login[.@i] )?"^00FF00"+ .cmd_lv$[.@i -1] +"["+ @auto_atcmd_login[.@i] +"]":"^FF0000"+ .cmd_lv$[.@i -1] )+":";
+set .@s, select(.@menu$) -1;
+if ( .@s < .size )
+set @auto_atcmd_login, @auto_atcmd_login ^ pow(2, .@s);
+else
+input @auto_atcmd_login[.@s - .size +1];
+set auto_atcmd_login$, @auto_atcmd_login;
+for ( set .@i, 1; .@i <= .size_lv; set .@i, .@i +1 )
+set auto_atcmd_login$, auto_atcmd_login$ +"#"+ @auto_atcmd_login[.@i];
+}
+close;
+OnPCLoginEvent:
+if ( auto_atcmd_login$ == "" ) end;
+setarray .@char$, "#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9";
+set .@tmp$, "|~key~|"; // explode function
+set .@str$, .@tmp$ + auto_atcmd_login$ ;
+set .@len, getstrlen( auto_atcmd_login$ );
+while( .@len > .@s ) {
+set .@i, 0 ;
+while( .@i < 11 ) {
+sleep2 ( set( .@l, .@l +1 ) % 950 == 949 );
+if ( compare( .@str$ , .@tmp$ + .@char$[.@i] ) ) {
+set .@tmp$, .@tmp$ + .@char$[.@i];
+if ( .@i )
+set .@auto_atcmd_login$[.@p], .@auto_atcmd_login$[.@p] + .@char$[.@i];
+else
+set .@p, .@p + 1;
+break;
+}
+set .@i, .@i +1;
+}
+set .@s, .@s +1 ;
+}
+sleep2 1;
+for ( set .@i, 0; .@i <= .@p; set .@i, .@i +1 )
+set @auto_atcmd_login[.@i], atoi( .@auto_atcmd_login$[.@i] );
+for ( set .@i, 0; .@i < .size; set .@i, .@i +1 )
+if ( @auto_atcmd_login & pow(2, .@i) )
+atcommand "@"+ .cmd$[.@i];
+for ( set .@i, 1; .@i <= .size_lv; set .@i, .@i +1 )
+if ( @auto_atcmd_login[.@i] )
+atcommand "@"+ .cmd_lv$[ .@i -1 ] +" "+ @auto_atcmd_login[.@i];
+end;
+OnInit:
+setarray .cmd$, "showexp", "uptime"; // on/off limited to 31 types only
+setarray .cmd_lv$, "autoloot"; // atcommand with value
+
+set .size, getarraysize(.cmd$);
+set .size_lv, getarraysize(.cmd_lv$);
+end;
+}

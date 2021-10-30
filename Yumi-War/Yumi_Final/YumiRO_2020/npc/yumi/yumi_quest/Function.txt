@@ -1,0 +1,60 @@
+// 1. Add the quest to `Quest_Data`
+function	script	Quest_Start	{
+	set .@QuestID, getarg( 0 );
+	query_sql "INSERT INTO `Quest_Character` ( `CharacterID` , `QuestID` , `QuestState` ) VALUES ( " + getcharid( 0 ) + " , " + .@QuestID + " , 1 )";
+	announce callfunc( "Text", "QuestSystem", 0 ) + callfunc( "Quest_IDToName", .@QuestID ) + callfunc( "Text", "QuestSystem", 1 ), bc_self;
+	return;
+}
+
+
+
+function	script	Quest_NextState	{
+	set .@QuestID, getarg( 0 );
+	if( getargcount( ) > 1 )
+		set .@Finished, getarg( 1 );
+	else
+		set .@Finished, 0;
+	query_sql "UPDATE `Quest_Character` SET `QuestState` = ( `QuestState` + 1 ) WHERE `CharacterID` = " + getcharid( 0 ) + " AND `QuestID` = " + .@QuestID + " LIMIT 1";
+	if( .@Finished )
+		announce callfunc( "Text", "QuestSystem", 4 ) + callfunc( "Quest_IDToName", .@QuestID ) + callfunc( "Text", "QuestSystem", 5 ), bc_self;
+	else
+		announce callfunc( "Text", "QuestSystem", 2 ) + callfunc( "Quest_IDToName", .@QuestID ) + callfunc( "Text", "QuestSystem", 3 ), bc_self;
+	return;
+}
+
+
+
+function	script	Quest_Change	{
+	set .@QuestID, getarg( 0 );
+	set .@NewState, getarg( 1 );
+	query_sql "UPDATE `Quest_Character` SET `QuestState` = " + .@NewState + " WHERE `CharacterID` = " + getcharid( 0 ) + " AND `QuestID` = " + .@QuestID + " LIMIT 1";
+	announce callfunc( "Text", "QuestSystem", 2 ) + callfunc( "Quest_IDToName", .@QuestID ) + callfunc( "Text", "QuestSystem", 3 ), bc_self;
+	return;
+}
+
+
+
+function	script	Quest_CheckState	{
+	deletearray .@QuestState[ 0 ], getarraysize( .@QuestState );
+	set .@QuestID, getarg( 0 );
+	query_sql "SELECT `QuestState` FROM `Quest_Character` WHERE `CharacterID` = " + getcharid( 0 ) + " AND `QuestID` = " + .@QuestID + " LIMIT 1", .@QuestState;
+	return .@QuestState[ 0 ];
+}
+
+
+
+function	script	Quest_CheckFinished	{
+	set .@QuestID, getarg( 0 );
+	deletearray .@Finished, getarraysize( .@Finished );
+	query_sql "SELECT `Quest_Character`.`QuestState` FROM `Quest_Character` , `Quest_Data` WHERE `Quest_Character`.`QuestState` = `Quest_Data`.`Finished` AND `Quest_Character`.`CharacterID` AND `Quest_Character`.`QuestID` = " + .@QuestID  + " LIMIT 1", .@Finished;
+	return .@Finished[ 0 ] > 0 ? 1 : 0;
+}
+
+
+
+function	script	Quest_IDToName	{
+	set .@QuestID, getarg( 0 );
+	deletearray .@Name$[ 0 ], getarraysize( .@Name$ );
+	query_sql "SELECT `Name` FROM `Quest_Data` WHERE `Quest_Data`.`ID` = " + .@QuestID + " LIMIT 1", .@Name$;
+	return .@Name$;
+}

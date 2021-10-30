@@ -1,0 +1,341 @@
+
+// Alexandria Pet Store
+
+alexa_in,76,148,5	shop	Pet Store#2	508,532:250,9016:500,643:-1
+prontlegend,205,232,4	shop	Merchant Kid	82,1752:3,1751:3,12575:750,533:250
+
+/*
+
+Pet Groomer
+
+Version	1.0:
+	• It feed your pet by a rate of 20 to 35
+		- It cosumes Poring Coins
+	
+*/
+
+
+alexa_in,77,152,5	script	Pet Groomer::pg	582,15,15,{
+
+
+	set .@name$, "[^0000FFPet Groomer^000000]";
+	
+	if (pet_intimate == 0 ) {
+		
+		mes .@name$;
+		mes "Hello, i'm the Pet Groomer, and I can take care of your pet.";
+		next;
+		mes .@name$;
+		mes "Well, you don't seem to have a pet right now. I can't see how i can help you.";
+		close;
+		
+	
+	}
+	
+	mes .@name$;
+	mes "Hello!";
+	mes "How can I help you today?";
+	next;
+	switch(select("• Feed my Pet:• Train my Pet:• Buy Pet Food:• Buy a Pet Incubator:• Close")) {
+		case 5:
+			mes .@name$;
+			mes "Come back when you need to feed your pet. If you don't feed your, it might escape.";
+			close;
+		
+		case 4:
+			mes .@name$;
+			mes "The price for a Pet Incubator it's 1 "+getitemname(.coin)+". You want to buy one?";
+			next;
+			switch(select("• Yes:• No")) {
+				case 1:
+					if ( countitem(.coin) <= 1 ) {
+						mes .@name$;
+						mes "You don't have enough Poring Coins to buy an Incubator.";
+						close;
+					}
+					delitem .coin, 1;
+					getitem 643,1;
+					mes .@name$;
+					mes "Come back soon.";
+					close;
+				
+				case 2:
+					mes .@name$;
+					mes "Come back soon.";
+					close;
+			}
+		
+		case 3:
+			mes .@name$;
+			mes "Sorry, but we are currently out of stock.";
+			close;
+		
+		case 1:
+		
+			mes .@name$;
+			mes "Feeding your pet will cost you "+ .Cost +" "+ getitemname(.coin) +".";
+			next;
+			
+			switch(select( ((countitem(.coin) >= .Cost) ? "• Feed your Pet [Hunger "+ getpetinfo(4) +"%]:" : "^848484You can't pay this^000000:") + "• Information:• Autofeed Fuction!:• Close" )) {
+				
+				case 4:
+					mes .@name$;
+					mes "Please return soon.";
+					close;
+				
+				case 3:
+					mes .@name$;
+					mes "The Autofeed fuction allows you a fast and quick way to feed your pet.";
+					next;
+					switch(select( "• Set Portions ["+ pet_portions +" Available]:• Information: • Close" )) {
+						
+						case 3:
+							mes .@name$;
+							mes "Come back soon.";
+							close;
+						
+						case 1:
+							mes .@name$;
+							mes "You currently have "+ pet_portions +" portions left.";
+							mes "Do you want to stock more Supplies.";
+							next;
+							switch(select( "• Buy 10 stocks "+ ((.fee) ? "[+ "+.fee+" "+getitemname(.coin)+" fee]":"") +":• Close" )) {
+								case 1:
+									mes .@name$;
+									mes "Are you sure you want to buy 10 Pet Portions?";
+									next;
+									switch(select( ((countitem(.coin) >= (5+.fee)) ? "• Buy the Pet Portions":"^^848484You can't pay this^000000") + ":• Close")){
+										case 2:
+											mes .@name$;
+											mes "Come back soon.";
+											close;
+										
+										case 1:
+											if (countitem(.coin) >= (5+.fee)) {
+												
+												delitem .coin, (5+.fee);
+												set pet_portions, pet_portions + 10;
+												
+												mes .@name$;
+												mes "The next time you walk close to me, your pet will be autofeed.";
+												close;
+											}
+											
+											mes .@name$;
+											mes "You don't have enough "+ getitemname(.coin) +".";
+											close;
+									}
+								}
+								
+							case 2:
+								mes .@name$;
+								mes "When you buy Pet Portions, we automatically feed your pet when you are near me, so you don't have to go through all the talk.";
+								next;
+								mes .@name$;
+								mes "You must pay a fee for this, and it's only one payment per a pack of Portions, so once you have bought the Pet Portions you don't have nothing to worry about.";
+								close;
+								
+						}
+							
+				case 2:
+				
+					mes .@name$;
+					mes "I can give you more information about your pet care.";
+					next;
+					switch(select ( "• Feeding your pet:• Foods for your pet:• Types of pets:• Close" )) {
+						case 1:
+							mes .@name$;
+							mes "Taking care of your pet it's an important, as you might know, if he doesn't have the strenght he can't help you.";
+							next;
+							mes .@name$;
+							mes "Feeding your pet it's important, if you don't feed by yourself your pet he might lose some Loyalty to you.";
+							next;
+							mes .@name$;
+							mes "You must maintain a stable alimentation basis to your pet, if you don't feed him, he might escape, if you overfeed him he will escape.";
+							next;
+							mes .@name$;
+							mes "Those are the basics of the Pet feeding.";
+							close;
+						
+						case 2:
+							mes .@name$;
+							mes "You can buy some pet food for an amount of "+ getitemname(.coin) +".";
+							next;
+							mes .@name$;
+							mes "By feeding by yourself your pet, he will always gain some loyalty to you.";
+							next;
+							mes .@name$;
+							mes "Some Pets eats some kind of food, not every beast eats the same.";
+							next;
+							mes .@name$;
+							mes "Knowing your pets likes will help you to improve your friendship to him.";
+							close;
+						
+						case 3:
+							mes .@name$;
+							mes "There are different types of pets. Some of them are small, cute and furry animals.";
+							next;
+							mes .@name$;
+							mes "Others might be demons from legends and tales.";
+							next;
+							mes .@name$;
+							mes "Either way, there's an big collection of them, and some of them has different abilities.";
+							next;
+							mes .@name$;
+							mes "Even some of them will help you get some loot, some of the will search around for items, others might heal you.";
+							next;
+							mes .@name$;
+							mes "If they are hungry, they won't help you, so keep an eye on them.";
+							close;
+						
+						case 4:
+							mes .@name$;
+							mes "Please return soon.";
+							close;
+							
+					}
+					case 1:
+				
+					if ( getpetinfo(4) == 100 ) {
+					
+						mes .@name$;
+						mes "Your pet it's healthy, he doesn't need to eat anymore.";
+						close;
+					
+					}
+					
+					if ( countitem(.coin) >= .Cost ) {
+						
+						set .@hungry, getpetinfo(4) + rand(20,35);
+						
+						if ( .@hungry >= 100 ) {
+						
+							atcommand "@pethungry 100";
+						
+						}
+						else {
+							
+							atcommand "@pethungry "+ .@hungry;
+						
+						}
+						
+						mes .@name$;
+						mes "Have a nice day.";
+						delitem .coin, .Cost;
+						close;
+						
+					}
+					
+					mes .@name$;
+					mes "You don't have enough "+ getitemname(.coin) +".";
+					close;
+				}
+				
+		
+		
+				case 2:
+					mes .@name$;
+					mes "By training your pet, your pet gains Loyalty.";
+					next;
+					
+					switch(select( ((countitem(.coin) >= .Cost) ? "• Train your Pet [Loyalty "+ getpetinfo(3)/10 +"%]:" : "^848484You can't pay this^000000:") + "• Information:• Close")) {
+						case 1:
+							if (getpetinfo(3) == 1000) {
+								mes .@name$;
+								mes "You have a great pet, you don't need to train him any more, he is the loyalest pet I have never seen.";
+								close;
+							}
+							
+							if ( countitem(.coin) >= .Cost ) {
+						
+							set .@loyal, getpetinfo(3) + rand(10,15);
+							
+							
+							if ( .@loyal >= 1000 ) {
+							
+								atcommand "@petfriendly 1000";
+							
+							}
+							else {
+								
+								atcommand "@petfriendly "+ .@loyal;
+							
+							}
+							
+							mes .@name$;
+							mes "Have a nice day.";
+							delitem .coin, .Cost;
+							close;
+							}
+							
+							mes .@name$;
+							mes "You don't have enought "+ getitemname(.coin) +" to train your pet.";
+							close;
+							
+						case 2:
+							
+							mes .@name$;
+							mes "I can give you more information about your pet care.";
+							next;
+							switch(select ( "• Training your pet:• Loyalty of your pet" )) {
+								case 1:
+									mes .@name$;
+									mes "By training your pet, you make your pet more friendly, making him more likely to help you on your adventure.";
+									next;
+									mes .@name$;
+									mes "Some pets will do different things on different loyalty levels, but every has a basic ability.";
+									next;
+									mes .@name$;
+									mes "Knowing your pet's abilities might help you to know which pet use.";
+									close;
+								
+								case 2:
+									mes .@name$;
+									mes "Your pet might talk to you on high level stages.";
+									next;
+									mes .@name$;
+									mes "More loyalty, more abilities, even your odds of survaving.";
+									close;
+								
+							
+							}
+						case 3:
+							mes .@name$;
+							mes "Come back when you need to feed your pet. If you don't feed your, it might escape.";
+							close;
+		
+			}
+		}
+			
+	
+			
+	
+	OnInit:
+		set .fee, 5;
+		set .Cost, 1;
+		set .coin, 7539;
+		end;
+		
+	OnTouch:
+		if ( pet_portions ) {
+		
+			if ( getpetinfo(4) >= 90 ) {
+				end;
+			}
+			
+			set .@hungry, getpetinfo(4) + rand(20,35);
+						
+			if ( .@hungry >= 100 ) {
+				atcommand "@pethungry 100";
+			}
+			else {
+				atcommand "@pethungry "+ .@hungry;
+			}
+			
+			set pet_portions, pet_portions-1;
+			end;
+		}
+		end;
+}
+
+prt_in,285,169,3	duplicate(pg)	Pet Groomer#1	582,(

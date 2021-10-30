@@ -1,0 +1,8 @@
+1@spa,213,201,3	script	Repair+	917,{
+    while (getbrokenid(1)) {
+        repair(1);
+        set .@i, .@i +1;
+    }
+    if (.@i) dispbottom .@i + " items repaired.";
+    end;
+}

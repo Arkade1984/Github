@@ -1,0 +1,70 @@
+// -------------  Credit to Mizuari and FluxCP  -------------------
+// ----------- Donation NPC Redeemer for Cavalero -----------------
+
+itemmall,187,59,3	script	Donation Redeemer	987,{
+	set $servername$,"Cavalero";
+	set $npcname$,"[Coins Redeemer]";
+	set $credittable$,"cp_credits";
+	set $redeemtable$,"cp_redeemlog";
+	set $maxinventorysize,100;
+	set $maxquantity,30000;
+
+	// -- Start --
+	mes $npcname$;
+	mes "Good day to you ~";
+	mes "How may I assist you?";
+	next;
+	switch(select("Redeem Coins:None")) {
+		case 1:
+			mes $npcname$;
+			deletearray @inventorylist_id;
+			deletearray @inventorylist_amount;
+			set @inventorylist_count,0;
+			getinventorylist;
+			if (@inventorylist_count < $maxinventorysize) {
+				query_sql "SELECT `balance`  FROM `"+escape_sql($credittable$)+"` WHERE `account_id` = '"+getcharid(3)+"' LIMIT 128",.@balance;
+				mes "Remaining Coins: "+.@balance;
+				next;
+				mes $npcname$;
+				if (.@balance > 0) {
+					deletearray @inventorylist_id;
+					deletearray @inventorylist_amount;
+					getinventorylist;
+					if (@inventorylist_id[.@loop_inner] == 8903) {
+						if (@inventorylist_amount[.@loop_inner]+.@balance > $maxquantity) {
+							mes "I'm terribly sorry, but you cannot hold more than "+$maxquantity+" of "+getitemname(8903)+" at a time!";
+							mes "Please come back when you carry less of this item.";
+							close;
+						} else if (checkweight(8903,.@balance) == 0) {
+							mes "I'm terribly sorry, but you are carrying too much to accept your rewards.";
+							mes "Please come again with less weight.";
+							close;
+						}
+					}
+					query_sql "UPDATE `"+escape_sql($credittable$)+"` SET `balance` = '0'";
+					query_sql "INSERT INTO `"+escape_sql($redeemtable$)+"` SET `nameid` = '8903', `quantity` = '"+.@balance+"', `char_id` = '"+getcharid(0)+"', `account_id` = '"+getcharid(3)+"', `redeemed` = '1', `redemption_date` = NOW()";
+					getitem 8903, .@balance;
+				} else {
+					mes "My records indicate that you have 0 balance to redeem.";
+					mes "My deepest apologies for the misunderstanding.";
+					close;
+				}
+				if (Sex)
+					mes "Thank you for your patronage fine sir.";
+				else
+					mes "Thank you for your patronage ma'am.";
+				close;
+
+			} else {
+				mes "I'm terribly sorry, but you cannot hold more than "+$maxinventorysize+" items in your inventory.";
+				mes "Please come again with less items.";
+				close;
+			}
+		break;
+		case 2:
+			mes $npcname$;
+			mes "Thank you and have fun!~";
+		break;
+	}
+	close;
+}

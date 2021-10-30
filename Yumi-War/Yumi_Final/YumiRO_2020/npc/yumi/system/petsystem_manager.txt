@@ -1,0 +1,36 @@
+
+function	script	AutolootPetTimer	{
+
+	bpet;
+	if(pet_intimate == 0 ) {
+		atcommand "@autoloot rate 100";
+		deltimer "AutolootManager::OnMinuteCount";
+		addtimer ((1000) * (60)), "AutolootManager::OnMinuteCount";
+		end;
+	}
+	
+	
+}
+
+-	script	AutolootManager	-1,{
+	
+	OnPCLoginEvent:
+		if(pet_intimate != 0 ) {
+			atcommand "@autoloot rate 100";
+			addtimer ((1000) * (5)), "AutolootManager::OnMinuteCount";
+			end;
+		}
+		end;
+	
+	OnMinuteCount:
+
+		if(pet_intimate == 0 ) {
+			
+			atcommand "@autoloot clear";
+			end;
+		
+		}
+		
+		addtimer ((1000) * (5)), "AutolootManager::OnMinuteCount";
+		end;
+}

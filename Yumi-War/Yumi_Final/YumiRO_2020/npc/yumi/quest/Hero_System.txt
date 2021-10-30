@@ -1,0 +1,839 @@
+br_map5,0,0,0,0	monster	Scorpion	1001,20,0,0,0
+br_map5,0,0,0,0	monster	Sword Master	1899,15,0,0,0
+br_map5,0,0,0,0	monster	Bow Master	1830,15,0,0,0
+br_map5,0,0,0,0	monster	Hydro	1756,10,0,0,0
+br_map5,0,0,0,0	monster	Acidus	1757,10,0,0,0
+br_map5,0,0,0,0	monster	Acidus	1759,10,0,0,0
+br_map5,0,0,0,0	monster	Ancient Mummy	1522,25,0,0,0
+
+
+royal_room3,102,123,5	script	Legendary Quest#1	468,{
+
+	if ( sigmund_done && sigmund_hero_done ) {
+		mes .npc$;
+		mes "There's nothing else you need to know from me!";
+		close;
+	}
+
+	if ( sigmund_hero_done ) {
+		mes .npc$;
+		mes "I referred you to ^ff0000Reginald^000000.";
+		mes "Would you like to meet him? Hes located at the Einbroch Blacksmith.";
+		next;
+		
+		if ( select("Yes, thanks!:No, not now...") - 1 ) close;
+		
+		mes .npc$;
+		mes "I wish you well!";
+		close2;
+		sigmund_done = 1;
+		warp .regin_map$, .regin_x, .regin_y;
+		close;
+	}
+	
+	if ( first_requirements ) goto OnSecond;
+	if ( second_requirements ) goto OnThird;
+	if ( third_requirements ) goto OnHero;
+
+	if ( BaseLevel < 99 || JobLevel < 50 ) {
+		mes .npc$;
+		mes "I am not going to talk to you if your Base Level is lower than 99 and if your Job Level is not 75.";
+		close;
+	} 
+	
+	mes .npc$;
+	mes "Hello, I am ^ff0000Hero System Manager^000000.";
+	next;
+	mes .npc$;
+	mes "Becoming a ^0000ffHero^000000, ranking up and completing the ^0000ffHero Quests^000000 are the most difficult things a player can do.";
+	next;
+	mes .npc$;
+	mes "They require bravery, shrewdness, intelligence and patience.";
+	next;
+	mes .npc$;
+	mes "Would you like to begin an adventure you'll never forget?";
+	if ( select("Ahahaha, sure!:No, thanks...") - 1 ) close;
+	next;
+	mes .npc$;
+	mes "Well, get 1 ^ff0000" +getitemname(.first_requirement_id)+"^000000 to prove me that you are brave enough!";
+	next;
+	
+	if ( select("I have it:No, I don't..") - 1 ) close;
+
+	if ( !countitem(.first_requirement_id) ) {
+		mes .npc$;
+		mes "It seems like you don't have the ^ff0000" +getitemname(.first_requirement_id)+"^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "^0000ffYou have just completed the first task.^000000";
+	next;
+	mes .npc$;
+	mes "Talk to me again if you want to know what is the second task about!";
+	delitem .first_requirement_id, 1;
+	first_requirements = 1;
+	close;
+	
+	OnSecond:
+			mes .npc$;
+			mes "I want to see if you are shrewd enough...";
+			next;
+			mes .npc$;
+			mes "Hmm...";
+			next;
+			mes .npc$;
+			mes "Please, bring me 100 ^ff0000" +getitemname(.second_requirement_id)+"^000000 in order to start the true challange, also known as the ^7000E0Quest of Doom^000000.";
+			if ( select("I have them all!:No, I don't...") - 1 ) close;
+			next;
+			
+			if ( countitem(.second_requirement_id) < 100 ) {
+				mes .npc$;
+				mes "It seems like you don't have 100 ^ff0000" +getitemname(.second_requirement_id)+ "^000000.";
+				close;
+			}
+			
+			mes .npc$;
+			mes "^0000ffYou have just completed the second task.^000000";
+			next;
+			mes .npc$;
+			mes "Talk to me again to start the ^7000E0Quest of Doom^000000.";
+			delitem .second_requirement_id, 100;
+			second_requirements = 1;
+			first_requirements = 0;
+			close;
+			
+		close;
+	
+	OnThird:
+	
+			mes .npc$;
+			mes "In order to complete the ^7000E0Quest of Doom^000000 you'll need the following items: ";
+			for ( set .@i, 0; .@i < getarraysize(.third_requirements_id); set .@i, .@i + 2 )
+			mes "" +.third_requirements_id[.@i + 1]+ " ^ff0000" +getitemname(.third_requirements_id[.@i])+"^000000";
+			next;
+
+			mes .npc$;
+			mes "Do you have them?";
+			next;
+			
+			if ( select("I think so...:No, not yet!") - 1 ) close;
+			
+			for ( set .@i, 0; .@i < getarraysize(.third_requirements_id); set .@i, .@i + 2 ) {
+				if ( countitem(.third_requirements_id[.@i]) < .third_requirements_id[.@i + 1] ) {						mes .npc$;
+						mes "You're missing one or more requirements.";
+						close;
+				}
+				}
+				mes .npc$;
+				mes "^0000ffAwesome! You deserve to become a legend!^000000";
+				for ( set .@i, 0; .@i < getarraysize(.third_requirements_id); set .@i, .@i + 2 ) 
+				delitem .third_requirements_id[.@i], .third_requirements_id[.@i + 1];
+				third_requirements = 1;
+				second_requirements = 0;
+				specialeffect2 709;
+				next;
+				mes .npc$;
+				mes "Talk to me again to allow me to appoint you as a true and brave ^0000ffHero^000000!";
+				end;
+				
+			
+	OnHero:
+			mes .npc$;
+			mes "You are about to become a ^0000FFRank D Hero^000000! Please, read the information carefully before beginning the ritual!";
+			next;
+			mes .npc$;
+			mes "There are different rankings: ^0000ffD^000000, ^0000ffC^000000, ^0000ffB^000000, ^0000ffA^000000 and ^0000ffS^000000.";
+			next;
+			mes .npc$;
+			mes "In order to rank up you have to kill the monsters inside the ^0000ffHero Arena^000000.";
+			next;
+			mes .npc$;
+			mes "By killing those monsters you get 1, 10, or 100 ^0000ffHero Point(s)^000000 depending on the target.";
+			next;
+			mes .npc$;
+			mes "To enter the ^0000ffHero Arena^000000 you have to talk to ^ff0000Hulther^000000, who is somewhere in Prontera Legend!";
+			next;
+			mes .npc$;
+			mes "That's all you need to know...";
+			mes "I am pretty sure you'll learn new things as you rank up!";
+			next;
+			mes .npc$;
+			mes "So, would you like to become a ^0000ffHero^000000?";
+			if ( select("Sure!:No...") - 1 ) close;
+			next;
+			
+			mes .npc$;
+			mes "Well done!";
+			sigmund_hero_done = 1;
+			announce "[" +strcharinfo(0)+ "] has just become a Hero!",bc_all,0xFF6633;
+			query_sql "INSERT INTO `hero` (`char_id`, `char_name`, `rank`, `points`, `kills`, `death`) VALUES ('"+getcharid(0)+"', '"+escape_sql(strcharinfo(0))+"', 'D', 0, 0, 0)";
+			BaseLevel = 1;
+			JobLevel = 1;
+			resetstatus;
+			resetskill;
+			StatusPoint += 50;
+			SkillPoint += 10;
+			close2;
+			atcommand "@kick " +strcharinfo(0);
+			close;
+
+	OnInit:
+		query_sql "CREATE TABLE IF NOT EXISTS `hero` (`char_id` INT(11) NOT NULL, `char_name` VARCHAR(23) NOT NULL DEFAULT '', `rank` VARCHAR(1) NOT NULL DEFAULT '', `points` INT NOT NULL DEFAULT '0', `kills` INT NOT NULL DEFAULT '0', `death` INT NOT NULL DEFAULT '0') ENGINE=MyISAM";
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		.first_requirement_id = 6091; // Draconus Scale Requirement
+		.second_requirement_id = 7959; // Human Skull Requirement
+		setarray .third_requirements_id[0],6091,25,7959,100; // Quest of Doom ( Syntax : <Item ID>,<Amount> )
+		.regin_map$ = "ein_in01"; // Reginald Map Location
+		.regin_x = 28; // Blacksmith Regin Map X Location
+		.regin_y = 85; // Blacksmith Regin Map Y Location
+		close;
+}		
+		//=================================================================
+		//= End Of Configuration ==========================================
+		//=================================================================
+
+
+ein_in01,28,85,5	script	Reginald#1	683,{
+	
+	query_sql "SELECT `char_id` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero;
+	
+	if ( done ) {
+		mes .npc$;
+		mes "There's nothing else I can do for you.";
+		close;
+	}
+	
+	if ( done_regin && ( gettimetick(2) < timer ) ) {
+		mes .npc$;
+		mes "The equipment is not yet ready.";
+		close;
+	}
+	
+	if ( done_regin && ( gettimetick(2) > timer ) ) {
+		mes .npc$;
+		mes "You have been very patient! Here's the equipment!";
+		for ( set .@i,0; .@i < getarraysize(.prize); set .@i,.@i + 1 )
+			getitem .prize[.@i], 1;
+		done = 1;
+		close;
+	}
+	
+	if ( .@hero == 0 ) {
+		mes .npc$;
+		mes "I am sorry, but you are not a ^0000ffHero^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "Since you are a ^0000FFHero^000000, you need a special equipment.";
+	next;
+	mes .npc$;
+	mes "Creating it will be very difficult and requires the following items:";
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		mes .requirements[.@i + 1]+ " ^ff0000" +getitemname(.requirements[.@i])+"^000000";
+	
+	next;
+	
+	mes .npc$;
+	mes "Do you have them?";
+	
+	next;
+	
+	if ( select("I have them all!:I don't, sorry...") - 1 ) close;
+		for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) {
+			if ( countitem(.requirements[.@i]) < .requirements[.@i + 1] ) {
+				mes .npc$;
+				mes "You're missing one or more requirements.";
+				close;
+			}
+			break;
+	}
+	
+	mes .npc$;
+	mes "Creating the equipment will take " +.waiting_time+ " hours.";
+	mes "Are you patient enough to wait for me to forge it?";
+	next;
+	
+	if ( select("Yes!:No, I am not!") - 1 ) close;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		delitem .requirements[.@i], .requirements[.@i + 1];
+		
+	timer = gettimetick(2) + .converter;
+	done_regin = 1;
+	mes .npc$;
+	mes "Come back after" +.waiting_time+ " hours, then!";
+	close;
+	
+	OnInit:
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		setarray .requirements[0],999,1,674,1; // <Item ID>,<Amount>
+		setarray .prize[0],674,999; // prize to get when requirements is done
+		.size = getarraysize(.requirements); // size of array
+		.waiting_time = 2; // 2 hours
+		.converter = .waiting_time*60*60; // converted hours to seconds
+		close;
+}
+		//=================================================================
+		//= End Of Configuration ==========================================
+		//=================================================================
+
+
+prt_in,24,31,0	script	Hulther#1	100,{
+	
+query_sql "SELECT `char_id` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero;
+
+	if ( done_hulther ) {
+		mes .npc$;
+		mes "The ^ff0000Hero Arena Keeper^000000 is somewhere in Geffen, show her the ^0000ffCertificate of Heroism^000000!";
+		close;
+	}
+	
+	if ( .@hero == 0 ) {
+		mes .npc$;
+		mes "I do not talk to anyone who is not a ^0000ffHero^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "In order to enter the ^ff0000Hero Arena^000000 you'll need the ^0000ffCertificate of Heroism^000000.";
+	next;
+	mes .npc$;
+	mes "Unfortunately for you, I am the only one who can issue that statement.";
+	mes "If you want it, then you'll need to bring me the following items:";
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) 
+		mes .requirements[.@i + 1]+ " ^ff0000" +getitemname(.requirements[.@i])+"^000000";
+	
+		next; 
+	mes .npc$;
+	mes "Do you have them?";
+	if ( select("I have them all!:I don't have them...") - 1 ) close;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) {
+		if ( countitem(.requirements[.@i]) < .requirements[.@i+1]) {
+			mes .npc$;
+			mes "You don't meet my requirements";
+			close;
+		}
+		break;
+	}
+	
+	mes .npc$;
+	mes "Well done!";
+	
+	done_hulther = 1;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		delitem .requirements[.@i], .@requirements[.@i + 1];
+	
+	for ( .@i = 0; .@i < getarraysize(.prize); .@i++ )
+		getitem .prize[.@i], 1;
+	
+	close;
+	
+	OnInit:
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		setarray .requirements[0],999,100,6091,5,7227,5; // <Item ID>,<Amount>
+		setarray .prize[0], 7825; // Glorious items
+		.size = getarraysize(.requirements);
+		close;
+}	
+	//=================================================================
+	//= End Of Configuration ==========================================
+	//=================================================================
+	
+
+
+lighthalzen,256,120,0	script	Jason [C]#1	100,{
+	
+	query_sql "SELECT `char_id`, `rank`, `kills`, `death` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero, .@rank$, .@kills, .@deaths;
+
+	if ( done_jason ) {
+	mes .npc$;
+	mes "Talk to ^ff0000Xean^000000 as soon as you become a ^0000ffRank B Hero^000000! He is somewhere in Alberta.";
+	close;
+	}
+	
+	if ( .@hero == 0 ) {
+		mes .npc$;
+		mes "I do not talk to anyone who is not a ^0000ffHero^000000.";
+		close;
+	}
+	
+	if ( .@rank$ != "C" ) {
+		mes .npc$;
+		mes "Before talking to me, make sure you are a ^0000FFRank C Hero^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "In order to obtain the equipment for a ^0000ffRank C Hero^000000, you'll have to bring me the following items:";
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) 
+		mes .requirements[.@i + 1]+ " ^ff0000" +getitemname(.requirements[.@i])+"^000000";
+	next;
+	mes .npc$;
+	mes "And...";
+	next;
+	mes .npc$;
+	mes "Ehm...";
+	next;
+	mes .npc$;
+	mes "Oh... I forgot to say that you also must defeat 60 ^0000ffHeroes^000000 inside the ^ff0000Heroic PvP Arena^000000.";
+	
+	next; 
+	
+	if ( select("I meet all the requirements!:That's too much...") - 1 ) close;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) {
+		if ( countitem(.requirements[.@i]) < .requirements[.@i+1] || .@kills < 60) {
+			mes .npc$;
+			mes "You don't meet one or more requirement(s).";
+			close;
+		}
+		break;
+	}
+	
+	mes .npc$;
+	mes "Well done!";
+	
+	done_jason = 1;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		delitem .requirements[.@i], .@requirements[.@i + 1];
+	
+	for ( .@i = 0; .@i < getarraysize(.prize); .@i++ )
+		getitem .prize[.@i], 1;
+	
+	close;
+
+	
+	OnInit:
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		setarray .requirements[0],999,100,7179,5,7227,5,13844,1,7825,1,674,1,673,1; // <Item ID>,<Amount>
+		setarray .prize[0], 7179,7227; // Glorious items
+		.size = getarraysize(.requirements);
+		close;
+}
+	//=================================================================
+	//= Configuration =================================================
+	//=================================================================	
+	//=================================================================
+	//= End Of Configuration ==========================================
+	//=================================================================
+	
+
+
+lighthalzen,254,114,0	script	Xean [B]#1	100,{
+	
+	query_sql "SELECT `char_id`, `rank`, `kills`, `death` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero, .@rank$, .@kills, .@deaths;
+
+	if ( done_xean ) {
+	mes .npc$;
+	mes "Talk to ^ff0000Aleksander^000000 as soon as you become a ^0000ffRank A Hero^000000! He is somewhere in Yuno.";
+	close;
+	}
+	
+	if ( .@hero == 0 ) {
+		mes .npc$;
+		mes "I do not talk to anyone who is not a ^0000ffHero^000000.";
+		close;
+	}
+	
+	if ( .@rank$ != "B" ) {
+		mes .npc$;
+		mes "Before talking to me, make sure you are a ^0000FFRank B Hero^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "In order to obtain the equipment for a ^0000ffRank B Hero^000000, you'll have to bring me the following items:";
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) 
+		mes .requirements[.@i + 1]+ " ^ff0000" +getitemname(.requirements[.@i])+"^000000";
+	next;
+	mes .npc$;
+	mes "You also have to defeat 132 ^0000ffHeroes^000000 inside the ^ff0000Heroic PvP Arena^000000.";
+	
+	next;
+	
+	if ( select("I meet all the requirements!:That's too much...") - 1 ) close;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) {
+		if ( countitem(.requirements[.@i]) < .requirements[.@i+1] || .@kills < 132) {
+			mes .npc$;
+			mes "You don't meet one or more requirement(s).";
+			close;
+		}
+		break;
+	}
+	
+	mes .npc$;
+	mes "Well done!";
+	
+	done_xean = 1;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		delitem .requirements[.@i], .@requirements[.@i + 1];
+	
+	for ( .@i = 0; .@i < getarraysize(.prize); .@i++ )
+		getitem .prize[.@i], 1;
+	
+	close;
+
+
+	
+	OnInit:
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		setarray .requirements[0],999,100,7179,5,7227,5,13844,1,7825,1,674,1,673,1; // <Item ID>,<Amount>
+		setarray .prize[0], 7179,7227; // Glorious items
+		.size = getarraysize(.requirements);
+		close;
+}
+		//=================================================================
+	//= Configuration =================================================
+	//=================================================================	
+	//=================================================================
+	//= End Of Configuration ==========================================
+	//=================================================================
+	
+
+
+lighthalzen,254,112,0	script	Aleksander [A]#1	100,{
+	
+	query_sql "SELECT `char_id`, `rank`, `kills`, `death` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero, .@rank$, .@kills, .@deaths;
+
+	if ( done_aleksander ) {
+	mes .npc$;
+	mes "Talk to ^ff0000LeRoix^000000 as soon as you become a ^0000ffRank S Hero^000000! He is somewhere in Rachel.";
+	close;
+	}
+	
+	if ( .@hero == 0 ) {
+		mes .npc$;
+		mes "I do not talk to anyone who is not a ^0000ffHero^000000.";
+		close;
+	}
+	
+	if ( .@rank$ != "A" ) {
+		mes .npc$;
+		mes "Before talking to me, make sure you are a ^0000FFRank A Hero^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "In order to obtain the equipment for a ^0000ffRank A Hero^000000, you'll have to bring me the following items:";
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) 
+		mes .requirements[.@i + 1]+ " ^ff0000" +getitemname(.requirements[.@i])+"^000000";
+	next;
+	mes .npc$;
+	mes "You also have to defeat 230 ^0000ffHeroes^000000 inside the ^ff0000Heroic PvP Arena^000000.";
+	
+	next;
+	
+	if ( select("I meet all the requirements!:That's too much...") - 1 ) close;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) {
+		if ( countitem(.requirements[.@i]) < .requirements[.@i+1] || .@kills < 230) {
+			mes .npc$;
+			mes "You don't meet one or more requirement(s).";
+			close;
+		}
+		break;
+	}
+	
+	mes .npc$;
+	mes "Well done!";
+	
+	done_aleksander = 1;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		delitem .requirements[.@i], .@requirements[.@i + 1];
+	
+	for ( .@i = 0; .@i < getarraysize(.prize); .@i++ )
+		getitem .prize[.@i], 1;
+	
+	close;
+
+	
+	OnInit:
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		setarray .requirements[0],999,100,7179,5,7227,5,13844,1,7825,1,674,1,673,1; // <Item ID>,<Amount>
+		setarray .prize[0], 7179,7227; // Glorious items
+		.size = getarraysize(.requirements);
+		close;
+}
+	//=================================================================
+	//= Configuration =================================================
+	//=================================================================
+	//=================================================================
+	//= End Of Configuration ==========================================
+	//=================================================================
+	
+
+lighthalzen,254,109,0	script	LeRoix [S]#1	100,{
+	
+	query_sql "SELECT `char_id`, `rank`, `kills`, `death` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero, .@rank$, .@kills, .@deaths;
+
+	if ( done_leroix ) {
+	mes .npc$;
+	mes "You are now a legend! There's nothing else I can do for you...";
+	close;
+	}
+	
+	if ( .@hero == 0 ) {
+		mes .npc$;
+		mes "I do not talk to anyone who is not a ^0000ffHero^000000.";
+		close;
+	}
+	
+	if ( .@rank$ != "S" ) {
+		mes .npc$;
+		mes "Before talking to me, make sure you are a ^0000FFRank S Hero^000000.";
+		close;
+	}
+	
+	mes .npc$;
+	mes "In order to obtain the equipment for a ^0000ffRank S Hero^000000, you'll have to bring me the following items:";
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) 
+		mes .requirements[.@i + 1]+ " ^ff0000" +getitemname(.requirements[.@i])+"^000000";
+	next;
+	mes .npc$;
+	mes "You also have to defeat 500 ^0000ffHeroes^000000 inside the ^ff0000Heroic PvP Arena^000000.";
+	
+	next;
+	
+	if ( select("I meet all the requirements!:That's too much...") - 1 ) close;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 ) {
+		if ( countitem(.requirements[.@i]) < .requirements[.@i+1] || .@kills < 500) {
+			mes .npc$;
+			mes "You don't meet one or more requirement(s).";
+			close;
+		}
+		break;
+	}
+	
+	mes .npc$;
+	mes "Well done!";
+	
+	done_leroix = 1;
+	
+	for ( set .@i, 0; .@i < .size; set .@i, .@i + 2 )
+		delitem .requirements[.@i], .@requirements[.@i + 1];
+	
+	for ( .@i = 0; .@i < getarraysize(.prize); .@i++ )
+		getitem .prize[.@i], 1;
+	
+	close;
+
+	OnInit:
+		.npc$ = "[ " +strnpcinfo(1)+ " ]";
+		setarray .requirements[0],999,100,7179,5,7227,5,13844,1,7825,1,674,1,673,1; // <Item ID>,<Amount>
+		setarray .prize[0], 7179,7227; // Glorious items
+		.size = getarraysize(.requirements);
+		close;
+}
+
+// Functions
+
+-	script	hero_arena	-1,{
+function AddHeroPoints;
+
+query_sql "SELECT `char_id` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero;
+
+if ( .@hero == 0 ) close;
+
+OnPCKillEvent:
+	// AddHeroPoints ( <Map>,<Points> );
+	if ( killedrid == getcharid(0) ) close; // No points gained if killed himself
+	AddHeroPoints( "hero_arena",5 );
+	close;
+	
+OnPCDieEvent:
+	if ( strcharinfo(3) == "hero_arena" ) // If you want multiple map, then use "|| <Your Map>"
+		query_sql "UPDATE `hero` SET `death` = death + 1 WHERE `char_id` = '" +getcharid(0)+ "'";
+	close;
+
+	function	AddHeroPoints	{
+		.@delay = 3; // In minutes, To prevent spam, points gained from killing players have delay time.
+		.@converter = .@delay * 60; 
+		getmapxy(.@map$,.@x,.@y,0);
+		if ( .@map$ == getarg(0) ) {
+			if ( gettimetick(2) > Delay ) {
+				query_sql "UPDATE `hero` SET `points` = points + '" +getarg(1)+ "' WHERE `char_id` = '" +getcharid(0)+ "'";
+				query_sql "SELECT `points` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@points;
+				query_sql "UPDATE `hero` SET `kills` = kills + 1 WHERE `char_id` = '" +getcharid(0)+ "'";
+				if ( .@points >= 8300000 && !ranked_promoted_c ) {
+					query_sql "UPDATE `hero` SET `rank` = 'C' WHERE `char_id` = '" +getcharid(0)+ "'";
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank C^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_c = 1;
+					close;
+				}
+
+				if ( .@points >= 14510000 && !ranked_promoted_b ) {
+					query_sql "UPDATE `hero` SET `rank` = 'B' WHERE `char_id` = '" +getcharid(0)+ "'";	
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank B^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_b = 1;
+				}
+				
+					if ( .@points >= 29800000 && !ranked_promoted_a ) {
+					query_sql "UPDATE `hero` SET `rank` = 'A' WHERE `char_id` = '" +getcharid(0)+ "'";	
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank A^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_a = 1;
+				}
+				
+					if ( .@points >= 58230000 && !ranked_promoted_s ) {
+					query_sql "UPDATE `hero` SET `rank` = 'S' WHERE `char_id` = '" +getcharid(0)+ "'";	
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank S^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_s = 1;
+				}
+
+				dispbottom "You currently have " +.@points+ " Hero point(s).";
+				Delay = gettimetick(2) + .@converter;
+			}
+		}
+		return;
+	}
+
+}
+
+-	script	monster_arena	-1,{
+function AddHeroPoints;
+
+query_sql "SELECT `char_id` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero;
+
+if ( .@hero == 0 ) close;
+
+OnNPCKillEvent:
+	// AddHeroPoints ( <MobID>,<Points>,<Map> );
+	AddHeroPoints( 1002,1,"br_map5",1756,30,"br_map5",1759,5,"br_map",1757,5,"br_map",1900,7,"br_map",1899,7,"br_map",1634,12,"br_map",1635,12,"br_map",1636,12,"br_map",1522,3,"br_map" );
+	close;
+
+	function	AddHeroPoints	{
+		getmapxy(.@map$,.@x,.@y,0);
+		if ( killedrid == getarg(0) && .@map$ == getarg(2) ) {
+		
+			query_sql "UPDATE `hero` SET `points` = points + '" +getarg(1)+ "' WHERE `char_id` = '" +getcharid(0)+ "'";
+			query_sql "SELECT `points` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@points;
+
+				if ( .@points >= 8300000 && !ranked_promoted_c ) {
+					query_sql "UPDATE `hero` SET `rank` = 'C' WHERE `char_id` = '" +getcharid(0)+ "'";
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank C^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_c = 1;
+				}
+
+				if ( .@points >= 14510000 && !ranked_promoted_b ) {
+					query_sql "UPDATE `hero` SET `rank` = 'B' WHERE `char_id` = '" +getcharid(0)+ "'";
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank B^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_b = 1;
+					close;
+				}
+				
+					if ( .@points >= 29800000 && !ranked_promoted_a ) {
+					query_sql "UPDATE `hero` SET `rank` = 'A' WHERE `char_id` = '" +getcharid(0)+ "'";	
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank A^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_a = 1;
+				}
+				
+					if ( .@points >= 58230000 && !ranked_promoted_s ) {
+					query_sql "UPDATE `hero` SET `rank` = 'S' WHERE `char_id` = '" +getcharid(0)+ "'";	
+					mes "[Announcement]";
+					mes "^ff0000Congratulations Hero!^000000";
+					mes "You have been promoted to ^0000ffRank S^000000!";
+					next;
+					mes "[Announcement]";
+					mes "Best of luck!";
+					ranked_promoted_s = 1;
+				}
+
+				dispbottom "You currently have " +.@points+ " Hero point(s).";
+			}
+
+		}
+		return;
+	}
+
+
+-	script	Checker	-1,{
+	OnInit:
+		bindatcmd("heropoints",strnpcinfo(3)+ "::OnCheck");
+		close;
+
+	OnCheck:
+		query_sql "SELECT `char_id` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero;
+		query_sql "SELECT `points` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@points;
+		while( .@hero == 0 )
+			dispbottom "You are not a Hero.";
+	else
+			dispbottom "You currently have " +.@points+" Hero point(s).";
+		close;
+}
+
+luca_in,158,71,3	script	Field Keeper#1	483,{
+	
+	OnCheck:
+	query_sql "SELECT `char_id` FROM `hero` WHERE `char_id` = '" +getcharid(0)+ "'",.@hero;
+
+		if ( .@hero == 0 ) {
+		mes "[Hero Arena Keeper]";
+		mes "I do not talk to anyone who is not a ^0000ffHero^000000.";
+		close;
+}
+
+	if (countitem(7825)>=1){
+		mes "[Hero Field Keeper]";
+		mes "Oh, you have the ^0000ffCertificate of Heroism^000000!";
+		next;
+		mes "[Hero Field Keeper]";
+		mes "Would you like to enter the ^ff0000Hero Arena^000000?";
+	if ( select("That's what I am here for!:No, thanks...") - 1 ) end;
+		next;
+		mes "[Hero Field Keeper]";
+		mes "Have fun!";
+		close;
+
+		warp "br_map5",176,58;
+		close;
+}
+
+	else {
+	mes "[Hero Arena Keeper]";
+	mes "You don't have the ^0000ffCertificate of Heroism^000000, so there's nothing I can do for you...";
+	close;
+}
+}

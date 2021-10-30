@@ -1,0 +1,47 @@
+alexandria,141,151,5	script	Premium Disguise	502,{
+	mes "[Headgear Disguiser]";
+	mes "Hello and welcome to the Headgear Disguisier service.";
+	mes "Here you can convert your headgears into a Costume Headgear.";
+	next;
+	mes "[Headgear Disguiser]";
+	mes "Please, select what to convert.";
+	mes "Remember, cards and refine will be removed.";
+	next;
+
+	setarray .@Position$[1],"Top","Mid","Low";
+	setarray .@Position[1],     1,    9,   10;
+
+	set .@Menu$,"";
+	for( set .@i, 1; .@i < 4; set .@i, .@i + 1 )
+	{
+		if( getequipisequiped(.@Position[.@i]) )
+			set .@Menu$, .@Menu$ + .@Position$[.@i] + "-" + "[" + getequipname(.@Position[.@i]) + "]";
+
+		set .@Menu$, .@Menu$ + ":";
+	}
+
+	set .@Part, .@Position[ select(.@Menu$) ];
+	if( !getequipisequiped(.@Part) )
+	{
+		mes "[Headgear Disguiser]";
+		mes "Your not wearing anything there...";
+		close;
+	}
+
+	mes "[Headgear Disguiser]";
+	mes "You want to Costume your " + getitemname(getequipid(.@Part)) + "?";
+	next;
+	if( select("Yes, proceed:No, I am sorry.") == 2 )
+	{
+		mes "[Headgear Disguiser]";
+		mes "Need some time to think about it, huh?";
+		mes "Alright, I can understand.";
+		close;
+	}
+	
+	costume .@Part; // Convert the Headgear
+
+	mes "[Headgear Disguiser]";
+	mes "Done, enjoy your costume headgear.";
+	close;
+}

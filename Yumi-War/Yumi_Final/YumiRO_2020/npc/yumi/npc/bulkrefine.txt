@@ -1,0 +1,39 @@
+prt_in,94,66,3	script	Bulk Refiner	63,{
+
+
+mes "Hello "+strcharinfo(0)+", I can refine bulk amounts of Oridecon and Elunium. Just input the type and how much ore you want to receive.";
+next;
+mes "Type of ore to refine?";
+menu "Oridecon",ref_ori,"Elunium",ref_elu;
+
+
+ref_ori:
+next;
+set .@ori,countitem(756)/5;
+mes "You have selected Oridecon and I can refine a total of "+.@ori+". Please enter the amount of ore you wish to receive.";
+input .@input;
+if(.@ori < .@input) goto ref_insuf;
+delitem 756,(5 * .@input);
+getitem 984,(1 * .@input);
+next;
+mes "Thank you, come again";
+close;
+
+
+ref_elu:
+next;
+set .@elu,countitem(757)/5;
+mes "You have selected Elunium and I can refine a total of "+.@elu+" Please enter the amount of ore you wish to receive.";
+input .@input;
+if(.@elu < .@input) goto ref_insuf;
+delitem 757,(5 * .@input);
+getitem 985,(1 * .@input);
+next;
+mes "Thank you, come again";
+close;
+
+
+ref_insuf:
+mes "Im sorry but you seem to be lacking the amount of ore to fulfill your request.";
+close;
+}

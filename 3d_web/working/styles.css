@@ -1,0 +1,13 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/9fa60a87711043.5dc0b3f7600c5.jpg")
+    no-repeat center center fixed;
+  background: gray;
+  overflow: hidden;
+}
+
+canvas {
+  background-image: radial-gradient(#666, #333);
+}

@@ -1,0 +1,56 @@
+Upload the plugin files to the your_wordpress_plugins_dir/vrm360 directory, or Install as a regular WordPress plugin
+Go your Plugins page via WordPress Dashboard and activate it
+Use these shortcodes to post or page
+
+[vrm360 canvas_name=s1 model_url=full_3d_model_url aspect_ratio=1.33333 hide_cmds=zoom,fullscreen]
+
+defaults: canvas_name=s1, aspect_ratio=1.33333, hide_cmds=false
+
+Be sure to use the HTML editor when inserting shortcodes!
+
+obj, mtl and png texture file must be located at the same folder and same server
+
+mtl and png are optional;
+
+place the full url location of your obj file inside the shortcode
+
+for 3D models the obj, mtl and png files can be generated using Blender
+
+upload your 3d model files (obj, [mtl and png]) in your WordPress Library or to your model library site.
+
+NB: you can check the full url location in your Media Library with its Attachment Details.
+
+Modify the css style to adapt some features
+
+change css/vrm-style.css to change some style aspect
+click to stop animation, click and hold to drag, double click to restart or invert sense of animation
+
+left-mouse/one-finger: Orbit; middle-mouse/two-fingers: Zoom; right-mouse/three-fingers: Pan
+
+Shortcode Parameters:
+
+canvas_name = canvas name needed in case of multiple shows on the same page (required)
+model_url = full 3d model url (required)
+aspect_ratio = any number i.e.: 1.3333 for 4/3 aspect ratio
+initial_offset = any positive number around 1.0 (camera offset, default 1.15)
+change css/vrm-style.css to adapt some style aspect (as loading image or button font color)
+hide_cmds = all, fullscreen, fit, run, zoom, on_mobile or false (default is false)
+speed = any number (default spin rotation value = 1.0)
+autostart = true/false (default false)
+backgcolor = html color value (default #D9D9D9)
+lightcolor = html directional light color value (default #FFFFFF)
+lightintensity = directional light intensity (default 0.9)
+lx, ly, lz = directional light position (default lx=2 ly=2 lz=2)
+amb_lightcolor = html ambient light color value (default #FFFFFF)
+amb_lightintensity = > ambient light intensity (default 0.9)
+border_color = html color for canvas border (default = #D9D9D9)
+border_width = canvas border width in pixels (default = 1); set it to 0 to remove canvas border.
+mesh_color = html color value for stl models (default #FF5533)
+rx = deg, ry = deg, rz = deg (model rotation angle, default rx=0,ry=0,rz=0)
+back_image_url = full background image url (default = ”)
+ground = true/false (ground plane, default false)
+ground_color = html color (ground plane color, default #999999)
+ground_offset = any number (ground plane offset, default = 0.0)
+grid = true/false (grid on floor, default false)
+button_color = html color for buttons (default = #99CC99)
+debug = debugging console log (default = false)

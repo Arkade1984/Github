@@ -54,3 +54,12 @@ ground_offset = any number (ground plane offset, default = 0.0)
 grid = true/false (grid on floor, default false)
 button_color = html color for buttons (default = #99CC99)
 debug = debugging console log (default = false)
+
+
+
+
+
+
+
+
+

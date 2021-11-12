@@ -1,0 +1,40 @@
+
+  body {
+    background-color: #222831;
+    color:#17dada;
+    padding-bottom: 25px;
+      font-family: sans-serif;
+  }
+
+a, a:link {
+    color: #a3d2ca;
+    text-decoration: none;
+}
+
+a:hover {
+    color:white;
+}
+  hr {
+
+  border-style: none;
+  border-top-style:dotted;
+  border-color: grey;
+  border-width: 5px;
+  border-width: 5px;
+  width: 10%;
+  }
+
+h1 
+{
+  color: #e8ded2;
+}
+
+h2 {
+    color: #a3d2ca;
+}
+
+h3 {
+color: #e8ded2;
+}
+
+

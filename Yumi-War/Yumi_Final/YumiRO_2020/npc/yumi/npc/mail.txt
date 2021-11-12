@@ -1,3 +1,0 @@
-junon,238,186,3	duplicate(MailBox)	Post Box#ju	888
-prontlegend,191,205,3	duplicate(MailBox)	Post Box#ju1	888
-ilyo_kwan,112,176,3	duplicate(MailBox)	Post Box#ju2	888

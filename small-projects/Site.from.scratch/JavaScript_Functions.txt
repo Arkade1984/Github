@@ -1,0 +1,35 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// JavaScript Functions
+
+//Good for random number generation (dice roll)
+var n = Math.random();
+n = n * 6 // Numbers = between 1 and 6 (numbers between 1 and 6)
+n = Math.floor(n * 1) + 1; // We use Math.floor to run the number down to lowest, 1-6
+console.log(n);
+
+// There is a difference between "Random" and "Psuedo Random" numbers
+
+//Love Calculator example!
+prompt("What is your name?");
+prompt("What is your name?");
+
+var lvoeScore = Math.random() * 100;
+loveScore = Math.floor(loveScore) + 1;
+alert("Your love score is " + loveScore + "%");

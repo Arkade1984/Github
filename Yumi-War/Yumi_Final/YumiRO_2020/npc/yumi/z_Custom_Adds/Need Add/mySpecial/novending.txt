@@ -1,3 +1,0 @@
-junon	mapflag	novending
-Crystilia	mapflag	novending
-Welgaia	mapflag	novending

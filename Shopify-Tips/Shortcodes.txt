@@ -1,0 +1,4 @@
+
+
+// for removing url and linking tags
+<B><a href="http:// {{tag | remove: "url" }}" target="_Blank" class="action_button">{{tag | remove: "url" }}</a> <BR><B/>

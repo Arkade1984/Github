@@ -1,8 +1,0 @@
-// Mellina In
-
-// Refiners
-
-luca_in,125,161,4	script	Axis	88,{
-	callfunc "refinemain","Axis",0;
-	end;
-}

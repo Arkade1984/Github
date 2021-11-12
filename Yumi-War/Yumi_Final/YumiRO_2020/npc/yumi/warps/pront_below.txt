@@ -1,5 +1,0 @@
-aev_fild,0,0,0,0	monster	Black Mushroom	1084,7,900000,450000,1
-aev_fild,0,0,0,0	monster	Ambernite	1094,40,5000,0,0
-aev_fild,0,0,0,0	monster	Boiled Rice	1520,20,5000,0,0
-aev_fild,0,0,0,0	monster	Eclipse	1093,10,5000,0,0
-aev_fild,0,0,0,0	monster	Lunatic	1726,10,5000,0,0
